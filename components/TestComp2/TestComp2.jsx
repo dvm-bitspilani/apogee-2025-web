@@ -6,7 +6,7 @@ import React, {useRef} from 'react'
 import {useGLTF} from '@react-three/drei'
 
 export function TestComp2(props) {
-    const {nodes, materials} = useGLTF('/models/TestBuildingJoint.glb')
+    const {nodes, materials} = useGLTF('/models/TestBuildingJoint-v3.glb')
     return (
         <group {...props} dispose={null}>
             <group scale={80}>
@@ -22,4 +22,4 @@ export function TestComp2(props) {
     )
 }
 
-useGLTF.preload('/models/TestBuildingJoint.glb')
+useGLTF.preload('/models/TestBuildingJoint-v3.glb')
