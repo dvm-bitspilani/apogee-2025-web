@@ -8,9 +8,10 @@ import { useGLTF, useAnimations } from "@react-three/drei";
 export function TestComp2(props) {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF(
-    "/models/ActualWebsiteModel-v1.glb"
+    "/models/ActualWebsiteModel-v1Corrected.glb"
   );
   const { actions, names } = useAnimations(animations, group);
+
   useEffect(() => {
     for (const name of names) {
       actions[name].play();
@@ -20,10 +21,12 @@ export function TestComp2(props) {
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
         <mesh
-          name="Circle001"
-          geometry={nodes.Circle001.geometry}
+          name="Circle002"
+          geometry={nodes.Circle002.geometry}
           material={materials["Material__188.001"]}
-          position={[4.356, -0.058, 28.076]}
+          position={[3.265, 24.726, 4.639]}
+          rotation={[Math.PI / 2, -0.262, 0]}
+          scale={0.5}
         />
         <mesh
           name="Plane261"
@@ -39,65 +42,13 @@ export function TestComp2(props) {
           position={[42.007, 7.304, -9.353]}
           rotation={[Math.PI / 2, 0.262, 0]}
         />
-        <group
+        <mesh
           name="Empy"
+          geometry={nodes.Empy.geometry}
+          material={materials["Material__188.001"]}
           position={[34.106, 6.633, -9.511]}
           rotation={[Math.PI, 0, Math.PI]}
-        >
-          <mesh
-            name="Gear1002"
-            geometry={nodes.Gear1002.geometry}
-            material={materials["Material__188.001"]}
-            position={[-7.901, 0.67, 1.889]}
-            rotation={[Math.PI / 2, 1.017, 0]}
-            scale={[2.114, 2.195, 2.114]}
-          />
-          <mesh
-            name="Gear1003"
-            geometry={nodes.Gear1003.geometry}
-            material={materials["Material__188.001"]}
-            position={[-16.739, 0.67, 1.201]}
-            rotation={[Math.PI / 2, -1.017, -Math.PI]}
-            scale={[2.114, 2.195, 2.114]}
-          />
-          <mesh
-            name="Gear1004"
-            geometry={nodes.Gear1004.geometry}
-            material={materials["Material__188.001"]}
-            position={[-7.901, 0.67, -0.138]}
-            rotation={[Math.PI / 2, 1.017, 0]}
-            scale={[2.114, 2.195, 2.114]}
-          />
-          <mesh
-            name="Gear1007"
-            geometry={nodes.Gear1007.geometry}
-            material={materials["Material__188.001"]}
-            position={[-16.739, 0.67, -0.826]}
-            rotation={[Math.PI / 2, -1.017, -Math.PI]}
-            scale={[2.114, 2.195, 2.114]}
-          />
-          <mesh
-            name="Gear1016"
-            geometry={nodes.Gear1016.geometry}
-            material={materials["Material__188.001"]}
-            rotation={[2.587, 0, -Math.PI / 2]}
-            scale={[1.742, 1.808, 1.742]}
-          />
-        </group>
-        <group
-          name="Empty123"
-          position={[50.845, 7.304, -10.711]}
-          rotation={[Math.PI, 0, Math.PI]}
-          scale={3.018}
-        >
-          <mesh
-            name="Gear1005"
-            geometry={nodes.Gear1005.geometry}
-            material={materials["Material__188.001"]}
-            rotation={[Math.PI / 2, 0.262, 0]}
-            scale={0.331}
-          />
-        </group>
+        />
         <group
           name="Empty121"
           position={[46.426, 12.805, -10]}
@@ -112,51 +63,28 @@ export function TestComp2(props) {
             scale={[2.1, 3.036, 2.1]}
           />
         </group>
+        <group name="Empty113" position={[39.141, 4.064, -4.12]} />
         <group
-          name="Empy001"
-          position={[59.252, 6.634, -9.511]}
-          rotation={[0, 0, -Math.PI]}
+          name="Empty047"
+          position={[55.59, 4.065, -4.12]}
+          rotation={[-Math.PI, 0, 0]}
           scale={-1}
-        >
-          <mesh
-            name="Gear1001"
-            geometry={nodes.Gear1001.geometry}
-            material={materials["Material__188.001"]}
-            rotation={[2.587, 0, -Math.PI / 2]}
-            scale={[1.742, 1.808, 1.742]}
-          />
-          <mesh
-            name="Gear1008"
-            geometry={nodes.Gear1008.geometry}
-            material={materials["Material__188.001"]}
-            position={[-53.133, 21.048, -9.526]}
-            rotation={[2.587, 0, -Math.PI / 2]}
-            scale={[1.742, 1.808, 1.742]}
-          />
-        </group>
-        <mesh
-          name="Gear1015"
-          geometry={nodes.Gear1015.geometry}
-          material={materials["Material__188.001"]}
-          position={[36.642, 7.547, -3.181]}
-          rotation={[Math.PI / 2, -1.017, Math.PI]}
-          scale={[1.564, 1.624, 1.564]}
         />
         <mesh
-          name="Gear1017"
-          geometry={nodes.Gear1017.geometry}
+          name="BrassPipe1311"
+          geometry={nodes.BrassPipe1311.geometry}
           material={materials["Material__188.001"]}
-          position={[36.642, 7.547, -2.609]}
-          rotation={[Math.PI / 2, -1.017, Math.PI]}
-          scale={[0.972, 1.009, 0.972]}
+          position={[34.447, 3.788, -3.72]}
+          rotation={[Math.PI / 2, 0, Math.PI]}
+          scale={[1.083, 0.578, 1.083]}
         />
         <mesh
-          name="Gear1025"
-          geometry={nodes.Gear1025.geometry}
+          name="BrassPipe1313"
+          geometry={nodes.BrassPipe1313.geometry}
           material={materials["Material__188.001"]}
-          position={[35.667, 5.58, -2.609]}
-          rotation={[-Math.PI / 2, -1.017, 0]}
-          scale={[0.972, 1.009, 0.972]}
+          position={[34.447, 3.788, -4.237]}
+          rotation={[Math.PI / 2, 0, Math.PI]}
+          scale={[2.046, 0.427, 2.046]}
         />
         <mesh
           name="Gear1026"
@@ -167,38 +95,38 @@ export function TestComp2(props) {
           scale={[1.664, 1.727, 1.664]}
         />
         <mesh
-          name="Gear1027"
-          geometry={nodes.Gear1027.geometry}
+          name="Brass90Turn1249"
+          geometry={nodes.Brass90Turn1249.geometry}
           material={materials["Material__188.001"]}
-          position={[32.415, 4.123, -5.168]}
-          rotation={[-0.554, 0, Math.PI / 2]}
-          scale={[1.664, 1.727, 1.664]}
+          position={[38.999, 4.134, -2.964]}
+          rotation={[-Math.PI / 2, 0, 1.125]}
+          scale={[-1.809, -1.99, -1.809]}
+        />
+        <mesh
+          name="WoodPlankWall13182"
+          geometry={nodes.WoodPlankWall13182.geometry}
+          material={materials["Material__188.001"]}
+          position={[-0.643, 0.819, -34.634]}
+          rotation={[-1.571, 0, 0]}
+          scale={[0.803, 0.863, 0.803]}
         />
         <group
-          name="Empy002"
-          position={[-6.034, 6.634, -39.016]}
-          rotation={[Math.PI, 1.571, 0]}
+          name="Empty158"
+          position={[-0.643, 4.065, -35.355]}
+          rotation={[Math.PI, -1.571, 0]}
           scale={-1}
-        >
-          <mesh
-            name="Gear1028"
-            geometry={nodes.Gear1028.geometry}
-            material={materials["Material__188.001"]}
-            rotation={[2.587, 0, -Math.PI / 2]}
-            scale={[1.742, 1.808, 1.742]}
-          />
-        </group>
+        />
         <mesh
-          name="Gear1019"
-          geometry={nodes.Gear1019.geometry}
+          name="WoodPlankWall12383"
+          geometry={nodes.WoodPlankWall12383.geometry}
           material={materials["Material__188.001"]}
-          position={[34.447, 3.788, -2.361]}
-          rotation={[-Math.PI / 2, 1.017, -Math.PI]}
-          scale={[0.972, 1.009, 0.972]}
+          position={[-51.434, 10.021, 18.317]}
+          rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+          scale={0.803}
         />
       </group>
     </group>
   );
 }
 
-useGLTF.preload("/models/ActualWebsiteModel-v1.glb");
+useGLTF.preload("/models/ActualWebsiteModel-v1Corrected.glb");

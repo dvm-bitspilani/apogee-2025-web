@@ -1,16 +1,24 @@
-import {Route, Routes} from "react-router";
+import { Route, Routes } from "react-router";
 import GlobalLayout from "../layouts/GlobalLayout.jsx";
 import Experience from "../components/Experience/Experience.jsx";
+import Landing from "../components/Landing/Landing.jsx";
 
 function App() {
-    return (
-        <Routes>
-            {/*<Route element={<GlobalLayout/>}>*/}
-            <Route path="/" element={<Experience/>}/>
-            <Route path="test" element={<><h1>Test Page</h1></>}/>
-            {/*</Route>*/}
-        </Routes>
-    )
+  return (
+    <Routes>
+      {/*<Route element={<GlobalLayout/>}>*/}
+      <Route path="/" element={<Landing />} />
+      <Route
+        path="test"
+        element={
+          <>
+            <h1>Test Page</h1>
+          </>
+        }
+      />
+      {/*</Route>*/}
+    </Routes>
+  );
 }
 
-export default App
+export default App;
