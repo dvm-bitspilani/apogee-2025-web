@@ -6,7 +6,6 @@ import {
 } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import { TestComp2 } from "../TestComp2/TestComp2.jsx";
-import { TestComp, TestInstances } from "../TestComp/TestComp.jsx";
 import { useRef } from "react";
 import { DirectionalLightHelper, PointLightHelper } from "three";
 import { useControls } from "leva";
@@ -24,33 +23,23 @@ export default function Experience() {
       {/* <Bloom intensity={4.0} /> */}
 
       <OrbitControls
-        // maxPolarAngle={Math.PI / 2.5}
-        maxPolarAngle={Math.atan(1.5 / 0.25)}
-        minPolarAngle={Math.PI / 3}
-        enablePan={false}
-        enableZoom={false}
-        // enableRotate={true}
+      // maxPolarAngle={Math.atan(1.5 / 0.25)}
+      // minPolarAngle={Math.PI / 3}
+      // enablePan={false}
+      // enableZoom={false}
       />
 
-      {/* <Environment
-        files="/environments/kloppenheim_06_puresky_1k.hdr"
-        background={true}
-      /> */}
       <BakeShadows />
 
       <Environment
-        files="/environments/rogland_clear_night_1k.hdr"
-        background={true}
+        files="/environments/qwantani_dusk_2_1k.hdr"
+        environmentIntensity={1}
+        // resolution={16}
+        // resolution={1024}
+        // background={true}
       />
 
       <fogExp2 attach="fog" color="#564d65" density={0.3} />
-
-      {/* <ambientLight intensity={2} /> */}
-      {/*<group scale={0.02}>*/}
-      {/*    <TestInstances>*/}
-      {/*        <TestComp/>*/}
-      {/*    </TestInstances>*/}
-      {/*</group>*/}
 
       {/* <directionalLight
         ref={directionalLightHelper}
@@ -59,14 +48,14 @@ export default function Experience() {
         intensity={5}
       /> */}
 
-      <pointLight
+      {/* <pointLight
         ref={pointLightHelper}
         intensity={1}
         color="blue"
         position={[1, 1, 0]}
-      />
+      /> */}
 
-      <group scale={0.02}>
+      <group rotation={[0, -Math.PI / 2, 0]} scale={0.02}>
         <TestComp2 />
       </group>
     </>
