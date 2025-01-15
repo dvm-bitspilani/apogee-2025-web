@@ -9,7 +9,7 @@ import { TestComp2 } from "../TestComp2/TestComp2.jsx";
 import { useRef } from "react";
 import { DirectionalLightHelper, PointLightHelper } from "three";
 import { useControls } from "leva";
-import { Bloom } from "@react-three/postprocessing";
+import { Bloom, Noise } from "@react-three/postprocessing";
 
 export default function Experience() {
   //   const directionalLightHelper = useRef();
@@ -22,6 +22,8 @@ export default function Experience() {
 
       {/* <Bloom intensity={4.0} /> */}
 
+      <Noise />
+
       <OrbitControls
       // maxPolarAngle={Math.atan(1.5 / 0.25)}
       // minPolarAngle={Math.PI / 3}
@@ -32,11 +34,10 @@ export default function Experience() {
       <BakeShadows />
 
       <Environment
-        files="/environments/qwantani_dusk_2_1k.hdr"
+        files="/environments/kloppenheim_06_puresky_1k.hdr"
         environmentIntensity={1}
-        // resolution={16}
-        // resolution={1024}
-        // background={true}
+        backgroundIntensity={1}
+        background={true}
       />
 
       <fogExp2 attach="fog" color="#564d65" density={0.3} />

@@ -11,6 +11,7 @@ export function TestComp2(props) {
     "/models/ActualWebsiteModel-v2.glb"
   );
   const { actions } = useAnimations(animations, group);
+
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
