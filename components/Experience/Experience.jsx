@@ -1,6 +1,7 @@
 import {
   BakeShadows,
   Environment,
+  Html,
   OrbitControls,
   useHelper,
 } from "@react-three/drei";
@@ -10,6 +11,8 @@ import { useRef } from "react";
 import { DirectionalLightHelper, PointLightHelper } from "three";
 import { useControls } from "leva";
 import { Bloom, Noise } from "@react-three/postprocessing";
+import Navbar from "../Landing/Navbar/Navbar.jsx";
+import { mx_fractal_noise_float } from "three/src/nodes/TSL.js";
 
 export default function Experience() {
   //   const directionalLightHelper = useRef();
