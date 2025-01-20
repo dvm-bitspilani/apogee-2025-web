@@ -4,6 +4,7 @@ import {
   Cloud,
   Sky,
   Environment,
+  Html,
   OrbitControls,
   useHelper,
   Sphere,
@@ -20,6 +21,8 @@ import {
   ToneMapping,
 } from "@react-three/postprocessing";
 import EnergyOrb from "../EnergyOrb/EnergyOrb.jsx";
+import Navbar from "../Landing/Navbar/Navbar.jsx";
+import { mx_fractal_noise_float } from "three/src/nodes/TSL.js";
 
 export default function Experience() {
   const directionalLightHelper = useRef();
