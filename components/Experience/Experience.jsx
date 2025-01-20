@@ -1,28 +1,10 @@
-import {
-  BakeShadows,
-  Clouds,
-  Cloud,
-  Sky,
-  Environment,
-  Html,
-  OrbitControls,
-  useHelper,
-  Sphere,
-} from "@react-three/drei";
+import { Sky, OrbitControls, useHelper } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import { TestComp2 } from "../TestComp2/TestComp2.jsx";
 import { useRef } from "react";
 import { DirectionalLightHelper, PointLightHelper } from "three";
 import { useControls } from "leva";
-import {
-  Bloom,
-  EffectComposer,
-  Noise,
-  ToneMapping,
-} from "@react-three/postprocessing";
 import EnergyOrb from "../EnergyOrb/EnergyOrb.jsx";
-import Navbar from "../Landing/Navbar/Navbar.jsx";
-import { mx_fractal_noise_float } from "three/src/nodes/TSL.js";
 
 export default function Experience() {
   const directionalLightHelper = useRef();
