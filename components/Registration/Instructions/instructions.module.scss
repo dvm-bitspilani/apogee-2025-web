@@ -1,10 +1,11 @@
 .mainWrapper {
-  height: 92vh;
+  height: fit-content;
   width: 55vw;
   background: no-repeat;
   display: flex;
   align-items: center;
   flex-direction: column;
+  padding-bottom: 2.5rem;
 
   h2 {
     padding-top: 2rem;
