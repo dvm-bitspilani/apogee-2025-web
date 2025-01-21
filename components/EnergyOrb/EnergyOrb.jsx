@@ -1,5 +1,57 @@
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
-import { Sphere } from "@react-three/drei";
+import { shaderMaterial, Sphere } from "@react-three/drei";
+import * as THREE from "three";
+import { extend } from "@react-three/fiber";
+
+const OuterGlowRadial = shaderMaterial(
+  // Uniforms
+  {},
+  // Vertex
+  `
+    varying vec3 vNormal;
+    varying vec3 vPosition;
+
+    void main(){
+        // Position
+        vec4 modelPosition = modelMatrix * vec4(position , 1.0);
+
+        // Final position
+        gl_Position = projectionMatrix * viewMatrix * modelPosition;
+
+        // Model normal
+        vec4 modelNormal = modelMatrix * vec4(normal, 0.0);
+
+        // Varyings
+        vPosition = modelPosition.xyz;
+        vNormal = modelNormal.xyz;
+    }
+  `,
+  // Fragment
+  `
+    varying vec3 vPosition;
+    varying vec3 vNormal;
+
+    float a = 1.0;
+    float b = 0.0;
+    float c = 2.1;
+
+    void main(){
+        // Normal
+        vec3 normal = normalize(vNormal);
+
+        // Fresnel
+        vec3 viewDirection = normalize(vPosition - cameraPosition);
+        float fresnel = abs(pow(dot(viewDirection, normal), a) + b);
+        fresnel = tan(pow(fresnel, c));
+
+        gl_FragColor = vec4(1.0, 1.0, 0.0, fresnel);
+        #include <tonemapping_fragment>
+        #include <colorspace_fragment>
+    }
+  `
+);
+
+extend({ OuterGlowRadial });
 
 export default function EnergyOrb({
   luminanceThreshold = 0.2,
@@ -11,15 +63,15 @@ export default function EnergyOrb({
 }) {
   return (
     <>
-      <EffectComposer>
+      {/* <EffectComposer>
         <Bloom
           luminanceThreshold={luminanceThreshold}
           luminanceSmoothing={luminanceSmoothing}
           intensity={bloomIntensity}
         />
-      </EffectComposer>
+      </EffectComposer> */}
 
-      <Sphere args={[0.1, 32, 32]}>
+      {/* <Sphere args={[0.1, 32, 32]}>
         <meshStandardMaterial
           emissive={color}
           emissiveIntensity={emissiveIntensity}
@@ -30,6 +82,24 @@ export default function EnergyOrb({
           intensity={lightIntensity}
           color={color}
         />
+      </Sphere> */}
+
+      <Sphere args={[0.1, 32, 32]} position={[0, 0, 0]}>
+        <meshStandardMaterial
+          color={color}
+          emissive={color}
+          emissiveIntensity={1.5}
+        />
+        <pointLight
+          color={color}
+          position={[0, 0.05, 0]}
+          intensity={lightIntensity}
+        />
+      </Sphere>
+
+      {/* Outer sphere for glow effect */}
+      <Sphere args={[0.12, 32, 32]} position={[0, 0, 0]}>
+        <outerGlowRadial transparent blending={THREE.AdditiveBlending} />
       </Sphere>
     </>
   );
