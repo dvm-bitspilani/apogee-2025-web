@@ -99,7 +99,7 @@ export default function Experience() {
       />
 
       <group position={[0, 0.2, 0.075]}>
-        <EnergyOrb color="orange" />
+        <EnergyOrb color="orange" lightIntensity={3} />
       </group>
 
       {/* <fogExp2 attach="fog" color="#564d65" density={0.3} /> */}
