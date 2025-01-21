@@ -1,5 +1,50 @@
-.mainOutWrapper {
-  height: 90vh;
-  width: 50vw;
-  background-repeat: no-repeat;
+.mainWrapper {
+  height: 92vh;
+  width: 55vw;
+  background: no-repeat;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  h2 {
+    padding-top: 2rem;
+    font-size: 100px;
+    font-family: "Birmingham";
+    color: #2B1B03;
+    text-decoration: underline;
+    letter-spacing: 4px;
+  }
+
+  .instructionContainer {
+    margin-top: 2.5rem;
+    padding-bottom: 2rem;
+    height: fit-content;
+    width: 50vw;
+    border: 2px solid #483312;
+
+    .heading {
+      padding-top: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+
+      h3 {
+        font-size: 30px;
+        color: #2B1B03;
+        text-decoration: underline;
+      }
+    }
+    
+    .content {
+      padding-top: 2rem;
+      padding-left: 2.2rem;
+      display: flex;
+      justify-content: center;
+      color: #2B1B03;
+      font-size: 25px;
+      font-weight: 600;
+      gap: 20px;
+    }
+  }
 }
