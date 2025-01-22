@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./instructions.module.scss";
+import { GoogleLogin } from "@react-oauth/google";
 import regWrapper from "../../../src/assets/Register/regWrapper.png";
 
 export default function Instructions() {
@@ -8,7 +9,7 @@ export default function Instructions() {
       <div
         className={styles.mainWrapper}
         style={{
-          background: `url(${regWrapper})`,
+          background: `radial-gradient(40.9% 58.96% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.38) 100%), url(${regWrapper})`,
           boxShadow: "-12px -12px 15.34px 0px rgba(0, 0, 0, 0.32)",
         }}
       >
@@ -91,7 +92,10 @@ export default function Instructions() {
                 fill="#443415"
               />
             </svg>
-            <p>Sign in with your Google account to securely access the registration page and begin the setup process.</p>
+            <p>
+              Sign in with your Google account to securely access the
+              registration page and begin the setup process.
+            </p>
           </div>
           <div className={styles.content}>
             <svg
@@ -110,7 +114,10 @@ export default function Instructions() {
                 fill="#443415"
               />
             </svg>
-            <p>Provide your college information along with  other required details to complete your registration.</p>
+            <p>
+              Provide your college information along with other required details
+              to complete your registration.
+            </p>
           </div>
           <div className={styles.content}>
             <svg
@@ -129,7 +136,10 @@ export default function Instructions() {
                 fill="#443415"
               />
             </svg>
-            <p>Complete the registration form with all required details. You'll be able to login through your registered email id when required.</p>
+            <p>
+              Complete the registration form with all required details. You'll
+              be able to login through your registered email id when required.
+            </p>
           </div>
           <div className={styles.content}>
             <svg
@@ -148,7 +158,10 @@ export default function Instructions() {
                 fill="#443415"
               />
             </svg>
-            <p>Sign in with your Google account to securely access the registration page and begin the setup process.</p>
+            <p>
+              Sign in with your Google account to securely access the
+              registration page and begin the setup process.
+            </p>
           </div>
           <div className={styles.content}>
             <svg
@@ -167,7 +180,10 @@ export default function Instructions() {
                 fill="#443415"
               />
             </svg>
-            <p>Sign in with your Google account to securely access the registration page and begin the setup process.</p>
+            <p>
+              Sign in with your Google account to securely access the
+              registration page and begin the setup process.
+            </p>
           </div>
           <div className={styles.content}>
             <svg
@@ -186,7 +202,22 @@ export default function Instructions() {
                 fill="#443415"
               />
             </svg>
-            <p>Sign in with your Google account to securely access the registration page and begin the setup process.</p>
+            <p>
+              Sign in with your Google account to securely access the
+              registration page and begin the setup process.
+            </p>
+          </div>
+
+          <div className={styles.glogin}>
+            <GoogleLogin
+              onSuccess={(credentialResponse) => {
+                console.log(credentialResponse);
+              }}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+            />
+            ;
           </div>
         </div>
       </div>
