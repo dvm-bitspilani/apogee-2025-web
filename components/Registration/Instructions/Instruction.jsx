@@ -8,7 +8,7 @@ export default function Instructions() {
       <div
         className={styles.mainWrapper}
         style={{
-          background: `url(${regWrapper})`,
+          background: `radial-gradient(40.9% 58.96% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.38) 100%), url(${regWrapper})`,
           boxShadow: "-12px -12px 15.34px 0px rgba(0, 0, 0, 0.32)",
         }}
       >
