@@ -98,7 +98,7 @@ export default function Experience() {
         expo
       /> */}
 
-      <group position={[0, 0.2, 0.075]}>
+      <group position={[-0.01, 0.2, 0.09]}>
         <EnergyOrb color="orange" lightIntensity={3} />
       </group>
 
