@@ -1,4 +1,4 @@
-import { Sky, OrbitControls, useHelper } from "@react-three/drei";
+import { Sky, OrbitControls, useHelper, Environment } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import { TestComp2 } from "../TestComp2/TestComp2.jsx";
 import { useRef } from "react";
@@ -73,20 +73,20 @@ export default function Experience() {
       <Perf position="top-left" />
 
       <OrbitControls
-      // maxPolarAngle={Math.atan(1.5 / 0.25)}
-      // minPolarAngle={Math.PI / 3}
-      // enablePan={false}
-      // enableZoom={false}
+        maxPolarAngle={Math.atan(1.5 / 0.25)}
+        minPolarAngle={Math.PI / 3}
+        enablePan={false}
+        enableZoom={false}
       />
 
-      {/* <Environment
-        files="/environments/kloppenheim_06_puresky_1k.hdr"
+      <Environment
+        files="/environments/sunset1.hdr"
         environmentIntensity={1}
         backgroundIntensity={1}
-        // background={true}
-        /> */}
+        background={true}
+      />
 
-      <Sky
+      {/* <Sky
         distance={skyDistance}
         sunPosition={sunPosition}
         inclination={inclination}
@@ -96,15 +96,15 @@ export default function Experience() {
         mieDirectionalG={mieDirectionalG}
         turbidity={turbidity}
         expo
-      />
+      /> */}
 
-      <group position={[0, 0.2, 0.075]}>
+      <group position={[-0.01, 0.2, 0.09]}>
         <EnergyOrb color="orange" lightIntensity={3} />
       </group>
 
       {/* <fogExp2 attach="fog" color="#564d65" density={0.3} /> */}
 
-      <ambientLight intensity={1} />
+      {/* <ambientLight intensity={1} /> */}
 
       <group rotation={[0, -Math.PI / 2, 0]} scale={0.02}>
         <TestComp2 />

@@ -5,7 +5,9 @@ import { extend } from "@react-three/fiber";
 
 const OuterGlowRadial = shaderMaterial(
   // Uniforms
-  {},
+  {
+    uColor: new THREE.Color("orange"),
+  },
   // Vertex
   `
     varying vec3 vNormal;
@@ -31,6 +33,8 @@ const OuterGlowRadial = shaderMaterial(
     varying vec3 vPosition;
     varying vec3 vNormal;
 
+    uniform vec3 uColor;
+
     float a = 1.0;
     float b = 0.0;
     float c = 2.1;
@@ -44,7 +48,7 @@ const OuterGlowRadial = shaderMaterial(
         float fresnel = abs(pow(dot(viewDirection, normal), a) + b);
         fresnel = tan(pow(fresnel, c));
 
-        gl_FragColor = vec4(1.0, 1.0, 0.0, fresnel);
+        gl_FragColor = vec4(uColor, fresnel);
         #include <tonemapping_fragment>
         #include <colorspace_fragment>
     }
@@ -97,7 +101,6 @@ export default function EnergyOrb({
         />
       </Sphere>
 
-      {/* Outer sphere for glow effect */}
       <Sphere args={[0.12, 32, 32]} position={[0, 0, 0]}>
         <outerGlowRadial transparent blending={THREE.AdditiveBlending} />
       </Sphere>
