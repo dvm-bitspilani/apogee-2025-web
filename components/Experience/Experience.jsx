@@ -14,6 +14,7 @@ import EnergyOrb from "../EnergyOrb/EnergyOrb.jsx";
 import Clouds from "./Clouds/Clouds.jsx";
 import { CityModel } from "./CityModel/CityModel.jsx";
 import { Blimp } from "./Blimp/Blimp.jsx";
+import { useFrame } from "@react-three/fiber";
 
 export default function Experience() {
   const directionalLightHelper = useRef();
@@ -30,7 +31,7 @@ export default function Experience() {
     blimpFloatingRange,
   } = useControls({
     blimpScale: 0.15,
-    blimpPosition: [0.85, 0.9, -0.69],
+    blimpPosition: [0, 0.9, 0],
     blimpFloatSpeed: {
       value: 1,
       min: 0,
