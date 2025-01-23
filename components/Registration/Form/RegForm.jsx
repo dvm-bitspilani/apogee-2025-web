@@ -5,21 +5,28 @@ import regWrapper from "../../../src/assets/Register/regWrapper.png";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Select from "react-select";
+import axios from "axios";
 import statesData from "./states.json";
+import citiesData from "./states.json";
 
 export default function RegForm() {
+  // const [interestOptions, setInterestOptions] = useState([""]);
+  // const [eventsOptions, setEventsOptions] = useState([""]);
+  // const [collegeOptions, setCollegeOptions] = useState([""]);
   const [stateOptions, setStateOptions] = useState([]);
+  const [selectedState, setSelectedState] = useState("");
+  const [cityOptions, setCityOptions] = useState([]);
 
   const initialValues = {
     name: "",
     email_id: "",
     phone: "",
     gender: "",
-    // interests: [],
-    // events: [],
-    // college_id: "",
+    interests: [],
+    events: [],
+    college_id: "",
     year: [],
-    // city: "",
+    city: "",
     state: "",
   };
 
@@ -28,11 +35,13 @@ export default function RegForm() {
     email_id: Yup.string()
       .email("*Please enter a valid email")
       .required("*Please enter your email"),
-    phone: Yup.string().required("*Phone number is required"),
+    phone: Yup.string()
+      .matches(/^\d{10}$/, "*Phone number must be exactly 10 digits")
+      .required("*Phone number is required"),
     gender: Yup.string().required("*Gender is required"),
-    // college_id: Yup.string().required("College is required"),
-    state: Yup.string().required("State is required"),
-    // city: Yup.string().required("City is required"),
+    college_id: Yup.string().required("*College is required"),
+    state: Yup.string().required("*State is required"),
+    city: Yup.string().required("*City is required"),
   });
 
   function handleNumericInput(event) {
@@ -41,6 +50,33 @@ export default function RegForm() {
     inputValue = inputValue.replace(/[^0-9]/g, "");
     event.target.value = inputValue;
   }
+
+  const interestOptions = {
+    data: [
+      { id: "sports", name: "Sports" },
+      { id: "music", name: "Music" },
+      { id: "art", name: "Art" },
+      { id: "technology", name: "Technology" },
+      { id: "literature", name: "Literature" },
+    ],
+  };
+  
+  const eventsOptions = {
+    data: [
+      { id: "workshop", name: "Workshop" },
+      { id: "seminar", name: "Seminar" },
+      { id: "concert", name: "Concert" },
+      { id: "competition", name: "Competition" },
+      { id: "webinar", name: "Webinar" },
+    ],
+  };
+
+  const collegeOptions = {
+    data: [
+      { id: "college1", name: "College 1" },
+      { id: "college2", name: "College 2" },
+    ],
+  };
 
   const genderOptions = [
     { value: "M", label: "MALE", label1: "M" },
@@ -64,6 +100,17 @@ export default function RegForm() {
     setStateOptions(allStates);
   }, []);
 
+  useEffect(() => {
+    const selectedStateCities =
+      citiesData
+        .find((state) => state.name === selectedState)
+        ?.cities.map((city) => ({
+          value: city.name,
+          label: city.name,
+        })) || [];
+    setCityOptions(selectedStateCities);
+  }, [selectedState]);
+
   const customStyles = {
     control: (provided) => ({
       ...provided,
@@ -85,7 +132,7 @@ export default function RegForm() {
       "::-webkit-scrollbar": {
         display: "none", // For Chrome, Safari, and Edge: Disable scrollbar
       },
-      border: "3px solid #483312"
+      border: "3px solid #483312",
     }),
     menuList: (provided) => ({
       ...provided,
@@ -102,6 +149,9 @@ export default function RegForm() {
       color: state.isFocused ? "#DDBC80" : "#2B1B03", // Text color
       textAlign: "center",
       cursor: "pointer",
+      "&:hover": {
+        backgroundColor: state.isFocused ? "#473618" : "#8F7C56",
+      },
     }),
     placeholder: (provided) => ({
       ...provided,
@@ -225,6 +275,95 @@ export default function RegForm() {
                 </div>
 
                 <div className={styles.input}>
+                  <label htmlFor="interests">Interests</label>
+                  <Select
+                    id="interests"
+                    name="interests"
+                    options={(Array.isArray(interestOptions.data)
+                      ? interestOptions.data
+                      : []
+                    ).map((item) => ({
+                      value: item.id,
+                      label: item.name,
+                    }))}
+                    isMulti
+                    value={values.interests || []} // Updated
+                    onChange={(selectedOptions) => {
+                      setFieldValue("interests", selectedOptions || []);
+                    }}
+                    className={styles.interestsWrapper}
+                    styles={customStyles}
+                    placeholder="Choose Interests"
+                  />
+                  <ErrorMessage
+                    name="interests"
+                    component="div"
+                    className={styles.errorMessage}
+                  />
+                </div>
+
+                <div className={styles.input}>
+                  <label htmlFor="events">Events</label>
+                  <Select
+                    id="events"
+                    name="events"
+                    options={(Array.isArray(eventsOptions.data)
+                      ? eventsOptions.data
+                      : []
+                    ).map((item) => ({
+                      value: item.id,
+                      label: item.name,
+                    }))}
+                    isMulti
+                    value={values.events || []} // Updated
+                    onChange={(selectedOptions) => {
+                      setFieldValue("events", selectedOptions || []);
+                    }}
+                    className={styles.eventsWrapper}
+                    styles={customStyles}
+                    placeholder="Choose Events"
+                  />
+                  <ErrorMessage
+                    name="events"
+                    component="div"
+                    className={styles.errorMessage}
+                  />
+                </div>
+
+                <div className={styles.input}>
+                  <label htmlFor="college_id">College</label>
+                  <Select
+                    id="college_id"
+                    name="college_id"
+                    options={(Array.isArray(collegeOptions.data)
+                      ? collegeOptions.data
+                      : []
+                    ).map((item) => ({
+                      value: item.id,
+                      label: item.name,
+                    }))}
+                    value={(Array.isArray(collegeOptions)
+                      ? collegeOptions
+                      : []
+                    ).find((option) => option.value === values.college)}
+                    onChange={(selectedOption) => {
+                      setFieldValue(
+                        "college_id",
+                        selectedOption ? selectedOption.value : ""
+                      );
+                    }}
+                    className={styles.collegeWrapper}
+                    styles={customStyles}
+                    placeholder="Choose Your College"
+                  />
+                  <ErrorMessage
+                    name="college_id"
+                    component="div"
+                    className={styles.errorMessage}
+                  />
+                </div>
+
+                <div className={styles.input}>
                   <label htmlFor="year">Year of study</label>
                   <div className={styles.checkboxContainer}>
                     {yearOptions.map((option) => (
@@ -275,6 +414,33 @@ export default function RegForm() {
                   />
                   <ErrorMessage
                     name="state"
+                    component="div"
+                    className={styles.errorMessage}
+                  />
+                </div>
+
+                <div className={styles.input}>
+                  <label htmlFor="city">City</label>
+                  <Select
+                    id="city"
+                    name="city"
+                    options={cityOptions}
+                    value={cityOptions.find(
+                      (option) => option.value === values.city
+                    )}
+                    onChange={(selectedOption) => {
+                      setFieldValue(
+                        "city",
+                        selectedOption ? selectedOption.value : ""
+                      );
+                    }}
+                    isDisabled={!selectedState} // Disable city selection if no state is selected
+                    className={styles.cityWrapper}
+                    styles={customStyles}
+                    placeholder="Your City"
+                  />
+                  <ErrorMessage
+                    name="city"
                     component="div"
                     className={styles.errorMessage}
                   />
