@@ -9,7 +9,7 @@ import { Perf } from "r3f-perf";
 import { TestComp2 } from "../TestComp2/TestComp2.jsx";
 import { useRef } from "react";
 import { DirectionalLightHelper, PointLightHelper } from "three";
-import { useControls } from "leva";
+import { Leva, useControls } from "leva";
 import EnergyOrb from "../EnergyOrb/EnergyOrb.jsx";
 import Clouds from "./Clouds/Clouds.jsx";
 import { CityModel } from "./CityModel/CityModel.jsx";
@@ -55,7 +55,11 @@ export default function Experience() {
 
   return (
     <>
-      <Perf position="top-left" />
+      {window.innerWidth < 850 ? (
+        <Leva hidden={window.innerWidth < 850} />
+      ) : (
+        <Perf position="top-left" />
+      )}
 
       <OrbitControls
       // maxPolarAngle={Math.atan(1.5 / 0.25)}
