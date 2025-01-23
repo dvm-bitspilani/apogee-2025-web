@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Instructions from "../components/Registration/Instructions/Instruction";
+import RegForm from "../components/Registration/Form/RegForm";
 import background from "../src/assets/Register/regBackground.png";
 import styles from "./register.module.scss";
 
 export default function Register() {
+
   return (
     <>
       <div
@@ -14,7 +16,9 @@ export default function Register() {
           justifyContent: "center",
         }}
         className={styles.registerContainer}
-      ><Instructions/></div>
+      >
+        <RegForm />
+      </div>
     </>
   );
 }

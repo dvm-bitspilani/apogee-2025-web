@@ -1,0 +1,293 @@
+import React, { useState, useEffect } from "react";
+import styles from "./form.module.scss";
+import regWrapper from "../../../src/assets/Register/regWrapper.png";
+
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import Select from "react-select";
+import statesData from "./states.json";
+
+export default function RegForm() {
+  const [stateOptions, setStateOptions] = useState([]);
+
+  const initialValues = {
+    name: "",
+    email_id: "",
+    phone: "",
+    gender: "",
+    // interests: [],
+    // events: [],
+    // college_id: "",
+    year: [],
+    // city: "",
+    state: "",
+  };
+
+  const validationSchema = Yup.object({
+    name: Yup.string().required("*Name is required"),
+    email_id: Yup.string()
+      .email("*Please enter a valid email")
+      .required("*Please enter your email"),
+    phone: Yup.string().required("*Phone number is required"),
+    gender: Yup.string().required("*Gender is required"),
+    // college_id: Yup.string().required("College is required"),
+    state: Yup.string().required("State is required"),
+    // city: Yup.string().required("City is required"),
+  });
+
+  function handleNumericInput(event) {
+    // check for phone number input
+    let inputValue = event.target.value;
+    inputValue = inputValue.replace(/[^0-9]/g, "");
+    event.target.value = inputValue;
+  }
+
+  const genderOptions = [
+    { value: "M", label: "MALE", label1: "M" },
+    { value: "F", label: "FEMALE", label1: "F" },
+    { value: "O", label: "OTHER", label1: "O" },
+  ];
+
+  const yearOptions = [
+    { value: "1", label: "1" },
+    { value: "2", label: "2" },
+    { value: "3", label: "3" },
+    { value: "4", label: "4" },
+    { value: "5", label: "5" },
+  ];
+
+  useEffect(() => {
+    const allStates = statesData.map((state) => ({
+      value: state.name,
+      label: state.name,
+    }));
+    setStateOptions(allStates);
+  }, []);
+
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      backgroundColor: "transparent",
+      border: "none",
+      borderBottom: "2px solid #483312",
+      borderRadius: "0",
+      boxShadow: "none",
+      "&:hover": {
+        borderColor: "#483312",
+      },
+    }),
+    menu: (provided) => ({
+      ...provided,
+      backgroundColor: "#8F7C56", // Transparent background for options menu
+      maxHeight: "200px", // Optional: Limit the menu height
+      overflow: "hidden", // Hide overflow
+      scrollbarWidth: "none", // For Firefox: Disable scrollbar
+      "::-webkit-scrollbar": {
+        display: "none", // For Chrome, Safari, and Edge: Disable scrollbar
+      },
+      border: "3px solid #483312"
+    }),
+    menuList: (provided) => ({
+      ...provided,
+      maxHeight: "200px", // Restrict menu list height
+      // overflow: "hidden", // Prevent scrollable overflow
+      scrollbarWidth: "none", // For Firefox: Disable scrollbar
+      "::-webkit-scrollbar": {
+        display: "none", // For Chrome, Safari, and Edge: Disable scrollbar
+      },
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isFocused ? "#473618" : "#8F7C56", // Optional: Light blue background on hover
+      color: state.isFocused ? "#DDBC80" : "#2B1B03", // Text color
+      textAlign: "center",
+      cursor: "pointer",
+    }),
+    placeholder: (provided) => ({
+      ...provided,
+      color: "#2B1B03", // Placeholder text color
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      color: "#2B1B03", // Selected value text color
+      fontWeight: "720",
+      fontSize: "30px",
+    }),
+    dropdownIndicator: (provided, state) => ({
+      ...provided,
+      color: "#3E2D10",
+      height: "20px",
+      padding: "5px",
+      "&:hover": {
+        color: "#3E2D10",
+      },
+    }),
+  };
+
+  return (
+    <>
+      <div
+        className={styles.mainWrapper}
+        style={{
+          background: `radial-gradient(40.9% 58.96% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.38) 100%), url(${regWrapper})`,
+          boxShadow: "-12px -12px 15.34px 0px rgba(0, 0, 0, 0.32)",
+        }}
+      >
+        <h2>REGISTRATION</h2>
+
+        <div className={styles.formContainer}>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={(values, { setSubmitting }) => {
+              console.log("Form data", values);
+              setSubmitting(false);
+            }}
+          >
+            {({ values, setFieldValue, isSubmitting }) => (
+              <Form className={styles.form}>
+                <div className={styles.input}>
+                  <label htmlFor="name">Name</label>
+                  <Field
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Your Name"
+                    className={styles.inputField}
+                  />
+                  <ErrorMessage
+                    name="name"
+                    component="div"
+                    className={styles.errorMessage}
+                  />
+                </div>
+
+                <div className={styles.input}>
+                  <label htmlFor="email_id">Email ID</label>
+                  <Field
+                    type="email"
+                    id="email_id"
+                    name="email_id"
+                    placeholder="Your Email"
+                    className={styles.inputField}
+                  />
+                  <ErrorMessage
+                    name="email_id"
+                    component="div"
+                    className={styles.errorMessage}
+                  />
+                </div>
+
+                <div className={styles.input}>
+                  <label htmlFor="phone">Phone Number</label>
+                  <Field
+                    type="text"
+                    id="phone"
+                    name="phone"
+                    maxLength="10"
+                    placeholder="Your Phone No"
+                    onInput={(e) => handleNumericInput(e)}
+                    className={styles.inputField}
+                  />
+                  <ErrorMessage
+                    name="phone"
+                    component="div"
+                    className={styles.errorMessage}
+                  />
+                </div>
+
+                <div className={styles.input}>
+                  <label htmlFor="gender">Gender</label>
+                  <div className={styles.checkboxContainer}>
+                    {genderOptions.map((option) => (
+                      <div key={option.value} className={styles.checkboxItem}>
+                        <div
+                          className={`${styles.customCheckbox} ${
+                            values.gender === option.value ? styles.checked : ""
+                          }`}
+                          onClick={() => {
+                            setFieldValue("gender", option.value);
+                          }}
+                        ></div>
+                        <label htmlFor={`gender-${option.value}`}>
+                          {window.innerWidth > 1200
+                            ? option.label
+                            : option.label1}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                  <ErrorMessage
+                    name="gender"
+                    component="div"
+                    className={styles.errorMessage}
+                  />
+                </div>
+
+                <div className={styles.input}>
+                  <label htmlFor="year">Year of study</label>
+                  <div className={styles.checkboxContainer}>
+                    {yearOptions.map((option) => (
+                      <div key={option.value} className={styles.checkboxItem}>
+                        <div
+                          className={`${styles.customCheckbox} ${
+                            values.year === option.value ? styles.checked : ""
+                          }`}
+                          onClick={() => {
+                            setFieldValue("year", option.value);
+                          }}
+                        ></div>
+                        <label htmlFor={`year-${option.value}`}>
+                          {option.label}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                  <ErrorMessage
+                    name="year"
+                    component="div"
+                    className={styles.errorMessage}
+                  />
+                </div>
+
+                <div className={styles.input}>
+                  <label htmlFor="state">State</label>
+                  <Select
+                    id="state"
+                    name="state"
+                    options={stateOptions}
+                    value={stateOptions.find(
+                      (option) => option.value === values.state
+                    )}
+                    onChange={(selectedOption) => {
+                      setFieldValue(
+                        "state",
+                        selectedOption ? selectedOption.value : ""
+                      );
+                      setFieldValue("city", ""); // Clear the city when the state changes
+                      setSelectedState(
+                        selectedOption ? selectedOption.value : ""
+                      );
+                    }}
+                    className={styles.stateWrapper}
+                    styles={customStyles}
+                    placeholder="Your State"
+                  />
+                  <ErrorMessage
+                    name="state"
+                    component="div"
+                    className={styles.errorMessage}
+                  />
+                </div>
+
+                <button type="submit" disabled={isSubmitting}>
+                  Submit
+                </button>
+              </Form>
+            )}
+          </Formik>
+        </div>
+      </div>
+    </>
+  );
+}
