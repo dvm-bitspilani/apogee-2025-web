@@ -64,10 +64,11 @@ export default function Experience() {
       />
 
       <Environment
-        files="/environments/sunset1.hdr"
+        files="/environments/sunset1.jpg"
         environmentIntensity={1}
         backgroundIntensity={1}
         background={true}
+        resolution={128}
       />
 
       <group position={[0, 0.85, -0.012]}>
