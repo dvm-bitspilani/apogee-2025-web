@@ -137,10 +137,10 @@ export function CityModel(props) {
             rotation={[0, -1.571, 0]}
             scale={[2.1, 3.036, 2.1]}
           />
-          {/* <Html className={styles.marker} position={[0, 0, 0]} rotation={[0, 0, 0]}>
+          <Html className={styles.marker} transform={false} position={[0, 0, 0]} rotation={[0, 0, 0]}>
             <h1>About</h1>
             <div className={styles.line}></div>
-          </Html> */}
+          </Html>
         </group>
         <group
           name="Empty185"
