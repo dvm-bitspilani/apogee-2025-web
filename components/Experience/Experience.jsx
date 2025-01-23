@@ -65,7 +65,7 @@ export default function Experience() {
       />
 
       <Environment
-        files="/environments/sunset1.jpg"
+        files="/environments/sunset1QuarterRes.hdr"
         environmentIntensity={1}
         backgroundIntensity={1}
         background={true}
