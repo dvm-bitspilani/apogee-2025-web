@@ -5,6 +5,8 @@ import { useRef } from "react";
 import { DirectionalLightHelper, PointLightHelper } from "three";
 import { useControls } from "leva";
 import EnergyOrb from "../EnergyOrb/EnergyOrb.jsx";
+import Clouds from "./Clouds/Clouds.jsx";
+import { CityModel } from "./CityModel/CityModel.jsx";
 
 export default function Experience() {
   const directionalLightHelper = useRef();
@@ -12,62 +14,6 @@ export default function Experience() {
   useHelper(directionalLightHelper, DirectionalLightHelper, "red");
   useHelper(pointLightHelper, PointLightHelper, "purple");
 
-  const {
-    skyDistance,
-    sunPosition,
-    inclination,
-    azimuth,
-    rayleigh,
-    mieCoefficient,
-    mieDirectionalG,
-    turbidity,
-  } = useControls({
-    skyDistance: {
-      value: 450000,
-      min: 0,
-      max: 1000000,
-      step: 1000,
-    },
-    sunPosition: {
-      value: [10, 2, 5],
-    },
-    inclination: {
-      value: 0,
-      min: 0,
-      max: 2,
-      step: 0.01,
-    },
-    azimuth: {
-      value: 0.25,
-      min: 0,
-      max: 2,
-      step: 0.01,
-    },
-    rayleigh: {
-      value: 1.5,
-      min: 0,
-      max: 2,
-      step: 0.01,
-    },
-    mieCoefficient: {
-      value: 0.005,
-      min: 0,
-      max: 0.1,
-      step: 0.001,
-    },
-    mieDirectionalG: {
-      value: 0.8,
-      min: 0,
-      max: 1,
-      step: 0.01,
-    },
-    turbidity: {
-      value: 8,
-      min: 0,
-      max: 100,
-      step: 1,
-    },
-  });
   return (
     <>
       <Perf position="top-left" />
@@ -86,28 +32,19 @@ export default function Experience() {
         background={true}
       />
 
-      {/* <Sky
-        distance={skyDistance}
-        sunPosition={sunPosition}
-        inclination={inclination}
-        azimuth={azimuth}
-        rayleigh={rayleigh}
-        mieCoefficient={mieCoefficient}
-        mieDirectionalG={mieDirectionalG}
-        turbidity={turbidity}
-        expo
-      /> */}
-
-      <group position={[-0.01, 0.2, 0.09]}>
+      <group position={[0, 0.85, -0.012]}>
         <EnergyOrb color="orange" lightIntensity={3} />
       </group>
 
-      {/* <fogExp2 attach="fog" color="#564d65" density={0.3} /> */}
+      {/* <group position={[6, -0.05, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <Clouds args={[20, 20]} />
+      </group> */}
 
-      {/* <ambientLight intensity={1} /> */}
+      <fog attach="fog" args={["#564d65", 0.0001, 10]} isFog />
 
       <group rotation={[0, -Math.PI / 2, 0]} scale={0.02}>
-        <TestComp2 />
+        {/* <TestComp2 /> */}
+        <CityModel />
       </group>
     </>
   );
