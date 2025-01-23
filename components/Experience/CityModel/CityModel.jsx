@@ -6,14 +6,14 @@ import React, { useRef } from "react";
 import { useGLTF, useAnimations, Html } from "@react-three/drei";
 import styles from "./citymodel.module.scss";
 
-export function CityModel(props) {
+export function CityModel({ scale = 1, ...props }) {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF(
     "/models/ActualWebsiteModel1-v2.glb"
   );
   const { actions } = useAnimations(animations, group);
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group ref={group} scale={scale} {...props} dispose={null}>
       <group name="Scene">
         <mesh
           name="Circle002"
