@@ -1,0 +1,59 @@
+.mainWrapper {
+  height: fit-content;
+  width: 850px;
+  background: no-repeat;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 2.5rem;
+
+  h2 {
+    padding-top: 2rem;
+    font-size: 96px;
+    font-family: "Birmingham";
+    color: #2B1B03;
+    text-decoration: underline;
+    letter-spacing: 4px;
+  }
+
+  .instructionContainer {
+    margin-top: 2.5rem;
+    padding-bottom: 2rem;
+    height: fit-content;
+    width: 750px;
+    border: 2px solid #483312;
+
+    .heading {
+      padding-top: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+
+      h3 {
+        font-size: 30px;
+        color: #2B1B03;
+        text-decoration: underline;
+      }
+    }
+    
+    .content {
+      padding-top: 2rem;
+      padding-left: 2.2rem;
+      display: flex;
+      justify-content: center;
+      color: #2B1B03;
+      font-size: 25px;
+      font-weight: 600;
+      gap: 20px;
+    }
+
+    .glogin {
+      padding-top: 2rem;
+      width: 40%;
+      height: 3rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
