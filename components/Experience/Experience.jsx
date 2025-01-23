@@ -9,11 +9,12 @@ import { Perf } from "r3f-perf";
 import { TestComp2 } from "../TestComp2/TestComp2.jsx";
 import { useRef } from "react";
 import { DirectionalLightHelper, PointLightHelper } from "three";
-import { useControls } from "leva";
+import { Leva, useControls } from "leva";
 import EnergyOrb from "../EnergyOrb/EnergyOrb.jsx";
 import Clouds from "./Clouds/Clouds.jsx";
 import { CityModel } from "./CityModel/CityModel.jsx";
 import { Blimp } from "./Blimp/Blimp.jsx";
+import { useFrame } from "@react-three/fiber";
 
 export default function Experience() {
   const directionalLightHelper = useRef();
@@ -30,7 +31,7 @@ export default function Experience() {
     blimpFloatingRange,
   } = useControls({
     blimpScale: 0.15,
-    blimpPosition: [0.85, 0.9, -0.69],
+    blimpPosition: [0, 0.9, 0],
     blimpFloatSpeed: {
       value: 1,
       min: 0,
@@ -54,7 +55,11 @@ export default function Experience() {
 
   return (
     <>
-      <Perf position="top-left" />
+      {window.innerWidth < 850 ? (
+        <Leva hidden={window.innerWidth < 850} />
+      ) : (
+        <Perf position="top-left" />
+      )}
 
       <OrbitControls
       // maxPolarAngle={Math.atan(1.5 / 0.25)}
@@ -64,7 +69,7 @@ export default function Experience() {
       />
 
       <Environment
-        files="/environments/sunset1.jpg"
+        files="/environments/sunset1QuarterRes.hdr"
         environmentIntensity={1}
         backgroundIntensity={1}
         background={true}
