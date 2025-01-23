@@ -8,6 +8,7 @@ import Select from "react-select";
 import axios from "axios";
 import statesData from "./states.json";
 import citiesData from "./states.json";
+import { current } from "@reduxjs/toolkit";
 
 export default function RegForm() {
   // const [interestOptions, setInterestOptions] = useState([""]);
@@ -174,6 +175,98 @@ export default function RegForm() {
     }),
   };
 
+  const customStyles1 = {
+    control: (provided) => ({
+      ...provided,
+      backgroundColor: "transparent",
+      border: "none",
+      borderBottom: "2px solid #483312",
+      borderRadius: "0",
+      boxShadow: "none",
+      "&:hover": {
+        borderColor: "#483312",
+      },
+    }),
+    menu: (provided) => ({
+      ...provided,
+      backgroundColor: "#8F7C56", // Transparent background for options menu
+      maxHeight: "200px", // Optional: Limit the menu height
+      overflow: "hidden", // Hide overflow
+      scrollbarWidth: "none", // For Firefox: Disable scrollbar
+      "::-webkit-scrollbar": {
+        display: "none", // For Chrome, Safari, and Edge: Disable scrollbar
+      },
+      border: "3px solid #483312",
+    }),
+    menuList: (provided) => ({
+      ...provided,
+      maxHeight: "200px", // Restrict menu list height
+      // overflow: "hidden", // Prevent scrollable overflow
+      scrollbarWidth: "none", // For Firefox: Disable scrollbar
+      "::-webkit-scrollbar": {
+        display: "none", // For Chrome, Safari, and Edge: Disable scrollbar
+      },
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isFocused ? "#473618" : "#8F7C56", // Optional: Light blue background on hover
+      color: state.isFocused ? "#DDBC80" : "#2B1B03", // Text color
+      textAlign: "center",
+      cursor: "pointer",
+      "&:hover": {
+        backgroundColor: state.isFocused ? "#473618" : "#8F7C56",
+      },
+    }),
+    placeholder: (provided) => ({
+      ...provided,
+      color: "#2B1B03", // Placeholder text color
+    }),
+    multiValue: (provided) => ({
+      ...provided,
+      backgroundColor: "transparent", // Transparent background for selected options
+      border: "2px solid #483312", // Optional: Add border around the selected tag
+      borderRadius: "5px",
+    }),
+    multiValueLabel: (provided) => ({
+      ...provided,
+      color: "#2B1B03", // Text color for selected options
+      fontSize: "28px",
+      fontWeight: "720",
+    }),
+    multiValueRemove: (provided) => ({
+      ...provided,
+      color: "#2B1B03", // Color for the remove icon
+      "&:hover": {
+        backgroundColor: "transparent", // No hover effect for remove icon
+        color: "#483312", // Hover color for the remove icon
+      },
+      cursor: "pointer",
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      color: "#2B1B03", // Selected value text color
+      fontWeight: "720",
+      fontSize: "30px",
+    }),
+    dropdownIndicator: (provided, state) => ({
+      ...provided,
+      color: "#3E2D10",
+      height: "20px",
+      padding: "5px",
+      "&:hover": {
+        color: "#3E2D10",
+      },
+    }),
+    clearIndicator: (provided) => ({
+      ...provided,
+      color: "#483312",
+      "&:hover": {
+        color: "#2B1B03",
+      },
+      cursor: "pointer",
+    }),
+  };
+
   return (
     <>
       <div
@@ -291,8 +384,7 @@ export default function RegForm() {
                     onChange={(selectedOptions) => {
                       setFieldValue("interests", selectedOptions || []);
                     }}
-                    className={styles.interestsWrapper}
-                    styles={customStyles}
+                    styles={customStyles1}
                     placeholder="Choose Interests"
                   />
                   <ErrorMessage
@@ -319,8 +411,7 @@ export default function RegForm() {
                     onChange={(selectedOptions) => {
                       setFieldValue("events", selectedOptions || []);
                     }}
-                    className={styles.eventsWrapper}
-                    styles={customStyles}
+                    styles={customStyles1}
                     placeholder="Choose Events"
                   />
                   <ErrorMessage
