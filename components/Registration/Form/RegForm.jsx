@@ -39,9 +39,9 @@ export default function RegForm() {
       .matches(/^\d{10}$/, "*Phone number must be exactly 10 digits")
       .required("*Phone number is required"),
     gender: Yup.string().required("*Gender is required"),
-    college_id: Yup.string().required("College is required"),
-    state: Yup.string().required("State is required"),
-    city: Yup.string().required("City is required"),
+    college_id: Yup.string().required("*College is required"),
+    state: Yup.string().required("*State is required"),
+    city: Yup.string().required("*City is required"),
   });
 
   function handleNumericInput(event) {
