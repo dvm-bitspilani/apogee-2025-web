@@ -17,7 +17,7 @@ export default function Register() {
         }}
         className={styles.registerContainer}
       >
-        <RegForm />
+        <div className={styles.scrollContainer}><RegForm /></div>
       </div>
     </>
   );
