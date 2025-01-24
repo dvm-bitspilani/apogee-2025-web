@@ -17,12 +17,10 @@ export function Blimp({ scale = 1, position = [0, 0, 0], ...props }) {
 
   useFrame((state, delta) => {
     const rotSpeedFactor = 10;
-    blimpRef.current.position.x = Math.sin(
-      state.clock.elapsedTime / rotSpeedFactor
-    );
-    blimpRef.current.position.z = -Math.cos(
-      state.clock.elapsedTime / rotSpeedFactor
-    );
+    blimpRef.current.position.x =
+      Math.sin(state.clock.elapsedTime / rotSpeedFactor) * 2;
+    blimpRef.current.position.z =
+      -Math.cos(state.clock.elapsedTime / rotSpeedFactor) * 2;
     blimpRef.current.rotation.y -= delta / rotSpeedFactor;
     // console.log(blimpRef.current.rotation.y);
     // console.log(state.camera.position);

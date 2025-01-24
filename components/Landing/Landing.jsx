@@ -9,7 +9,7 @@ export default function Landing() {
       {/* <Navbar /> */}
       <Canvas
         camera={{
-          position: [0.9123, 0.8487, -0.93792],
+          position: [0, 2, 0],
         }}
       >
         <Suspense fallback={<LoadingScreen />}>

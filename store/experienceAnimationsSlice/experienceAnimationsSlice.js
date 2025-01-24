@@ -3,11 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const experienceAnimationsSlice = createSlice({
   name: "experienceAnimations",
   initialState: {
-    isIntroComplete: false,
+    animationStage: "intro",
   },
   reducers: {
-    toggleIntroCompletion: (state) => {
-      state.isIntroComplete = !state.isIntroComplete;
+    setAnimationStage: (state, action) => {
+      state.animationStage = action.payload;
     },
   },
 });
