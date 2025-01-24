@@ -164,6 +164,15 @@ export default function RegForm() {
       fontWeight: "720",
       fontSize: "30px",
     }),
+    indicatorsContainer: (provided) => ({
+      ...provided,
+      width: "0",
+      transform: "translateX(-30px)",
+      "& svg": {
+        width: "30px",
+        height: "30px",
+      },
+    }),
     dropdownIndicator: (provided, state) => ({
       ...provided,
       color: "#3E2D10",
@@ -172,6 +181,7 @@ export default function RegForm() {
       "&:hover": {
         color: "#3E2D10",
       },
+      cursor: "pointer",
     }),
   };
 
@@ -255,6 +265,16 @@ export default function RegForm() {
       padding: "5px",
       "&:hover": {
         color: "#3E2D10",
+      },
+      cursor: "pointer",
+    }),
+    indicatorsContainer: (provided) => ({
+      ...provided,
+      width: "0",
+      transform: "translateX(-30px)",
+      "& svg": {
+        width: "30px",
+        height: "30px",
       },
     }),
     clearIndicator: (provided) => ({
