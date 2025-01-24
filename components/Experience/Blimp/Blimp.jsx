@@ -25,6 +25,7 @@ export function Blimp({ scale = 1, position = [0, 0, 0], ...props }) {
     );
     blimpRef.current.rotation.y -= delta / rotSpeedFactor;
     // console.log(blimpRef.current.rotation.y);
+    // console.log(state.camera.position);
   });
 
   return (

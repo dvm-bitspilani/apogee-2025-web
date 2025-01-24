@@ -16,6 +16,8 @@ import { CityModel } from "./CityModel/CityModel.jsx";
 import { Blimp } from "./Blimp/Blimp.jsx";
 import { useFrame } from "@react-three/fiber";
 
+import { motion } from "framer-motion-3d";
+
 export default function Experience() {
   const directionalLightHelper = useRef();
   const pointLightHelper = useRef();
@@ -61,12 +63,7 @@ export default function Experience() {
         <Perf position="top-left" />
       )}
 
-      <OrbitControls
-      // maxPolarAngle={Math.atan(1.5 / 0.25)}
-      // minPolarAngle={Math.PI / 3}
-      // enablePan={false}
-      // enableZoom={false}
-      />
+      {/* <OrbitControls enableRotate={false} enablePan={false} enableZoom={false} /> */}
 
       <Environment
         files="/environments/sunset1QuarterRes.hdr"
@@ -76,9 +73,15 @@ export default function Experience() {
         resolution={128}
       />
 
-      <group position={[0, 0.85, -0.012]}>
+      <motion.group
+        initial={{ x: 0, y: 1.25, z: -0.012 }}
+        animate={{
+          y: 0.85,
+          transition: { duration: 2, delay: 1, ease: "easeInOut" },
+        }}
+      >
         <EnergyOrb color="orange" lightIntensity={3} />
-      </group>
+      </motion.group>
 
       {/* <group position={[6, -0.05, 0]} rotation={[-Math.PI / 2, 0, 0]}>
         <Clouds args={[20, 20]} />
