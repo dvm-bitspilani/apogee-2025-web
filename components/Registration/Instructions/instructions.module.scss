@@ -1,5 +1,17 @@
+.mainWrapper::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
 .mainWrapper {
-  height: fit-content;
+  scrollbar-width: none; /* Firefox */
+}
+.mainWrapper::-webkit-scrollbar-thumb {
+  display: none;
+}
+
+.mainWrapper {
+  height: 100vh;
+  overflow-y: scroll !important;
   width: 850px;
   background: no-repeat;
   display: flex;
@@ -18,7 +30,7 @@
 
   .instructionContainer {
     margin-top: 2.5rem;
-    padding-bottom: 2rem;
+    margin-bottom: 2.5rem;
     height: fit-content;
     width: 750px;
     border: 2px solid #483312;

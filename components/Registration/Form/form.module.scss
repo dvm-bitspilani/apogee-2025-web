@@ -1,5 +1,17 @@
+.mainWrapper::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
 .mainWrapper {
-    height: fit-content;
+    scrollbar-width: none; /* Firefox */
+}
+.mainWrapper::-webkit-scrollbar-thumb {
+    display: none;
+}
+
+.mainWrapper {
+    height: calc(100vh);
+    overflow-y: scroll !important;
     width: 850px;
     background: no-repeat;
     display: flex;
@@ -18,7 +30,7 @@
 
     .formContainer {
         margin-top: 2.5rem;
-        padding-bottom: 2rem;
+        margin-bottom: 2.5rem;
         height: fit-content;
         width: 750px;
         border: 2px solid #483312;
@@ -103,7 +115,19 @@
                     background-color: transparent;
                 }
             }
-
+            .regButton {
+                height: 84px;
+                width: fit-content;
+                font-size: 40px;
+                color: #AB9163;
+                font-weight: 750;
+                padding-left: 2rem;
+                padding-right: 2rem;
+                font-family: "Birmingham";
+                cursor: pointer;
+                margin-bottom: 2rem;
+                margin-top: 2rem;
+            }
 
         }
     }

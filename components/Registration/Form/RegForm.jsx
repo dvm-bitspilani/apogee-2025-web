@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./form.module.scss";
 import regWrapper from "../../../src/assets/Register/regWrapper.png";
+import regButton from "../../../src/assets/Register/regButton.png";
 
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -10,6 +11,7 @@ import statesData from "./states.json";
 import citiesData from "./states.json";
 
 export default function RegForm() {
+
   // const [interestOptions, setInterestOptions] = useState([""]);
   // const [eventsOptions, setEventsOptions] = useState([""]);
   // const [collegeOptions, setCollegeOptions] = useState([""]);
@@ -25,7 +27,7 @@ export default function RegForm() {
     interests: [],
     events: [],
     college_id: "",
-    year: [],
+    year: "",
     city: "",
     state: "",
   };
@@ -40,6 +42,7 @@ export default function RegForm() {
       .required("*Phone number is required"),
     gender: Yup.string().required("*Gender is required"),
     college_id: Yup.string().required("*College is required"),
+    year: Yup.string().required("*Please select your year of study"),
     state: Yup.string().required("*State is required"),
     city: Yup.string().required("*City is required"),
   });
@@ -163,6 +166,15 @@ export default function RegForm() {
       fontWeight: "720",
       fontSize: "30px",
     }),
+    indicatorsContainer: (provided) => ({
+      ...provided,
+      width: "0",
+      transform: "translateX(-30px)",
+      "& svg": {
+        width: "30px",
+        height: "30px",
+      },
+    }),
     dropdownIndicator: (provided, state) => ({
       ...provided,
       color: "#3E2D10",
@@ -171,6 +183,109 @@ export default function RegForm() {
       "&:hover": {
         color: "#3E2D10",
       },
+      cursor: "pointer",
+    }),
+  };
+
+  const customStyles1 = {
+    control: (provided) => ({
+      ...provided,
+      backgroundColor: "transparent",
+      border: "none",
+      borderBottom: "2px solid #483312",
+      borderRadius: "0",
+      boxShadow: "none",
+      "&:hover": {
+        borderColor: "#483312",
+      },
+    }),
+    menu: (provided) => ({
+      ...provided,
+      backgroundColor: "#8F7C56", // Transparent background for options menu
+      maxHeight: "200px", // Optional: Limit the menu height
+      overflow: "hidden", // Hide overflow
+      scrollbarWidth: "none", // For Firefox: Disable scrollbar
+      "::-webkit-scrollbar": {
+        display: "none", // For Chrome, Safari, and Edge: Disable scrollbar
+      },
+      border: "3px solid #483312",
+    }),
+    menuList: (provided) => ({
+      ...provided,
+      maxHeight: "200px", // Restrict menu list height
+      // overflow: "hidden", // Prevent scrollable overflow
+      scrollbarWidth: "none", // For Firefox: Disable scrollbar
+      "::-webkit-scrollbar": {
+        display: "none", // For Chrome, Safari, and Edge: Disable scrollbar
+      },
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isFocused ? "#473618" : "#8F7C56", // Optional: Light blue background on hover
+      color: state.isFocused ? "#DDBC80" : "#2B1B03", // Text color
+      textAlign: "center",
+      cursor: "pointer",
+      "&:hover": {
+        backgroundColor: state.isFocused ? "#473618" : "#8F7C56",
+      },
+    }),
+    placeholder: (provided) => ({
+      ...provided,
+      color: "#2B1B03", // Placeholder text color
+    }),
+    multiValue: (provided) => ({
+      ...provided,
+      backgroundColor: "transparent", // Transparent background for selected options
+      border: "2px solid #483312", // Optional: Add border around the selected tag
+      borderRadius: "5px",
+    }),
+    multiValueLabel: (provided) => ({
+      ...provided,
+      color: "#2B1B03", // Text color for selected options
+      fontSize: "28px",
+      fontWeight: "720",
+    }),
+    multiValueRemove: (provided) => ({
+      ...provided,
+      color: "#2B1B03", // Color for the remove icon
+      "&:hover": {
+        backgroundColor: "transparent", // No hover effect for remove icon
+        color: "#483312", // Hover color for the remove icon
+      },
+      cursor: "pointer",
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      color: "#2B1B03", // Selected value text color
+      fontWeight: "720",
+      fontSize: "30px",
+    }),
+    dropdownIndicator: (provided, state) => ({
+      ...provided,
+      color: "#3E2D10",
+      height: "20px",
+      padding: "5px",
+      "&:hover": {
+        color: "#3E2D10",
+      },
+      cursor: "pointer",
+    }),
+    indicatorsContainer: (provided) => ({
+      ...provided,
+      width: "0",
+      transform: "translateX(-30px)",
+      "& svg": {
+        width: "30px",
+        height: "30px",
+      },
+    }),
+    clearIndicator: (provided) => ({
+      ...provided,
+      color: "#483312",
+      "&:hover": {
+        color: "#2B1B03",
+      },
+      cursor: "pointer",
     }),
   };
 
@@ -291,8 +406,7 @@ export default function RegForm() {
                     onChange={(selectedOptions) => {
                       setFieldValue("interests", selectedOptions || []);
                     }}
-                    className={styles.interestsWrapper}
-                    styles={customStyles}
+                    styles={customStyles1}
                     placeholder="Choose Interests"
                   />
                   <ErrorMessage
@@ -319,8 +433,7 @@ export default function RegForm() {
                     onChange={(selectedOptions) => {
                       setFieldValue("events", selectedOptions || []);
                     }}
-                    className={styles.eventsWrapper}
-                    styles={customStyles}
+                    styles={customStyles1}
                     placeholder="Choose Events"
                   />
                   <ErrorMessage
@@ -446,8 +559,8 @@ export default function RegForm() {
                   />
                 </div>
 
-                <button type="submit" disabled={isSubmitting}>
-                  Submit
+                <button className={styles.regButton} style={{background: `url(${regButton})`}} type="submit" disabled={isSubmitting}>
+                  Register
                 </button>
               </Form>
             )}
