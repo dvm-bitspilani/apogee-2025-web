@@ -115,7 +115,19 @@
                     background-color: transparent;
                 }
             }
-
+            .regButton {
+                height: 84px;
+                width: fit-content;
+                font-size: 40px;
+                color: #AB9163;
+                font-weight: 750;
+                padding-left: 2rem;
+                padding-right: 2rem;
+                font-family: "Birmingham";
+                cursor: pointer;
+                margin-bottom: 2rem;
+                margin-top: 2rem;
+            }
 
         }
     }

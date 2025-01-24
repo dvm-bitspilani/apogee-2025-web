@@ -559,8 +559,8 @@ export default function RegForm() {
                   />
                 </div>
 
-                <button type="submit" disabled={isSubmitting}>
-                  Submit
+                <button className={styles.regButton} style={{background: `url(${regButton})`}} type="submit" disabled={isSubmitting}>
+                  Register
                 </button>
               </Form>
             )}
