@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./form.module.scss";
 import regWrapper from "../../../src/assets/Register/regWrapper.png";
+import regButton from "../../../src/assets/Register/regButton.png";
 
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -8,9 +9,9 @@ import Select from "react-select";
 import axios from "axios";
 import statesData from "./states.json";
 import citiesData from "./states.json";
-import { current } from "@reduxjs/toolkit";
 
 export default function RegForm() {
+
   // const [interestOptions, setInterestOptions] = useState([""]);
   // const [eventsOptions, setEventsOptions] = useState([""]);
   // const [collegeOptions, setCollegeOptions] = useState([""]);
@@ -26,7 +27,7 @@ export default function RegForm() {
     interests: [],
     events: [],
     college_id: "",
-    year: [],
+    year: "",
     city: "",
     state: "",
   };
@@ -41,6 +42,7 @@ export default function RegForm() {
       .required("*Phone number is required"),
     gender: Yup.string().required("*Gender is required"),
     college_id: Yup.string().required("*College is required"),
+    year: Yup.string().required("*Please select your year of study"),
     state: Yup.string().required("*State is required"),
     city: Yup.string().required("*City is required"),
   });
