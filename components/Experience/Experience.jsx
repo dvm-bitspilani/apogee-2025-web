@@ -6,6 +6,7 @@ import {
   Float,
 } from "@react-three/drei";
 import { Perf } from "r3f-perf";
+import * as THREE from "three";
 import { TestComp2 } from "../TestComp2/TestComp2.jsx";
 import { useRef } from "react";
 import { DirectionalLightHelper, PointLightHelper } from "three";
@@ -16,13 +17,38 @@ import { CityModel } from "./CityModel/CityModel.jsx";
 import { Blimp } from "./Blimp/Blimp.jsx";
 import { useFrame } from "@react-three/fiber";
 
-import { motion } from "framer-motion-3d";
+import { useDispatch, useSelector } from "react-redux";
+import { experienceAnimationsActions } from "../../store/experienceAnimationsSlice/experienceAnimationsSlice.js";
+import { useGSAP } from "@gsap/react";
 
 export default function Experience() {
+  // use
+  const dispatch = useDispatch();
+
+  const vec = new THREE.Vector3();
+
   const directionalLightHelper = useRef();
   const pointLightHelper = useRef();
+  const orb = useRef();
   useHelper(directionalLightHelper, DirectionalLightHelper, "red");
   useHelper(pointLightHelper, PointLightHelper, "purple");
+
+  const isIntroComplete = useSelector(
+    (state) => state.experienceAnimations.isIntroComplete
+  );
+
+  useGSAP(() => {}, { dependencies: [] });
+
+  // useFrame((state, delta) => {
+  //   if (!isIntroComplete) {
+  //     state.camera.lookAt(orb.current.position);
+  //     state.camera.position.lerp(vec.set(0.9123, 0.8487, -0.93792), 0.005);
+  //     state.camera.updateProjectionMatrix();
+  //     if (orb.current.position.y <= 0.85 && state.camera.position.y <= 0.8487) {
+  //       dispatch(experienceAnimationsActions.toggleIntroCompletion());
+  //     }
+  //   }
+  // });
 
   const {
     blimpScale,
@@ -73,15 +99,17 @@ export default function Experience() {
         resolution={128}
       />
 
-      <motion.group
-        initial={{ x: 0, y: 1.25, z: -0.012 }}
-        animate={{
-          y: 0.85,
-          transition: { duration: 2, delay: 1, ease: "easeInOut" },
-        }}
+      <group
+        position={[0, 0.85, -0.012]}
+        // initial={{ x: 0, y: 1.5, z: -0.012 }}
+        // animate={{
+        //   y: 0.85,
+        //   transition: { duration: 2 },
+        // }}
+        ref={orb}
       >
         <EnergyOrb color="orange" lightIntensity={3} />
-      </motion.group>
+      </group>
 
       {/* <group position={[6, -0.05, 0]} rotation={[-Math.PI / 2, 0, 0]}>
         <Clouds args={[20, 20]} />
