@@ -14,6 +14,8 @@ import { CityModel } from "./CityModel/CityModel.jsx";
 import { Blimp } from "./Blimp/Blimp.jsx";
 import { useFrame, useThree } from "@react-three/fiber";
 
+import { experienceAnimationsActions } from "../../store/experienceAnimationsSlice/experienceAnimationsSlice.js";
+
 import { useDispatch, useSelector } from "react-redux";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
