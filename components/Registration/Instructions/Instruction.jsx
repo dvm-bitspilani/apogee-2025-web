@@ -1,15 +1,27 @@
 import React from "react";
 import styles from "./instructions.module.scss";
 import { GoogleLogin } from "@react-oauth/google";
+import { useNavigate } from "react-router";
 import regWrapper from "../../../src/assets/Register/regWrapper.png";
 
 export default function Instructions() {
+  const navigate = useNavigate();
+
+  const handleLoginSuccess = (credentialResponse) => {
+    console.log(credentialResponse);
+    navigate("/registration");
+  };
+
+  const handleLoginError = () => {
+    console.log("Login Failed");
+  };
+
   return (
     <>
       <div
         className={styles.mainWrapper}
         style={{
-          background: `radial-gradient(40.9% 58.96% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.38) 100%), url(${regWrapper})`,
+          background: `radial-gradient(40.9% 58.96% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.48) 100%), url(${regWrapper})`,
           boxShadow: "-12px -12px 15.34px 0px rgba(0, 0, 0, 0.32)",
         }}
       >
@@ -209,13 +221,17 @@ export default function Instructions() {
           </div>
 
           <div className={styles.glogin}>
-            <GoogleLogin
+            {/* <GoogleLogin
               onSuccess={(credentialResponse) => {
                 console.log(credentialResponse);
               }}
               onError={() => {
                 console.log("Login Failed");
               }}
+            /> */}
+            <GoogleLogin
+              onSuccess={handleLoginSuccess}
+              onError={handleLoginError}
             />
             ;
           </div>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Instructions from "../components/Registration/Instructions/Instruction";
+import RegForm from "../components/Registration/Form/RegForm";
 import background from "../src/assets/Register/regBackground.png";
 import styles from "./register.module.scss";
 
@@ -17,7 +17,7 @@ export default function Register() {
         className={styles.registerContainer}
       >
         <div className={styles.scrollContainer}>
-          <Instructions />
+          <RegForm />
         </div>
       </div>
     </>
