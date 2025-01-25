@@ -84,7 +84,7 @@ export default function Experience() {
             duration: 5,
             ease: "power2.inOut",
           },
-          "-=1.95"
+          "-=2.2"
         )
         .to(
           orb.current.position,
