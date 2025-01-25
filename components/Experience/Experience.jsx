@@ -14,9 +14,30 @@ import { CityModel } from "./CityModel/CityModel.jsx";
 import { Blimp } from "./Blimp/Blimp.jsx";
 import { useFrame, useThree } from "@react-three/fiber";
 
+import { experienceAnimationsActions } from "../../store/experienceAnimationsSlice/experienceAnimationsSlice.js";
+
 import { useDispatch, useSelector } from "react-redux";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+
+const CAMERA_POSITION_LANDING = {
+  x: 0.9123,
+  y: 0.8487,
+  z: -0.93792,
+};
+
+const V_XZ_MAGNITUDE = Math.sqrt(
+  CAMERA_POSITION_LANDING.x ** 2 + CAMERA_POSITION_LANDING.z ** 2
+);
+const V_MAGNITUDE = Math.sqrt(
+  CAMERA_POSITION_LANDING.x ** 2 +
+    CAMERA_POSITION_LANDING.y ** 2 +
+    CAMERA_POSITION_LANDING.z ** 2
+);
+const ORBIT_POLAR_ANGLE = Math.acos(
+  (CAMERA_POSITION_LANDING.x ** 2 + CAMERA_POSITION_LANDING.z ** 2) /
+    (V_XZ_MAGNITUDE * V_MAGNITUDE)
+);
 
 export default function Experience() {
   const { camera } = useThree();
@@ -59,9 +80,7 @@ export default function Experience() {
         .to(
           camera.position,
           {
-            x: 0.9123,
-            y: 0.8487,
-            z: -0.93792,
+            ...CAMERA_POSITION_LANDING,
             duration: 5,
             ease: "power2.inOut",
           },
@@ -73,11 +92,6 @@ export default function Experience() {
             y: 0.85,
             duration: 5,
             ease: "power2.inOut",
-            onComplete: () => {
-              dispatch(
-                experienceAnimationsActions.setAnimationStage("landing")
-              );
-            },
           },
           "<"
         )
@@ -90,8 +104,13 @@ export default function Experience() {
           },
           {
             y: 0,
-            duration: 6,
+            duration: 5.5,
             ease: "power2.inOut",
+            onComplete: () => {
+              dispatch(
+                experienceAnimationsActions.setAnimationStage("landing")
+              );
+            },
           },
           "<"
         );
@@ -142,7 +161,15 @@ export default function Experience() {
         <Perf position="top-left" />
       )}
 
-      <OrbitControls />
+      {animationStage !== "intro" && (
+        <OrbitControls
+          enableRotate={true}
+          enablePan={false}
+          enableZoom={false}
+          maxPolarAngle={Math.PI / 2 - ORBIT_POLAR_ANGLE}
+          minPolarAngle={Math.PI / 2 - ORBIT_POLAR_ANGLE}
+        />
+      )}
 
       <Environment
         files="/environments/sunset1QuarterRes.hdr"
