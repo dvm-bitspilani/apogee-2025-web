@@ -70,12 +70,31 @@
     }
 
     .glogin {
-      padding-top: 2rem;
-      width: 40%;
-      height: 3rem;
+      background: url("../../../src/assets/Register/gloginButton.png");
+      width: fit-content;
+      height: fit-content;
       margin-left: auto;
       margin-right: auto;
-      padding-bottom: 2rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      padding: 1rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      cursor: pointer;
+
+      svg {
+        padding-left: 10px;
+      }
+      
+      p {
+        font-family: "Playfair Display";
+        color: #AB9163;
+        font-weight: 700;
+        font-size: 34px;
+      }
     }
   }
 }

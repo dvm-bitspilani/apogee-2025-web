@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./instructions.module.scss";
-import { GoogleLogin } from "@react-oauth/google";
+import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router";
 import regWrapper from "../../../src/assets/Register/regWrapper.png";
 
@@ -35,6 +35,11 @@ export default function Instructions() {
   const handleLoginError = () => {
     console.log("Login Failed");
   };
+
+  const loginButton = useGoogleLogin(() => {
+    onSuccess = { handleLoginSuccess };
+    onFailure = { handleLoginError };
+  });
 
   return (
     <div className={styles.wrapper}>
@@ -247,20 +252,33 @@ export default function Instructions() {
             </p>
           </div>
 
-          <div className={styles.glogin}>
-            {/* <GoogleLogin
-              onSuccess={(credentialResponse) => {
-                console.log(credentialResponse);
-              }}
-              onError={() => {
-                console.log("Login Failed");
-              }}
-            /> */}
-            <GoogleLogin
-              onSuccess={handleLoginSuccess}
-              onError={handleLoginError}
-            />
-            ;
+          <div className={styles.glogin} onClick={loginButton}>
+            <svg
+              width="44"
+              height="44"
+              viewBox="0 0 44 44"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M41.36 22.4584C41.36 21.0284 41.2317 19.6534 40.9933 18.3334H22V26.1342H32.8533C32.3858 28.655 30.965 30.7909 28.8292 32.2209V37.2809H35.3467C39.16 33.77 41.36 28.6 41.36 22.4584Z"
+                fill="#4285F4"
+              />
+              <path
+                d="M22.0002 42.1667C27.4452 42.1667 32.0102 40.3608 35.3468 37.2808L28.8293 32.2208C27.0235 33.4308 24.7135 34.1458 22.0002 34.1458C16.7477 34.1458 12.3018 30.5983 10.716 25.8317H3.97852V31.0567C7.29685 37.6475 14.1168 42.1667 22.0002 42.1667Z"
+                fill="#34A853"
+              />
+              <path
+                d="M10.7155 25.8317C10.3122 24.6217 10.083 23.3292 10.083 22C10.083 20.6709 10.3122 19.3784 10.7155 18.1684V12.9434H3.97801C2.56634 15.7536 1.83176 18.8551 1.83301 22C1.83301 25.2542 2.61218 28.3342 3.97801 31.0567L10.7155 25.8317Z"
+                fill="#FBBC05"
+              />
+              <path
+                d="M22.0002 9.85421C24.961 9.85421 27.6193 10.8717 29.7093 12.87L35.4935 7.08587C32.001 3.83171 27.436 1.83337 22.0002 1.83337C14.1168 1.83337 7.29685 6.35254 3.97852 12.9434L10.716 18.1684C12.3018 13.4017 16.7477 9.85421 22.0002 9.85421Z"
+                fill="#EA4335"
+              />
+            </svg>
+
+            <p>SIGN IN WITH GOOGLE</p>
           </div>
         </div>
       </div>
