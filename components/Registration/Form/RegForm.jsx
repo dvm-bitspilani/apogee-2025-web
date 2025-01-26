@@ -385,7 +385,13 @@ export default function RegForm() {
                             setFieldValue("gender", option.value);
                           }}
                         ></div>
-                        <label htmlFor={`gender-${option.value}`}>
+                        <label
+                          className={styles.checkboxLabel}
+                          htmlFor={`gender-${option.value}`}
+                          onClick={() => {
+                            setFieldValue("gender", option.value);
+                          }}
+                        >
                           {window.innerWidth > 1200
                             ? option.label
                             : option.label1}
@@ -500,7 +506,13 @@ export default function RegForm() {
                             setFieldValue("year", option.value);
                           }}
                         ></div>
-                        <label htmlFor={`year-${option.value}`}>
+                        <label
+                          className={styles.checkboxLabel}
+                          htmlFor={`year-${option.value}`}
+                          onClick={() => {
+                            setFieldValue("year", option.value);
+                          }}
+                        >
                           {option.label}
                         </label>
                       </div>
