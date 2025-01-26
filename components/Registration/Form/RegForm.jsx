@@ -116,6 +116,18 @@ export default function RegForm() {
     setCityOptions(selectedStateCities);
   }, [selectedState]);
 
+  const calculateFontSize = () => {
+    if (window.innerWidth < 500) {
+      return 20;
+    } else if (window.innerWidth < 885) {
+      return 24;
+    } else {
+      return 28;
+    }
+  };
+  
+  const fontsize = calculateFontSize();
+
   const customStyles = {
     control: (provided) => ({
       ...provided,
@@ -166,7 +178,7 @@ export default function RegForm() {
       ...provided,
       color: "#2B1B03", // Selected value text color
       fontWeight: "700",
-      fontSize: "28px",
+      fontSize: fontsize,
     }),
     indicatorsContainer: (provided) => ({
       ...provided,
@@ -244,7 +256,7 @@ export default function RegForm() {
     multiValueLabel: (provided) => ({
       ...provided,
       color: "#2B1B03", // Text color for selected options
-      fontSize: "28px",
+      fontSize: fontsize,
       fontWeight: "700",
     }),
     multiValueRemove: (provided) => ({
@@ -260,7 +272,7 @@ export default function RegForm() {
       ...provided,
       color: "#2B1B03", // Selected value text color
       fontWeight: "700",
-      fontSize: "28px",
+      fontSize: fontsize,
     }),
     dropdownIndicator: (provided, state) => ({
       ...provided,

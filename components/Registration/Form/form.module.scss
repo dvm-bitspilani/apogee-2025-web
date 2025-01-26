@@ -4,8 +4,8 @@
     display: flex;
     justify-content: center;
 }
-  
-  .dummyWrapper {
+
+.dummyWrapper {
     position: absolute;
     z-index: 1;
     top: 3rem;
@@ -114,7 +114,7 @@
                                 background-color: #483312;
                             }
                         }
-                        
+
                         .checked {
                             background-color: #483312;
                         }
@@ -125,10 +125,11 @@
                     }
                 }
 
-                .stateWrapper::placeholder{
+                .stateWrapper::placeholder {
                     background-color: transparent;
                 }
             }
+
             .regButton {
                 height: 84px;
                 width: fit-content;
@@ -143,6 +144,160 @@
                 margin-top: 2rem;
             }
 
+        }
+    }
+}
+
+@media(max-width: 885px) {
+
+    .dummyWrapper {
+        display: none;
+    }
+
+    .mainWrapper {
+        height: fit-content;
+        width: 100%;
+        padding-bottom: 2.5rem;
+        margin-top: 0rem;
+        margin-bottom: 0rem;
+
+        h2 {
+            padding-top: 1.5rem;
+            font-size: 56px;
+            letter-spacing: 4px;
+        }
+
+        .formContainer {
+            margin-top: 2rem;
+            margin-bottom: 0rem;
+            width: calc(100% - 4rem);
+            border: 2.2px solid #483312;
+
+            .form {
+                padding-top: 1.3rem;
+
+                .input {
+                    width: 600px;
+                    font-size: 24px;
+                    padding-top: 1rem;
+                    padding-bottom: 1rem;
+
+                    .inputField {
+                        font-size: 24px;
+                    }
+
+                    .inputField::placeholder {
+                        font-size: 24px;
+                    }
+
+                    .errorMessage {
+                        font-size: 15px;
+                    }
+
+                    .checkboxContainer {
+                        font-size: 24px;
+
+                        .checkboxItem {
+                            gap: 12px;
+
+                            .customCheckbox {
+                                width: 12px;
+                                height: 12px;
+                                border: 4px solid #483312;
+                                transform: translateY(2px);
+                            }
+                        }
+                    }
+                }
+
+                .regButton {
+                    height: 64px;
+                    font-size: 30px;
+                    padding-left: 1.5rem;
+                    padding-right: 1.5rem;
+                    margin-bottom: 2rem;
+                    margin-top: 2rem;
+                }
+
+            }
+        }
+    }
+}
+
+@media(max-width: 750px) {
+
+    .mainWrapper {
+        .formContainer {
+
+            .form {
+                .input {
+                    width: calc(100% - 3rem);
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 500px) {
+
+    .mainWrapper {
+
+        h2 {
+            padding-top: 1.5rem;
+            font-size: 40px;
+            letter-spacing: 4px;
+        }
+
+        .formContainer {
+            width: calc(100% - 3rem);
+            border: 2.5px solid #483312;
+
+            .form {
+                padding-top: 1rem;
+
+                .input {
+                    font-size: 20px;
+                    padding-top: 0.8rem;
+                    padding-bottom: 0.8rem;
+
+                    .inputField {
+                        font-size: 20px;
+                    }
+
+                    .inputField::placeholder {
+                        font-size: 20px;
+                    }
+
+                    .errorMessage {
+                        font-size: 13px;
+                    }
+
+                    .checkboxContainer {
+                        font-size: 20px;
+
+                        .checkboxItem {
+                            gap: 12px;
+
+                            .customCheckbox {
+                                width: 10px;
+                                height: 10px;
+                                border: 3.8px solid #483312;
+                                transform: translateY(1px);
+                            }
+                        }
+                    }
+                }
+
+                .regButton {
+                    height: 58px;
+                    font-size: 26px;
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+                    margin-bottom: 2rem;
+                    margin-top: 2rem;
+                }
+
+            }
         }
     }
 }
