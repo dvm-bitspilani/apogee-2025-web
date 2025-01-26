@@ -19,9 +19,11 @@ export default function RegForm() {
   const [selectedState, setSelectedState] = useState("");
   const [cityOptions, setCityOptions] = useState([]);
 
+  const email_id = localStorage.getItem("userEmail");
+
   const initialValues = {
     name: "",
-    email_id: "",
+    email_id: email_id,
     phone: "",
     gender: "",
     interests: [],
@@ -32,8 +34,6 @@ export default function RegForm() {
     state: "",
     referral: "",
   };
-
-  const email_id = localStorage.getItem("userEmail");
 
   const validationSchema = Yup.object({
     name: Yup.string().required("*Name is required"),
@@ -337,7 +337,7 @@ export default function RegForm() {
                     id="email_id"
                     name="email_id"
                     placeholder="Your Email"
-                    value={email_id}
+                    // value={email_id}
                     disabled
                     className={styles.inputField}
                   />
