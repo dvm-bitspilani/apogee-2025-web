@@ -74,7 +74,7 @@ export default function Experience() {
         // )
         .to(blackScreen.current.material, {
           opacity: 0,
-          duration: 1,
+          duration: 1.5,
         })
         .to(
           camera.position,
@@ -83,7 +83,7 @@ export default function Experience() {
             duration: 5,
             ease: "power2.inOut",
           },
-          "-=1.95"
+          "-=2.45"
         )
         .to(
           orb.current.position,
@@ -186,7 +186,7 @@ export default function Experience() {
           ref={blackScreen}
         >
           <planeGeometry />
-          <meshStandardMaterial color="gray" transparent />
+          <meshStandardMaterial color="black" transparent />
         </mesh>
       )}
 

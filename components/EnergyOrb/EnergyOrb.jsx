@@ -64,46 +64,53 @@ export default function EnergyOrb({
   color = "red",
   emissiveIntensity = 4,
   lightIntensity = 2,
+  isBloom = false,
 }) {
-  return (
-    <>
-      {/* <EffectComposer>
-        <Bloom
-          luminanceThreshold={luminanceThreshold}
-          luminanceSmoothing={luminanceSmoothing}
-          intensity={bloomIntensity}
-        />
-      </EffectComposer> */}
+  if (isBloom) {
+    return (
+      <>
+        <EffectComposer>
+          <Bloom
+            luminanceThreshold={luminanceThreshold}
+            luminanceSmoothing={luminanceSmoothing}
+            intensity={bloomIntensity}
+          />
+        </EffectComposer>
 
-      {/* <Sphere args={[0.1, 32, 32]}>
-        <meshStandardMaterial
-          emissive={color}
-          emissiveIntensity={emissiveIntensity}
-          toneMapped={false}
-        />
-        <pointLight
-          position={[0, 0.05, 0]}
-          intensity={lightIntensity}
-          color={color}
-        />
-      </Sphere> */}
+        <Sphere args={[0.1, 32, 32]}>
+          <meshStandardMaterial
+            emissive={color}
+            emissiveIntensity={emissiveIntensity}
+            toneMapped={false}
+          />
+          <pointLight
+            position={[0, 0.05, 0]}
+            intensity={lightIntensity}
+            color={color}
+          />
+        </Sphere>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <Sphere args={[0.1, 32, 32]} position={[0, 0, 0]}>
+          <meshStandardMaterial
+            color={color}
+            emissive={color}
+            emissiveIntensity={1.5}
+          />
+          <pointLight
+            color={color}
+            position={[0, 0.05, 0]}
+            intensity={lightIntensity}
+          />
+        </Sphere>
 
-      <Sphere args={[0.1, 32, 32]} position={[0, 0, 0]}>
-        <meshStandardMaterial
-          color={color}
-          emissive={color}
-          emissiveIntensity={1.5}
-        />
-        <pointLight
-          color={color}
-          position={[0, 0.05, 0]}
-          intensity={lightIntensity}
-        />
-      </Sphere>
-
-      <Sphere args={[0.12, 32, 32]} position={[0, 0, 0]}>
-        <outerGlowRadial transparent blending={THREE.AdditiveBlending} />
-      </Sphere>
-    </>
-  );
+        <Sphere args={[0.12, 32, 32]} position={[0, 0, 0]}>
+          <outerGlowRadial transparent blending={THREE.AdditiveBlending} />
+        </Sphere>
+      </>
+    );
+  }
 }

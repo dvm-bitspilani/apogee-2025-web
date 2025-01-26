@@ -25,10 +25,10 @@ export default function LoadingScreen() {
       />
       <mesh position={[0, 1.35, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={4}>
         <planeGeometry />
-        <meshStandardMaterial color="gray" />
+        <meshStandardMaterial color="black" />
       </mesh>
-      <group position={[0, 1.5, -0.012]}>
-        <EnergyOrb color="orange" />
+      <group position={[0, 1.5, 0]}>
+        <EnergyOrb color="orange" isBloom={false} />
       </group>
     </>
   );
