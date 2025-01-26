@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import styles from "./instructions.module.scss";
 import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router";
@@ -6,19 +6,27 @@ import regWrapper from "../../../src/assets/Register/regWrapper.png";
 
 export default function Instructions() {
   const navigate = useNavigate();
-  // const [userEmail, setUserEmail] = useState("");
 
   const handleLoginSuccess = (credentialResponse) => {
-    // const email = credentialResponse?.profileObj?.email;
+    // console.log(credentialResponse);
+    const email = credentialResponse?.credential;
 
-    // if (email) {
-    //   setUserEmail(email);
-
-    //   // localStorage.setItem("user", JSON.stringify(credentialResponse));
-    //   localStorage.setItem("userEmail", email);
-    // } else {
-    //   console.log("Error fetching user email");
-    // }
+    if (email) {
+      fetch(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${email}`)
+        .then((res) => res.json())
+        .then((userInfo) => {
+          const userEmail = userInfo?.email;
+          if (userEmail) {
+            localStorage.setItem("userEmail", userEmail);
+            // console.log("Email stored in localStorage:", userEmail);
+          } else {
+            console.log("Email not found in userInfo.");
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching user info:", error);
+        });
+    }
 
     localStorage.setItem("isLoggedIn", true);
     navigate("/registration");

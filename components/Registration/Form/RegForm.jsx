@@ -30,13 +30,16 @@ export default function RegForm() {
     year: "",
     city: "",
     state: "",
+    referral: "",
   };
+
+  const email_id = localStorage.getItem("userEmail");
 
   const validationSchema = Yup.object({
     name: Yup.string().required("*Name is required"),
-    email_id: Yup.string()
-      .email("*Please enter a valid email")
-      .required("*Please enter your email"),
+    // email_id: Yup.string()
+    //   .email("*Please enter a valid email")
+    //   .required("*Please enter your email"),
     phone: Yup.string()
       .matches(/^\d{10}$/, "*Phone number must be exactly 10 digits")
       .required("*Phone number is required"),
@@ -289,8 +292,6 @@ export default function RegForm() {
     }),
   };
 
-  // const email_id = localStorage.getItem('userEmail');
-
   return (
     <>
       <div
@@ -336,14 +337,15 @@ export default function RegForm() {
                     id="email_id"
                     name="email_id"
                     placeholder="Your Email"
-                    // value={email_id}
+                    value={email_id}
+                    disabled
                     className={styles.inputField}
                   />
-                  <ErrorMessage
+                  {/* <ErrorMessage
                     name="email_id"
                     component="div"
                     className={styles.errorMessage}
-                  />
+                  /> */}
                 </div>
 
                 <div className={styles.input}>
