@@ -3,6 +3,10 @@
     height: 100vh;
     padding-bottom: 0rem;
     overflow-y: hidden;
+    background: radial-gradient(40.9% 58.96% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%), url("../src/assets/Register/regBackground.png");
+    background-size: cover;
+    display: flex;
+    justify-content: center;
 
     .scrollContainer {
         height: calc(100vh - 0rem);
@@ -22,4 +26,16 @@
 
 .scrollContainer::-webkit-scrollbar-thumb {
     display: none;
+}
+
+@media(max-width: 885px) {
+    
+    .registerContainer {
+        background: none;
+        height: fit-content;
+
+        .scrollContainer {
+            height: fit-content;
+        }
+    }
 }
