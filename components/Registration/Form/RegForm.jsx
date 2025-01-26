@@ -11,7 +11,6 @@ import statesData from "./states.json";
 import citiesData from "./states.json";
 
 export default function RegForm() {
-
   // const [interestOptions, setInterestOptions] = useState([""]);
   // const [eventsOptions, setEventsOptions] = useState([""]);
   // const [collegeOptions, setCollegeOptions] = useState([""]);
@@ -66,7 +65,7 @@ export default function RegForm() {
       { id: "literature", name: "Literature" },
     ],
   };
-  
+
   const eventsOptions = {
     data: [
       { id: "workshop", name: "Workshop" },
@@ -293,12 +292,19 @@ export default function RegForm() {
   };
 
   return (
-    <>
+    <div className={styles.wrapper}>
+      <div
+        className={styles.dummyWrapper}
+        style={{
+          background: `radial-gradient(40.9% 58.96% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.48) 100%), url(${regWrapper})`,
+          boxShadow: "-12px -12px 15.34px 0px rgba(0, 0, 0, 0.32)",
+        }}
+      ></div>
       <div
         className={styles.mainWrapper}
         style={{
           background: `radial-gradient(40.9% 58.96% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.48) 100%), url(${regWrapper})`,
-          boxShadow: "-12px -12px 15.34px 0px rgba(0, 0, 0, 0.32)",
+          boxShadow: "12px 12px 15.34px 10px rgba(0, 0, 0, 0.42)",
         }}
       >
         <h2>REGISTRATION</h2>
@@ -575,7 +581,12 @@ export default function RegForm() {
                   />
                 </div>
 
-                <button className={styles.regButton} style={{background: `url(${regButton})`}} type="submit" disabled={isSubmitting}>
+                <button
+                  className={styles.regButton}
+                  style={{ background: `url(${regButton})` }}
+                  type="submit"
+                  disabled={isSubmitting}
+                >
                   Register
                 </button>
               </Form>
@@ -583,6 +594,6 @@ export default function RegForm() {
           </Formik>
         </div>
       </div>
-    </>
+    </div>
   );
 }
