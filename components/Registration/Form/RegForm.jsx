@@ -289,6 +289,8 @@ export default function RegForm() {
     }),
   };
 
+  // const email_id = localStorage.getItem('userEmail');
+
   return (
     <>
       <div
@@ -334,6 +336,7 @@ export default function RegForm() {
                     id="email_id"
                     name="email_id"
                     placeholder="Your Email"
+                    // value={email_id}
                     className={styles.inputField}
                   />
                   <ErrorMessage

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from "./instructions.module.scss";
 import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router";
@@ -6,9 +6,21 @@ import regWrapper from "../../../src/assets/Register/regWrapper.png";
 
 export default function Instructions() {
   const navigate = useNavigate();
+  // const [userEmail, setUserEmail] = useState("");
 
   const handleLoginSuccess = (credentialResponse) => {
-    console.log(credentialResponse);
+    // const email = credentialResponse?.profileObj?.email;
+
+    // if (email) {
+    //   setUserEmail(email);
+
+    //   // localStorage.setItem("user", JSON.stringify(credentialResponse));
+    //   localStorage.setItem("userEmail", email);
+    // } else {
+    //   console.log("Error fetching user email");
+    // }
+
+    localStorage.setItem("isLoggedIn", true);
     navigate("/registration");
   };
 
