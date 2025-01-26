@@ -11,7 +11,6 @@ import statesData from "./states.json";
 import citiesData from "./states.json";
 
 export default function RegForm() {
-
   // const [interestOptions, setInterestOptions] = useState([""]);
   // const [eventsOptions, setEventsOptions] = useState([""]);
   // const [collegeOptions, setCollegeOptions] = useState([""]);
@@ -19,9 +18,11 @@ export default function RegForm() {
   const [selectedState, setSelectedState] = useState("");
   const [cityOptions, setCityOptions] = useState([]);
 
+  const email_id = localStorage.getItem("userEmail");
+
   const initialValues = {
     name: "",
-    email_id: "",
+    email_id: email_id,
     phone: "",
     gender: "",
     interests: [],
@@ -30,13 +31,14 @@ export default function RegForm() {
     year: "",
     city: "",
     state: "",
+    referral: "",
   };
 
   const validationSchema = Yup.object({
     name: Yup.string().required("*Name is required"),
-    email_id: Yup.string()
-      .email("*Please enter a valid email")
-      .required("*Please enter your email"),
+    // email_id: Yup.string()
+    //   .email("*Please enter a valid email")
+    //   .required("*Please enter your email"),
     phone: Yup.string()
       .matches(/^\d{10}$/, "*Phone number must be exactly 10 digits")
       .required("*Phone number is required"),
@@ -63,7 +65,7 @@ export default function RegForm() {
       { id: "literature", name: "Literature" },
     ],
   };
-  
+
   const eventsOptions = {
     data: [
       { id: "workshop", name: "Workshop" },
@@ -163,8 +165,8 @@ export default function RegForm() {
     singleValue: (provided) => ({
       ...provided,
       color: "#2B1B03", // Selected value text color
-      fontWeight: "720",
-      fontSize: "30px",
+      fontWeight: "700",
+      fontSize: "28px",
     }),
     indicatorsContainer: (provided) => ({
       ...provided,
@@ -243,7 +245,7 @@ export default function RegForm() {
       ...provided,
       color: "#2B1B03", // Text color for selected options
       fontSize: "28px",
-      fontWeight: "720",
+      fontWeight: "700",
     }),
     multiValueRemove: (provided) => ({
       ...provided,
@@ -257,8 +259,8 @@ export default function RegForm() {
     singleValue: (provided) => ({
       ...provided,
       color: "#2B1B03", // Selected value text color
-      fontWeight: "720",
-      fontSize: "30px",
+      fontWeight: "700",
+      fontSize: "28px",
     }),
     dropdownIndicator: (provided, state) => ({
       ...provided,
@@ -290,12 +292,19 @@ export default function RegForm() {
   };
 
   return (
-    <>
+    <div className={styles.wrapper}>
+      <div
+        className={styles.dummyWrapper}
+        style={{
+          background: `radial-gradient(40.9% 58.96% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.48) 100%), url(${regWrapper})`,
+          boxShadow: "-12px -12px 15.34px 0px rgba(0, 0, 0, 0.32)",
+        }}
+      ></div>
       <div
         className={styles.mainWrapper}
         style={{
-          background: `radial-gradient(40.9% 58.96% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.38) 100%), url(${regWrapper})`,
-          boxShadow: "-12px -12px 15.34px 0px rgba(0, 0, 0, 0.32)",
+          background: `radial-gradient(40.9% 58.96% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.48) 100%), url(${regWrapper})`,
+          boxShadow: "12px 12px 15.34px 10px rgba(0, 0, 0, 0.42)",
         }}
       >
         <h2>REGISTRATION</h2>
@@ -334,13 +343,15 @@ export default function RegForm() {
                     id="email_id"
                     name="email_id"
                     placeholder="Your Email"
+                    // value={email_id}
+                    disabled
                     className={styles.inputField}
                   />
-                  <ErrorMessage
+                  {/* <ErrorMessage
                     name="email_id"
                     component="div"
                     className={styles.errorMessage}
-                  />
+                  /> */}
                 </div>
 
                 <div className={styles.input}>
@@ -559,7 +570,23 @@ export default function RegForm() {
                   />
                 </div>
 
-                <button className={styles.regButton} style={{background: `url(${regButton})`}} type="submit" disabled={isSubmitting}>
+                <div className={styles.input}>
+                  <label htmlFor="referral">Referral Code</label>
+                  <Field
+                    type="text"
+                    id="referral"
+                    name="referral"
+                    placeholder="Enter referral code"
+                    className={styles.inputField}
+                  />
+                </div>
+
+                <button
+                  className={styles.regButton}
+                  style={{ background: `url(${regButton})` }}
+                  type="submit"
+                  disabled={isSubmitting}
+                >
                   Register
                 </button>
               </Form>
@@ -567,6 +594,6 @@ export default function RegForm() {
           </Formik>
         </div>
       </div>
-    </>
+    </div>
   );
 }

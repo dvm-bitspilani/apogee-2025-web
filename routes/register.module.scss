@@ -14,9 +14,12 @@
     width: 0;
     height: 0;
 }
+
 .scrollContainer {
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none;
+    /* Firefox */
 }
+
 .scrollContainer::-webkit-scrollbar-thumb {
     display: none;
 }
