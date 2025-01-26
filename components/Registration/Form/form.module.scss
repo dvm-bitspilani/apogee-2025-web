@@ -45,19 +45,20 @@
 
                 .inputField {
                     background-color: transparent;
-                    font-size: 30px;
-                    font-weight: 720;
+                    font-size: 28px;
+                    font-weight: 700;
                     color: #2B1B03;
                     border-bottom: 2px solid #483312;
                     font-family: "Playfair Display";
+                    padding-left: 10px;
                 }
 
                 .inputField::placeholder {
                     background-color: transparent;
                     opacity: 1;
                     color: #2B1B03;
-                    font-size: 30px;
-                    font-weight: 720;
+                    font-size: 28px;
+                    font-weight: 700;
                     font-family: "Playfair Display";
                 }
 

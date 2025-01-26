@@ -163,8 +163,8 @@ export default function RegForm() {
     singleValue: (provided) => ({
       ...provided,
       color: "#2B1B03", // Selected value text color
-      fontWeight: "720",
-      fontSize: "30px",
+      fontWeight: "700",
+      fontSize: "28px",
     }),
     indicatorsContainer: (provided) => ({
       ...provided,
@@ -243,7 +243,7 @@ export default function RegForm() {
       ...provided,
       color: "#2B1B03", // Text color for selected options
       fontSize: "28px",
-      fontWeight: "720",
+      fontWeight: "700",
     }),
     multiValueRemove: (provided) => ({
       ...provided,
@@ -257,8 +257,8 @@ export default function RegForm() {
     singleValue: (provided) => ({
       ...provided,
       color: "#2B1B03", // Selected value text color
-      fontWeight: "720",
-      fontSize: "30px",
+      fontWeight: "700",
+      fontSize: "28px",
     }),
     dropdownIndicator: (provided, state) => ({
       ...provided,
@@ -556,6 +556,17 @@ export default function RegForm() {
                     name="city"
                     component="div"
                     className={styles.errorMessage}
+                  />
+                </div>
+
+                <div className={styles.input}>
+                  <label htmlFor="referral">Referral Code</label>
+                  <Field
+                    type="text"
+                    id="referral"
+                    name="referral"
+                    placeholder="Enter referral code"
+                    className={styles.inputField}
                   />
                 </div>
 
