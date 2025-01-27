@@ -10,7 +10,7 @@ import axios from "axios";
 import statesData from "./states.json";
 import citiesData from "./states.json";
 
-export default function RegForm() {
+export default function RegForm({email}) {
   // const [interestOptions, setInterestOptions] = useState([""]);
   // const [eventsOptions, setEventsOptions] = useState([""]);
   // const [collegeOptions, setCollegeOptions] = useState([""]);
@@ -18,11 +18,9 @@ export default function RegForm() {
   const [selectedState, setSelectedState] = useState("");
   const [cityOptions, setCityOptions] = useState([]);
 
-  const email_id = localStorage.getItem("userEmail");
-
   const initialValues = {
     name: "",
-    email_id: email_id,
+    email_id: email,
     phone: "",
     gender: "",
     interests: [],
