@@ -82,9 +82,9 @@ export default function RegForm({email}) {
   };
 
   const genderOptions = [
-    { value: "M", label: "MALE", label1: "M" },
-    { value: "F", label: "FEMALE", label1: "F" },
-    { value: "O", label: "OTHER", label1: "O" },
+    { value: "M", label: "MALE", label1: "Male" },
+    { value: "F", label: "FEMALE", label1: "Female" },
+    { value: "O", label: "OTHER", label1: "Other" },
   ];
 
   const yearOptions = [

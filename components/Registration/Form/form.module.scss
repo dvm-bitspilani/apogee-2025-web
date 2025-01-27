@@ -95,8 +95,10 @@
                 .checkboxContainer {
                     display: flex;
                     justify-content: space-between;
-                    font-size: 30px;
-                    font-weight: 720;
+                    flex-wrap: wrap;
+                    font-size: 28px;
+                    font-weight: 700;
+                    gap: 0.6rem 1.2rem;
 
                     .checkboxItem {
                         display: flex;
