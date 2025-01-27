@@ -140,14 +140,29 @@
           height: 30px;
           width: 30px;
         }
+
+        #firstBullet {
+          height: 30px;
+          width: 39px;
+        }
       }
 
       .glogin {
-        padding-top: 2rem;
-        width: 60%;
-        height: 3rem;
-        margin-left: auto;
-        margin-right: auto;
+        gap: 11px;
+        padding: 1rem;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        cursor: pointer;
+  
+        svg {
+          padding-left: 10px;
+          height: 34px;
+          width: auto;
+        }
+        
+        p {
+          font-size: 28px;
+        }
       }
     }
   }
@@ -185,14 +200,50 @@
         gap: 7px;
 
         svg {
-          height: 55px;
-          width: 55px;
-          transform: translateY(-15px);
+          height: 45px;
+          width: 45px;
+          transform: translateY(-7px);
+        }
+        #firstBullet {
+          height: 45px;
+          width: 58px;
         }
       }
 
       .glogin {
-        width: 82%;
+        gap: 9px;
+        padding: 0.6rem;
+        margin-top: 1.7rem;
+        margin-bottom: 2rem;
+        cursor: pointer;
+  
+        svg {
+          padding-left: 9px;
+          height: 22px;
+          width: auto;
+        }
+        
+        p {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
+
+@media(max-width: 410px) {
+  .mainWrapper {
+    .instructionContainer {
+      .content {
+        svg {
+          height: 55px;
+          width: 55px;
+          transform: translateY(-15px);
+        }
+        #firstBullet {
+          height: 55px;
+          width: 56px;
+        }
       }
     }
   }
