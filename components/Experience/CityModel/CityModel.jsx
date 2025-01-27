@@ -13,8 +13,9 @@ import {
 import styles from "./citymodel.module.scss";
 import { useLoader, useThree } from "@react-three/fiber";
 import { TextureLoader } from "three";
+import gsap from "gsap";
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
 
-// import { CameraHelper } from "three";
 
 export function CityModel({ scale = 1, ...props }) {
   const group = useRef();
@@ -48,13 +49,16 @@ export function CityModel({ scale = 1, ...props }) {
   // console.log(cameraHelper);
 
   const handleClick = () => {
-    console.log('clicked');
-    camera.position.set(-0.0826,0.6346,1.8046);
+    // console.log("clicked");
+    const timeline = gsap.timeline();
+    timeline.to(camera.position, {
+      x: 0.6795,
+      y: 0.8487,
+      z: 1.1181,
+      ease: "power2.inOut",
+      duration: 1.5,
+    });
   };
-
-  useEffect(() => {
-    console.log(camera.position);
-  }, [camera.position]);
 
   return (
     <group ref={group} scale={scale} {...props} dispose={null}>
@@ -64,7 +68,7 @@ export function CityModel({ scale = 1, ...props }) {
           lockX={false}
           lockY={false}
           lockZ={false}
-          position={[45, 33, 0]}
+          position={[45, 33, -10]}
           onClick={() => {
             handleClick();
           }}
@@ -84,7 +88,7 @@ export function CityModel({ scale = 1, ...props }) {
             curveSegments={32}
             bevelEnabled
             bevelSize={0.04}
-            bevelThickness={0.1}
+            bevelThickness={0.01}
             height={0.5}
             lineHeight={0.5}
             size={3.5}
@@ -92,7 +96,8 @@ export function CityModel({ scale = 1, ...props }) {
             font="../../../src/assets/Roboto_Regular.json"
           >
             ABOUT
-            <meshNormalMaterial />
+            <meshStandardMaterial color="white" />
+            {/* <meshNormalMaterial /> */}
           </Text3D>
         </Billboard>
 
