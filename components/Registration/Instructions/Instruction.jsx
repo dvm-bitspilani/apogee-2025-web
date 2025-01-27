@@ -10,17 +10,21 @@ export default function Instructions() {
   const [userEmail, setUserEmail] = useState("");
 
   const handleLoginSuccess = (credentialResponse) => {
-    // console.log(credentialResponse);
-    const email = credentialResponse?.credential;
 
-    if (email) {
-      fetch(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${email}`)
+    const accessToken = credentialResponse?.access_token;
+
+    if (accessToken) {
+      fetch("https://www.googleapis.com/oauth2/v3/userinfo", {  // fetching user info using the access token
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
         .then((res) => res.json())
         .then((userInfo) => {
-          const userEmail = userInfo?.email;
-          if (userEmail) {
-            setUserEmail(userEmail);
-            // console.log("Email stored in localStorage:", userEmail);
+          const emailFromResponse = userInfo?.email;
+          if (emailFromResponse) {
+            setUserEmail(emailFromResponse);
+            // console.log("Email is:", emailFromResponse);
           } else {
             console.log("Email not found in userInfo.");
           }
@@ -31,9 +35,6 @@ export default function Instructions() {
     }
 
     setUserState(true);
-
-    // localStorage.setItem("isLoggedIn", true);
-    // navigate("/registration");
   };
 
   const handleLoginError = () => {
@@ -47,7 +48,7 @@ export default function Instructions() {
 
   return (
     <>
-      {userState ? (
+      {userState && userEmail ? (
         <RegForm email={userEmail} />
       ) : (
         <div className={styles.wrapper}>
