@@ -11,7 +11,6 @@ export default function Landing() {
         camera={{
           position: [0, 2, 0],
         }}
-        id="landingExperience"
       >
         <Suspense fallback={<LoadingScreen />}>
           <Experience />

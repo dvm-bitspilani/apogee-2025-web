@@ -59,19 +59,20 @@ export default function Experience() {
   useGSAP(
     () => {
       const timeline = gsap.timeline();
+      console.log(blackScreen.current);
 
       timeline
-        // .fromTo(
-        //   "#landingExperience",
-        //   {
-        //     opacity: 0,
-        //   },
-        //   {
-        //     opacity: 1,
-        //     duration: 1,
-        //     delay: 0.5,
-        //   }
-        // )
+        .fromTo(
+          "canvas",
+          {
+            opacity: 0,
+          },
+          {
+            opacity: 1,
+            duration: 1,
+            delay: 0.5,
+          }
+        )
         .to(blackScreen.current.material, {
           opacity: 0,
           duration: 1.5,

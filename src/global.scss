@@ -15,11 +15,6 @@ body {
   background: black;
 }
 
-#landingExperience {
-  opacity: 0;
-  transition: opacity 250ms linear;
-}
-
 @font-face {
   font-family: "Birmingham";
   src: url("/fonts/Birmingham.ttf") format("truetype");
