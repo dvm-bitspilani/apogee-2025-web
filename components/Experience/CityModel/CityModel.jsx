@@ -15,7 +15,7 @@ import { useLoader, useThree } from "@react-three/fiber";
 import { TextureLoader } from "three";
 import gsap from "gsap";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
-
+import * as THREE from 'three';
 
 export function CityModel({ scale = 1, ...props }) {
   const group = useRef();
@@ -23,6 +23,8 @@ export function CityModel({ scale = 1, ...props }) {
     "/models/ActualWebsiteModel1-v2.glb"
   );
   const { actions } = useAnimations(animations, group);
+
+  const frame = useLoader(TextureLoader, "../../../src/assets/frame.png");
 
   const boardColor = useLoader(
     TextureLoader,
@@ -76,11 +78,11 @@ export function CityModel({ scale = 1, ...props }) {
           <mesh position={[0, 0, 0]}>
             <planeGeometry args={[20, 8]} />
             <meshStandardMaterial
-              map={boardColor}
-              displacementMap={boardDisplacement}
-              aoMap={boardAO}
-              roughnessMap={boardARM}
-              metalnessMap={boardARM}
+              map={frame}
+              // displacementMap={boardDisplacement}
+              // aoMap={boardAO}
+              // roughnessMap={boardARM}
+              // metalnessMap={boardARM}
             />
           </mesh>
 
