@@ -1,1 +1,14 @@
-
+.marker {
+    background-color: yellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 15px;
+    position: absolute;
+  .line {
+    height: 50px;
+    width: 5px;
+    background-color: black;
+  }
+}
