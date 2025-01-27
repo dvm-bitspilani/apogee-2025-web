@@ -12,13 +12,12 @@ body,
 }
 
 body {
-  background: #2d2d2d;
+  background: black;
 }
 
 @font-face {
-  font-family: 'Birmingham';
-  src: url('/fonts/Birmingham.ttf') format('truetype');
+  font-family: "Birmingham";
+  src: url("/fonts/Birmingham.ttf") format("truetype");
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");

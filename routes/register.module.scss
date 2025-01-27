@@ -1,5 +1,41 @@
 .registerContainer {
-    padding-top: 4rem;
-    height: fit-content;
-    padding-bottom: 4rem;
+    padding-top: 0rem;
+    height: 100vh;
+    padding-bottom: 0rem;
+    overflow-y: hidden;
+    background: radial-gradient(40.9% 58.96% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%), url("../src/assets/Register/regBackground.png");
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+
+    .scrollContainer {
+        height: calc(100vh - 0rem);
+        overflow-y: scroll;
+    }
+}
+
+.scrollContainer::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.scrollContainer {
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.scrollContainer::-webkit-scrollbar-thumb {
+    display: none;
+}
+
+@media(max-width: 885px) {
+    
+    .registerContainer {
+        background: none;
+        height: fit-content;
+
+        .scrollContainer {
+            height: fit-content;
+        }
+    }
 }
