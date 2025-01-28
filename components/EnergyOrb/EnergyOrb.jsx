@@ -3,8 +3,9 @@ import { shaderMaterial, Sphere } from "@react-three/drei";
 import * as THREE from "three";
 import { extend, useFrame } from "@react-three/fiber";
 import { useRef } from "react";
+import ParticleOrb from "./ParticleOrb";
 
-const GLITCH_STRENGTH_FACTOR = 0.05;
+const GLITCH_STRENGTH_FACTOR = 0.025;
 
 const OuterGlowRadial = shaderMaterial(
   // Uniforms
@@ -87,6 +88,12 @@ const SphereMaterial = shaderMaterial(
         return fract(sin(dot(value.xy, vec2(12.9898,78.233))) * 43758.5453123);
     }
 
+    float random3D(vec3 value) 
+    {
+        vec3 dotVec = vec3(12.9898, 78.233, 37.719);
+        return fract(sin(dot(value.xyz, dotVec)) * 43758.5453123);
+    }
+
     void main(){
         // Position
         vec4 modelPosition = modelMatrix * vec4(position , 1.0);
@@ -95,10 +102,11 @@ const SphereMaterial = shaderMaterial(
         float glitchTime = uTime - modelPosition.y;
         float glitchStrength = sin(glitchTime) + sin(glitchTime * 3.45) + sin(glitchTime * 8.76);
         glitchStrength /= 3.0;
-        glitchStrength = smoothstep(0.3, 1.0, glitchStrength);
+        glitchStrength = smoothstep(0.3, 0.8, glitchStrength);
         glitchStrength *= ${GLITCH_STRENGTH_FACTOR};
-        modelPosition.x += (random2D(modelPosition.xz + uTime) - 0.5) * glitchStrength;
-        modelPosition.z += (random2D(modelPosition.zx + uTime) - 0.5) * glitchStrength;
+        modelPosition.x += (random3D(modelPosition.xyz + uTime) - 0.5) * glitchStrength;
+        modelPosition.z += (random3D(modelPosition.zxy + uTime) - 0.5) * glitchStrength;
+        modelPosition.y += (random3D(modelPosition.yzx + uTime) - 0.5) * glitchStrength;
 
         // Final position
         gl_Position = projectionMatrix * viewMatrix * modelPosition;
@@ -163,17 +171,14 @@ export default function EnergyOrb({
 
       <Sphere args={[0.1, 64, 64]} position={[0, 0, 0]}>
         <sphereMaterial ref={sphereMatRef} transparent />
-        {/* <meshStandardMaterial
-          color={color}
-          emissive={color}
-          emissiveIntensity={1.5}
-        /> */}
         <pointLight
           color={color}
           position={[0, 0.05, 0]}
           intensity={lightIntensity}
         />
       </Sphere>
+
+      {/* <ParticleOrb /> */}
 
       <Sphere args={[0.12, 32, 32]} position={[0, 0, 0]}>
         <outerGlowRadial transparent blending={THREE.AdditiveBlending} />
