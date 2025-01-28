@@ -118,7 +118,9 @@ export default function Experience() {
   );
 
   useFrame((state, delta) => {
-    state.camera.lookAt(cameraTarget.current);
+    if (animationStage === "intro") {
+      state.camera.lookAt(cameraTarget.current);
+    }
   });
 
   const {
@@ -163,10 +165,10 @@ export default function Experience() {
       {animationStage !== "intro" && (
         <OrbitControls
           enableRotate={true}
-          enablePan={false}
-          enableZoom={false}
-          maxPolarAngle={Math.PI / 2 - ORBIT_POLAR_ANGLE}
-          minPolarAngle={Math.PI / 2 - ORBIT_POLAR_ANGLE}
+          // enablePan={false}
+          // enableZoom={false}
+          // maxPolarAngle={Math.PI / 2 - ORBIT_POLAR_ANGLE}
+          // minPolarAngle={Math.PI / 2 - ORBIT_POLAR_ANGLE}
         />
       )}
 

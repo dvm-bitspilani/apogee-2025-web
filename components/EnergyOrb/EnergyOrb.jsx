@@ -122,6 +122,7 @@ const SphereMaterial = shaderMaterial(
   // Fragment
   `
     uniform vec3 uColor;
+    varying vec3 vPosition;
 
     void main(){
         gl_FragColor = vec4(uColor, 1.0);
@@ -178,7 +179,9 @@ export default function EnergyOrb({
         />
       </Sphere>
 
-      {/* <ParticleOrb /> */}
+      <group position={[0, 1, 0]}>
+        <ParticleOrb />
+      </group>
 
       <Sphere args={[0.12, 32, 32]} position={[0, 0, 0]}>
         <outerGlowRadial transparent blending={THREE.AdditiveBlending} />

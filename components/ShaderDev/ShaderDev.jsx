@@ -1,11 +1,18 @@
 import { Canvas } from "@react-three/fiber";
-import { Environment, OrbitControls, Line } from "@react-three/drei";
+import { Environment, OrbitControls, Line, Sphere } from "@react-three/drei";
 import ShaderDevMesh from "./ShaderDevMesh";
 import LoadingScreen from "../LoadingScreen/LoadingScreen";
 import EnergyOrb from "../EnergyOrb/EnergyOrb";
 import { useGSAP } from "@gsap/react";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import {
+  Bloom,
+  EffectComposer,
+  SelectiveBloom,
+} from "@react-three/postprocessing";
+import { Perf } from "r3f-perf";
+import { TestComp2 } from "../TestComp2/TestComp2";
 
 export default function ShaderDev() {
   const lineRef1 = useRef();
@@ -101,7 +108,9 @@ export default function ShaderDev() {
       <OrbitControls />
       <Environment preset="dawn" background />
 
-      {/* <EnergyOrb color="orange" /> */}
+      <Perf />
+
+      <EnergyOrb color="orange" />
       <group rotation={[0, 0, Math.PI / 4]}>
         <Line
           points={pointsRef1.current}
@@ -156,6 +165,19 @@ export default function ShaderDev() {
           ref={lineRef4}
         />
       </group>
+
+      {/* <EffectComposer> */}
+      {/* <Bloom /> */}
+      {/* <SelectiveBloom /> */}
+      {/* </EffectComposer> */}
+
+      {/* <Sphere>
+        <meshStandardMaterial emissive={"red"} emissiveIntensity={1.5} />
+      </Sphere> */}
+
+      {/* <group position={[0, 0, 1]}>
+        <TestComp2 />
+      </group> */}
 
       {/* <ShaderDevMesh /> */}
     </Canvas>
