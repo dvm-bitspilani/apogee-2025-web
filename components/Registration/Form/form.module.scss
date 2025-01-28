@@ -9,7 +9,7 @@
     position: absolute;
     z-index: 1;
     top: 3rem;
-    height: 1665px;
+    height: 1935px;
     width: 850px;
     transform: rotate(3deg);
 }
@@ -113,6 +113,7 @@
                     font-size: 28px;
                     font-weight: 700;
                     gap: 0.6rem 1.2rem;
+                    padding-left: 10px;
 
                     .checkboxItem {
                         display: flex;
@@ -170,6 +171,12 @@
         display: none;
     }
 
+    .overflowWrapper {
+        top: 0rem;
+        height: 1738.6px;
+        width: 100%;
+    }
+
     .mainWrapper {
         height: fit-content;
         width: 100%;
@@ -191,6 +198,7 @@
 
             .form {
                 padding-top: 1.3rem;
+                gap: 1.5rem;
 
                 .input {
                     width: 600px;
@@ -256,6 +264,12 @@
 
 @media(max-width: 500px) {
 
+    .overflowWrapper {
+        top: 0rem;
+        height: 1464.6px;
+        width: 100%;
+    }
+
     .mainWrapper {
 
         h2 {
@@ -270,6 +284,7 @@
 
             .form {
                 padding-top: 1rem;
+                gap: 1.2rem;
 
                 .input {
                     font-size: 20px;
@@ -315,5 +330,11 @@
 
             }
         }
+    }
+}
+
+@media(max-width: 360px) {
+    .overflowWrapper {
+        height: 1536.6px;
     }
 }
