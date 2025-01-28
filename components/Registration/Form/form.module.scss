@@ -3,6 +3,22 @@
     width: 100vw;
     display: flex;
     justify-content: center;
+    height: calc(100vh - 0rem);
+    overflow-y: scroll;
+}
+
+.wrapper::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.wrapper {
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.wrapper::-webkit-scrollbar-thumb {
+    display: none;
 }
 
 .dummyWrapper {

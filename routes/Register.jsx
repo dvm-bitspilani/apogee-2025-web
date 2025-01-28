@@ -7,9 +7,7 @@ export default function Register() {
   return (
     <>
       <div className={styles.registerContainer}>
-        <div className={styles.scrollContainer}>
           <Instructions />
-        </div>
       </div>
     </>
   );

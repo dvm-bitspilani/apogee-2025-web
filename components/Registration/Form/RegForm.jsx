@@ -372,7 +372,7 @@ export default function RegForm({email}) {
                     id="phone"
                     name="phone"
                     maxLength="10"
-                    placeholder="Your Phone No"
+                    placeholder="Your Phone No."
                     onInput={(e) => handleNumericInput(e)}
                     className={styles.inputField}
                   />

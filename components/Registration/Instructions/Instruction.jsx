@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styles from "./instructions.module.scss";
-import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
-import { useNavigate } from "react-router";
+import { useGoogleLogin } from "@react-oauth/google";
 import regWrapper from "../../../src/assets/Register/regWrapper.png";
 import RegForm from "../Form/RegForm";
 
@@ -49,7 +48,7 @@ export default function Instructions() {
   return (
     <>
       {userState && userEmail ? (
-        <RegForm email={userEmail} />
+        <RegForm email={userEmail}  ref={scrollableDivRef}/>
       ) : (
         <div className={styles.wrapper}>
           <div
@@ -60,6 +59,7 @@ export default function Instructions() {
             }}
           ></div>
           <div
+            ref={scrollableDivRef}
             className={styles.mainWrapper}
             style={{
               background: `radial-gradient(40.9% 58.96% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.38) 100%), url(${regWrapper})`,
