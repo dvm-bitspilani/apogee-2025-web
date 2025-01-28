@@ -59,7 +59,6 @@ export default function Instructions() {
             }}
           ></div>
           <div
-            ref={scrollableDivRef}
             className={styles.mainWrapper}
             style={{
               background: `radial-gradient(40.9% 58.96% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.38) 100%), url(${regWrapper})`,
