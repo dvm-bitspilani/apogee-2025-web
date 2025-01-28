@@ -99,6 +99,17 @@
                     padding-left: 10px;
                 }
 
+                .disabledInput {
+                    background-color: transparent;
+                    font-size: 28px;
+                    font-weight: 700;
+                    color: #2B1B03;
+                    border-bottom: 2px solid #483312;
+                    font-family: "Playfair Display";
+                    padding-left: 10px;
+                    cursor: not-allowed;
+                }
+
                 .inputField::placeholder {
                     background-color: transparent;
                     opacity: 1;
@@ -226,6 +237,11 @@
                         font-size: 24px;
                     }
 
+                    .disabledInput {
+                        font-size: 24px;
+                    }
+    
+
                     .inputField::placeholder {
                         font-size: 24px;
                     }
@@ -308,6 +324,10 @@
                     padding-bottom: 0.8rem;
 
                     .inputField {
+                        font-size: 20px;
+                    }
+
+                    .disabledInput {
                         font-size: 20px;
                     }
 

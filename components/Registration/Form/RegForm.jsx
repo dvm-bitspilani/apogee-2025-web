@@ -356,7 +356,7 @@ export default function RegForm({email}) {
                     placeholder="Your Email"
                     // value={email_id}
                     disabled
-                    className={styles.inputField}
+                    className={styles.disabledInput}
                   />
                   {/* <ErrorMessage
                     name="email_id"
