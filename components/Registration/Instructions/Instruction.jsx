@@ -48,7 +48,7 @@ export default function Instructions() {
   return (
     <>
       {userState && userEmail ? (
-        <RegForm email={userEmail}  ref={scrollableDivRef}/>
+        <RegForm email={userEmail}/>
       ) : (
         <div className={styles.wrapper}>
           <div
