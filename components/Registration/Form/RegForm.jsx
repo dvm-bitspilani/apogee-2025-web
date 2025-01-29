@@ -10,7 +10,7 @@ import axios from "axios";
 import statesData from "./states.json";
 import citiesData from "./states.json";
 
-export default function RegForm({email}) {
+export default function RegForm({ email }) {
   // const [interestOptions, setInterestOptions] = useState([""]);
   // const [eventsOptions, setEventsOptions] = useState([""]);
   // const [collegeOptions, setCollegeOptions] = useState([""]);
@@ -123,7 +123,7 @@ export default function RegForm({email}) {
       return 28;
     }
   };
-  
+
   const fontsize = calculateFontSize();
 
   const customStyles = {
@@ -584,7 +584,7 @@ export default function RegForm({email}) {
                     isDisabled={!selectedState} // Disable city selection if no state is selected
                     className={styles.cityWrapper}
                     styles={customStyles}
-                    placeholder="Your City"
+                    placeholder={ selectedState ? "Your City" : "Select a State first" }
                   />
                   <ErrorMessage
                     name="city"
