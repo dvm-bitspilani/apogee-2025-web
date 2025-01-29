@@ -170,11 +170,11 @@ export default function RegForm({ email }) {
     }),
     placeholder: (provided) => ({
       ...provided,
-      color: "#2B1B03", // Placeholder text color
+      color: "#734800", // Placeholder text color
     }),
     singleValue: (provided) => ({
       ...provided,
-      color: "#2B1B03", // Selected value text color
+      color: "#734800", // Selected value text color
       fontWeight: "700",
       fontSize: fontsize,
     }),
@@ -243,7 +243,7 @@ export default function RegForm({ email }) {
     }),
     placeholder: (provided) => ({
       ...provided,
-      color: "#2B1B03", // Placeholder text color
+      color: "#734800", // Placeholder text color
     }),
     multiValue: (provided) => ({
       ...provided,
@@ -253,7 +253,7 @@ export default function RegForm({ email }) {
     }),
     multiValueLabel: (provided) => ({
       ...provided,
-      color: "#2B1B03", // Text color for selected options
+      color: "#734800", // Text color for selected options
       fontSize: fontsize,
       fontWeight: "700",
     }),
@@ -268,7 +268,7 @@ export default function RegForm({ email }) {
     }),
     singleValue: (provided) => ({
       ...provided,
-      color: "#2B1B03", // Selected value text color
+      color: "#734800", // Selected value text color
       fontWeight: "700",
       fontSize: fontsize,
     }),
@@ -310,7 +310,7 @@ export default function RegForm({ email }) {
           boxShadow: "-12px -12px 15.34px 0px rgba(0, 0, 0, 0.32)",
         }}
       ></div>
-      <div className={styles.overflowWrapper}></div>
+      
       <div
         className={styles.mainWrapper}
         style={{
@@ -318,6 +318,7 @@ export default function RegForm({ email }) {
           boxShadow: "12px 12px 15.34px 10px rgba(0, 0, 0, 0.42)",
         }}
       >
+        <div className={styles.overflowWrapper}></div>
         <h2>REGISTRATION</h2>
 
         <div className={styles.formContainer}>
