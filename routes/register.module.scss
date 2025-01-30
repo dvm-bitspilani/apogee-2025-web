@@ -7,25 +7,6 @@
     background-size: cover;
     display: flex;
     justify-content: center;
-
-    .scrollContainer {
-        height: calc(100vh - 0rem);
-        overflow-y: scroll;
-    }
-}
-
-.scrollContainer::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-}
-
-.scrollContainer {
-    scrollbar-width: none;
-    /* Firefox */
-}
-
-.scrollContainer::-webkit-scrollbar-thumb {
-    display: none;
 }
 
 @media(max-width: 885px) {
@@ -33,9 +14,5 @@
     .registerContainer {
         background: none;
         height: fit-content;
-
-        .scrollContainer {
-            height: fit-content;
-        }
     }
 }

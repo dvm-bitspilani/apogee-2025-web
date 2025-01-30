@@ -3,7 +3,24 @@
   width: 100vw;
   display: flex;
   justify-content: center;
+  height: calc(100vh - 0rem);
+  overflow-y: scroll;
 }
+
+.wrapper::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.wrapper {
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.wrapper::-webkit-scrollbar-thumb {
+  display: none;
+}
+
 
 .dummyWrapper {
   position: absolute;
@@ -87,13 +104,14 @@
 
       svg {
         padding-left: 10px;
+        height: 36px;
       }
       
       p {
         font-family: "Playfair Display";
         color: #AB9163;
         font-weight: 700;
-        font-size: 34px;
+        font-size: 30px;
       }
     }
   }
