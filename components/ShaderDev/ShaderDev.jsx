@@ -13,6 +13,7 @@ import {
 } from "@react-three/postprocessing";
 import { Perf } from "r3f-perf";
 import { TestComp2 } from "../TestComp2/TestComp2";
+import ParticleOrb from "../EnergyOrb/ParticleOrb";
 
 export default function ShaderDev() {
   const lineRef1 = useRef();
@@ -110,7 +111,8 @@ export default function ShaderDev() {
 
       <Perf />
 
-      <EnergyOrb color="orange" />
+      <ParticleOrb />
+
       <group rotation={[0, 0, Math.PI / 4]}>
         <Line
           points={pointsRef1.current}

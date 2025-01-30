@@ -179,10 +179,6 @@ export default function EnergyOrb({
         />
       </Sphere>
 
-      <group position={[0, 1, 0]}>
-        <ParticleOrb />
-      </group>
-
       <Sphere args={[0.12, 32, 32]} position={[0, 0, 0]}>
         <outerGlowRadial transparent blending={THREE.AdditiveBlending} />
       </Sphere>
