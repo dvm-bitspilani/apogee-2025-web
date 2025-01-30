@@ -14,14 +14,14 @@ const Contact = () => {
       </div>
       <div className={styles.container}>
         <ContactCard />
-        {/* <ContactCard />
         <ContactCard />
         <ContactCard />
         <ContactCard />
         <ContactCard />
         <ContactCard />
         <ContactCard />
-        <ContactCard /> */}
+        <ContactCard />
+        <ContactCard />
       </div>
     </div>
   );
