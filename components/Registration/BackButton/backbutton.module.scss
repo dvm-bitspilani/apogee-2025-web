@@ -1,19 +1,9 @@
 .backBtn {
-    position: fixed;
-    height: 70px;
-    width: 70px;
-    top: 2rem;
-    left: 2rem;
-    border-radius: 50%;
-    border: 2px solid #B89058;
-    background-color: #00000070;
-    backdrop-filter: blur(10px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 84px;
+    width: 84px;
     cursor: pointer;
 
     img {
-        height: 26px;
+        height: 100%;
     }
 }
