@@ -72,7 +72,7 @@ export default function Experience() {
         //     delay: 0.5,
         //   }
         // )
-        .to(blackScreen.current.material, {
+        .to(blackScreen.current?.material, {
           opacity: 0,
           duration: 1.5,
         })
@@ -103,6 +103,7 @@ export default function Experience() {
           },
           {
             y: 0,
+            z: 0,
             duration: 5.5,
             ease: "power2.inOut",
             onComplete: () => {
@@ -173,7 +174,7 @@ export default function Experience() {
       )}
 
       <Environment
-        files="/environments/sunset1QuarterRes.hdr"
+        files="/environments/sunset1QuarterResOrange.hdr"
         environmentIntensity={1}
         backgroundIntensity={1}
         background={true}
