@@ -12,8 +12,8 @@ import citiesData from "./states.json";
 
 export default function RegForm({ email }) {
   // const [interestOptions, setInterestOptions] = useState([""]);
-  // const [eventsOptions, setEventsOptions] = useState([""]);
-  // const [collegeOptions, setCollegeOptions] = useState([""]);
+  const [eventsOptions, setEventsOptions] = useState([""]);
+  const [collegeOptions, setCollegeOptions] = useState([""]);
   const [stateOptions, setStateOptions] = useState([]);
   const [selectedState, setSelectedState] = useState("");
   const [cityOptions, setCityOptions] = useState([]);
@@ -64,22 +64,49 @@ export default function RegForm({ email }) {
     ],
   };
 
-  const eventsOptions = {
-    data: [
-      { id: "workshop", name: "Workshop" },
-      { id: "seminar", name: "Seminar" },
-      { id: "concert", name: "Concert" },
-      { id: "competition", name: "Competition" },
-      { id: "webinar", name: "Webinar" },
-    ],
-  };
+  // const eventsOptions = {
+  //   data: [
+  //     { id: "workshop", name: "Workshop" },
+  //     { id: "seminar", name: "Seminar" },
+  //     { id: "concert", name: "Concert" },
+  //     { id: "competition", name: "Competition" },
+  //     { id: "webinar", name: "Webinar" },
+  //   ],
+  // };
 
-  const collegeOptions = {
-    data: [
-      { id: "college1", name: "College 1" },
-      { id: "college2", name: "College 2" },
-    ],
-  };
+  // const collegeOptions = {
+  //   data: [
+  //     { id: "college1", name: "College 1" },
+  //     { id: "college2", name: "College 2" },
+  //   ],
+  // };
+
+  // useEffect(() => {
+  //   axios
+  //   .get("https://bits-oasis.org/2024/main/registrations/get_college/")
+  //   .then((response) => {
+  //     setInterestOptions(response.data);
+  //   })
+  //   .catch((error) => console.error("Error fetching events:", error));
+  // }, []);
+
+  useEffect(() => {
+    axios
+    .get("https://bits-oasis.org/2024/main/registrations/events_details/")
+    .then((response) => {
+      setEventsOptions(response.data);
+    })
+    .catch((error) => console.error("Error fetching events:", error));
+  }, []);
+
+  useEffect(() => {
+    axios
+    .get("https://bits-oasis.org/2024/main/registrations/get_college/")
+    .then((response) => {
+      setCollegeOptions(response.data);
+    })
+    .catch((error) => console.error("Error fetching events:", error));
+  }, []);
 
   const genderOptions = [
     { value: "M", label: "MALE", label1: "Male" },
@@ -310,7 +337,7 @@ export default function RegForm({ email }) {
           boxShadow: "-12px -12px 15.34px 0px rgba(0, 0, 0, 0.32)",
         }}
       ></div>
-      
+
       <div
         className={styles.mainWrapper}
         style={{
@@ -450,15 +477,15 @@ export default function RegForm({ email }) {
                   <Select
                     id="events"
                     name="events"
-                    options={(Array.isArray(eventsOptions.data)
-                      ? eventsOptions.data
+                    options={(Array.isArray(eventsOptions)
+                      ? eventsOptions
                       : []
                     ).map((item) => ({
                       value: item.id,
                       label: item.name,
                     }))}
                     isMulti
-                    value={values.events || []} // Updated
+                    value={values.events || []}
                     onChange={(selectedOptions) => {
                       setFieldValue("events", selectedOptions || []);
                     }}

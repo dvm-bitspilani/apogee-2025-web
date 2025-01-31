@@ -5,6 +5,7 @@ import Landing from "../components/Landing/Landing.jsx";
 import Register from "../routes/Register.jsx";
 import ProtectedRoute from "./utils/ProtectedRoute.jsx";
 import ShaderDev from "../components/ShaderDev/ShaderDev.jsx";
+import Contact from "../components/Contact/Contact.jsx";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Route path="/" element={<Landing />} />
       <Route path="/shader-dev" element={<ShaderDev />} />
       <Route path="/registration" element={<Register />} />
+      <Route path="/contact" element={<Contact />} />
       {/* <Route element={<ProtectedRoute />}>
         <Route path="/registration" element={<Register1 />} />
       </Route> */}

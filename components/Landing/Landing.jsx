@@ -6,7 +6,6 @@ import LoadingScreen from "../LoadingScreen/LoadingScreen";
 export default function Landing() {
   return (
     <>
-      {/* <Navbar /> */}
       <Canvas
         camera={{
           position: [0, 2, 0],
