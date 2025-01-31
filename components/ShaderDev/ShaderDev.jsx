@@ -1,5 +1,13 @@
 import { Canvas } from "@react-three/fiber";
-import { Environment, OrbitControls, Line, Sphere } from "@react-three/drei";
+import {
+  Environment,
+  OrbitControls,
+  Line,
+  Sphere,
+  Torus,
+  Text3D,
+  Text,
+} from "@react-three/drei";
 import ShaderDevMesh from "./ShaderDevMesh";
 import LoadingScreen from "../LoadingScreen/LoadingScreen";
 import EnergyOrb from "../EnergyOrb/EnergyOrb";
@@ -14,6 +22,7 @@ import {
 import { Perf } from "r3f-perf";
 import { TestComp2 } from "../TestComp2/TestComp2";
 import ParticleOrb from "../EnergyOrb/ParticleOrb";
+import GlowingSphere from "./GlowingSphere";
 
 export default function ShaderDev() {
   const lineRef1 = useRef();
@@ -41,69 +50,69 @@ export default function ShaderDev() {
     [0, 0, 0],
   ]);
 
-  useGSAP(
-    () => {
-      const timeline = gsap.timeline({
-        onUpdate: () => {
-          lineRef1.current.geometry.setPositions(pointsRef1.current.flat());
-          lineRef2.current.geometry.setPositions(pointsRef2.current.flat());
-          lineRef3.current.geometry.setPositions(pointsRef3.current.flat());
-          lineRef4.current.geometry.setPositions(pointsRef4.current.flat());
-        },
-      });
+  // useGSAP(
+  //   () => {
+  //     const timeline = gsap.timeline({
+  //       onUpdate: () => {
+  //         lineRef1.current.geometry.setPositions(pointsRef1.current.flat());
+  //         lineRef2.current.geometry.setPositions(pointsRef2.current.flat());
+  //         lineRef3.current.geometry.setPositions(pointsRef3.current.flat());
+  //         lineRef4.current.geometry.setPositions(pointsRef4.current.flat());
+  //       },
+  //     });
 
-      timeline
-        .to(
-          [pointsRef1.current[1], pointsRef1.current[2]],
-          {
-            0: 1,
-            duration: 0.75,
-          },
-          0
-        )
-        .to(pointsRef1.current[2], {
-          1: 1,
-          duration: 0.75,
-        })
-        .to(
-          [pointsRef2.current[1], pointsRef2.current[2]],
-          {
-            1: 1,
-            duration: 0.75,
-          },
-          0
-        )
-        .to(pointsRef2.current[2], {
-          0: -1,
-          duration: 0.75,
-        })
-        .to(
-          [pointsRef3.current[1], pointsRef3.current[2]],
-          {
-            0: -1,
-            duration: 0.75,
-          },
-          0
-        )
-        .to(pointsRef3.current[2], {
-          1: 1,
-          duration: 0.75,
-        })
-        .to(
-          [pointsRef4.current[1], pointsRef4.current[2]],
-          {
-            1: 1,
-            duration: 0.75,
-          },
-          0
-        )
-        .to(pointsRef4.current[2], {
-          0: -1,
-          duration: 0.75,
-        });
-    },
-    { dependencies: [] }
-  );
+  //     timeline
+  //       .to(
+  //         [pointsRef1.current[1], pointsRef1.current[2]],
+  //         {
+  //           0: 1,
+  //           duration: 0.75,
+  //         },
+  //         0
+  //       )
+  //       .to(pointsRef1.current[2], {
+  //         1: 1,
+  //         duration: 0.75,
+  //       })
+  //       .to(
+  //         [pointsRef2.current[1], pointsRef2.current[2]],
+  //         {
+  //           1: 1,
+  //           duration: 0.75,
+  //         },
+  //         0
+  //       )
+  //       .to(pointsRef2.current[2], {
+  //         0: -1,
+  //         duration: 0.75,
+  //       })
+  //       .to(
+  //         [pointsRef3.current[1], pointsRef3.current[2]],
+  //         {
+  //           0: -1,
+  //           duration: 0.75,
+  //         },
+  //         0
+  //       )
+  //       .to(pointsRef3.current[2], {
+  //         1: 1,
+  //         duration: 0.75,
+  //       })
+  //       .to(
+  //         [pointsRef4.current[1], pointsRef4.current[2]],
+  //         {
+  //           1: 1,
+  //           duration: 0.75,
+  //         },
+  //         0
+  //       )
+  //       .to(pointsRef4.current[2], {
+  //         0: -1,
+  //         duration: 0.75,
+  //       });
+  //   },
+  //   { dependencies: [] }
+  // );
   return (
     <Canvas>
       <OrbitControls />
@@ -111,7 +120,9 @@ export default function ShaderDev() {
 
       <Perf />
 
-      <ParticleOrb />
+      {/* <ParticleOrb /> */}
+      {/* <GlowingSphere /> */}
+      {newFunction()}
 
       <group rotation={[0, 0, Math.PI / 4]}>
         <Line
@@ -183,5 +194,41 @@ export default function ShaderDev() {
 
       {/* <ShaderDevMesh /> */}
     </Canvas>
+  );
+}
+export function TestBoard({ text = "Skill Issue" }) {
+  return (
+    <group>
+      <Text
+        color="orange"
+        anchorX="center"
+        anchorY="middle"
+        position={[0, 3, 0]}
+        scale={3}
+      >
+        {text}
+      </Text>
+      <Torus
+        args={[1, 0.05, 64, 64]}
+        rotation={[Math.PI / 2, 0, 0]}
+        position={[0, 0, 0]}
+      >
+        <meshStandardMaterial color="#FFD700" metalness={1} roughness={0} />
+      </Torus>
+      <Torus
+        args={[2, 0.05, 64, 64]}
+        rotation={[Math.PI / 2, 0, 0]}
+        position={[0, 0.75, 0]}
+      >
+        <meshStandardMaterial color="#FFD700" metalness={1} roughness={0} />
+      </Torus>
+      <Torus
+        args={[3, 0.05, 64, 64]}
+        rotation={[Math.PI / 2, 0, 0]}
+        position={[0, 1.5, 0]}
+      >
+        <meshStandardMaterial color="#FFD700" metalness={1} roughness={0} />
+      </Torus>
+    </group>
   );
 }
