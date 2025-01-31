@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "Birmingham";
+  src: url("/fonts/Birmingham.ttf") format("truetype");
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+
 * {
   border: none;
   padding: 0;
@@ -36,3 +43,11 @@ body {
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  background-color: transparent !important;
+  transition: background-color 5000s ease-in-out 0s;
+}

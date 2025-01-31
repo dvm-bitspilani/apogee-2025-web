@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styles from "./instructions.module.scss";
-import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
-import { useNavigate } from "react-router";
+import { useGoogleLogin } from "@react-oauth/google";
 import regWrapper from "../../../src/assets/Register/regWrapper.png";
 import RegForm from "../Form/RegForm";
 
@@ -49,20 +48,20 @@ export default function Instructions() {
   return (
     <>
       {userState && userEmail ? (
-        <RegForm email={userEmail} />
+        <RegForm email={userEmail}/>
       ) : (
         <div className={styles.wrapper}>
           <div
             className={styles.dummyWrapper}
             style={{
-              background: `radial-gradient(40.9% 58.96% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.48) 100%), url(${regWrapper})`,
+              background: `radial-gradient(40.9% 58.96% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.38) 100%), url(${regWrapper})`,
               boxShadow: "-12px -12px 15.34px 0px rgba(0, 0, 0, 0.32)",
             }}
           ></div>
           <div
             className={styles.mainWrapper}
             style={{
-              background: `radial-gradient(40.9% 58.96% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.48) 100%), url(${regWrapper})`,
+              background: `radial-gradient(40.9% 58.96% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.38) 100%), url(${regWrapper})`,
               boxShadow: "12px 12px 15.34px 10px rgba(0, 0, 0, 0.42)",
             }}
           >

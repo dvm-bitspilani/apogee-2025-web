@@ -10,10 +10,10 @@ import axios from "axios";
 import statesData from "./states.json";
 import citiesData from "./states.json";
 
-export default function RegForm({email}) {
+export default function RegForm({ email }) {
   // const [interestOptions, setInterestOptions] = useState([""]);
-  // const [eventsOptions, setEventsOptions] = useState([""]);
-  // const [collegeOptions, setCollegeOptions] = useState([""]);
+  const [eventsOptions, setEventsOptions] = useState([""]);
+  const [collegeOptions, setCollegeOptions] = useState([""]);
   const [stateOptions, setStateOptions] = useState([]);
   const [selectedState, setSelectedState] = useState("");
   const [cityOptions, setCityOptions] = useState([]);
@@ -64,27 +64,54 @@ export default function RegForm({email}) {
     ],
   };
 
-  const eventsOptions = {
-    data: [
-      { id: "workshop", name: "Workshop" },
-      { id: "seminar", name: "Seminar" },
-      { id: "concert", name: "Concert" },
-      { id: "competition", name: "Competition" },
-      { id: "webinar", name: "Webinar" },
-    ],
-  };
+  // const eventsOptions = {
+  //   data: [
+  //     { id: "workshop", name: "Workshop" },
+  //     { id: "seminar", name: "Seminar" },
+  //     { id: "concert", name: "Concert" },
+  //     { id: "competition", name: "Competition" },
+  //     { id: "webinar", name: "Webinar" },
+  //   ],
+  // };
 
-  const collegeOptions = {
-    data: [
-      { id: "college1", name: "College 1" },
-      { id: "college2", name: "College 2" },
-    ],
-  };
+  // const collegeOptions = {
+  //   data: [
+  //     { id: "college1", name: "College 1" },
+  //     { id: "college2", name: "College 2" },
+  //   ],
+  // };
+
+  // useEffect(() => {
+  //   axios
+  //   .get("https://bits-oasis.org/2024/main/registrations/get_college/")
+  //   .then((response) => {
+  //     setInterestOptions(response.data);
+  //   })
+  //   .catch((error) => console.error("Error fetching events:", error));
+  // }, []);
+
+  useEffect(() => {
+    axios
+    .get("https://bits-oasis.org/2024/main/registrations/events_details/")
+    .then((response) => {
+      setEventsOptions(response.data);
+    })
+    .catch((error) => console.error("Error fetching events:", error));
+  }, []);
+
+  useEffect(() => {
+    axios
+    .get("https://bits-oasis.org/2024/main/registrations/get_college/")
+    .then((response) => {
+      setCollegeOptions(response.data);
+    })
+    .catch((error) => console.error("Error fetching events:", error));
+  }, []);
 
   const genderOptions = [
-    { value: "M", label: "MALE", label1: "M" },
-    { value: "F", label: "FEMALE", label1: "F" },
-    { value: "O", label: "OTHER", label1: "O" },
+    { value: "M", label: "MALE", label1: "Male" },
+    { value: "F", label: "FEMALE", label1: "Female" },
+    { value: "O", label: "OTHER", label1: "Other" },
   ];
 
   const yearOptions = [
@@ -123,7 +150,7 @@ export default function RegForm({email}) {
       return 28;
     }
   };
-  
+
   const fontsize = calculateFontSize();
 
   const customStyles = {
@@ -170,11 +197,11 @@ export default function RegForm({email}) {
     }),
     placeholder: (provided) => ({
       ...provided,
-      color: "#2B1B03", // Placeholder text color
+      color: "#734800", // Placeholder text color
     }),
     singleValue: (provided) => ({
       ...provided,
-      color: "#2B1B03", // Selected value text color
+      color: "#734800", // Selected value text color
       fontWeight: "700",
       fontSize: fontsize,
     }),
@@ -243,7 +270,7 @@ export default function RegForm({email}) {
     }),
     placeholder: (provided) => ({
       ...provided,
-      color: "#2B1B03", // Placeholder text color
+      color: "#734800", // Placeholder text color
     }),
     multiValue: (provided) => ({
       ...provided,
@@ -253,7 +280,7 @@ export default function RegForm({email}) {
     }),
     multiValueLabel: (provided) => ({
       ...provided,
-      color: "#2B1B03", // Text color for selected options
+      color: "#734800", // Text color for selected options
       fontSize: fontsize,
       fontWeight: "700",
     }),
@@ -268,7 +295,7 @@ export default function RegForm({email}) {
     }),
     singleValue: (provided) => ({
       ...provided,
-      color: "#2B1B03", // Selected value text color
+      color: "#734800", // Selected value text color
       fontWeight: "700",
       fontSize: fontsize,
     }),
@@ -306,17 +333,19 @@ export default function RegForm({email}) {
       <div
         className={styles.dummyWrapper}
         style={{
-          background: `radial-gradient(40.9% 58.96% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.48) 100%), url(${regWrapper})`,
+          background: `radial-gradient(40.9% 58.96% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.38) 100%), url(${regWrapper})`,
           boxShadow: "-12px -12px 15.34px 0px rgba(0, 0, 0, 0.32)",
         }}
       ></div>
+
       <div
         className={styles.mainWrapper}
         style={{
-          background: `radial-gradient(40.9% 58.96% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.48) 100%), url(${regWrapper})`,
+          background: `url(${regWrapper})`,
           boxShadow: "12px 12px 15.34px 10px rgba(0, 0, 0, 0.42)",
         }}
       >
+        <div className={styles.overflowWrapper}></div>
         <h2>REGISTRATION</h2>
 
         <div className={styles.formContainer}>
@@ -355,7 +384,7 @@ export default function RegForm({email}) {
                     placeholder="Your Email"
                     // value={email_id}
                     disabled
-                    className={styles.inputField}
+                    className={styles.disabledInput}
                   />
                   {/* <ErrorMessage
                     name="email_id"
@@ -371,7 +400,7 @@ export default function RegForm({email}) {
                     id="phone"
                     name="phone"
                     maxLength="10"
-                    placeholder="Your Phone No"
+                    placeholder="Your Phone No."
                     onInput={(e) => handleNumericInput(e)}
                     className={styles.inputField}
                   />
@@ -448,15 +477,15 @@ export default function RegForm({email}) {
                   <Select
                     id="events"
                     name="events"
-                    options={(Array.isArray(eventsOptions.data)
-                      ? eventsOptions.data
+                    options={(Array.isArray(eventsOptions)
+                      ? eventsOptions
                       : []
                     ).map((item) => ({
                       value: item.id,
                       label: item.name,
                     }))}
                     isMulti
-                    value={values.events || []} // Updated
+                    value={values.events || []}
                     onChange={(selectedOptions) => {
                       setFieldValue("events", selectedOptions || []);
                     }}
@@ -583,7 +612,7 @@ export default function RegForm({email}) {
                     isDisabled={!selectedState} // Disable city selection if no state is selected
                     className={styles.cityWrapper}
                     styles={customStyles}
-                    placeholder="Your City"
+                    placeholder={ selectedState ? "Your City" : "Select a State first" }
                   />
                   <ErrorMessage
                     name="city"
