@@ -166,10 +166,10 @@ export default function Experience() {
       {animationStage !== "intro" && (
         <OrbitControls
           enableRotate={true}
-          // enablePan={false}
-          // enableZoom={false}
-          // maxPolarAngle={Math.PI / 2 - ORBIT_POLAR_ANGLE}
-          // minPolarAngle={Math.PI / 2 - ORBIT_POLAR_ANGLE}
+          enablePan={false}
+          enableZoom={false}
+          maxPolarAngle={Math.PI / 2 - ORBIT_POLAR_ANGLE}
+          minPolarAngle={Math.PI / 2 - ORBIT_POLAR_ANGLE}
         />
       )}
 
