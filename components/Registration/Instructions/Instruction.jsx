@@ -34,9 +34,9 @@ export default function Instructions() {
           if (res.data.exists) {
             setCookies("user-auth", res.data);
             setCookies("Authorization", res.data.tokens.access);
-            // router.push(
-            //   "https://merge.bits-apogee.org/2025/main/registrations"
-            // );
+            router.push(
+              "https://merge.bits-apogee.org/2025/main/registrations"
+            );
             // router.push("/");
           } else {
             setCookies("user-auth", res.data);
@@ -44,6 +44,7 @@ export default function Instructions() {
               ...res.data,
               access_token: response.access_token,
             });
+            setUserEmail(res.data.email);
             console.log(res.data);
             console.log("no route");
           }
