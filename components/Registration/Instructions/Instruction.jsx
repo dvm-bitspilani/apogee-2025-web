@@ -3,52 +3,63 @@ import styles from "./instructions.module.scss";
 import { useGoogleLogin } from "@react-oauth/google";
 import regWrapper from "../../../src/assets/Register/regWrapper.png";
 import RegForm from "../Form/RegForm";
+import axios from "axios";
+import { useCookies } from "react-cookie";
 
 export default function Instructions() {
   const [userState, setUserState] = useState(false);
   const [userEmail, setUserEmail] = useState("");
-
-  const handleLoginSuccess = (credentialResponse) => {
-
-    const accessToken = credentialResponse?.access_token;
-
-    if (accessToken) {
-      fetch("https://www.googleapis.com/oauth2/v3/userinfo", {  // fetching user info using the access token
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-        .then((res) => res.json())
-        .then((userInfo) => {
-          const emailFromResponse = userInfo?.email;
-          if (emailFromResponse) {
-            setUserEmail(emailFromResponse);
-            // console.log("Email is:", emailFromResponse);
-          } else {
-            console.log("Email not found in userInfo.");
-          }
-        })
-        .catch((error) => {
-          console.error("Error fetching user info:", error);
-        });
-    }
-
-    setUserState(true);
-  };
+  const [cookies, setCookies, removeCookie] = useCookies([
+    "user-auth",
+    "Authorization",
+  ]);
 
   const handleLoginError = () => {
     console.log("Login Failed");
   };
 
   const loginButton = useGoogleLogin({
-    onSuccess: handleLoginSuccess,
+    onSuccess: (response) => {
+      console.log("dklasjldkwjd1");
+      console.log(response);
+      axios
+        .post(
+          "https://merge.bits-apogee.org/2025/main/registrations/google-reg/",
+          {
+            access_token: response.access_token,
+          }
+        )
+        .then((res) => {
+          console.log("dlakjdalkdj2");
+          if (res.data.exists) {
+            setCookies("user-auth", res.data);
+            setCookies("Authorization", res.data.tokens.access);
+            router.push(
+              "https://merge.bits-apogee.org/2025/main/registrations"
+            );
+            // router.push("/");
+          } else {
+            setCookies("user-auth", res.data);
+            setUserState({
+              ...res.data,
+              access_token: response.access_token,
+            });
+            setUserEmail(res.data.email);
+            console.log(res.data);
+            console.log("no route");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     onFailure: handleLoginError,
   });
 
   return (
     <>
       {userState && userEmail ? (
-        <RegForm email={userEmail}/>
+        <RegForm email={userEmail} />
       ) : (
         <div className={styles.wrapper}>
           <div
