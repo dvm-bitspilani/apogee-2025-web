@@ -20,7 +20,6 @@ import {
   SelectiveBloom,
 } from "@react-three/postprocessing";
 import { Perf } from "r3f-perf";
-import { TestComp2 } from "../TestComp2/TestComp2";
 import ParticleOrb from "../EnergyOrb/ParticleOrb";
 import GlowingSphere from "./GlowingSphere";
 
@@ -187,10 +186,6 @@ export default function ShaderDev() {
       {/* <Sphere>
         <meshStandardMaterial emissive={"red"} emissiveIntensity={1.5} />
       </Sphere> */}
-
-      {/* <group position={[0, 0, 1]}>
-        <TestComp2 />
-      </group> */}
 
       {/* <ShaderDevMesh /> */}
     </Canvas>

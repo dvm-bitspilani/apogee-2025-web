@@ -1,9 +1,7 @@
-import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import { shaderMaterial, Sphere } from "@react-three/drei";
 import * as THREE from "three";
 import { extend, useFrame } from "@react-three/fiber";
 import { useRef } from "react";
-import ParticleOrb from "./ParticleOrb";
 
 const GLITCH_STRENGTH_FACTOR = 0.025;
 
@@ -149,27 +147,6 @@ export default function EnergyOrb({
   });
   return (
     <>
-      {/* <EffectComposer>
-        <Bloom
-          luminanceThreshold={luminanceThreshold}
-          luminanceSmoothing={luminanceSmoothing}
-          intensity={bloomIntensity}
-        />
-      </EffectComposer> */}
-
-      {/* <Sphere args={[0.1, 32, 32]}>
-        <meshStandardMaterial
-          emissive={color}
-          emissiveIntensity={emissiveIntensity}
-          toneMapped={false}
-        />
-        <pointLight
-          position={[0, 0.05, 0]}
-          intensity={lightIntensity}
-          color={color}
-        />
-      </Sphere> */}
-
       <Sphere args={[0.1, 64, 64]} position={[0, 0, 0]}>
         <sphereMaterial ref={sphereMatRef} transparent />
         <pointLight

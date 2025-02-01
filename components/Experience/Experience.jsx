@@ -8,7 +8,7 @@ import { Perf } from "r3f-perf";
 import * as THREE from "three";
 import { useRef } from "react";
 import { DirectionalLightHelper, PointLightHelper } from "three";
-import { Leva, useControls } from "leva";
+import { Leva } from "leva";
 import EnergyOrb from "../EnergyOrb/EnergyOrb.jsx";
 import { CityModel } from "./CityModel/CityModel.jsx";
 import { Blimp } from "./Blimp/Blimp.jsx";
@@ -21,8 +21,8 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
 const CAMERA_POSITION_LANDING = {
-  x: 0.9123,
-  y: 0.8487,
+  x: 1.8153350549473632,
+  y: 1.3814522238827356,
   z: -0.93792,
 };
 
@@ -122,37 +122,8 @@ export default function Experience() {
     if (animationStage === "intro") {
       state.camera.lookAt(cameraTarget.current);
     }
-  });
 
-  const {
-    blimpScale,
-    blimpPosition,
-    blimpFloatSpeed,
-    blimpRotationIntensity,
-    blimpFloatIntensity,
-    blimpFloatingRange,
-  } = useControls({
-    blimpScale: 0.15,
-    blimpPosition: [0, 0.75, 0],
-    blimpFloatSpeed: {
-      value: 1,
-      min: 0,
-      max: 5,
-      step: 0.5,
-    },
-    blimpRotationIntensity: {
-      value: 1,
-      min: 0,
-      max: 10,
-      step: 0.5,
-    },
-    blimpFloatIntensity: {
-      value: 0.75,
-      min: 0,
-      max: 10,
-      step: 0.25,
-    },
-    blimpFloatingRange: [-0.1, 0.1],
+    // console.log(state.camera.position);
   });
 
   return (
@@ -163,15 +134,7 @@ export default function Experience() {
         <Perf position="top-left" />
       )}
 
-      {animationStage !== "intro" && (
-        <OrbitControls
-          enableRotate={true}
-          enablePan={false}
-          enableZoom={false}
-          maxPolarAngle={Math.PI / 2 - ORBIT_POLAR_ANGLE}
-          minPolarAngle={Math.PI / 2 - ORBIT_POLAR_ANGLE}
-        />
-      )}
+      {animationStage !== "intro" && <OrbitControls enableRotate={true} />}
 
       <Environment
         files="/environments/sunset1QuarterResOrange.hdr"
@@ -197,15 +160,15 @@ export default function Experience() {
         <EnergyOrb color="orange" lightIntensity={3} />
       </group>
 
-      <group rotation={[0, -Math.PI / 2, 0]}>
+      <group rotation={[0, 0, 0]}>
         <CityModel scale={0.02} />
         <Float
-          speed={blimpFloatSpeed}
-          rotationIntensity={blimpRotationIntensity}
-          floatIntensity={blimpFloatIntensity}
-          floatingRange={blimpFloatingRange}
+          speed={1}
+          rotationIntensity={1}
+          floatIntensity={0.75}
+          floatingRange={[-0.1, 0.1]}
         >
-          <Blimp scale={blimpScale} position={blimpPosition} />
+          <Blimp scale={0.15} position={[0, 0.75, 0]} />
         </Float>
       </group>
     </>

@@ -8,7 +8,8 @@ export default function Landing() {
     <>
       <Canvas
         camera={{
-          position: [0, 2, 0],
+          position: [0, 2.5, 0],
+          fov: 50,
         }}
         id="landingExperience"
       >
