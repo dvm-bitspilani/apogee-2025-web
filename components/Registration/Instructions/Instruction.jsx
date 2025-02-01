@@ -20,8 +20,8 @@ export default function Instructions() {
 
   const loginButton = useGoogleLogin({
     onSuccess: (response) => {
-      console.log("dklasjldkwjd1");
-      console.log(response);
+      // console.log("dklasjldkwjd1");
+      // console.log(response);
       axios
         .post(
           "https://merge.bits-apogee.org/2025/main/registrations/google-reg/",
@@ -30,7 +30,7 @@ export default function Instructions() {
           }
         )
         .then((res) => {
-          console.log("dlakjdalkdj2");
+          // console.log("dlakjdalkdj2");
           if (res.data.exists) {
             setCookies("user-auth", res.data);
             setCookies("Authorization", res.data.tokens.access);
@@ -45,7 +45,7 @@ export default function Instructions() {
               access_token: response.access_token,
             });
             setUserEmail(res.data.email);
-            console.log(res.data);
+            // console.log(res.data);
             console.log("no route");
           }
         })
