@@ -92,20 +92,20 @@ export default function RegForm({ email }) {
 
   useEffect(() => {
     axios
-    .get("https://bits-oasis.org/2024/main/registrations/events_details/")
-    .then((response) => {
-      setEventsOptions(response.data);
-    })
-    .catch((error) => console.error("Error fetching events:", error));
+      .get("https://bits-oasis.org/2024/main/registrations/events_details/")
+      .then((response) => {
+        setEventsOptions(response.data);
+      })
+      .catch((error) => console.error("Error fetching events:", error));
   }, []);
 
   useEffect(() => {
     axios
-    .get("https://bits-oasis.org/2024/main/registrations/get_college/")
-    .then((response) => {
-      setCollegeOptions(response.data);
-    })
-    .catch((error) => console.error("Error fetching events:", error));
+      .get("https://bits-oasis.org/2024/main/registrations/get_college/")
+      .then((response) => {
+        setCollegeOptions(response.data);
+      })
+      .catch((error) => console.error("Error fetching events:", error));
   }, []);
 
   const genderOptions = [
@@ -354,6 +354,23 @@ export default function RegForm({ email }) {
             validationSchema={validationSchema}
             onSubmit={(values, { setSubmitting }) => {
               console.log("Form data", values);
+              axios
+                .post(
+                  "https://merge.bits-apogee.org/2025/main/registrations/register/",
+                  values
+                )
+                .then((response) => {
+                  console.log("Response", response);
+                  if (response.data.status === "success") {
+                    alert("Registration successful!");
+                  } else {
+                    alert("Registration failed. Please try again.");
+                  }
+                })
+                .catch((error) => {
+                  console.error("Error registering:", error);
+                  alert("Registration failed. Please try again.");
+                });
               setSubmitting(false);
             }}
           >
@@ -612,7 +629,9 @@ export default function RegForm({ email }) {
                     isDisabled={!selectedState} // Disable city selection if no state is selected
                     className={styles.cityWrapper}
                     styles={customStyles}
-                    placeholder={ selectedState ? "Your City" : "Select a State first" }
+                    placeholder={
+                      selectedState ? "Your City" : "Select a State first"
+                    }
                   />
                   <ErrorMessage
                     name="city"
@@ -636,6 +655,7 @@ export default function RegForm({ email }) {
                   className={styles.regButton}
                   style={{ background: `url(${regButton})` }}
                   type="submit"
+                  onClick={() => handleSubmit()}
                   disabled={isSubmitting}
                 >
                   Register
