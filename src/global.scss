@@ -3,6 +3,21 @@
   src: url("/fonts/Birmingham.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "OldNewspaperTypes";
+  src: url("/fonts/OldNewspaperTypes.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "TheClub";
+  src: url("/fonts/The 27 Club.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "Redzein";
+  src: url("/fonts/Redzein Vintage.ttf") format("truetype");
+}
+
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 
 * {
@@ -22,28 +37,6 @@ body {
   background: black;
 }
 
-@font-face {
-  font-family: "Birmingham";
-  src: url("/fonts/Birmingham.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "OldNewspaperTypes";
-  src: url("/fonts/OldNewspaperTypes.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "TheClub";
-  src: url("../public/fonts/The 27 Club.otf") format("truetype");
-}
-
-@font-face {
-  font-family: "Redzein";
-  src: url("../public/fonts/Redzein Vintage.ttf") format("truetype");
-}
-
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
-
 #landingExperience {
   opacity: 0;
   transition: opacity 250ms linear;
@@ -54,5 +47,5 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   background-color: transparent !important;
-  transition: background-color 5000s ease-in-out 0s;
+  transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
 }
