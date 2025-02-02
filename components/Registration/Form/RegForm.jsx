@@ -94,8 +94,8 @@ export default function RegForm({ email }) {
     axios
     .get("https://merge.bits-apogee.org/2025/main/registrations/categories/")
     .then((response) => {
-      // console.log("categories:",response.data);
-      setInterestOptions(response.data);
+      // console.log("categories:",response.data.data);
+      setInterestOptions(response.data.data);
     })
     .catch((error) => console.error("Error fetching events:", error));
   }, []);
