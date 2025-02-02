@@ -63,7 +63,7 @@ export default function Experience() {
       timeline
         .to(blackScreen.current?.material, {
           opacity: 0,
-          duration: 1,
+          duration: 1.5,
         })
         // .to(
         //   camera.position,
@@ -109,7 +109,7 @@ export default function Experience() {
 
   useEffect(() => {
     demoSheet.project.ready.then(() => {
-      demoSheet.sequence.play({ iterationCount: Infinity });
+      demoSheet.sequence.play({ iterationCount: 1 });
     });
   }, []);
 
@@ -137,6 +137,7 @@ export default function Experience() {
           makeDefault
           fov={50}
           lookAt={cameraTarget.current}
+          far={4}
         />
 
         {animationStage === "intro" && (

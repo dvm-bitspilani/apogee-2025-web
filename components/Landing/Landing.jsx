@@ -6,7 +6,13 @@ import LoadingScreen from "../LoadingScreen/LoadingScreen";
 export default function Landing() {
   return (
     <>
-      <Canvas id="landingExperience">
+      <Canvas
+        camera={{
+          position: [0, 2.5, 0],
+          fov: 50,
+        }}
+        id="landingExperience"
+      >
         <Suspense fallback={<LoadingScreen />}>
           <Experience />
         </Suspense>
