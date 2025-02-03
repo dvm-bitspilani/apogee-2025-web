@@ -25,7 +25,7 @@ import extension from "@theatre/r3f/dist/extension";
 import { getProject } from "@theatre/core";
 import { PerspectiveCamera, SheetProvider, editable as e } from "@theatre/r3f";
 
-import entryState from "../../utils/animation_states/entry.json";
+import entryState from "../../utils/animation_states/animations.json";
 
 const demoSheet = getProject("Demo Project", { state: entryState }).sheet(
   "Demo Sheet"
@@ -107,11 +107,67 @@ export default function Experience() {
     { dependencies: [] }
   );
 
+  useGSAP(
+    () => {
+      if (animationStage === "about") {
+        gsap.to(cameraTarget.current, {
+          x: -0.72,
+          y: 0.12,
+          z: -0.663,
+          duration: 2,
+        });
+      }
+    },
+    { dependencies: [animationStage] }
+  );
+
   useEffect(() => {
+    let stopIntro;
+
     demoSheet.project.ready.then(() => {
       demoSheet.sequence.play({ iterationCount: 1 });
+      stopIntro = setTimeout(() => {
+        demoSheet.sequence.pause();
+      }, 5500);
     });
+
+    function setAbout() {
+      dispatch(experienceAnimationsActions.setAnimationStage("about"));
+    }
+
+    window.addEventListener("keyup", (e) => {
+      if (e.key === "a") {
+        setAbout();
+      }
+    });
+
+    return () => {
+      window.removeEventListener("keyup", (e) => {
+        if (e.key === "a") {
+          setAbout();
+        }
+      });
+
+      clearTimeout(stopIntro);
+    };
   }, []);
+
+  useEffect(() => {
+    let animationTimeout;
+    demoSheet.project.ready.then(() => {
+      if (animationStage === "about") {
+        demoSheet.sequence.position = 6;
+        demoSheet.sequence.play({ iterationCount: 1 });
+        animationTimeout = setTimeout(() => {
+          demoSheet.sequence.pause();
+        }, 2000);
+      }
+    });
+
+    return () => {
+      clearInterval(animationTimeout);
+    };
+  }, [animationStage]);
 
   const { positionFinder } = useControls({
     positionFinder: [-0.7190000000000004, 0.11800000000000008, -0.663],
