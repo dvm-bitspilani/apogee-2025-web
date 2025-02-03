@@ -8,7 +8,7 @@ import { Perf } from "r3f-perf";
 import * as THREE from "three";
 import { useEffect, useRef } from "react";
 import { DirectionalLightHelper, PointLightHelper } from "three";
-import { Leva } from "leva";
+import { Leva, useControls } from "leva";
 import EnergyOrb from "../EnergyOrb/EnergyOrb.jsx";
 import { CityModel } from "./CityModel/CityModel.jsx";
 import { Blimp } from "./Blimp/Blimp.jsx";
@@ -113,6 +113,10 @@ export default function Experience() {
     });
   }, []);
 
+  const { positionFinder } = useControls({
+    positionFinder: [-0.7190000000000004, 0.11800000000000008, -0.663],
+  });
+
   return (
     <>
       {window.innerWidth < 850 ? (
@@ -120,6 +124,11 @@ export default function Experience() {
       ) : (
         <Perf position="bottom-left" />
       )}
+
+      <mesh position={positionFinder}>
+        <sphereGeometry args={[0.01, 16, 16]} />
+        <meshBasicMaterial color="red" />
+      </mesh>
 
       {animationStage !== "intro" && <OrbitControls enableRotate={true} />}
 
