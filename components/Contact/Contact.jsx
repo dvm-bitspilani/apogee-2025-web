@@ -1,5 +1,4 @@
 import React from "react";
-import { Html } from "@react-three/drei";
 import styles from "./contact.module.scss";
 import heading from "../../src/assets/contact.png";
 import ContactCard from "./ContactCard/ContactCard";
