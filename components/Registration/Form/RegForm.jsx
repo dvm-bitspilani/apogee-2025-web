@@ -374,7 +374,8 @@ export default function RegForm({ email }) {
                 .then((response) => {
                   console.log("Response", response);
                   if (response.data.message === "User has been registered") {
-                    alert("Registration successful!");
+                    // alert("Registration successful!");
+                    window.location.href = "https://bits-apogee.org/2025/main/registrations/";
                   } else {
                     alert("Registration failed. Please try again.");
                   }
