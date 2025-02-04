@@ -10,12 +10,13 @@ import {
   Text3D,
   useSelect,
 } from "@react-three/drei";
-import { useLoader, useThree } from "@react-three/fiber";
-import { TextureLoader } from "three";
-import gsap from "gsap";
-import * as THREE from "three";
+// import { useLoader, useThree } from "@react-three/fiber";
+// import { TextureLoader } from "three";
+// import gsap from "gsap";
+// import * as THREE from "three";
 import { useDispatch } from "react-redux";
 import { experienceAnimationsActions } from "../../../store/experienceAnimationsSlice/experienceAnimationsSlice";
+import { Contactus } from "../ContactUs/ContactUs";
 
 export function CityModel({ scale = 1, ...props }) {
   const dispatch = useDispatch();
@@ -33,223 +34,60 @@ export function CityModel({ scale = 1, ...props }) {
   );
   const { actions } = useAnimations(animations, group);
 
-  const frame = useLoader(TextureLoader, "/images/frame.png");
+  // const frame = useLoader(TextureLoader, "/images/frame.png");
 
-  const camera = useThree((state) => state.camera);
+  // const camera = useThree((state) => state.camera);
 
-  const getSphericalFromXYZ = (x, y, z) => {
-    const r = Math.sqrt(x * x + y * y + z * z);
-    const theta = Math.atan2(y, x);
-    const phi = r !== 0 ? Math.acos(z / r) : 0;
-    return { r, theta, phi };
-  };
+  // const getSphericalFromXYZ = (x, y, z) => {
+  //   const r = Math.sqrt(x * x + y * y + z * z);
+  //   const theta = Math.atan2(y, x);
+  //   const phi = r !== 0 ? Math.acos(z / r) : 0;
+  //   return { r, theta, phi };
+  // };
 
-  const handleAboutClick = () => {
-    const startSpherical = new THREE.Spherical();
-    startSpherical.setFromVector3(camera.position);
+  // const handleAboutClick = () => {
+  //   const startSpherical = new THREE.Spherical();
+  //   startSpherical.setFromVector3(camera.position);
 
-    const targetSpherical = getSphericalFromXYZ(0.6795, 0.8487, 1.1181);
-    targetSpherical.r = startSpherical.radius; // Maintain distance
+  //   const targetSpherical = getSphericalFromXYZ(0.6795, 0.8487, 1.1181);
+  //   targetSpherical.r = startSpherical.radius; // Maintain distance
 
-    gsap.to(startSpherical, {
-      theta: targetSpherical.theta,
-      phi: targetSpherical.phi,
-      duration: 1.5,
-      ease: "power2.inOut",
-      onUpdate: () => {
-        camera.position.setFromSpherical(startSpherical);
-        // Changed lookAt target to (2,2,2)
-        camera.lookAt(2, 2, 2);
-      },
-      onComplete: () => {
-        camera.updateProjectionMatrix();
-      },
-    });
-  };
+  //   gsap.to(startSpherical, {
+  //     theta: targetSpherical.theta,
+  //     phi: targetSpherical.phi,
+  //     duration: 1.5,
+  //     ease: "power2.inOut",
+  //     onUpdate: () => {
+  //       camera.position.setFromSpherical(startSpherical);
+  //       // Changed lookAt target to (2,2,2)
+  //       camera.lookAt(2, 2, 2);
+  //     },
+  //     onComplete: () => {
+  //       camera.updateProjectionMatrix();
+  //     },
+  //   });
+  // };
 
   const handleContactClick = () => {
     setAnimStage("landingToContact");
   };
 
   return (
-    <group ref={group} scale={scale} {...props} dispose={null}>
-      <group name="Scene">
-        <Billboard
-          follow={true}
-          lockX={false}
-          lockY={false}
-          lockZ={false}
-          position={[45, 33, -10]}
-          onClick={() => {
-            handleAboutClick();
-          }}
-        >
-          <mesh position={[0, 0, 0]}>
-            <planeGeometry args={[20, 8]} />
-            <meshStandardMaterial map={frame} />
-          </mesh>
-
-          <Text3D
-            curveSegments={32}
-            bevelEnabled
-            bevelSize={0.04}
-            bevelThickness={0.01}
-            height={0.5}
-            lineHeight={0.5}
-            size={3.5}
-            position={[-8, -1.5, 0]}
-            font="../../../src/assets/Roboto_Regular.json"
-          >
-            ABOUT
-            <meshStandardMaterial color="white" />
-          </Text3D>
-        </Billboard>
-
-        <mesh
-          name="Circle002"
-          geometry={nodes.Circle002.geometry}
-          material={materials["Material__188.001"]}
-          position={[1.485, 28.162, 5.106]}
-          rotation={[Math.PI / 2, -0.262, 0]}
-          scale={[0.605, 0.55, 0.55]}
-        />
-        <mesh
-          name="Plane261"
-          geometry={nodes.Plane261.geometry}
-          material={materials["Material__188.001"]}
-          position={[6.648, 6.776, 0.019]}
-          rotation={[Math.PI, 1.571, 0]}
-          scale={1.1}
-        />
-        <mesh
-          name="Gear1006"
-          geometry={nodes.Gear1006.geometry}
-          material={materials["Material__188.001"]}
-          position={[42.216, 7.738, -9.619]}
-          rotation={[Math.PI / 2, 0.262, 0]}
-          scale={1.1}
-        />
-        <mesh
-          name="Empy"
-          geometry={nodes.Empy.geometry}
-          material={materials["Material__188.001"]}
-          position={[33.525, 7, -9.173]}
-          rotation={[Math.PI, 0, Math.PI]}
-          scale={1.1}
-        />
-        <group
-          name="Empty121"
-          position={[47.077, 12.805, -9.71]}
-          rotation={[Math.PI, 0, Math.PI]}
-          scale={1.1}
-        >
-          <mesh
-            name="BrassPipe1406"
-            geometry={nodes.BrassPipe1406.geometry}
-            material={materials["Material__188.001"]}
-            position={[0, -9.639, 0.564]}
-            rotation={[0, -1.571, 0]}
-            scale={[2.1, 3.036, 2.1]}
-          />
-        </group>
-        <group name="Empty113" position={[39.063, 4.174, -3.243]} scale={1.1} />
-        <group
-          name="Empty047"
-          position={[57.157, 4.175, -3.243]}
-          rotation={[-Math.PI, 0, 0]}
-          scale={-1.1}
-        />
-        <mesh
-          name="BrassPipe1311"
-          geometry={nodes.BrassPipe1311.geometry}
-          material={materials["Material__188.001"]}
-          position={[33.9, 3.87, -3.423]}
-          rotation={[Math.PI / 2, 0, Math.PI]}
-          scale={[1.191, 0.636, 1.191]}
-        />
-        <mesh
-          name="BrassPipe1313"
-          geometry={nodes.BrassPipe1313.geometry}
-          material={materials["Material__188.001"]}
-          position={[33.9, 3.87, -3.992]}
-          rotation={[Math.PI / 2, 0, Math.PI]}
-          scale={[2.251, 0.469, 2.251]}
-        />
-        <mesh
-          name="Gear1026"
-          geometry={nodes.Gear1026.geometry}
-          material={materials["Material__188.001"]}
-          position={[33.9, 3.87, -3.319]}
-          rotation={[-Math.PI / 2, -1.017, 0]}
-          scale={[1.83, 1.9, 1.83]}
-        />
-        <mesh
-          name="Brass90Turn1249"
-          geometry={nodes.Brass90Turn1249.geometry}
-          material={materials["Material__188.001"]}
-          position={[38.907, 4.251, -2.592]}
-          rotation={[-Math.PI / 2, 0, 1.125]}
-          scale={[-1.99, -2.189, -1.99]}
-        />
-        <mesh
-          name="WoodPlankWall13752"
-          geometry={nodes.WoodPlankWall13752.geometry}
-          material={materials["Material__188.001"]}
-          position={[-52.183, 18.762, 12.523]}
-          rotation={[Math.PI / 2, 0, Math.PI / 2]}
-          scale={[-0.803, -0.863, -0.803]}
-        />
-        <mesh
-          name="WoodPlankWall13754"
-          geometry={nodes.WoodPlankWall13754.geometry}
-          material={materials["Material__188.001"]}
-          position={[-53.554, 15.516, 9.779]}
-          rotation={[Math.PI / 2, 0, -Math.PI / 2]}
-          scale={[-0.803, -0.863, -0.803]}
-        />
-        <mesh
-          name="Empy003"
-          geometry={nodes.Empy003.geometry}
-          material={materials["Material__188.001"]}
-          position={[-49.698, 6.633, 15.489]}
-          rotation={[0, -Math.PI / 2, 0]}
-        />
-        <group
-          name="Empty154"
-          position={[-50.187, 12.805, 3.17]}
-          rotation={[0, -Math.PI / 2, 0]}
-        >
-          <mesh
-            name="BrassPipe1694"
-            geometry={nodes.BrassPipe1694.geometry}
-            material={materials["Material__188.001"]}
-            position={[0, -9.525, 0]}
-            rotation={[0, -1.571, 0]}
-            scale={[2.1, 3.036, 2.1]}
-          ></mesh>
-        </group>
-        <group
-          name="Empty185"
-          position={[-44.307, 4.064, 11.828]}
-          rotation={[0, 1.571, 0]}
-        />
-        <group
-          name="Empty190"
-          position={[-44.307, 7.308, 10.455]}
-          rotation={[0, 1.571, 0]}
-        >
-          <Billboard
+    <>
+      <group ref={group} scale={scale} {...props} dispose={null}>
+        <group name="Scene">
+          {/* <Billboard
             follow={true}
             lockX={false}
             lockY={false}
             lockZ={false}
-            position={[43, 15, 10]}
+            position={[45, 33, -10]}
             onClick={() => {
-              handleContactClick();
+              handleAboutClick();
             }}
           >
             <mesh position={[0, 0, 0]}>
-              <planeGeometry args={[25, 8]} />
+              <planeGeometry args={[20, 8]} />
               <meshStandardMaterial map={frame} />
             </mesh>
 
@@ -261,65 +99,243 @@ export function CityModel({ scale = 1, ...props }) {
               height={0.5}
               lineHeight={0.5}
               size={3.5}
-              position={[-10.5, -1.5, 0]}
+              position={[-8, -1.5, 0]}
               font="../../../src/assets/Roboto_Regular.json"
             >
-              CONTACT
+              ABOUT
               <meshStandardMaterial color="white" />
             </Text3D>
-          </Billboard>
-        </group>
+          </Billboard> */}
 
-        <mesh
-          name="BrassPipe1752"
-          geometry={nodes.BrassPipe1752.geometry}
-          material={materials["Material__188.001"]}
-          position={[-43.151, 8.879, 9.191]}
-          rotation={[Math.PI, 0, Math.PI]}
-          scale={[-2.316, -1.422, -2.316]}
-        />
-        <mesh
-          name="Brass90Turn1497"
-          geometry={nodes.Brass90Turn1497.geometry}
-          material={materials["Material__188.001"]}
-          position={[-43.151, 5.654, 9.191]}
-          rotation={[-1.571, 0, Math.PI]}
-          scale={[-1.809, -1.99, -1.809]}
-        />
-        <mesh
-          name="Brass90Turn1498"
-          geometry={nodes.Brass90Turn1498.geometry}
-          material={materials["Material__188.001"]}
-          position={[-43.151, 4.984, 9.927]}
-          rotation={[-Math.PI, 0, 0]}
-          scale={[-1.809, -1.99, -1.809]}
-        />
-        <mesh
-          name="BrassPipe1754"
-          geometry={nodes.BrassPipe1754.geometry}
-          material={materials["Material__188.001"]}
-          position={[-45.355, 4.237, 17.379]}
-          rotation={[Math.PI / 2, 0, Math.PI]}
-          scale={[0.532, 1.174, 0.532]}
-        />
-        <mesh
-          name="Brass90Turn1855"
-          geometry={nodes.Brass90Turn1855.geometry}
-          material={materials["Material__188.001"]}
-          position={[45.516, 1.729, -35.905]}
-          rotation={[Math.PI / 2, 0, -Math.PI]}
-          scale={[2.316, 2.548, 2.316]}
-        />
-        <mesh
-          name="BrassPipe11469"
-          geometry={nodes.BrassPipe11469.geometry}
-          material={materials["Material__188.001"]}
-          position={[54.823, 10.254, -30.306]}
-          rotation={[Math.PI / 2, 0, 1.571]}
-          scale={[2.316, 1.045, 2.316]}
-        />
+          <mesh
+            name="Circle002"
+            geometry={nodes.Circle002.geometry}
+            material={materials["Material__188.001"]}
+            position={[1.485, 28.162, 5.106]}
+            rotation={[Math.PI / 2, -0.262, 0]}
+            scale={[0.605, 0.55, 0.55]}
+          />
+          <mesh
+            name="Plane261"
+            geometry={nodes.Plane261.geometry}
+            material={materials["Material__188.001"]}
+            position={[6.648, 6.776, 0.019]}
+            rotation={[Math.PI, 1.571, 0]}
+            scale={1.1}
+          />
+          <mesh
+            name="Gear1006"
+            geometry={nodes.Gear1006.geometry}
+            material={materials["Material__188.001"]}
+            position={[42.216, 7.738, -9.619]}
+            rotation={[Math.PI / 2, 0.262, 0]}
+            scale={1.1}
+          />
+          <mesh
+            name="Empy"
+            geometry={nodes.Empy.geometry}
+            material={materials["Material__188.001"]}
+            position={[33.525, 7, -9.173]}
+            rotation={[Math.PI, 0, Math.PI]}
+            scale={1.1}
+          />
+          <group
+            name="Empty121"
+            position={[47.077, 12.805, -9.71]}
+            rotation={[Math.PI, 0, Math.PI]}
+            scale={1.1}
+          >
+            <mesh
+              name="BrassPipe1406"
+              geometry={nodes.BrassPipe1406.geometry}
+              material={materials["Material__188.001"]}
+              position={[0, -9.639, 0.564]}
+              rotation={[0, -1.571, 0]}
+              scale={[2.1, 3.036, 2.1]}
+            />
+          </group>
+          <group
+            name="Empty113"
+            position={[39.063, 4.174, -3.243]}
+            scale={1.1}
+          />
+          <group
+            name="Empty047"
+            position={[57.157, 4.175, -3.243]}
+            rotation={[-Math.PI, 0, 0]}
+            scale={-1.1}
+          />
+          <mesh
+            name="BrassPipe1311"
+            geometry={nodes.BrassPipe1311.geometry}
+            material={materials["Material__188.001"]}
+            position={[33.9, 3.87, -3.423]}
+            rotation={[Math.PI / 2, 0, Math.PI]}
+            scale={[1.191, 0.636, 1.191]}
+          />
+          <mesh
+            name="BrassPipe1313"
+            geometry={nodes.BrassPipe1313.geometry}
+            material={materials["Material__188.001"]}
+            position={[33.9, 3.87, -3.992]}
+            rotation={[Math.PI / 2, 0, Math.PI]}
+            scale={[2.251, 0.469, 2.251]}
+          />
+          <mesh
+            name="Gear1026"
+            geometry={nodes.Gear1026.geometry}
+            material={materials["Material__188.001"]}
+            position={[33.9, 3.87, -3.319]}
+            rotation={[-Math.PI / 2, -1.017, 0]}
+            scale={[1.83, 1.9, 1.83]}
+          />
+          <mesh
+            name="Brass90Turn1249"
+            geometry={nodes.Brass90Turn1249.geometry}
+            material={materials["Material__188.001"]}
+            position={[38.907, 4.251, -2.592]}
+            rotation={[-Math.PI / 2, 0, 1.125]}
+            scale={[-1.99, -2.189, -1.99]}
+          />
+          <mesh
+            name="WoodPlankWall13752"
+            geometry={nodes.WoodPlankWall13752.geometry}
+            material={materials["Material__188.001"]}
+            position={[-52.183, 18.762, 12.523]}
+            rotation={[Math.PI / 2, 0, Math.PI / 2]}
+            scale={[-0.803, -0.863, -0.803]}
+          />
+          <mesh
+            name="WoodPlankWall13754"
+            geometry={nodes.WoodPlankWall13754.geometry}
+            material={materials["Material__188.001"]}
+            position={[-53.554, 15.516, 9.779]}
+            rotation={[Math.PI / 2, 0, -Math.PI / 2]}
+            scale={[-0.803, -0.863, -0.803]}
+          />
+          <mesh
+            name="Empy003"
+            geometry={nodes.Empy003.geometry}
+            material={materials["Material__188.001"]}
+            position={[-49.698, 6.633, 15.489]}
+            rotation={[0, -Math.PI / 2, 0]}
+          />
+          <group
+            name="Empty154"
+            position={[-50.187, 12.805, 3.17]}
+            rotation={[0, -Math.PI / 2, 0]}
+          >
+            <mesh
+              name="BrassPipe1694"
+              geometry={nodes.BrassPipe1694.geometry}
+              material={materials["Material__188.001"]}
+              position={[0, -9.525, 0]}
+              rotation={[0, -1.571, 0]}
+              scale={[2.1, 3.036, 2.1]}
+            ></mesh>
+          </group>
+          <group
+            name="Empty185"
+            position={[-44.307, 4.064, 11.828]}
+            rotation={[0, 1.571, 0]}
+          />
+          <group
+            name="Empty190"
+            position={[-44.307, 7.308, 10.455]}
+            rotation={[0, 1.571, 0]}
+          >
+            <group
+              rotation={[Math.PI / 2, 0, Math.PI / 2]}
+              onClick={() => {
+                handleContactClick();
+              }}
+            >
+              <Contactus position={[-50, -40, -15]} scale={0.5} />
+            </group>
+
+            {/* <Billboard
+              follow={true}
+              lockX={false}
+              lockY={false}
+              lockZ={false}
+              position={[43, 15, 10]}
+              onClick={() => {
+                handleContactClick();
+              }}
+            >
+              <mesh position={[0, 0, 0]}>
+                <planeGeometry args={[25, 8]} />
+                <meshStandardMaterial map={frame} />
+              </mesh>
+
+              <Text3D
+                curveSegments={32}
+                bevelEnabled
+                bevelSize={0.04}
+                bevelThickness={0.01}
+                height={0.5}
+                lineHeight={0.5}
+                size={3.5}
+                position={[-10.5, -1.5, 0]}
+                font="../../../src/assets/Roboto_Regular.json"
+              >
+                CONTACT
+                <meshStandardMaterial color="white" />
+              </Text3D>
+            </Billboard> */}
+          </group>
+
+          <mesh
+            name="BrassPipe1752"
+            geometry={nodes.BrassPipe1752.geometry}
+            material={materials["Material__188.001"]}
+            position={[-43.151, 8.879, 9.191]}
+            rotation={[Math.PI, 0, Math.PI]}
+            scale={[-2.316, -1.422, -2.316]}
+          />
+          <mesh
+            name="Brass90Turn1497"
+            geometry={nodes.Brass90Turn1497.geometry}
+            material={materials["Material__188.001"]}
+            position={[-43.151, 5.654, 9.191]}
+            rotation={[-1.571, 0, Math.PI]}
+            scale={[-1.809, -1.99, -1.809]}
+          />
+          <mesh
+            name="Brass90Turn1498"
+            geometry={nodes.Brass90Turn1498.geometry}
+            material={materials["Material__188.001"]}
+            position={[-43.151, 4.984, 9.927]}
+            rotation={[-Math.PI, 0, 0]}
+            scale={[-1.809, -1.99, -1.809]}
+          />
+          <mesh
+            name="BrassPipe1754"
+            geometry={nodes.BrassPipe1754.geometry}
+            material={materials["Material__188.001"]}
+            position={[-45.355, 4.237, 17.379]}
+            rotation={[Math.PI / 2, 0, Math.PI]}
+            scale={[0.532, 1.174, 0.532]}
+          />
+          <mesh
+            name="Brass90Turn1855"
+            geometry={nodes.Brass90Turn1855.geometry}
+            material={materials["Material__188.001"]}
+            position={[45.516, 1.729, -35.905]}
+            rotation={[Math.PI / 2, 0, -Math.PI]}
+            scale={[2.316, 2.548, 2.316]}
+          />
+          <mesh
+            name="BrassPipe11469"
+            geometry={nodes.BrassPipe11469.geometry}
+            material={materials["Material__188.001"]}
+            position={[54.823, 10.254, -30.306]}
+            rotation={[Math.PI / 2, 0, 1.571]}
+            scale={[2.316, 1.045, 2.316]}
+          />
+        </group>
       </group>
-    </group>
+    </>
   );
 }
 
