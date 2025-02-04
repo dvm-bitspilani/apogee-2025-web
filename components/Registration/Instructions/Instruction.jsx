@@ -38,10 +38,11 @@ export default function Instructions() {
             //   "https://merge.bits-apogee.org/2025/main/registrations"
             // );
             // router.push("/");
-            setUserState({
-              ...res.data,
-              access_token: response.access_token,
-            });
+            window.location.href = "https://bits-apogee.org/2025/main/registrations/";
+            // setUserState({
+            //   ...res.data,
+            //   access_token: response.access_token,
+            // });
             setUserEmail(res.data.email);
           } else {
             setCookies("user-auth", res.data);

@@ -16,8 +16,10 @@ import gsap from "gsap";
 import studio from "@theatre/studio";
 import extension from "@theatre/r3f/dist/extension";
 import {
+  aboutToLanding,
   contactToLanding,
   eventsToLanding,
+  landingToAbout,
   landingToContact,
   landingToEvents,
   landingToSpeakers,
@@ -147,6 +149,10 @@ export default function Experience() {
         animationTimeout = landingToSpeakers();
       } else if (animationStage === "speakersToLanding") {
         animationTimeout = speakersToLanding();
+      } else if (animationStage === "landingToAbout") {
+        animationTimeout = landingToAbout();
+      } else if (animationStage === "aboutToLanding") {
+        animationTimeout = aboutToLanding();
       }
     });
 
