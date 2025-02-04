@@ -1,13 +1,7 @@
-import {
-  OrbitControls,
-  useHelper,
-  Environment,
-  Float,
-} from "@react-three/drei";
+import { OrbitControls, Environment, Float } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import * as THREE from "three";
 import { useEffect, useRef } from "react";
-import { DirectionalLightHelper, PointLightHelper } from "three";
 import { Leva, useControls } from "leva";
 import EnergyOrb from "../EnergyOrb/EnergyOrb.jsx";
 import { CityModel } from "./CityModel/CityModel.jsx";
@@ -26,12 +20,15 @@ import {
   eventsToLanding,
   landingToContact,
   landingToEvents,
+  landingToSpeakers,
+  speakersToLanding,
 } from "../../utils/AnimationHelpers/LandingAnimations.js";
 import { PerspectiveCamera, SheetProvider } from "@theatre/r3f";
 
 import { getProject } from "@theatre/core";
 
 import animationStates from "../../utils/animation_states/animations.json";
+import { useFrame } from "@react-three/fiber";
 
 export const demoSheet = getProject("Demo Project", {
   state: animationStates,
@@ -41,22 +38,17 @@ studio.initialize();
 studio.extend(extension);
 
 const CAMERA_POSITION_LANDING = {
-  x: 1.8153350549473632,
-  y: 1.3814522238827356,
-  z: -0.93792,
+  x: 0.014999999999999462,
+  y: 0.8809999999999996,
+  z: 2.4520800000000054,
 };
 
 export default function Experience() {
   const dispatch = useDispatch();
 
-  const cameraTarget = useRef(new THREE.Vector3(0, 0, 0));
+  const cameraTarget = useRef(new THREE.Vector3(0, 1.5, -0.012));
   const orb = useRef();
   const blackScreen = useRef();
-
-  const directionalLightHelper = useRef();
-  const pointLightHelper = useRef();
-  useHelper(directionalLightHelper, DirectionalLightHelper, "red");
-  useHelper(pointLightHelper, PointLightHelper, "purple");
 
   const animationStage = useSelector(
     (state) => state.experienceAnimations.animationStage
@@ -64,42 +56,23 @@ export default function Experience() {
 
   useGSAP(
     () => {
-      const timeline = gsap.timeline();
+      // const timeline = gsap.timeline();
 
-      timeline
-        .to(blackScreen.current?.material, {
-          opacity: 0,
-          duration: 1.5,
-        })
-        .to(
-          orb.current.position,
-          {
-            y: 0.85,
-            duration: 5,
-            ease: "power2.inOut",
-          },
-          "<"
-        )
-        .fromTo(
-          cameraTarget.current,
-          {
-            x: 0,
-            y: 1.5,
-            z: -0.012,
-          },
-          {
-            y: 0,
-            z: 0,
-            duration: 5.5,
-            ease: "power2.inOut",
-            onComplete: () => {
-              dispatch(
-                experienceAnimationsActions.setAnimationStage("landing")
-              );
-            },
-          },
-          "<"
-        );
+      gsap.to(blackScreen.current?.material, {
+        opacity: 0,
+        duration: 1.5,
+      });
+      gsap.to(orb.current.position, {
+        y: 0.85,
+        duration: 5,
+        ease: "power2.inOut",
+      });
+      gsap.to(cameraTarget.current, {
+        y: 0,
+        z: 0,
+        duration: 5.5,
+        ease: "power2.inOut",
+      });
     },
     { dependencies: [] }
   );
@@ -119,6 +92,8 @@ export default function Experience() {
         cameraTargetPosHelper([-0.72, 0.12, -0.663]);
       } else if (animationStage === "landingToEvents") {
         cameraTargetPosHelper([0.961, 0.078, -0.653]);
+      } else if (animationStage === "landingToSpeakers") {
+        cameraTargetPosHelper([-0.759, 0.58, 0.777]);
       } else {
         cameraTargetPosHelper([0, 0, 0]);
       }
@@ -153,19 +128,10 @@ export default function Experience() {
         setAnimStage("contactToLanding");
       } else if (animationStage === "landingToEvents") {
         setAnimStage("eventsToLanding");
+      } else if (animationStage === "landingToSpeakers") {
+        setAnimStage("speakersToLanding");
       }
     }
-
-    window.addEventListener("keyup", (e) => {
-      if (e.key === "a") {
-        setAnimStage("landingToContact");
-      } else if (e.key === "z") {
-        setAnimStage("landingToEvents");
-      } else if (e.key === "x") {
-        console.log(animationStage);
-        reverseAnim();
-      }
-    });
 
     demoSheet.project.ready.then(() => {
       if (animationStage === "landingToContact") {
@@ -176,17 +142,30 @@ export default function Experience() {
         animationTimeout = landingToEvents();
       } else if (animationStage === "eventsToLanding") {
         animationTimeout = eventsToLanding();
+      } else if (animationStage === "landingToSpeakers") {
+        animationTimeout = landingToSpeakers();
+      } else if (animationStage === "speakersToLanding") {
+        animationTimeout = speakersToLanding();
+      }
+    });
+
+    window.addEventListener("keyup", (e) => {
+      if (e.key === "a") {
+        setAnimStage("landingToSpeakers");
+      } else if (e.key === "z") {
+        setAnimStage("landingToEvents");
+      } else if (e.key === "x") {
+        reverseAnim();
       }
     });
 
     return () => {
       window.addEventListener("keyup", (e) => {
         if (e.key === "a") {
-          setAnimStage("landingToContact");
+          setAnimStage("landingToSpeakers");
         } else if (e.key === "z") {
           setAnimStage("landingToEvents");
         } else if (e.key === "x") {
-          console.log(animationStage);
           reverseAnim();
         }
       });
@@ -198,7 +177,8 @@ export default function Experience() {
   const { positionFinder } = useControls({
     positionFinder: {
       // value: [-0.7190000000000004, 0.11800000000000008, -0.663], // contact
-      value: [0.9610000000000005, 0.07800000000000007, -0.653], // events
+      // value: [0.9610000000000005, 0.07800000000000007, -0.653], // events
+      value: [-0.7590000000000005, 0.58, 0.7770000000000005], // speakers
       step: 0.01,
     },
   });

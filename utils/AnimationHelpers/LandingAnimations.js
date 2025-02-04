@@ -33,3 +33,11 @@ export const landingToEvents = () => {
 export const eventsToLanding = () => {
   return animationPlayerHelper(11, 2, "reverse");
 };
+
+export const landingToSpeakers = () => {
+  return animationPlayerHelper(12, 2, "normal");
+};
+
+export const speakersToLanding = () => {
+  return animationPlayerHelper(14, 2, "reverse");
+};
