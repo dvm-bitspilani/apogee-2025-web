@@ -38,7 +38,7 @@ export default function Instructions() {
             //   "https://merge.bits-apogee.org/2025/main/registrations"
             // );
             // router.push("/");
-            window.location.href = "https://bits-apogee.org/2025/main/registrations/";
+            window.location.href = "https://merge.bits-apogee.org/2025/main/registrations/";
             // setUserState({
             //   ...res.data,
             //   access_token: response.access_token,
