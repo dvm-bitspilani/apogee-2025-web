@@ -41,3 +41,11 @@ export const landingToSpeakers = () => {
 export const speakersToLanding = () => {
   return animationPlayerHelper(14, 2, "reverse");
 };
+
+export const landingToAbout = () => {
+  return animationPlayerHelper(15, 2, "normal");
+};
+
+export const aboutToLanding = () => {
+  return animationPlayerHelper(17, 2, "reverse");
+};
