@@ -9,10 +9,21 @@
     justify-content: center;
 }
 
+.backbtnContainer {
+    position: fixed;
+    top: 1rem;
+    left: 2rem;
+    z-index: 2;
+}
+
 @media(max-width: 885px) {
     
     .registerContainer {
         background: none;
         height: fit-content;
+    }
+
+    .backbtnContainer {
+        display: none;
     }
 }

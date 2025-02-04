@@ -8,20 +8,32 @@ import {
   useAnimations,
   Billboard,
   Text3D,
+  useSelect,
 } from "@react-three/drei";
 import { useLoader, useThree } from "@react-three/fiber";
 import { TextureLoader } from "three";
 import gsap from "gsap";
 import * as THREE from "three";
+import { useDispatch } from "react-redux";
+import { experienceAnimationsActions } from "../../../store/experienceAnimationsSlice/experienceAnimationsSlice";
 
 export function CityModel({ scale = 1, ...props }) {
+  const dispatch = useDispatch();
+  const animationStage = useSelect(
+    (state) => state.experienceAnimations.animationStage
+  );
+
+  function setAnimStage(name) {
+    dispatch(experienceAnimationsActions.setAnimationStage(name));
+  }
+
   const group = useRef();
   const { nodes, materials, animations } = useGLTF(
     "/models/ActualWebsiteModel1-v2.glb"
   );
   const { actions } = useAnimations(animations, group);
 
-  const frame = useLoader(TextureLoader, "../../../src/assets/frame.png");
+  const frame = useLoader(TextureLoader, "/images/frame.png");
 
   const camera = useThree((state) => state.camera);
 
@@ -32,7 +44,7 @@ export function CityModel({ scale = 1, ...props }) {
     return { r, theta, phi };
   };
 
-    const handleAboutClick = () => {
+  const handleAboutClick = () => {
     const startSpherical = new THREE.Spherical();
     startSpherical.setFromVector3(camera.position);
 
@@ -56,28 +68,8 @@ export function CityModel({ scale = 1, ...props }) {
   };
 
   const handleContactClick = () => {
-    const startSpherical = new THREE.Spherical();
-    startSpherical.setFromVector3(camera.position);
-
-    const targetSpherical = getSphericalFromXYZ(0.5, 0.2, -0.5);
-    targetSpherical.r = startSpherical.radius; // Maintain distance
-
-    gsap.to(startSpherical, {
-      theta: targetSpherical.theta,
-      phi: targetSpherical.phi,
-      duration: 1.5,
-      ease: "power2.inOut",
-      onUpdate: () => {
-        camera.position.setFromSpherical(startSpherical);
-        // Changed lookAt target to (2,2,2)
-        camera.lookAt(2, 2, 2);
-      },
-      onComplete: () => {
-        camera.updateProjectionMatrix();
-      },
-    });
+    setAnimStage("landingToContact");
   };
-
 
   return (
     <group ref={group} scale={scale} {...props} dispose={null}>
@@ -94,9 +86,7 @@ export function CityModel({ scale = 1, ...props }) {
         >
           <mesh position={[0, 0, 0]}>
             <planeGeometry args={[20, 8]} />
-            <meshStandardMaterial
-              map={frame}
-            />
+            <meshStandardMaterial map={frame} />
           </mesh>
 
           <Text3D

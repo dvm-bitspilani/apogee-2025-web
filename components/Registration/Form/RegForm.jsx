@@ -11,7 +11,7 @@ import statesData from "./states.json";
 import citiesData from "./states.json";
 
 export default function RegForm({ email }) {
-  // const [interestOptions, setInterestOptions] = useState([""]);
+  const [interestOptions, setInterestOptions] = useState([""]);
   const [eventsOptions, setEventsOptions] = useState([""]);
   const [collegeOptions, setCollegeOptions] = useState([""]);
   const [stateOptions, setStateOptions] = useState([]);
@@ -29,7 +29,7 @@ export default function RegForm({ email }) {
     year: "",
     city: "",
     state: "",
-    referral: "",
+    referral_code: "",
   };
 
   const validationSchema = Yup.object({
@@ -54,15 +54,15 @@ export default function RegForm({ email }) {
     event.target.value = inputValue;
   }
 
-  const interestOptions = {
-    data: [
-      { id: "sports", name: "Sports" },
-      { id: "music", name: "Music" },
-      { id: "art", name: "Art" },
-      { id: "technology", name: "Technology" },
-      { id: "literature", name: "Literature" },
-    ],
-  };
+  // const interestOptions = {
+  //   data: [
+  //     { id: 1, name: "Sports" },
+  //     { id: 2, name: "Music" },
+  //     { id: 3, name: "Art" },
+  //     { id: 4, name: "Technology" },
+  //     { id: 5, name: "Literature" },
+  //   ],
+  // };
 
   // const eventsOptions = {
   //   data: [
@@ -92,8 +92,21 @@ export default function RegForm({ email }) {
 
   useEffect(() => {
     axios
-      .get("https://bits-oasis.org/2024/main/registrations/events_details/")
+      .get("https://merge.bits-apogee.org/2025/main/registrations/categories/")
       .then((response) => {
+        // console.log("categories:",response.data.data);
+        setInterestOptions(response.data.data);
+      })
+      .catch((error) => console.error("Error fetching events:", error));
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(
+        "https://merge.bits-apogee.org/2025/main/registrations/events_details/"
+      )
+      .then((response) => {
+        // console.log(response.data);
         setEventsOptions(response.data);
       })
       .catch((error) => console.error("Error fetching events:", error));
@@ -101,8 +114,9 @@ export default function RegForm({ email }) {
 
   useEffect(() => {
     axios
-      .get("https://bits-oasis.org/2024/main/registrations/get_college/")
+      .get("https://merge.bits-apogee.org/2025/main/registrations/get_college/")
       .then((response) => {
+        // console.log(response.data);
         setCollegeOptions(response.data);
       })
       .catch((error) => console.error("Error fetching events:", error));
@@ -361,8 +375,10 @@ export default function RegForm({ email }) {
                 )
                 .then((response) => {
                   console.log("Response", response);
-                  if (response.data.status === "success") {
-                    alert("Registration successful!");
+                  if (response.data.message === "User has been registered") {
+                    // alert("Registration successful!");
+                    window.location.href =
+                      "https://bits-apogee.org/2025/main/registrations/";
                   } else {
                     alert("Registration failed. Please try again.");
                   }
@@ -467,17 +483,27 @@ export default function RegForm({ email }) {
                   <Select
                     id="interests"
                     name="interests"
-                    options={(Array.isArray(interestOptions.data)
-                      ? interestOptions.data
+                    options={(Array.isArray(interestOptions)
+                      ? interestOptions
                       : []
                     ).map((item) => ({
                       value: item.id,
                       label: item.name,
                     }))}
                     isMulti
-                    value={values.interests || []} // Updated
+                    value={(values.interests || []).map((interestId) => {
+                      const interest = interestOptions.find(
+                        (item) => item.id === interestId
+                      );
+                      return interest
+                        ? { value: interest.id, label: interest.name }
+                        : null;
+                    })}
                     onChange={(selectedOptions) => {
-                      setFieldValue("interests", selectedOptions || []);
+                      const selectedIds = selectedOptions
+                        ? selectedOptions.map((option) => option.value)
+                        : [];
+                      setFieldValue("interests", selectedIds);
                     }}
                     styles={customStyles1}
                     placeholder="Choose Interests"
@@ -502,9 +528,19 @@ export default function RegForm({ email }) {
                       label: item.name,
                     }))}
                     isMulti
-                    value={values.events || []}
+                    value={(values.events || []).map((eventId) => {
+                      const event = eventsOptions.find(
+                        (item) => item.id === eventId
+                      );
+                      return event
+                        ? { value: event.id, label: event.name }
+                        : null;
+                    })}
                     onChange={(selectedOptions) => {
-                      setFieldValue("events", selectedOptions || []);
+                      const selectedIds = selectedOptions
+                        ? selectedOptions.map((option) => option.value)
+                        : [];
+                      setFieldValue("events", selectedIds);
                     }}
                     styles={customStyles1}
                     placeholder="Choose Events"
@@ -641,11 +677,11 @@ export default function RegForm({ email }) {
                 </div>
 
                 <div className={styles.input}>
-                  <label htmlFor="referral">Referral Code</label>
+                  <label htmlFor="referral_code">Referral Code</label>
                   <Field
                     type="text"
-                    id="referral"
-                    name="referral"
+                    id="referral_code"
+                    name="referral_code"
                     placeholder="Enter referral code"
                     className={styles.inputField}
                   />

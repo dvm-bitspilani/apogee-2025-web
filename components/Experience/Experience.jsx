@@ -1,18 +1,11 @@
-import {
-  OrbitControls,
-  useHelper,
-  Environment,
-  Float,
-} from "@react-three/drei";
+import { OrbitControls, Environment, Float } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import * as THREE from "three";
-import { useRef } from "react";
-import { DirectionalLightHelper, PointLightHelper } from "three";
+import { useEffect, useRef } from "react";
 import { Leva, useControls } from "leva";
 import EnergyOrb from "../EnergyOrb/EnergyOrb.jsx";
 import { CityModel } from "./CityModel/CityModel.jsx";
 import { Blimp } from "./Blimp/Blimp.jsx";
-import { useFrame, useThree } from "@react-three/fiber";
 
 import { experienceAnimationsActions } from "../../store/experienceAnimationsSlice/experienceAnimationsSlice.js";
 
@@ -20,37 +13,42 @@ import { useDispatch, useSelector } from "react-redux";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
+import studio from "@theatre/studio";
+import extension from "@theatre/r3f/dist/extension";
+import {
+  contactToLanding,
+  eventsToLanding,
+  landingToContact,
+  landingToEvents,
+  landingToSpeakers,
+  speakersToLanding,
+} from "../../utils/AnimationHelpers/LandingAnimations.js";
+import { PerspectiveCamera, SheetProvider } from "@theatre/r3f";
+
+import { getProject } from "@theatre/core";
+
+import animationStates from "../../utils/animation_states/animations.json";
+import { useFrame } from "@react-three/fiber";
+
+export const demoSheet = getProject("Demo Project", {
+  state: animationStates,
+}).sheet("Demo Sheet");
+
+studio.initialize();
+studio.extend(extension);
+
 const CAMERA_POSITION_LANDING = {
-  x: 0.9123,
-  y: 0.8487,
-  z: -0.93792,
+  x: 0.014999999999999462,
+  y: 0.8809999999999996,
+  z: 2.4520800000000054,
 };
 
-const V_XZ_MAGNITUDE = Math.sqrt(
-  CAMERA_POSITION_LANDING.x ** 2 + CAMERA_POSITION_LANDING.z ** 2
-);
-const V_MAGNITUDE = Math.sqrt(
-  CAMERA_POSITION_LANDING.x ** 2 +
-    CAMERA_POSITION_LANDING.y ** 2 +
-    CAMERA_POSITION_LANDING.z ** 2
-);
-const ORBIT_POLAR_ANGLE = Math.acos(
-  (CAMERA_POSITION_LANDING.x ** 2 + CAMERA_POSITION_LANDING.z ** 2) /
-    (V_XZ_MAGNITUDE * V_MAGNITUDE)
-);
-
 export default function Experience() {
-  const { camera } = useThree();
   const dispatch = useDispatch();
 
-  const cameraTarget = useRef(new THREE.Vector3(0, 0, 0));
+  const cameraTarget = useRef(new THREE.Vector3(0, 1.5, -0.012));
   const orb = useRef();
   const blackScreen = useRef();
-
-  const directionalLightHelper = useRef();
-  const pointLightHelper = useRef();
-  useHelper(directionalLightHelper, DirectionalLightHelper, "red");
-  useHelper(pointLightHelper, PointLightHelper, "purple");
 
   const animationStage = useSelector(
     (state) => state.experienceAnimations.animationStage
@@ -58,101 +56,131 @@ export default function Experience() {
 
   useGSAP(
     () => {
-      const timeline = gsap.timeline();
+      // const timeline = gsap.timeline();
 
-      timeline
-        // .fromTo(
-        //   "#landingExperience",
-        //   {
-        //     opacity: 0,
-        //   },
-        //   {
-        //     opacity: 1,
-        //     duration: 1,
-        //     delay: 0.5,
-        //   }
-        // )
-        .to(blackScreen.current?.material, {
-          opacity: 0,
-          duration: 1.5,
-        })
-        .to(
-          camera.position,
-          {
-            ...CAMERA_POSITION_LANDING,
-            duration: 5,
-            ease: "power2.inOut",
-          },
-          "-=2.45"
-        )
-        .to(
-          orb.current.position,
-          {
-            y: 0.85,
-            duration: 5,
-            ease: "power2.inOut",
-          },
-          "<"
-        )
-        .fromTo(
-          cameraTarget.current,
-          {
-            x: 0,
-            y: 1.5,
-            z: -0.012,
-          },
-          {
-            y: 0,
-            z: 0,
-            duration: 5.5,
-            ease: "power2.inOut",
-            onComplete: () => {
-              dispatch(
-                experienceAnimationsActions.setAnimationStage("landing")
-              );
-            },
-          },
-          "<"
-        );
+      gsap.to(blackScreen.current?.material, {
+        opacity: 0,
+        duration: 1.5,
+      });
+      gsap.to(orb.current.position, {
+        y: 0.85,
+        duration: 5,
+        ease: "power2.inOut",
+      });
+      gsap.to(cameraTarget.current, {
+        y: 0,
+        z: 0,
+        duration: 5.5,
+        ease: "power2.inOut",
+      });
     },
     { dependencies: [] }
   );
 
-  useFrame((state, delta) => {
-    if (animationStage === "intro") {
-      state.camera.lookAt(cameraTarget.current);
-    }
-  });
+  useGSAP(
+    () => {
+      function cameraTargetPosHelper(pos) {
+        gsap.to(cameraTarget.current, {
+          x: pos[0],
+          y: pos[1],
+          z: pos[2],
+          duration: 2,
+          ease: "power2.inOut",
+        });
+      }
+      if (animationStage === "landingToContact") {
+        cameraTargetPosHelper([-0.72, 0.12, -0.663]);
+      } else if (animationStage === "landingToEvents") {
+        cameraTargetPosHelper([0.961, 0.078, -0.653]);
+      } else if (animationStage === "landingToSpeakers") {
+        cameraTargetPosHelper([-0.759, 0.58, 0.777]);
+      } else {
+        cameraTargetPosHelper([0, 0, 0]);
+      }
+    },
+    { dependencies: [animationStage] }
+  );
 
-  const {
-    blimpScale,
-    blimpPosition,
-    blimpFloatSpeed,
-    blimpRotationIntensity,
-    blimpFloatIntensity,
-    blimpFloatingRange,
-  } = useControls({
-    blimpScale: 0.15,
-    blimpPosition: [0, 0.75, 0],
-    blimpFloatSpeed: {
-      value: 1,
-      min: 0,
-      max: 5,
-      step: 0.5,
+  useEffect(() => {
+    let stopIntro;
+
+    demoSheet.project.ready.then(() => {
+      demoSheet.sequence.play({ iterationCount: 1 });
+      stopIntro = setTimeout(() => {
+        demoSheet.sequence.pause();
+      }, 5500);
+    });
+
+    return () => {
+      clearTimeout(stopIntro);
+    };
+  }, []);
+
+  useEffect(() => {
+    let animationTimeout;
+
+    function setAnimStage(name) {
+      dispatch(experienceAnimationsActions.setAnimationStage(name));
+    }
+
+    function reverseAnim() {
+      if (animationStage === "landingToContact") {
+        setAnimStage("contactToLanding");
+      } else if (animationStage === "landingToEvents") {
+        setAnimStage("eventsToLanding");
+      } else if (animationStage === "landingToSpeakers") {
+        setAnimStage("speakersToLanding");
+      }
+    }
+
+    demoSheet.project.ready.then(() => {
+      if (animationStage === "landingToContact") {
+        animationTimeout = landingToContact();
+      } else if (animationStage === "contactToLanding") {
+        animationTimeout = contactToLanding();
+      } else if (animationStage === "landingToEvents") {
+        animationTimeout = landingToEvents();
+      } else if (animationStage === "eventsToLanding") {
+        animationTimeout = eventsToLanding();
+      } else if (animationStage === "landingToSpeakers") {
+        animationTimeout = landingToSpeakers();
+      } else if (animationStage === "speakersToLanding") {
+        animationTimeout = speakersToLanding();
+      }
+    });
+
+    window.addEventListener("keyup", (e) => {
+      if (e.key === "a") {
+        setAnimStage("landingToSpeakers");
+      } else if (e.key === "z") {
+        setAnimStage("landingToEvents");
+      } else if (e.key === "x") {
+        reverseAnim();
+      }
+    });
+
+    return () => {
+      window.addEventListener("keyup", (e) => {
+        if (e.key === "a") {
+          setAnimStage("landingToSpeakers");
+        } else if (e.key === "z") {
+          setAnimStage("landingToEvents");
+        } else if (e.key === "x") {
+          reverseAnim();
+        }
+      });
+
+      clearInterval(animationTimeout);
+    };
+  }, [animationStage]);
+
+  const { positionFinder } = useControls({
+    positionFinder: {
+      // value: [-0.7190000000000004, 0.11800000000000008, -0.663], // contact
+      // value: [0.9610000000000005, 0.07800000000000007, -0.653], // events
+      value: [-0.7590000000000005, 0.58, 0.7770000000000005], // speakers
+      step: 0.01,
     },
-    blimpRotationIntensity: {
-      value: 1,
-      min: 0,
-      max: 10,
-      step: 0.5,
-    },
-    blimpFloatIntensity: {
-      value: 0.75,
-      min: 0,
-      max: 10,
-      step: 0.25,
-    },
-    blimpFloatingRange: [-0.1, 0.1],
   });
 
   return (
@@ -160,18 +188,15 @@ export default function Experience() {
       {window.innerWidth < 850 ? (
         <Leva hidden={window.innerWidth < 850} />
       ) : (
-        <Perf position="top-left" />
+        <Perf position="bottom-left" />
       )}
 
-      {animationStage !== "intro" && (
-        <OrbitControls
-          enableRotate={true}
-          enablePan={false}
-          enableZoom={false}
-          maxPolarAngle={Math.PI / 2 - ORBIT_POLAR_ANGLE}
-          minPolarAngle={Math.PI / 2 - ORBIT_POLAR_ANGLE}
-        />
-      )}
+      <mesh position={positionFinder}>
+        <sphereGeometry args={[0.01, 16, 16]} />
+        <meshBasicMaterial color="red" />
+      </mesh>
+
+      {animationStage !== "intro" && <OrbitControls enableRotate={true} />}
 
       <Environment
         files="/environments/sunset1QuarterResOrange.hdr"
@@ -181,33 +206,43 @@ export default function Experience() {
         resolution={128}
       />
 
-      {animationStage === "intro" && (
-        <mesh
-          position={[0, 1.35, 0]}
-          rotation={[-Math.PI / 2, 0, 0]}
-          scale={4}
-          ref={blackScreen}
-        >
-          <planeGeometry />
-          <meshStandardMaterial color="black" transparent />
-        </mesh>
-      )}
+      <SheetProvider sheet={demoSheet}>
+        <PerspectiveCamera
+          theatreKey="camera"
+          makeDefault
+          fov={50}
+          lookAt={cameraTarget.current}
+          far={4}
+        />
 
-      <group position={[0, 1.5, -0.012]} ref={orb}>
-        <EnergyOrb color="orange" lightIntensity={3} />
-      </group>
+        {animationStage === "intro" && (
+          <mesh
+            position={[0, 1.35, 0]}
+            rotation={[-Math.PI / 2, 0, 0]}
+            scale={4}
+            ref={blackScreen}
+          >
+            <planeGeometry />
+            <meshStandardMaterial color="black" transparent />
+          </mesh>
+        )}
 
-      <group rotation={[0, -Math.PI / 2, 0]}>
-        <CityModel scale={0.02} />
-        <Float
-          speed={blimpFloatSpeed}
-          rotationIntensity={blimpRotationIntensity}
-          floatIntensity={blimpFloatIntensity}
-          floatingRange={blimpFloatingRange}
-        >
-          <Blimp scale={blimpScale} position={blimpPosition} />
-        </Float>
-      </group>
+        <group position={[0, 1.5, -0.012]} ref={orb}>
+          <EnergyOrb color="orange" lightIntensity={3} />
+        </group>
+
+        <group rotation={[0, 0, 0]}>
+          <CityModel scale={0.02} />
+          <Float
+            speed={1}
+            rotationIntensity={1}
+            floatIntensity={0.75}
+            floatingRange={[-0.1, 0.1]}
+          >
+            <Blimp scale={0.15} position={[0, 0.75, 0]} />
+          </Float>
+        </group>
+      </SheetProvider>
     </>
   );
 }
