@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./form.module.scss";
 import regWrapper from "../../../src/assets/Register/regWrapper.png";
 import regButton from "../../../src/assets/Register/regButton.png";
+import RegistrationModal from "../RegistrationModal/RegistrationModal";
 
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -17,6 +18,12 @@ export default function RegForm({ email }) {
   const [stateOptions, setStateOptions] = useState([]);
   const [selectedState, setSelectedState] = useState("");
   const [cityOptions, setCityOptions] = useState([]);
+
+  const [notification, setNotification] = useState({
+    isOpen: true,
+    message: "Nigga",
+    type: "success",
+  });
 
   const initialValues = {
     name: "",
@@ -376,18 +383,35 @@ export default function RegForm({ email }) {
                 .then((response) => {
                   console.log("Response", response);
                   if (response.data.message === "User has been registered") {
-                    // alert("Registration successful!");
-                    window.location.href =
-                      "https://bits-apogee.org/2025/main/registrations/";
+                    setNotification({
+                      isOpen: true,
+                      message: "Registration successful!",
+                      type: "success",
+                    });
+                    // Redirect after 5 seconds (when modal fades out)
+                    setTimeout(() => {
+                      window.location.href =
+                        "https://bits-apogee.org/2025/main/registrations/";
+                    }, 5000);
                   } else {
-                    alert("Registration failed. Please try again.");
+                    setNotification({
+                      isOpen: true,
+                      message: "Registration failed. Please try again.",
+                      type: "error",
+                    });
                   }
                 })
                 .catch((error) => {
                   console.error("Error registering:", error);
-                  alert("Registration failed. Please try again.");
+                  setNotification({
+                    isOpen: true,
+                    message: "Registration failed. Please try again.",
+                    type: "error",
+                  });
+                })
+                .finally(() => {
+                  setSubmitting(false);
                 });
-              setSubmitting(false);
             }}
           >
             {({ values, setFieldValue, isSubmitting }) => (
@@ -701,6 +725,12 @@ export default function RegForm({ email }) {
           </Formik>
         </div>
       </div>
+      <RegistrationModal
+        message={notification.message}
+        isOpen={notification.isOpen}
+        onClose={() => setNotification({ ...notification, isOpen: false })}
+        type={notification.type}
+      />
     </div>
   );
 }
