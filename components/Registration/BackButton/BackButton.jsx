@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router";
 import styles from "./backbutton.module.scss";
 import backbtn from "../../../src/assets/Register/backbtn.png";
-import mobilebackbtn from "../../../src/assets/Register/mobilebackbtn.svg";
+import mobilebackbtn from "../../../src/assets/Register/mobilebackbtn.png";
 
 export default function BackButton() {
   return (

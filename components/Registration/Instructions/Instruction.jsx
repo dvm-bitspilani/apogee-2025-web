@@ -5,6 +5,7 @@ import regWrapper from "../../../src/assets/Register/regWrapper.png";
 import RegForm from "../Form/RegForm";
 import axios from "axios";
 import { useCookies } from "react-cookie";
+import BackButton from "../BackButton/BackButton";
 
 export default function Instructions() {
   const [userState, setUserState] = useState(false);
@@ -44,6 +45,7 @@ export default function Instructions() {
             //   access_token: response.access_token,
             // });
             setUserEmail(res.data.email);
+            console.log("user aleready exists");
           } else {
             setCookies("user-auth", res.data);
             setUserState({
@@ -82,6 +84,9 @@ export default function Instructions() {
               boxShadow: "12px 12px 15.34px 10px rgba(0, 0, 0, 0.42)",
             }}
           >
+            <div className={styles.mobilebackContainer}>
+              <BackButton />
+            </div>
             <h2>REGISTRATION</h2>
 
             <div className={styles.instructionContainer}>

@@ -53,6 +53,11 @@
     margin-top: 3rem;
     margin-bottom: 3rem;
 
+    .mobilebackContainer {
+        position: absolute;
+        display: none;
+    }
+
     h2 {
         padding-top: 2rem;
         font-size: 96px;
@@ -203,6 +208,16 @@
     }
 }
 
+@media(max-width:980px)  {
+  
+    .mainWrapper {
+      
+      .mobilebackContainer {
+        display: block;
+      }
+    }
+ }    
+
 @media(max-width: 885px) {
 
     .dummyWrapper {
@@ -215,6 +230,12 @@
         padding-bottom: 2.5rem;
         margin-top: 0rem;
         margin-bottom: 0rem;
+
+        .mobilebackContainer {
+            position: absolute;
+            top: 2.2rem;
+            left: 1.5rem;
+        }
 
         h2 {
             padding-top: 1.5rem;
@@ -312,9 +333,23 @@
     }
 }
 
+@media(max-width: 580px) {
+  
+    .mainWrapper {
+      padding-top: 1.5rem;
+  
+      .mobilebackContainer {
+        position: absolute;
+        top: 1rem;
+        left: 1.5rem;
+      }
+    }  
+}
+
 @media(max-width: 500px) {
 
     .mainWrapper {
+        padding-top: 1rem;
 
         h2 {
             padding-top: 1.5rem;
@@ -393,3 +428,9 @@
         }
     }
 }
+
+@media(max-width: 410px) {
+    .mainWrapper {
+      padding-top: 1.6rem;
+    }
+}      
