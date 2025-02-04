@@ -12,7 +12,6 @@ import { Leva, useControls } from "leva";
 import EnergyOrb from "../EnergyOrb/EnergyOrb.jsx";
 import { CityModel } from "./CityModel/CityModel.jsx";
 import { Blimp } from "./Blimp/Blimp.jsx";
-import { useFrame, useThree } from "@react-three/fiber";
 
 import { experienceAnimationsActions } from "../../store/experienceAnimationsSlice/experienceAnimationsSlice.js";
 
@@ -22,14 +21,21 @@ import gsap from "gsap";
 
 import studio from "@theatre/studio";
 import extension from "@theatre/r3f/dist/extension";
+import {
+  contactToLanding,
+  eventsToLanding,
+  landingToContact,
+  landingToEvents,
+} from "../../utils/AnimationHelpers/LandingAnimations.js";
+import { PerspectiveCamera, SheetProvider } from "@theatre/r3f";
+
 import { getProject } from "@theatre/core";
-import { PerspectiveCamera, SheetProvider, editable as e } from "@theatre/r3f";
 
-import entryState from "../../utils/animation_states/animations.json";
+import animationStates from "../../utils/animation_states/animations.json";
 
-const demoSheet = getProject("Demo Project", { state: entryState }).sheet(
-  "Demo Sheet"
-);
+export const demoSheet = getProject("Demo Project", {
+  state: animationStates,
+}).sheet("Demo Sheet");
 
 studio.initialize();
 studio.extend(extension);
@@ -65,15 +71,6 @@ export default function Experience() {
           opacity: 0,
           duration: 1.5,
         })
-        // .to(
-        //   camera.position,
-        //   {
-        //     ...CAMERA_POSITION_LANDING,
-        //     duration: 5,
-        //     ease: "power2.inOut",
-        //   },
-        //   "-=2.45"
-        // )
         .to(
           orb.current.position,
           {
@@ -109,13 +106,21 @@ export default function Experience() {
 
   useGSAP(
     () => {
-      if (animationStage === "about") {
+      function cameraTargetPosHelper(pos) {
         gsap.to(cameraTarget.current, {
-          x: -0.72,
-          y: 0.12,
-          z: -0.663,
+          x: pos[0],
+          y: pos[1],
+          z: pos[2],
           duration: 2,
+          ease: "power2.inOut",
         });
+      }
+      if (animationStage === "landingToContact") {
+        cameraTargetPosHelper([-0.72, 0.12, -0.663]);
+      } else if (animationStage === "landingToEvents") {
+        cameraTargetPosHelper([0.961, 0.078, -0.653]);
+      } else {
+        cameraTargetPosHelper([0, 0, 0]);
       }
     },
     { dependencies: [animationStage] }
@@ -131,46 +136,71 @@ export default function Experience() {
       }, 5500);
     });
 
-    function setAbout() {
-      dispatch(experienceAnimationsActions.setAnimationStage("about"));
-    }
-
-    window.addEventListener("keyup", (e) => {
-      if (e.key === "a") {
-        setAbout();
-      }
-    });
-
     return () => {
-      window.removeEventListener("keyup", (e) => {
-        if (e.key === "a") {
-          setAbout();
-        }
-      });
-
       clearTimeout(stopIntro);
     };
   }, []);
 
   useEffect(() => {
     let animationTimeout;
+
+    function setAnimStage(name) {
+      dispatch(experienceAnimationsActions.setAnimationStage(name));
+    }
+
+    function reverseAnim() {
+      if (animationStage === "landingToContact") {
+        setAnimStage("contactToLanding");
+      } else if (animationStage === "landingToEvents") {
+        setAnimStage("eventsToLanding");
+      }
+    }
+
+    window.addEventListener("keyup", (e) => {
+      if (e.key === "a") {
+        setAnimStage("landingToContact");
+      } else if (e.key === "z") {
+        setAnimStage("landingToEvents");
+      } else if (e.key === "x") {
+        console.log(animationStage);
+        reverseAnim();
+      }
+    });
+
     demoSheet.project.ready.then(() => {
-      if (animationStage === "about") {
-        demoSheet.sequence.position = 6;
-        demoSheet.sequence.play({ iterationCount: 1 });
-        animationTimeout = setTimeout(() => {
-          demoSheet.sequence.pause();
-        }, 2000);
+      if (animationStage === "landingToContact") {
+        animationTimeout = landingToContact();
+      } else if (animationStage === "contactToLanding") {
+        animationTimeout = contactToLanding();
+      } else if (animationStage === "landingToEvents") {
+        animationTimeout = landingToEvents();
+      } else if (animationStage === "eventsToLanding") {
+        animationTimeout = eventsToLanding();
       }
     });
 
     return () => {
+      window.addEventListener("keyup", (e) => {
+        if (e.key === "a") {
+          setAnimStage("landingToContact");
+        } else if (e.key === "z") {
+          setAnimStage("landingToEvents");
+        } else if (e.key === "x") {
+          console.log(animationStage);
+          reverseAnim();
+        }
+      });
+
       clearInterval(animationTimeout);
     };
   }, [animationStage]);
 
   const { positionFinder } = useControls({
-    positionFinder: [-0.7190000000000004, 0.11800000000000008, -0.663],
+    positionFinder: {
+      // value: [-0.7190000000000004, 0.11800000000000008, -0.663], // contact
+      value: [0.9610000000000005, 0.07800000000000007, -0.653], // events
+      step: 0.01,
+    },
   });
 
   return (
