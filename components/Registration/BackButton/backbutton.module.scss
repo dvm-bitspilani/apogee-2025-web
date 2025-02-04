@@ -2,8 +2,30 @@
     height: 84px;
     width: 84px;
     cursor: pointer;
+    // display: none;
 
     img {
         height: 100%;
+    }
+}
+
+.mobilebackBtn {
+    display: none;
+}
+
+@media (max-width: 885px) {
+    .backBtn {
+        display: none;
+    }
+
+    .mobilebackBtn {
+        display: block;
+        height: 44px;
+        width: 44px;
+        cursor: pointer;
+
+        img {
+            height: 100%;
+        }
     }
 }

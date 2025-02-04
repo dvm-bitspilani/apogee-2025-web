@@ -82,7 +82,7 @@
   position: fixed;
   bottom: 0;
   text-align: center;
-  height: 110px;
+  height: 85px;
   width: 100%;
   z-index: 10;
   display: flex;
@@ -90,12 +90,13 @@
 
   a {
     text-decoration: none;
-    height: 110px;
+    height: 85px;
+    // transform: scale(0.9);
 
     .regbtn {
-      height: 110px;
+      height: 85px;
       cursor: pointer;
-      width: 450px;
+      width: 370px;
       background-size: cover;
       display: flex;
       justify-content: center;
@@ -103,7 +104,7 @@
   
       img {
         margin-top: 1rem;
-        height: 78px;
+        height: 60px;
       }
     }
   }
