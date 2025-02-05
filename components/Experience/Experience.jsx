@@ -1,7 +1,7 @@
 import { OrbitControls, Environment, Float, Html } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import * as THREE from "three";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { Leva, useControls } from "leva";
 import EnergyOrb from "../EnergyOrb/EnergyOrb.jsx";
 import { CityModel } from "./CityModel/CityModel.jsx";
@@ -31,8 +31,6 @@ import { PerspectiveCamera, SheetProvider } from "@theatre/r3f";
 import { getProject } from "@theatre/core";
 
 import animationStates from "../../utils/animation_states/animations.json";
-import { useFrame } from "@react-three/fiber";
-import { Contactus } from "./ContactUs/ContactUs.jsx";
 
 export const demoSheet = getProject("Demo Project", {
   state: animationStates,
@@ -50,13 +48,43 @@ const CAMERA_POSITION_LANDING = {
 export default function Experience() {
   const dispatch = useDispatch();
 
-  const cameraTarget = useRef(new THREE.Vector3(0, 1.5, -0.012));
+  const cameraTarget = useRef(new THREE.Vector3(0, 0, 0));
   const orb = useRef();
   const blackScreen = useRef();
 
   const animationStage = useSelector(
     (state) => state.experienceAnimations.animationStage
   );
+
+  const cameraTargetPosHelper = useCallback(
+    (pos) => {
+      gsap.to(cameraTarget.current, {
+        x: pos[0],
+        y: pos[1],
+        z: pos[2],
+        duration: 2,
+        ease: "power2.inOut",
+      });
+    },
+    [cameraTarget]
+  );
+
+  const setAnimStage = useCallback(
+    (name) => {
+      dispatch(experienceAnimationsActions.setAnimationStage(name));
+    },
+    [dispatch]
+  );
+
+  const reverseAnim = useCallback(() => {
+    if (animationStage === "landingToContact") {
+      setAnimStage("contactToLanding");
+    } else if (animationStage === "landingToEvents") {
+      setAnimStage("eventsToLanding");
+    } else if (animationStage === "landingToSpeakers") {
+      setAnimStage("speakersToLanding");
+    }
+  }, [animationStage, setAnimStage]);
 
   useGSAP(
     () => {
@@ -83,15 +111,6 @@ export default function Experience() {
 
   useGSAP(
     () => {
-      function cameraTargetPosHelper(pos) {
-        gsap.to(cameraTarget.current, {
-          x: pos[0],
-          y: pos[1],
-          z: pos[2],
-          duration: 2,
-          ease: "power2.inOut",
-        });
-      }
       if (animationStage === "landingToContact") {
         cameraTargetPosHelper([-0.72, 0.12, -0.663]);
       } else if (animationStage === "landingToEvents") {
@@ -122,20 +141,6 @@ export default function Experience() {
 
   useEffect(() => {
     let animationTimeout;
-
-    function setAnimStage(name) {
-      dispatch(experienceAnimationsActions.setAnimationStage(name));
-    }
-
-    function reverseAnim() {
-      if (animationStage === "landingToContact") {
-        setAnimStage("contactToLanding");
-      } else if (animationStage === "landingToEvents") {
-        setAnimStage("eventsToLanding");
-      } else if (animationStage === "landingToSpeakers") {
-        setAnimStage("speakersToLanding");
-      }
-    }
 
     demoSheet.project.ready.then(() => {
       if (animationStage === "landingToContact") {
@@ -204,7 +209,7 @@ export default function Experience() {
         <meshBasicMaterial color="red" />
       </mesh>
 
-      {animationStage !== "intro" && <OrbitControls enableRotate={true} />}
+      {/* {animationStage !== "intro" && <OrbitControls enableRotate={true} />} */}
 
       <Environment
         files="/environments/sunset1QuarterResOrange.hdr"
@@ -221,6 +226,7 @@ export default function Experience() {
           fov={50}
           lookAt={cameraTarget.current}
           far={4}
+          near={0.03}
         />
 
         {animationStage === "intro" && (
@@ -235,7 +241,7 @@ export default function Experience() {
           </mesh>
         )}
 
-        <group position={[0, 1.5, -0.012]} ref={orb}>
+        <group position={[-0.013, 1.5, 0]} ref={orb}>
           <EnergyOrb color="orange" lightIntensity={3} />
         </group>
 

@@ -1,0 +1,71 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: #bf995d;
+  padding: 20px;
+  padding-left: 40px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  position: relative;
+  //   max-width: 500px;
+  width: 40%;
+  text-align: left;
+  border: 3px solid #483312;
+
+  @media screen and (max-width: 1024px) {
+    width: 60%;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 80%;
+  }
+}
+
+.modalClose {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+  font-size: 48px;
+  cursor: pointer;
+  color: #333;
+}
+
+.message {
+  font-family: "Playfair Display";
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 37.32px;
+  letter-spacing: 0.08em;
+  color: #2b1b03;
+
+  @media screen and (max-width: 768px) {
+    font-size: 20px;
+  }
+
+  @media screen and (max-width: 480px) {
+    font-size: 16px;
+  }
+}
+
+.dashboardButton {
+  font-family: "Playfair Display";
+  font-size: 14px;
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: 2px solid #2b1b03;
+  border-radius: 8px;
+  background-color: #c28a35;
+  cursor: pointer;
+}

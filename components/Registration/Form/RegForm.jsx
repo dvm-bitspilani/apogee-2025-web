@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./form.module.scss";
 import regWrapper from "../../../src/assets/Register/regWrapper.png";
 import regButton from "../../../src/assets/Register/regButton.png";
+import RegistrationModal from "../RegistrationModal/RegistrationModal";
+import BackButton from "../BackButton/BackButton";
+import wheel from "../../../src/assets/Register/wheel.svg";
 
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -9,6 +12,7 @@ import Select from "react-select";
 import axios from "axios";
 import statesData from "./states.json";
 import citiesData from "./states.json";
+import { useCookies } from "react-cookie";
 
 export default function RegForm({ email }) {
   const [interestOptions, setInterestOptions] = useState([""]);
@@ -17,6 +21,17 @@ export default function RegForm({ email }) {
   const [stateOptions, setStateOptions] = useState([]);
   const [selectedState, setSelectedState] = useState("");
   const [cityOptions, setCityOptions] = useState([]);
+
+  const [cookies, setCookie] = useCookies(["Access_Token"]);
+
+  const wheelRef = useRef(null);
+  const mainContainerRef = useRef(null);
+
+  const [notification, setNotification] = useState({
+    isOpen: false,
+    message: "",
+    type: "Success",
+  });
 
   const initialValues = {
     name: "",
@@ -92,32 +107,34 @@ export default function RegForm({ email }) {
 
   useEffect(() => {
     axios
-    .get("https://merge.bits-apogee.org/2025/main/registrations/categories/")
-    .then((response) => {
-      // console.log("categories:",response.data.data);
-      setInterestOptions(response.data.data);
-    })
-    .catch((error) => console.error("Error fetching events:", error));
-  }, []);
-  
-  useEffect(() => {
-    axios
-    .get("https://merge.bits-apogee.org/2025/main/registrations/events_details/")
-    .then((response) => {
-      // console.log(response.data);
-      setEventsOptions(response.data);
-    })
-    .catch((error) => console.error("Error fetching events:", error));
+      .get("https://merge.bits-apogee.org/2025/main/registrations/categories/")
+      .then((response) => {
+        // console.log("categories:",response.data.data);
+        setInterestOptions(response.data.data);
+      })
+      .catch((error) => console.error("Error fetching events:", error));
   }, []);
 
   useEffect(() => {
     axios
-    .get("https://merge.bits-apogee.org/2025/main/registrations/get_college/")
-    .then((response) => {
-      // console.log(response.data);
-      setCollegeOptions(response.data);
-    })
-    .catch((error) => console.error("Error fetching events:", error));
+      .get(
+        "https://merge.bits-apogee.org/2025/main/registrations/events_details/"
+      )
+      .then((response) => {
+        // console.log(response.data);
+        setEventsOptions(response.data);
+      })
+      .catch((error) => console.error("Error fetching events:", error));
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("https://merge.bits-apogee.org/2025/main/registrations/get_college/")
+      .then((response) => {
+        // console.log(response.data);
+        setCollegeOptions(response.data);
+      })
+      .catch((error) => console.error("Error fetching events:", error));
   }, []);
 
   const genderOptions = [
@@ -152,6 +169,85 @@ export default function RegForm({ email }) {
         })) || [];
     setCityOptions(selectedStateCities);
   }, [selectedState]);
+
+  function handleScroll(inp) {
+    // const maxScrollTopValue = mainContainerRef.current.scrollTopMax;
+    const maxScrollTopValue =
+      mainContainerRef.current.scrollHeight -
+      mainContainerRef.current.clientHeight;
+    // const percentage = (mainContainerRef.current.scrollTop / maxScrollTopValue )*100;
+    const percentage =
+      (mainContainerRef.current.scrollTop / maxScrollTopValue) * 100;
+    percentage > 100
+      ? (wheelRef.current.style.top = "100%")
+      : (wheelRef.current.style.top = `${percentage}%`);
+    // console.log(percentage);
+    // wheelRef.current.style.top = `${percentage}%`;
+    // wheelElem.style.top = `${percentage}%`;
+  }
+
+  useEffect(() => {
+    mainContainerRef.current.addEventListener("scroll", handleScroll);
+
+    return () => {
+      document.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const handlewheelMouseDown = (e) => {
+    e.preventDefault();
+
+    document.addEventListener("mousemove", handlewheelDragMove);
+    document.addEventListener("touchmove", handlewheelDragMove);
+
+    document.addEventListener("mouseup", handlewheelDragEnd);
+    document.addEventListener("touchend", handlewheelDragEnd);
+  };
+
+  const handlewheelDragMove = (e) => {
+    const mainWrapperElement = mainContainerRef.current;
+    const scrollBarContainer = document.querySelector(
+      `.${styles.scrollBarContainer}`
+    );
+
+    const maxScrollTopValue =
+      mainWrapperElement.scrollHeight - mainWrapperElement.clientHeight;
+
+    const clientY = e.clientY || e.touches[0].clientY;
+
+    const percentage =
+      ((clientY - scrollBarContainer.offsetTop) /
+        scrollBarContainer.clientHeight) *
+      100;
+
+    mainWrapperElement.scrollTop = (percentage / 100) * maxScrollTopValue;
+  };
+
+  const handlewheelDragEnd = (e) => {
+    document.removeEventListener("mousemove", handlewheelDragMove);
+    document.removeEventListener("mouseup", handlewheelDragEnd);
+    document.removeEventListener("touchmove", handlewheelDragMove);
+    document.removeEventListener("touchend", handlewheelDragEnd);
+  };
+
+  const handleTrackSnap = (e) => {
+    const mainWrapperElement = mainContainerRef.current;
+    const scrollBarContainer = document.querySelector(
+      `.${styles.scrollBarContainer}`
+    );
+    const percentage =
+      ((e.clientY - scrollBarContainer.offsetTop) /
+        scrollBarContainer.clientHeight) *
+      100;
+    const maxScrollTopValue =
+      mainWrapperElement.scrollHeight - mainWrapperElement.clientHeight;
+
+    mainWrapperElement.scrollTo({
+      // Smooth scroll to the percentage of the max scroll value
+      top: (percentage / 100) * maxScrollTopValue,
+      behavior: "smooth",
+    });
+  };
 
   const calculateFontSize = () => {
     if (window.innerWidth < 500) {
@@ -341,7 +437,20 @@ export default function RegForm({ email }) {
   };
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} ref={mainContainerRef}>
+      <div className={styles.scrollBarContainer} onClick={handleTrackSnap}>
+        <div className={styles.scrollBar}></div>
+        <img
+          draggable={false}
+          onMouseDown={handlewheelMouseDown}
+          onTouchStart={handlewheelMouseDown}
+          id="wheel"
+          src={wheel}
+          alt="wheel"
+          ref={wheelRef}
+        />
+      </div>
+
       <div
         className={styles.dummyWrapper}
         style={{
@@ -358,6 +467,10 @@ export default function RegForm({ email }) {
         }}
       >
         <div className={styles.overflowWrapper}></div>
+
+        <div className={styles.mobilebackContainer}>
+          <BackButton />
+        </div>
         <h2>REGISTRATION</h2>
 
         <div className={styles.formContainer}>
@@ -365,26 +478,49 @@ export default function RegForm({ email }) {
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={(values, { setSubmitting }) => {
-              console.log("Form data", values);
+              const reqData = {
+                ...values,
+                access_token: cookies["Access_token"],
+              };
+              // console.log("Form data", reqData);
               axios
                 .post(
                   "https://merge.bits-apogee.org/2025/main/registrations/register/",
-                  values
+                  reqData
                 )
                 .then((response) => {
-                  console.log("Response", response);
+                  // console.log("Response", response);
                   if (response.data.message === "User has been registered") {
                     // alert("Registration successful!");
-                    window.location.href = "https://merge.bits-apogee.org/2025/main/registrations/";
+                    setNotification({
+                      isOpen: true,
+                      message: "Registration Successful.",
+                      type: "Success",
+                    });
+                    // window.location.href =
+                    //   "https://merge.bits-apogee.org/2025/main/registrations/";
                   } else {
-                    alert("Registration failed. Please try again.");
+                    setNotification({
+                      isOpen: true,
+                      message: response.data.message || response.data.error,
+                      type: "error",
+                    });
                   }
                 })
                 .catch((error) => {
                   console.error("Error registering:", error);
-                  alert("Registration failed. Please try again.");
+                  setNotification({
+                    isOpen: true,
+                    message:
+                      error.response.data.message ||
+                      error.response.data.error ||
+                      "Registration Failed.",
+                    type: "error",
+                  });
+                })
+                .finally(() => {
+                  setSubmitting(false);
                 });
-              setSubmitting(false);
             }}
           >
             {({ values, setFieldValue, isSubmitting }) => (
@@ -480,17 +616,26 @@ export default function RegForm({ email }) {
                   <Select
                     id="interests"
                     name="interests"
-                    options={(Array.isArray(interestOptions) ? interestOptions : []).map((item) => ({
+                    options={(Array.isArray(interestOptions)
+                      ? interestOptions
+                      : []
+                    ).map((item) => ({
                       value: item.id,
                       label: item.name,
                     }))}
                     isMulti
                     value={(values.interests || []).map((interestId) => {
-                      const interest = interestOptions.find((item) => item.id === interestId);
-                      return interest ? { value: interest.id, label: interest.name } : null;
+                      const interest = interestOptions.find(
+                        (item) => item.id === interestId
+                      );
+                      return interest
+                        ? { value: interest.id, label: interest.name }
+                        : null;
                     })}
                     onChange={(selectedOptions) => {
-                      const selectedIds = selectedOptions ? selectedOptions.map((option) => option.value) : [];
+                      const selectedIds = selectedOptions
+                        ? selectedOptions.map((option) => option.value)
+                        : [];
                       setFieldValue("interests", selectedIds);
                     }}
                     styles={customStyles1}
@@ -508,17 +653,26 @@ export default function RegForm({ email }) {
                   <Select
                     id="events"
                     name="events"
-                    options={(Array.isArray(eventsOptions) ? eventsOptions : []).map((item) => ({
+                    options={(Array.isArray(eventsOptions)
+                      ? eventsOptions
+                      : []
+                    ).map((item) => ({
                       value: item.id,
                       label: item.name,
                     }))}
                     isMulti
                     value={(values.events || []).map((eventId) => {
-                      const event = eventsOptions.find((item) => item.id === eventId);
-                      return event ? { value: event.id, label: event.name } : null;
+                      const event = eventsOptions.find(
+                        (item) => item.id === eventId
+                      );
+                      return event
+                        ? { value: event.id, label: event.name }
+                        : null;
                     })}
                     onChange={(selectedOptions) => {
-                      const selectedIds = selectedOptions ? selectedOptions.map((option) => option.value) : [];
+                      const selectedIds = selectedOptions
+                        ? selectedOptions.map((option) => option.value)
+                        : [];
                       setFieldValue("events", selectedIds);
                     }}
                     styles={customStyles1}
@@ -644,7 +798,9 @@ export default function RegForm({ email }) {
                     isDisabled={!selectedState} // Disable city selection if no state is selected
                     className={styles.cityWrapper}
                     styles={customStyles}
-                    placeholder={ selectedState ? "Your City" : "Select a State first" }
+                    placeholder={
+                      selectedState ? "Your City" : "Select a State first"
+                    }
                   />
                   <ErrorMessage
                     name="city"
@@ -659,7 +815,7 @@ export default function RegForm({ email }) {
                     type="text"
                     id="referral_code"
                     name="referral_code"
-                    placeholder="Enter referral code"
+                    placeholder="Enter referral code (optional)"
                     className={styles.inputField}
                   />
                 </div>
@@ -677,6 +833,12 @@ export default function RegForm({ email }) {
           </Formik>
         </div>
       </div>
+      <RegistrationModal
+        message={notification.message}
+        isOpen={notification.isOpen}
+        onClose={() => setNotification({ ...notification, isOpen: false })}
+        type={notification.type}
+      />
     </div>
   );
 }

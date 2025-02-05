@@ -27,7 +27,7 @@ export default function LoadingScreen() {
         <planeGeometry />
         <meshStandardMaterial color="black" />
       </mesh>
-      <group position={[0, 1.5, 0]}>
+      <group position={[-0.013, 1.5, 0]}>
         <EnergyOrb color="orange" isBloom={false} />
       </group>
     </>
