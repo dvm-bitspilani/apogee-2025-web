@@ -1,6 +1,6 @@
 {
   "sheetsById": {
-    "Demo Sheet": {
+    "Landing Sheet": {
       "staticOverrides": {
         "byObject": {
           "testMesh": {
@@ -26,13 +26,13 @@
               "z": 1
             },
             "far": 10,
-            "near": 0.01
+            "near": 0.03
           }
         }
       },
       "sequence": {
         "subUnitsPerUnit": 30,
-        "length": 15.23,
+        "length": 18.59,
         "type": "PositionalSequence",
         "tracksByObject": {
           "camera": {
@@ -183,6 +183,19 @@
                     ],
                     "type": "bezier",
                     "value": -0.5650000000000008
+                  },
+                  {
+                    "id": "_Qg8hab20X",
+                    "position": 15,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "type": "bezier",
+                    "value": 0.014999999999999462
                   }
                 ]
               },
@@ -319,6 +332,19 @@
                     ],
                     "type": "bezier",
                     "value": 0.43099999999999905
+                  },
+                  {
+                    "id": "KkYIVOsdat",
+                    "position": 15,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "type": "bezier",
+                    "value": 0.8809999999999996
                   }
                 ]
               },
@@ -468,6 +494,19 @@
                     ],
                     "type": "bezier",
                     "value": 0.8720800000000091
+                  },
+                  {
+                    "id": "_osRKPmf-O",
+                    "position": 15,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "type": "bezier",
+                    "value": 2.4520800000000054
                   }
                 ]
               },
@@ -502,6 +541,8 @@
   },
   "definitionVersion": "0.4.0",
   "revisionHistory": [
+    "mm09rvHrtXARh2os",
+    "wpUjJ6jX4lZsCtaT",
     "MxobZcTdFCJI7YaC",
     "3INuih3PR7cO2-_1",
     "CF_WHLTvX-dI5A4p",

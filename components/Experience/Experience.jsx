@@ -29,11 +29,11 @@ import { PerspectiveCamera, SheetProvider } from "@theatre/r3f";
 
 import { getProject } from "@theatre/core";
 
-import animationStates from "../../utils/animation_states/animations.json";
+import animationStates from "../../utils/animation_states/Landing Project.theatre-project-state.json";
 
-export const demoSheet = getProject("Demo Project", {
+export const landingSheet = getProject("Landing Project", {
   state: animationStates,
-}).sheet("Demo Sheet");
+}).sheet("Landing Sheet");
 
 studio.initialize();
 studio.extend(extension);
@@ -47,7 +47,7 @@ const CAMERA_POSITION_LANDING = {
 export default function Experience() {
   const dispatch = useDispatch();
 
-  const cameraTarget = useRef(new THREE.Vector3(0.015, 1.5, 0));
+  const cameraTarget = useRef(new THREE.Vector3(0, 0, 0));
   const orb = useRef();
   const blackScreen = useRef();
 
@@ -126,10 +126,10 @@ export default function Experience() {
   useEffect(() => {
     let stopIntro;
 
-    demoSheet.project.ready.then(() => {
-      demoSheet.sequence.play({ iterationCount: 1 });
+    landingSheet.project.ready.then(() => {
+      landingSheet.sequence.play({ iterationCount: 1 });
       stopIntro = setTimeout(() => {
-        demoSheet.sequence.pause();
+        landingSheet.sequence.pause();
       }, 5500);
     });
 
@@ -141,7 +141,7 @@ export default function Experience() {
   useEffect(() => {
     let animationTimeout;
 
-    demoSheet.project.ready.then(() => {
+    landingSheet.project.ready.then(() => {
       if (animationStage === "landingToContact") {
         animationTimeout = landingToContact();
       } else if (animationStage === "contactToLanding") {
@@ -218,13 +218,14 @@ export default function Experience() {
         resolution={128}
       />
 
-      <SheetProvider sheet={demoSheet}>
+      <SheetProvider sheet={landingSheet}>
         <PerspectiveCamera
           theatreKey="camera"
           makeDefault
           fov={50}
           lookAt={cameraTarget.current}
           far={4}
+          near={0.03}
         />
 
         {animationStage === "intro" && (

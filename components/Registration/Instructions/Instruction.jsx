@@ -38,17 +38,6 @@ export default function Instructions() {
   useEffect(() => {
     mainContainerRef.current.addEventListener("scroll", handleScroll);
 
-    // Removing styling on radiobutton main label on click of other input tags
-    // const allInputs = document.querySelectorAll("input")
-    // allInputs.forEach((input) => {
-    //   input.addEventListener("focus", () => {
-    //     const allLabels = document.querySelectorAll("label")
-    //     allLabels.forEach((label) => {
-    //       label.classList.remove(styles.labelFocus)
-    //     })
-    //   })
-    // })
-
     return () => {
       document.removeEventListener("scroll", handleScroll);
     };
