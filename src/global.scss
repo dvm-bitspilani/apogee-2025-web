@@ -40,6 +40,7 @@ body {
 #landingExperience {
   opacity: 0;
   transition: opacity 250ms linear;
+  z-index: 0;
 }
 
 input:-webkit-autofill,
