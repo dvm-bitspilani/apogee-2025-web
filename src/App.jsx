@@ -6,6 +6,7 @@ import Register from "../routes/Register.jsx";
 import ProtectedRoute from "./utils/ProtectedRoute.jsx";
 import ShaderDev from "../components/ShaderDev/ShaderDev.jsx";
 import Contact from "../components/Contact/Contact.jsx";
+import About from "../components/About/About.jsx";
 import ReactGA from "react-ga4";
 
 ReactGA.initialize("G-45DB3M9465");
@@ -17,9 +18,7 @@ function App() {
       <Route path="/shader-dev" element={<ShaderDev />} />
       <Route path="/registration" element={<Register />} />
       <Route path="/contact" element={<Contact />} />
-      {/* <Route element={<ProtectedRoute />}>
-        <Route path="/registration" element={<Register1 />} />
-      </Route> */}
+      <Route path="/about" element={<About />} />
     </Routes>
   );
 }
