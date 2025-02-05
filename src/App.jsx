@@ -7,6 +7,9 @@ import ProtectedRoute from "./utils/ProtectedRoute.jsx";
 import ShaderDev from "../components/ShaderDev/ShaderDev.jsx";
 import Contact from "../components/Contact/Contact.jsx";
 import ComingSoon from "../components/ComingSoon/ComingSoon.jsx";
+import ReactGA from "react-ga4";
+
+ReactGA.initialize("G-45DB3M9465");
 
 function App() {
   return (

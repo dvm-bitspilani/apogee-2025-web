@@ -123,8 +123,10 @@ export default function Instructions() {
             //   "https://merge.bits-apogee.org/2025/main/registrations"
             // );
             // router.push("/");
-            window.location.href =
-              "https://merge.bits-apogee.org/2025/main/registrations/";
+            // console.log("Access Token:", res.data.tokens.access);
+
+            window.location.href = `https://merge.bits-apogee.org/2025/main/registrations?token=${res.data.tokens.access}`;
+
             // setUserState({
             //   ...res.data,
             //   access_token: response.access_token,

@@ -1,14 +1,14 @@
-import { demoSheet } from "../../components/Experience/Experience";
+import { landingSheet } from "../../components/Experience/Experience";
 
 export const animationPlayerHelper = (
   startPos,
   duration,
   direction = "normal"
 ) => {
-  demoSheet.sequence.position = startPos;
-  demoSheet.sequence.play({ iterationCount: 1, direction: direction });
+  landingSheet.sequence.position = startPos;
+  landingSheet.sequence.play({ iterationCount: 1, direction: direction });
   const animationTimeout = setTimeout(() => {
-    demoSheet.sequence.pause();
+    landingSheet.sequence.pause();
   }, duration * 1000);
 
   return animationTimeout;

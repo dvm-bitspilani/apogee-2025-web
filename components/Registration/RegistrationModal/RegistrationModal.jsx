@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import styles from "./modal.module.scss";
 
-const RegistrationModal = ({ message, isOpen, onClose, type }) => {
+const RegistrationModal = ({ message, isOpen, onClose, type, handleClick }) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -13,11 +13,6 @@ const RegistrationModal = ({ message, isOpen, onClose, type }) => {
       document.body.style.overflow = "auto";
     };
   }, [isOpen]);
-
-  const handleClick = () => {
-    window.location.href =
-      "https://merge.bits-apogee.org/2025/main/registrations/";
-  };
 
   if (!isOpen) return null;
 
