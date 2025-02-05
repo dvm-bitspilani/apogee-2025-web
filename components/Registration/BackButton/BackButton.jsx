@@ -6,13 +6,19 @@ import mobilebackbtn from "../../../src/assets/Register/mobilebackbtn.png";
 
 export default function BackButton() {
   return (
-    <Link to={"/"}>
+    // <Link to={"/"}>
+    <a
+      href="http://localhost:5173/"
+      // href="https://apogee2025.netlify.app/"
+      // href="https://bits-apogee.org/"
+    >
       <div className={styles.backBtn}>
         <img src={backbtn} alt="backbtn"></img>
       </div>
       <div className={styles.mobilebackBtn}>
         <img src={mobilebackbtn} alt="mobilebackbtn"></img>
       </div>
-    </Link>
+    </a>
+    // </Link>
   );
 }

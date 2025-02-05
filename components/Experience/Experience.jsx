@@ -47,7 +47,7 @@ const CAMERA_POSITION_LANDING = {
 export default function Experience() {
   const dispatch = useDispatch();
 
-  const cameraTarget = useRef(new THREE.Vector3(0, 1.5, -0.012));
+  const cameraTarget = useRef(new THREE.Vector3(0.015, 1.5, 0));
   const orb = useRef();
   const blackScreen = useRef();
 
@@ -239,7 +239,7 @@ export default function Experience() {
           </mesh>
         )}
 
-        <group position={[0, 1.5, -0.012]} ref={orb}>
+        <group position={[-0.013, 1.5, 0]} ref={orb}>
           <EnergyOrb color="orange" lightIntensity={3} />
         </group>
 
