@@ -225,6 +225,7 @@ export default function Experience() {
           fov={50}
           lookAt={cameraTarget.current}
           far={4}
+          near={0.03}
         />
 
         {animationStage === "intro" && (
