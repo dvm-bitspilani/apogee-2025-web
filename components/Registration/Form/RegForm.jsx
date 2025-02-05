@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./form.module.scss";
 import regWrapper from "../../../src/assets/Register/regWrapper.png";
 import regButton from "../../../src/assets/Register/regButton.png";
+import BackButton from "../BackButton/BackButton";
 
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -179,7 +180,7 @@ export default function RegForm({ email }) {
     }),
     menu: (provided) => ({
       ...provided,
-      backgroundColor: "#8F7C56", // Transparent background for options menu
+      backgroundColor: "#DDBE8A", // Transparent background for options menu
       maxHeight: "200px", // Optional: Limit the menu height
       overflow: "hidden", // Hide overflow
       scrollbarWidth: "none", // For Firefox: Disable scrollbar
@@ -199,12 +200,12 @@ export default function RegForm({ email }) {
     }),
     option: (provided, state) => ({
       ...provided,
-      backgroundColor: state.isFocused ? "#473618" : "#8F7C56", // Optional: Light blue background on hover
+      backgroundColor: state.isFocused ? "#473618" : "#DDBE8A", // Optional: Light blue background on hover
       color: state.isFocused ? "#DDBC80" : "#2B1B03", // Text color
       textAlign: "center",
       cursor: "pointer",
       "&:hover": {
-        backgroundColor: state.isFocused ? "#473618" : "#8F7C56",
+        backgroundColor: state.isFocused ? "#473618" : "#DDBE8A",
       },
     }),
     placeholder: (provided) => ({
@@ -252,7 +253,7 @@ export default function RegForm({ email }) {
     }),
     menu: (provided) => ({
       ...provided,
-      backgroundColor: "#8F7C56", // Transparent background for options menu
+      backgroundColor: "#DDBE8A", // Transparent background for options menu
       maxHeight: "200px", // Optional: Limit the menu height
       overflow: "hidden", // Hide overflow
       scrollbarWidth: "none", // For Firefox: Disable scrollbar
@@ -272,12 +273,12 @@ export default function RegForm({ email }) {
     }),
     option: (provided, state) => ({
       ...provided,
-      backgroundColor: state.isFocused ? "#473618" : "#8F7C56", // Optional: Light blue background on hover
+      backgroundColor: state.isFocused ? "#473618" : "#DDBE8A", // Optional: Light blue background on hover
       color: state.isFocused ? "#DDBC80" : "#2B1B03", // Text color
       textAlign: "center",
       cursor: "pointer",
       "&:hover": {
-        backgroundColor: state.isFocused ? "#473618" : "#8F7C56",
+        backgroundColor: state.isFocused ? "#473618" : "#DDBE8A",
       },
     }),
     placeholder: (provided) => ({
@@ -358,6 +359,10 @@ export default function RegForm({ email }) {
         }}
       >
         <div className={styles.overflowWrapper}></div>
+        
+        <div className={styles.mobilebackContainer}>
+          <BackButton />
+        </div>
         <h2>REGISTRATION</h2>
 
         <div className={styles.formContainer}>
@@ -375,7 +380,7 @@ export default function RegForm({ email }) {
                   console.log("Response", response);
                   if (response.data.message === "User has been registered") {
                     // alert("Registration successful!");
-                    window.location.href = "https://bits-apogee.org/2025/main/registrations/";
+                    window.location.href = "https://merge.bits-apogee.org/2025/main/registrations/";
                   } else {
                     alert("Registration failed. Please try again.");
                   }

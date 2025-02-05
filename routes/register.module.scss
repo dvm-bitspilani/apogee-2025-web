@@ -13,7 +13,14 @@
     position: fixed;
     top: 1rem;
     left: 2rem;
-    z-index: 2;
+    z-index: 3;
+}
+
+@media(max-width: 980px) {
+    
+    .backbtnContainer {
+        display: none;
+    }
 }
 
 @media(max-width: 885px) {
@@ -22,8 +29,5 @@
         background: none;
         height: fit-content;
     }
-
-    .backbtnContainer {
-        display: none;
-    }
+    
 }
