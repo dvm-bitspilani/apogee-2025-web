@@ -47,7 +47,7 @@ const CAMERA_POSITION_LANDING = {
 export default function Experience() {
   const dispatch = useDispatch();
 
-  const cameraTarget = useRef(new THREE.Vector3(0.015, 1.5, 0));
+  const cameraTarget = useRef(new THREE.Vector3(0, 0, 0));
   const orb = useRef();
   const blackScreen = useRef();
 
