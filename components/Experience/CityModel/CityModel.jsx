@@ -9,7 +9,6 @@ import {
   Billboard,
   Text3D,
   useSelect,
-  Html,
 } from "@react-three/drei";
 // import { useLoader, useThree } from "@react-three/fiber";
 // import { TextureLoader } from "three";
@@ -18,7 +17,6 @@ import {
 import { useDispatch } from "react-redux";
 import { experienceAnimationsActions } from "../../../store/experienceAnimationsSlice/experienceAnimationsSlice";
 import { Contactus } from "../ContactUs/ContactUs";
-import Contact from "../../Contact/Contact";
 
 export function CityModel({ scale = 1, ...props }) {
   const dispatch = useDispatch();
@@ -253,32 +251,6 @@ export function CityModel({ scale = 1, ...props }) {
               }}
             >
               <Contactus position={[-50, -40, -15]} scale={0.5} />
-              <Html
-                castShadow
-                receiveShadow
-                occlude="blending"
-                transform
-                position={[9, -43.5, 3]}
-                rotation={[-Math.PI / 2, -Math.PI / 2, 0]}
-              >
-                <iframe
-                  title="embed"
-                  width={500}
-                  height={400}
-                  src="https://apogee2025.netlify.app/contact"
-                />
-              </Html>
-
-              {/* <mesh position={[0, 0, 0]}>
-                <planeGeometry args={[25, 8]} />
-                <Html
-                  style={{
-                    transform: `scale(0.5)`,
-                  }}
-                >
-                  <Contact />
-                </Html>
-              </mesh> */}
             </group>
 
             {/* <Billboard

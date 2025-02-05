@@ -1,4 +1,4 @@
-import { OrbitControls, Environment, Float, Html } from "@react-three/drei";
+import { OrbitControls, Environment, Float } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import * as THREE from "three";
 import { useCallback, useEffect, useRef } from "react";
@@ -6,7 +6,6 @@ import { Leva, useControls } from "leva";
 import EnergyOrb from "../EnergyOrb/EnergyOrb.jsx";
 import { CityModel } from "./CityModel/CityModel.jsx";
 import { Blimp } from "./Blimp/Blimp.jsx";
-import Contact from "../Contact/Contact.jsx";
 
 import { experienceAnimationsActions } from "../../store/experienceAnimationsSlice/experienceAnimationsSlice.js";
 
@@ -256,16 +255,6 @@ export default function Experience() {
             <Blimp scale={0.15} position={[0, 0.75, 0]} />
           </Float>
         </group>
-
-        {/* <Html
-          style={{
-            transform: `scale(0.5)`,
-            position: "absolute",
-            top: "0",
-          }}
-        >
-          <Contact />
-        </Html> */}
       </SheetProvider>
     </>
   );
