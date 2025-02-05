@@ -23,79 +23,80 @@ export default function Instructions() {
     // const maxScrollTopValue = mainContainerRef.current.scrollTopMax;
     const maxScrollTopValue =
       mainContainerRef.current.scrollHeight -
-      mainContainerRef.current.clientHeight
+      mainContainerRef.current.clientHeight;
     // const percentage = (mainContainerRef.current.scrollTop / maxScrollTopValue )*100;
     const percentage =
-      (mainContainerRef.current.scrollTop / maxScrollTopValue) * 100
+      (mainContainerRef.current.scrollTop / maxScrollTopValue) * 100;
     percentage > 100
       ? (wheelRef.current.style.top = "100%")
-      : (wheelRef.current.style.top = `${percentage}%`)
+      : (wheelRef.current.style.top = `${percentage}%`);
     // console.log(percentage);
     // wheelRef.current.style.top = `${percentage}%`;
     // wheelElem.style.top = `${percentage}%`;
   }
 
   useEffect(() => {
-    mainContainerRef.current.addEventListener("scroll", handleScroll)
+    mainContainerRef.current.addEventListener("scroll", handleScroll);
 
     return () => {
-      document.removeEventListener("scroll", handleScroll)
-    }
-  }, [])
+      document.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const handlewheelMouseDown = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    document.addEventListener("mousemove", handlewheelDragMove)
-    document.addEventListener("touchmove", handlewheelDragMove)
+    document.addEventListener("mousemove", handlewheelDragMove);
+    document.addEventListener("touchmove", handlewheelDragMove);
 
-    document.addEventListener("mouseup", handlewheelDragEnd)
-    document.addEventListener("touchend", handlewheelDragEnd)
-  }
+    document.addEventListener("mouseup", handlewheelDragEnd);
+    document.addEventListener("touchend", handlewheelDragEnd);
+  };
 
   const handlewheelDragMove = (e) => {
-    const mainWrapperElement = mainContainerRef.current
+    const mainWrapperElement = mainContainerRef.current;
     const scrollBarContainer = document.querySelector(
       `.${styles.scrollBarContainer}`
-    )
+    );
 
     const maxScrollTopValue =
-      mainWrapperElement.scrollHeight - mainWrapperElement.clientHeight
+      mainWrapperElement.scrollHeight - mainWrapperElement.clientHeight;
 
-    const clientY = e.clientY || e.touches[0].clientY
+    const clientY = e.clientY || e.touches[0].clientY;
 
     const percentage =
       ((clientY - scrollBarContainer.offsetTop) /
         scrollBarContainer.clientHeight) *
-      100
+      100;
 
-    mainWrapperElement.scrollTop = (percentage / 100) * maxScrollTopValue
-  }
+    mainWrapperElement.scrollTop = (percentage / 100) * maxScrollTopValue;
+  };
 
   const handlewheelDragEnd = (e) => {
-    document.removeEventListener("mousemove", handlewheelDragMove)
-    document.removeEventListener("mouseup", handlewheelDragEnd)
-    document.removeEventListener("touchmove", handlewheelDragMove)
-    document.removeEventListener("touchend", handlewheelDragEnd)
-  }
+    document.removeEventListener("mousemove", handlewheelDragMove);
+    document.removeEventListener("mouseup", handlewheelDragEnd);
+    document.removeEventListener("touchmove", handlewheelDragMove);
+    document.removeEventListener("touchend", handlewheelDragEnd);
+  };
 
   const handleTrackSnap = (e) => {
-    const mainWrapperElement = mainContainerRef.current
+    const mainWrapperElement = mainContainerRef.current;
     const scrollBarContainer = document.querySelector(
       `.${styles.scrollBarContainer}`
-    )
+    );
     const percentage =
       ((e.clientY - scrollBarContainer.offsetTop) /
         scrollBarContainer.clientHeight) *
-      100
+      100;
     const maxScrollTopValue =
-      mainWrapperElement.scrollHeight - mainWrapperElement.clientHeight
+      mainWrapperElement.scrollHeight - mainWrapperElement.clientHeight;
 
-    mainWrapperElement.scrollTo({     // Smooth scroll to the percentage of the max scroll value
+    mainWrapperElement.scrollTo({
+      // Smooth scroll to the percentage of the max scroll value
       top: (percentage / 100) * maxScrollTopValue,
       behavior: "smooth",
-    })
-  }
+    });
+  };
 
   const handleLoginError = () => {
     console.log("Login Failed");
@@ -115,7 +116,7 @@ export default function Instructions() {
         .then((res) => {
           // console.log("dlakjdalkdj2");
           setCookies("Access_token", response.access_token);
-          if (res.data.exists) {
+          if (!true && res.data.exists) {
             setCookies("user-auth", res.data);
             setCookies("Authorization", res.data.tokens.access);
             // router.push(

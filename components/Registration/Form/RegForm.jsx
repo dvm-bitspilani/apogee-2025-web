@@ -21,6 +21,7 @@ export default function RegForm({ email }) {
   const [stateOptions, setStateOptions] = useState([]);
   const [selectedState, setSelectedState] = useState("");
   const [cityOptions, setCityOptions] = useState([]);
+  const [waitingResponse, setWaitingResponse] = useState(false);
 
   const [cookies, setCookie] = useCookies(["Access_Token"]);
 
@@ -483,12 +484,14 @@ export default function RegForm({ email }) {
                 access_token: cookies["Access_token"],
               };
               // console.log("Form data", reqData);
+              setWaitingResponse(true);
               axios
                 .post(
                   "https://merge.bits-apogee.org/2025/main/registrations/register/",
                   reqData
                 )
                 .then((response) => {
+                  setWaitingResponse(false);
                   // console.log("Response", response);
                   if (response.data.message === "User has been registered") {
                     // alert("Registration successful!");
@@ -508,6 +511,7 @@ export default function RegForm({ email }) {
                   }
                 })
                 .catch((error) => {
+                  setWaitingResponse(false);
                   console.error("Error registering:", error);
                   setNotification({
                     isOpen: true,
@@ -520,6 +524,7 @@ export default function RegForm({ email }) {
                 })
                 .finally(() => {
                   setSubmitting(false);
+                  setWaitingResponse(false);
                 });
             }}
           >
@@ -826,7 +831,11 @@ export default function RegForm({ email }) {
                   type="submit"
                   disabled={isSubmitting}
                 >
-                  Register
+                  {waitingResponse ? (
+                    <div className={styles.loadingWheel} />
+                  ) : (
+                    "Register"
+                  )}
                 </button>
               </Form>
             )}

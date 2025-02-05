@@ -1,478 +1,497 @@
 .wrapper {
-    position: relative;
-    width: 100vw;
+  position: relative;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  height: calc(100vh - 0rem);
+  overflow-y: scroll;
+
+  .scrollBarContainer {
+    height: 80vh;
+    width: 10%;
+    margin: 10vh 0;
     display: flex;
     justify-content: center;
-    height: calc(100vh - 0rem);
-    overflow-y: scroll;
+    position: fixed;
+    right: 3rem;
+  }
 
-    .scrollBarContainer {
-        height: 80vh;
-        width: 10%;
-        margin: 10vh 0;
-        display: flex;
-        justify-content: center;
-        position: fixed;
-        right: 3rem;
-    }
+  .scrollBarContainer img {
+    position: absolute;
+    transform: translateY(-50%);
+    height: 110px;
+  }
 
-    .scrollBarContainer img {
-        position: absolute;
-        transform: translateY(-50%);
-        height: 110px;
-    }
-
-    .scrollBar {
-        background: #E6C189;
-        width: 4px;
-        stroke-width: 7px;
-        stroke: #7B6A69;
-        border-radius: 5px;
-        filter: drop-shadow(0px 0px 8px rgba(175, 148, 120, 0.40));
-        box-shadow: 0px 0px 12px 0px #AF947866;
-    }
+  .scrollBar {
+    background: #e6c189;
+    width: 4px;
+    stroke-width: 7px;
+    stroke: #7b6a69;
+    border-radius: 5px;
+    filter: drop-shadow(0px 0px 8px rgba(175, 148, 120, 0.4));
+    box-shadow: 0px 0px 12px 0px #af947866;
+  }
 }
 
 .wrapper::-webkit-scrollbar {
-    width: 0;
-    height: 0;
+  width: 0;
+  height: 0;
 }
 
 .wrapper {
-    scrollbar-width: none;
-    /* Firefox */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .wrapper::-webkit-scrollbar-thumb {
-    display: none;
+  display: none;
 }
 
 .dummyWrapper {
-    position: absolute;
-    z-index: 1;
-    top: 3rem;
-    height: 1835px;
-    width: 850px;
-    transform: rotate(3deg);
+  position: absolute;
+  z-index: 1;
+  top: 3rem;
+  height: 1835px;
+  width: 850px;
+  transform: rotate(3deg);
 }
 
 .overflowWrapper {
-    position: absolute;
-    z-index: 3;
-    top: 0rem;
-    height: 100%;
-    width: 100%;
-    background: radial-gradient(40.9% 58.96% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.38) 100%);
-    pointer-events: none;
+  position: absolute;
+  z-index: 3;
+  top: 0rem;
+  height: 100%;
+  width: 100%;
+  background: radial-gradient(
+    40.9% 58.96% at 50% 50%,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.38) 100%
+  );
+  pointer-events: none;
 }
 
 .mainWrapper {
-    position: relative;
-    z-index: 2;
+  position: relative;
+  z-index: 2;
+  height: fit-content;
+  width: 850px;
+  background: no-repeat;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 2.5rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+
+  .mobilebackContainer {
+    position: absolute;
+    display: none;
+  }
+
+  h2 {
+    padding-top: 2rem;
+    font-size: 96px;
+    font-family: "Birmingham";
+    color: #2b1b03;
+    text-decoration: underline;
+    letter-spacing: 4px;
+  }
+
+  .formContainer {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
     height: fit-content;
-    width: 850px;
-    background: no-repeat;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+    width: 750px;
+    border: 2px solid #483312;
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 1.3rem;
+      gap: 1.6rem;
+
+      .input {
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+        width: 600px;
+        font-size: 28px;
+        font-weight: 700;
+        color: #191105;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        font-family: "Playfair Display";
+        position: relative;
+
+        .inputField {
+          background-color: transparent;
+          font-size: 28px;
+          font-weight: 700;
+          color: #734800;
+          border-bottom: 2px solid #483312;
+          font-family: "Playfair Display";
+          padding-left: 10px;
+          // text-transform: uppercase;
+        }
+
+        label {
+          font-style: italic;
+          font-size: 24px;
+        }
+
+        .disabledInput {
+          background-color: transparent;
+          font-size: 28px;
+          font-weight: 700;
+          color: #734800;
+          border-bottom: 2px solid #483312;
+          font-family: "Playfair Display";
+          padding-left: 10px;
+          cursor: not-allowed;
+        }
+
+        .inputField::placeholder {
+          background-color: transparent;
+          opacity: 1;
+          color: #734800;
+          font-size: 28px;
+          font-weight: 700;
+          font-family: "Playfair Display";
+          // text-transform: capitalize;
+        }
+
+        .inputField:focus {
+          outline: none;
+        }
+
+        .errorMessage {
+          color: #9c2e1f;
+          // color: #7B3421;
+          font-size: 18px;
+          font-weight: 750;
+          font-family: Arial, Helvetica, sans-serif;
+          position: absolute;
+          bottom: -12px;
+        }
+
+        .checkboxContainer {
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          font-size: 28px;
+          font-weight: 700;
+          gap: 0.6rem 1.2rem;
+          padding-left: 10px;
+
+          .checkboxItem {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            .customCheckbox {
+              width: 18px;
+              height: 18px;
+              border: 4px solid #483312;
+              cursor: pointer;
+              transform: translateY(2px);
+
+              .checked {
+                background-color: #734800;
+                border: 4px solid #734800;
+              }
+            }
+
+            .checked {
+              background-color: #734800;
+              border: 4px solid #734800;
+            }
+
+            .checkboxLabel {
+              cursor: pointer;
+              font-style: normal;
+              font-size: 28px;
+            }
+          }
+        }
+
+        .stateWrapper::placeholder {
+          background-color: transparent;
+        }
+      }
+
+      .regButton {
+        height: 84px;
+        width: fit-content;
+        font-size: 40px;
+        color: #ab9163;
+        font-weight: 750;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        font-family: "Birmingham";
+        cursor: pointer;
+        margin-bottom: 2rem;
+        margin-top: 2rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 980px) {
+  .mainWrapper {
+    .mobilebackContainer {
+      display: block;
+    }
+  }
+}
+
+@media (max-width: 885px) {
+  .dummyWrapper {
+    display: none;
+  }
+
+  .mainWrapper {
+    height: fit-content;
+    width: 100%;
     padding-bottom: 2.5rem;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
+    margin-top: 0rem;
+    margin-bottom: 0rem;
 
     .mobilebackContainer {
-        position: absolute;
-        display: none;
+      position: absolute;
+      top: 2.2rem;
+      left: 1.5rem;
     }
 
     h2 {
-        padding-top: 2rem;
-        font-size: 96px;
-        font-family: "Birmingham";
-        color: #2B1B03;
-        text-decoration: underline;
-        letter-spacing: 4px;
+      padding-top: 1.5rem;
+      font-size: 56px;
+      letter-spacing: 4px;
     }
 
     .formContainer {
-        margin-top: 2.5rem;
-        margin-bottom: 2.5rem;
-        height: fit-content;
-        width: 750px;
-        border: 2px solid #483312;
+      margin-top: 2rem;
+      margin-bottom: 0rem;
+      width: calc(100% - 4rem);
+      border: 2.2px solid #483312;
 
-        .form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 1.3rem;
-            gap: 1.6rem;
+      .form {
+        padding-top: 1.3rem;
+        gap: 1.3rem;
 
-            .input {
-                display: flex;
-                flex-direction: column;
-                gap: 0px;
-                width: 600px;
-                font-size: 28px;
-                font-weight: 700;
-                color: #191105;
-                padding-top: 1rem;
-                padding-bottom: 1rem;
-                font-family: "Playfair Display";
-                position: relative;
+        .input {
+          width: 600px;
+          font-size: 24px;
+          padding-top: 1rem;
+          padding-bottom: 1rem;
 
-                .inputField {
-                    background-color: transparent;
-                    font-size: 28px;
-                    font-weight: 700;
-                    color: #734800;
-                    border-bottom: 2px solid #483312;
-                    font-family: "Playfair Display";
-                    padding-left: 10px;
-                    // text-transform: uppercase;
-                }
+          label {
+            font-size: 21px;
+          }
 
-                label {
-                    font-style: italic;
-                    font-size: 24px;
-                }
+          .inputField {
+            font-size: 24px;
+          }
 
-                .disabledInput {
-                    background-color: transparent;
-                    font-size: 28px;
-                    font-weight: 700;
-                    color: #734800;
-                    border-bottom: 2px solid #483312;
-                    font-family: "Playfair Display";
-                    padding-left: 10px;
-                    cursor: not-allowed;
-                }
+          .disabledInput {
+            font-size: 24px;
+          }
 
-                .inputField::placeholder {
-                    background-color: transparent;
-                    opacity: 1;
-                    color: #734800;
-                    font-size: 28px;
-                    font-weight: 700;
-                    font-family: "Playfair Display";
-                    // text-transform: capitalize;
-                }
+          .inputField::placeholder {
+            font-size: 24px;
+          }
 
-                .inputField:focus {
-                    outline: none;
-                }
+          .errorMessage {
+            font-size: 15px;
+          }
 
-                .errorMessage {
-                    color: #9C2E1F;
-                    // color: #7B3421;
-                    font-size: 18px;
-                    font-weight: 750;
-                    font-family: Arial, Helvetica, sans-serif;
-                    position: absolute;
-                    bottom: -12px;
-                }
+          .checkboxContainer {
+            font-size: 24px;
 
-                .checkboxContainer {
-                    display: flex;
-                    justify-content: space-between;
-                    flex-wrap: wrap;
-                    font-size: 28px;
-                    font-weight: 700;
-                    gap: 0.6rem 1.2rem;
-                    padding-left: 10px;
+            .checkboxItem {
+              gap: 12px;
 
-                    .checkboxItem {
-                        display: flex;
-                        align-items: center;
-                        gap: 15px;
+              .customCheckbox {
+                width: 12px;
+                height: 12px;
+                border: 4px solid #483312;
+                transform: translateY(2px);
+              }
 
-                        .customCheckbox {
-                            width: 18px;
-                            height: 18px;
-                            border: 4px solid #483312;
-                            cursor: pointer;
-                            transform: translateY(2px);
+              .checked {
+                background-color: #734800;
+                border: 4px solid #734800;
+              }
 
-                            .checked {
-                                background-color: #734800;
-                                border: 4px solid #734800;
-                            }
-                        }
-
-                        .checked {
-                            background-color: #734800;
-                            border: 4px solid #734800;
-                        }
-
-                        .checkboxLabel {
-                            cursor: pointer;
-                            font-style: normal;
-                            font-size: 28px;
-                        }
-                    }
-                }
-
-                .stateWrapper::placeholder {
-                    background-color: transparent;
-                }
+              .checkboxLabel {
+                font-size: 24px;
+              }
             }
-
-            .regButton {
-                height: 84px;
-                width: fit-content;
-                font-size: 40px;
-                color: #AB9163;
-                font-weight: 750;
-                padding-left: 2rem;
-                padding-right: 2rem;
-                font-family: "Birmingham";
-                cursor: pointer;
-                margin-bottom: 2rem;
-                margin-top: 2rem;
-            }
-
+          }
         }
+
+        .regButton {
+          height: 64px;
+          font-size: 30px;
+          padding-left: 1.5rem;
+          padding-right: 1.5rem;
+          margin-bottom: 2rem;
+          margin-top: 2rem;
+        }
+      }
     }
+  }
 }
 
-@media(max-width:980px) {
-
-    .mainWrapper {
-
-        .mobilebackContainer {
-            display: block;
+@media (max-width: 750px) {
+  .mainWrapper {
+    .formContainer {
+      .form {
+        .input {
+          width: calc(100% - 3rem);
         }
+      }
     }
+  }
 }
 
-@media(max-width: 885px) {
-
-    .dummyWrapper {
-        display: none;
+@media (max-width: 1300px) {
+  .wrapper {
+    .scrollBarContainer {
+      right: 0rem;
     }
-
-    .mainWrapper {
-        height: fit-content;
-        width: 100%;
-        padding-bottom: 2.5rem;
-        margin-top: 0rem;
-        margin-bottom: 0rem;
-
-        .mobilebackContainer {
-            position: absolute;
-            top: 2.2rem;
-            left: 1.5rem;
-        }
-
-        h2 {
-            padding-top: 1.5rem;
-            font-size: 56px;
-            letter-spacing: 4px;
-        }
-
-        .formContainer {
-            margin-top: 2rem;
-            margin-bottom: 0rem;
-            width: calc(100% - 4rem);
-            border: 2.2px solid #483312;
-
-            .form {
-                padding-top: 1.3rem;
-                gap: 1.3rem;
-
-                .input {
-                    width: 600px;
-                    font-size: 24px;
-                    padding-top: 1rem;
-                    padding-bottom: 1rem;
-
-                    label {
-                        font-size: 21px;
-                    }
-
-                    .inputField {
-                        font-size: 24px;
-                    }
-
-                    .disabledInput {
-                        font-size: 24px;
-                    }
-
-
-                    .inputField::placeholder {
-                        font-size: 24px;
-                    }
-
-                    .errorMessage {
-                        font-size: 15px;
-                    }
-
-                    .checkboxContainer {
-                        font-size: 24px;
-
-                        .checkboxItem {
-                            gap: 12px;
-
-                            .customCheckbox {
-                                width: 12px;
-                                height: 12px;
-                                border: 4px solid #483312;
-                                transform: translateY(2px);
-                            }
-
-                            .checked {
-                                background-color: #734800;
-                                border: 4px solid #734800;
-                            }
-
-                            .checkboxLabel {
-                                font-size: 24px;
-                            }
-                        }
-                    }
-                }
-
-                .regButton {
-                    height: 64px;
-                    font-size: 30px;
-                    padding-left: 1.5rem;
-                    padding-right: 1.5rem;
-                    margin-bottom: 2rem;
-                    margin-top: 2rem;
-                }
-
-            }
-        }
-    }
+  }
 }
 
-@media(max-width: 750px) {
-
-    .mainWrapper {
-        .formContainer {
-
-            .form {
-                .input {
-                    width: calc(100% - 3rem);
-                }
-            }
-        }
+@media (max-width: 1000px) {
+  .wrapper {
+    .scrollBarContainer {
+      display: none;
     }
+  }
 }
 
-@media(max-width: 1300px) {
-    .wrapper {
-        .scrollBarContainer {
-            right: 0rem;
-        }
+@media (max-width: 580px) {
+  .mainWrapper {
+    padding-top: 1.5rem;
+
+    .mobilebackContainer {
+      position: absolute;
+      top: 1rem;
+      left: 1.5rem;
     }
+  }
 }
 
-@media(max-width: 1000px) {
-    .wrapper {
-        .scrollBarContainer {
-            display: none;
-        }
+@media (max-width: 500px) {
+  .mainWrapper {
+    padding-top: 1rem;
+
+    h2 {
+      padding-top: 1.5rem;
+      font-size: 40px;
+      letter-spacing: 4px;
     }
-}
 
-@media(max-width: 580px) {
+    .formContainer {
+      width: calc(100% - 3rem);
+      border: 2.5px solid #483312;
 
-    .mainWrapper {
-        padding-top: 1.5rem;
-
-        .mobilebackContainer {
-            position: absolute;
-            top: 1rem;
-            left: 1.5rem;
-        }
-    }
-}
-
-@media(max-width: 500px) {
-
-    .mainWrapper {
+      .form {
         padding-top: 1rem;
+        gap: 1rem;
 
-        h2 {
-            padding-top: 1.5rem;
-            font-size: 40px;
-            letter-spacing: 4px;
-        }
+        .input {
+          font-size: 20px;
+          padding-top: 0.8rem;
+          padding-bottom: 0.8rem;
 
-        .formContainer {
-            width: calc(100% - 3rem);
-            border: 2.5px solid #483312;
+          label {
+            font-size: 17px;
+          }
 
-            .form {
-                padding-top: 1rem;
-                gap: 1rem;
+          .inputField {
+            font-size: 20px;
+          }
 
-                .input {
-                    font-size: 20px;
-                    padding-top: 0.8rem;
-                    padding-bottom: 0.8rem;
+          .disabledInput {
+            font-size: 20px;
+          }
 
-                    label {
-                        font-size: 17px;
-                    }
+          .inputField::placeholder {
+            font-size: 20px;
+          }
 
-                    .inputField {
-                        font-size: 20px;
-                    }
+          .errorMessage {
+            font-size: 13px;
+          }
 
-                    .disabledInput {
-                        font-size: 20px;
-                    }
+          .checkboxContainer {
+            font-size: 20px;
 
-                    .inputField::placeholder {
-                        font-size: 20px;
-                    }
+            .checkboxItem {
+              gap: 12px;
 
-                    .errorMessage {
-                        font-size: 13px;
-                    }
+              .customCheckbox {
+                width: 10px;
+                height: 10px;
+                border: 3.8px solid #483312;
+                transform: translateY(1px);
+              }
 
-                    .checkboxContainer {
-                        font-size: 20px;
+              .checked {
+                background-color: #734800;
+                border: 3.8px solid #734800;
+              }
 
-                        .checkboxItem {
-                            gap: 12px;
-
-                            .customCheckbox {
-                                width: 10px;
-                                height: 10px;
-                                border: 3.8px solid #483312;
-                                transform: translateY(1px);
-                            }
-
-                            .checked {
-                                background-color: #734800;
-                                border: 3.8px solid #734800;
-                            }
-
-                            .checkboxLabel {
-                                font-size: 20px;
-                            }
-                        }
-                    }
-                }
-
-                .regButton {
-                    height: 58px;
-                    font-size: 26px;
-                    padding-left: 1rem;
-                    padding-right: 1rem;
-                    margin-bottom: 2rem;
-                    margin-top: 2rem;
-                }
-
+              .checkboxLabel {
+                font-size: 20px;
+              }
             }
+          }
         }
+
+        .regButton {
+          height: 58px;
+          font-size: 26px;
+          padding-left: 1rem;
+          padding-right: 1rem;
+          margin-bottom: 2rem;
+          margin-top: 2rem;
+        }
+      }
     }
+  }
 }
 
-@media(max-width: 410px) {
-    .mainWrapper {
-        padding-top: 1.6rem;
-    }
+@media (max-width: 410px) {
+  .mainWrapper {
+    padding-top: 1.6rem;
+  }
+}
+
+.loadingWheel {
+  width: 40px;
+  height: 40px;
+  border: solid 4px transparent;
+  border-top-color: #ebd93e !important;
+  border-left-color: #ebd93e !important;
+  border-radius: 50%;
+  animation: loading-bar-spinner 400ms linear infinite;
+
+  @media screen and (max-width: 500px) {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+@keyframes loading-bar-spinner {
+  0% {
+    transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
