@@ -13,8 +13,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
-import studio from "@theatre/studio";
-import extension from "@theatre/r3f/dist/extension";
+// import studio from "@theatre/studio";
+// import extension from "@theatre/r3f/dist/extension";
 import {
   aboutToLanding,
   contactToLanding,
@@ -29,11 +29,11 @@ import { PerspectiveCamera, SheetProvider } from "@theatre/r3f";
 
 import { getProject } from "@theatre/core";
 
-import animationStates from "../../utils/animation_states/animations.json";
+import animationStates from "../../utils/animation_states/Landing Project.theatre-project-state.json";
 
-export const demoSheet = getProject("Demo Project", {
+export const landingSheet = getProject("Landing Project", {
   state: animationStates,
-}).sheet("Demo Sheet");
+}).sheet("Landing Sheet");
 
 // studio.initialize();
 // studio.extend(extension);
@@ -126,10 +126,10 @@ export default function Experience() {
   useEffect(() => {
     let stopIntro;
 
-    demoSheet.project.ready.then(() => {
-      demoSheet.sequence.play({ iterationCount: 1 });
+    landingSheet.project.ready.then(() => {
+      landingSheet.sequence.play({ iterationCount: 1 });
       stopIntro = setTimeout(() => {
-        demoSheet.sequence.pause();
+        landingSheet.sequence.pause();
       }, 5500);
     });
 
@@ -141,7 +141,7 @@ export default function Experience() {
   useEffect(() => {
     let animationTimeout;
 
-    demoSheet.project.ready.then(() => {
+    landingSheet.project.ready.then(() => {
       if (animationStage === "landingToContact") {
         animationTimeout = landingToContact();
       } else if (animationStage === "contactToLanding") {
@@ -218,7 +218,7 @@ export default function Experience() {
         resolution={128}
       />
 
-      <SheetProvider sheet={demoSheet}>
+      <SheetProvider sheet={landingSheet}>
         <PerspectiveCamera
           theatreKey="camera"
           makeDefault
