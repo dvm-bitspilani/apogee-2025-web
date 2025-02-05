@@ -6,6 +6,7 @@ import Register from "../routes/Register.jsx";
 import ProtectedRoute from "./utils/ProtectedRoute.jsx";
 import ShaderDev from "../components/ShaderDev/ShaderDev.jsx";
 import Contact from "../components/Contact/Contact.jsx";
+import ComingSoon from "../components/ComingSoon/ComingSoon.jsx";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       {/* <Route element={<ProtectedRoute />}>
         <Route path="/registration" element={<Register1 />} />
       </Route> */}
+      <Route path="*" element={<ComingSoon />} />
     </Routes>
   );
 }

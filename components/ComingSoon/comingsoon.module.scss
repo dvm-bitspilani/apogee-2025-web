@@ -1,0 +1,11 @@
+.Wrapper {
+  height: 100%;
+  width: 100%;
+
+  .buttonWrapper {
+    position: fixed;
+    top: 1rem;
+    left: 2rem;
+    z-index: 3;
+  }
+}
