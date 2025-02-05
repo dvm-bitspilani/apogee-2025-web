@@ -10,6 +10,7 @@ import Select from "react-select";
 import axios from "axios";
 import statesData from "./states.json";
 import citiesData from "./states.json";
+import { useCookies } from "react-cookie";
 
 export default function RegForm({ email }) {
   const [interestOptions, setInterestOptions] = useState([""]);
@@ -19,10 +20,12 @@ export default function RegForm({ email }) {
   const [selectedState, setSelectedState] = useState("");
   const [cityOptions, setCityOptions] = useState([]);
 
+  const [cookies, setCookie] = useCookies(["Access_Token"]);
+
   const [notification, setNotification] = useState({
-    isOpen: true,
-    message: "Nigga",
-    type: "success",
+    isOpen: false,
+    message: "",
+    type: "Success",
   });
 
   const initialValues = {
@@ -374,22 +377,31 @@ export default function RegForm({ email }) {
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={(values, { setSubmitting }) => {
-              console.log("Form data", values);
+              const reqData = {
+                ...values,
+                access_token: cookies["Access_token"],
+              };
+              // console.log("Form data", reqData);
               axios
                 .post(
                   "https://merge.bits-apogee.org/2025/main/registrations/register/",
-                  values
+                  reqData
                 )
                 .then((response) => {
-                  console.log("Response", response);
+                  // console.log("Response", response);
                   if (response.data.message === "User has been registered") {
                     // alert("Registration successful!");
-                    window.location.href =
-                      "https://bits-apogee.org/2025/main/registrations/";
+                    setNotification({
+                      isOpen: true,
+                      message: "Registration Successful.",
+                      type: "Success",
+                    });
+                    // window.location.href =
+                    //   "https://merge.bits-apogee.org/2025/main/registrations/";
                   } else {
                     setNotification({
                       isOpen: true,
-                      message: "Registration failed. Please try again.",
+                      message: response.data.message || response.data.error,
                       type: "error",
                     });
                   }
@@ -398,7 +410,10 @@ export default function RegForm({ email }) {
                   console.error("Error registering:", error);
                   setNotification({
                     isOpen: true,
-                    message: "Registration failed. Please try again.",
+                    message:
+                      error.response.data.message ||
+                      error.response.data.error ||
+                      "Registration Failed.",
                     type: "error",
                   });
                 })
@@ -708,7 +723,6 @@ export default function RegForm({ email }) {
                   className={styles.regButton}
                   style={{ background: `url(${regButton})` }}
                   type="submit"
-                  onClick={() => handleSubmit()}
                   disabled={isSubmitting}
                 >
                   Register

@@ -12,6 +12,7 @@ export default function Instructions() {
   const [cookies, setCookies, removeCookie] = useCookies([
     "user-auth",
     "Authorization",
+    "Access_token",
   ]);
 
   const handleLoginError = () => {
@@ -31,6 +32,7 @@ export default function Instructions() {
         )
         .then((res) => {
           // console.log("dlakjdalkdj2");
+          setCookies("Access_token", response.access_token);
           if (res.data.exists) {
             setCookies("user-auth", res.data);
             setCookies("Authorization", res.data.tokens.access);
@@ -38,7 +40,8 @@ export default function Instructions() {
             //   "https://merge.bits-apogee.org/2025/main/registrations"
             // );
             // router.push("/");
-            window.location.href = "https://merge.bits-apogee.org/2025/main/registrations/";
+            window.location.href =
+              "https://merge.bits-apogee.org/2025/main/registrations/";
             // setUserState({
             //   ...res.data,
             //   access_token: response.access_token,

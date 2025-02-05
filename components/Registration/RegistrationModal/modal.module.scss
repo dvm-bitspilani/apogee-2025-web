@@ -1,46 +1,56 @@
-// modal.module.scss
-
-.modal {
+.overlay {
   position: fixed;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40%;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  padding: 20px;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 1000;
-  border-radius: 4px;
-  opacity: 1;
-  transition: opacity 1s ease-out;
 }
 
-// .fadeOut {
-//   opacity: 0;
-// }
-
-.modalContent {
+.modal {
+  background-color: #bf995d;
+  padding: 20px;
+  padding-left: 40px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   position: relative;
+  //   max-width: 500px;
+  width: 40%;
+  text-align: left;
+  border: 3px solid #483312;
 }
 
 .modalClose {
   position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   right: 10px;
-  top: -10px;
+  font-size: 48px;
   cursor: pointer;
-  font-size: 1.5em;
-  color: #aaa;
-  transition: color 0.2s ease;
-
-  &:hover {
-    color: #000;
-  }
+  color: #333;
 }
 
-.success {
-  background-color: green;
+.message {
+  font-family: "Playfair Display";
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 37.32px;
+  letter-spacing: 0.08em;
+
+  color: #2b1b03;
 }
 
-.error {
-  background-color: red;
+.dashboardButton {
+  font-family: "Playfair Display";
+  font-size: 14px;
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: 2px solid #2b1b03;
+  border-radius: 8px;
+  background-color: #c28a35;
+  cursor: pointer;
 }
