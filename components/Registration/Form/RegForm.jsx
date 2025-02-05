@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./form.module.scss";
 import regWrapper from "../../../src/assets/Register/regWrapper.png";
 import regButton from "../../../src/assets/Register/regButton.png";
 import RegistrationModal from "../RegistrationModal/RegistrationModal";
 import BackButton from "../BackButton/BackButton";
+import wheel from "../../../src/assets/Register/wheel.svg";
 
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -22,6 +23,9 @@ export default function RegForm({ email }) {
   const [cityOptions, setCityOptions] = useState([]);
 
   const [cookies, setCookie] = useCookies(["Access_Token"]);
+
+  const wheelRef = useRef(null);
+  const mainContainerRef = useRef(null);
 
   const [notification, setNotification] = useState({
     isOpen: false,
@@ -165,6 +169,85 @@ export default function RegForm({ email }) {
         })) || [];
     setCityOptions(selectedStateCities);
   }, [selectedState]);
+
+  function handleScroll(inp) {
+    // const maxScrollTopValue = mainContainerRef.current.scrollTopMax;
+    const maxScrollTopValue =
+      mainContainerRef.current.scrollHeight -
+      mainContainerRef.current.clientHeight;
+    // const percentage = (mainContainerRef.current.scrollTop / maxScrollTopValue )*100;
+    const percentage =
+      (mainContainerRef.current.scrollTop / maxScrollTopValue) * 100;
+    percentage > 100
+      ? (wheelRef.current.style.top = "100%")
+      : (wheelRef.current.style.top = `${percentage}%`);
+    // console.log(percentage);
+    // wheelRef.current.style.top = `${percentage}%`;
+    // wheelElem.style.top = `${percentage}%`;
+  }
+
+  useEffect(() => {
+    mainContainerRef.current.addEventListener("scroll", handleScroll);
+
+    return () => {
+      document.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const handlewheelMouseDown = (e) => {
+    e.preventDefault();
+
+    document.addEventListener("mousemove", handlewheelDragMove);
+    document.addEventListener("touchmove", handlewheelDragMove);
+
+    document.addEventListener("mouseup", handlewheelDragEnd);
+    document.addEventListener("touchend", handlewheelDragEnd);
+  };
+
+  const handlewheelDragMove = (e) => {
+    const mainWrapperElement = mainContainerRef.current;
+    const scrollBarContainer = document.querySelector(
+      `.${styles.scrollBarContainer}`
+    );
+
+    const maxScrollTopValue =
+      mainWrapperElement.scrollHeight - mainWrapperElement.clientHeight;
+
+    const clientY = e.clientY || e.touches[0].clientY;
+
+    const percentage =
+      ((clientY - scrollBarContainer.offsetTop) /
+        scrollBarContainer.clientHeight) *
+      100;
+
+    mainWrapperElement.scrollTop = (percentage / 100) * maxScrollTopValue;
+  };
+
+  const handlewheelDragEnd = (e) => {
+    document.removeEventListener("mousemove", handlewheelDragMove);
+    document.removeEventListener("mouseup", handlewheelDragEnd);
+    document.removeEventListener("touchmove", handlewheelDragMove);
+    document.removeEventListener("touchend", handlewheelDragEnd);
+  };
+
+  const handleTrackSnap = (e) => {
+    const mainWrapperElement = mainContainerRef.current;
+    const scrollBarContainer = document.querySelector(
+      `.${styles.scrollBarContainer}`
+    );
+    const percentage =
+      ((e.clientY - scrollBarContainer.offsetTop) /
+        scrollBarContainer.clientHeight) *
+      100;
+    const maxScrollTopValue =
+      mainWrapperElement.scrollHeight - mainWrapperElement.clientHeight;
+
+    mainWrapperElement.scrollTo({
+      // Smooth scroll to the percentage of the max scroll value
+      top: (percentage / 100) * maxScrollTopValue,
+      behavior: "smooth",
+    });
+  };
 
   const calculateFontSize = () => {
     if (window.innerWidth < 500) {
@@ -354,7 +437,20 @@ export default function RegForm({ email }) {
   };
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} ref={mainContainerRef}>
+      <div className={styles.scrollBarContainer} onClick={handleTrackSnap}>
+        <div className={styles.scrollBar}></div>
+        <img
+          draggable={false}
+          onMouseDown={handlewheelMouseDown}
+          onTouchStart={handlewheelMouseDown}
+          id="wheel"
+          src={wheel}
+          alt="wheel"
+          ref={wheelRef}
+        />
+      </div>
+
       <div
         className={styles.dummyWrapper}
         style={{
@@ -719,7 +815,7 @@ export default function RegForm({ email }) {
                     type="text"
                     id="referral_code"
                     name="referral_code"
-                    placeholder="Enter referral code"
+                    placeholder="Enter referral code (optional)"
                     className={styles.inputField}
                   />
                 </div>

@@ -16,8 +16,8 @@ export default function Instructions() {
     "Authorization",
     "Access_token",
   ]);
-  const wheelRef = useRef(null)
-  const mainContainerRef = useRef(null)
+  const wheelRef = useRef(null);
+  const mainContainerRef = useRef(null);
 
   function handleScroll(inp) {
     // const maxScrollTopValue = mainContainerRef.current.scrollTopMax;
@@ -38,29 +38,8 @@ export default function Instructions() {
   useEffect(() => {
     mainContainerRef.current.addEventListener("scroll", handleScroll)
 
-    // Removing styling on radiobutton main label on click of other input tags
-    // const allInputs = document.querySelectorAll("input")
-    // allInputs.forEach((input) => {
-    //   input.addEventListener("focus", () => {
-    //     const allLabels = document.querySelectorAll("label")
-    //     allLabels.forEach((label) => {
-    //       label.classList.remove(styles.labelFocus)
-    //     })
-    //   })
-    // })
-
     return () => {
-      // mainContainerRef.current.removeEventListener("scroll" , handleScroll)
       document.removeEventListener("scroll", handleScroll)
-      // const allInputs = document.querySelectorAll("input")
-      // allInputs.forEach((input) => {
-      //   input.removeEventListener("focus", () => {
-      //     const allLabels = document.querySelectorAll("label")
-      //     allLabels.forEach((label) => {
-      //       label.classList.remove(styles.labelFocus)
-      //     })
-      //   })
-      // })
     }
   }, [])
 
