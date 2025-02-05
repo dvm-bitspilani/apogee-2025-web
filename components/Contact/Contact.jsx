@@ -6,7 +6,6 @@ import ContactCard from "./ContactCard/ContactCard";
 const Contact = () => {
   return (
     <div className={styles.wrapper}>
-      {/* <h1>Contact Us</h1> */}
       <div className={styles.heading}>
         <img src={heading} alt="" />
         <div className={styles.text}>contact us</div>

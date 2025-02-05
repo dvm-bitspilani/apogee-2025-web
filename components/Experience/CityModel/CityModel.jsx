@@ -253,6 +253,22 @@ export function CityModel({ scale = 1, ...props }) {
               }}
             >
               <Contactus position={[-50, -40, -15]} scale={0.5} />
+              <Html
+                castShadow
+                receiveShadow
+                occlude="blending"
+                transform
+                position={[9, -43, 0]}
+                rotation={[-Math.PI / 2, -Math.PI / 2, 0]}
+              >
+                <iframe
+                  title="embed"
+                  width={550}
+                  height={300}
+                  src="https://apogee2025.netlify.app/contact"
+                />
+              </Html>
+
               {/* <mesh position={[0, 0, 0]}>
                 <planeGeometry args={[25, 8]} />
                 <Html
