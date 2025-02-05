@@ -1,7 +1,7 @@
 import { OrbitControls, Environment, Float } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import * as THREE from "three";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { Leva, useControls } from "leva";
 import EnergyOrb from "../EnergyOrb/EnergyOrb.jsx";
 import { CityModel } from "./CityModel/CityModel.jsx";
@@ -56,6 +56,36 @@ export default function Experience() {
     (state) => state.experienceAnimations.animationStage
   );
 
+  const cameraTargetPosHelper = useCallback(
+    (pos) => {
+      gsap.to(cameraTarget.current, {
+        x: pos[0],
+        y: pos[1],
+        z: pos[2],
+        duration: 2,
+        ease: "power2.inOut",
+      });
+    },
+    [cameraTarget]
+  );
+
+  const setAnimStage = useCallback(
+    (name) => {
+      dispatch(experienceAnimationsActions.setAnimationStage(name));
+    },
+    [dispatch]
+  );
+
+  const reverseAnim = useCallback(() => {
+    if (animationStage === "landingToContact") {
+      setAnimStage("contactToLanding");
+    } else if (animationStage === "landingToEvents") {
+      setAnimStage("eventsToLanding");
+    } else if (animationStage === "landingToSpeakers") {
+      setAnimStage("speakersToLanding");
+    }
+  }, [animationStage, setAnimStage]);
+
   useGSAP(
     () => {
       // const timeline = gsap.timeline();
@@ -81,15 +111,6 @@ export default function Experience() {
 
   useGSAP(
     () => {
-      function cameraTargetPosHelper(pos) {
-        gsap.to(cameraTarget.current, {
-          x: pos[0],
-          y: pos[1],
-          z: pos[2],
-          duration: 2,
-          ease: "power2.inOut",
-        });
-      }
       if (animationStage === "landingToContact") {
         cameraTargetPosHelper([-0.72, 0.12, -0.663]);
       } else if (animationStage === "landingToEvents") {
@@ -120,20 +141,6 @@ export default function Experience() {
 
   useEffect(() => {
     let animationTimeout;
-
-    function setAnimStage(name) {
-      dispatch(experienceAnimationsActions.setAnimationStage(name));
-    }
-
-    function reverseAnim() {
-      if (animationStage === "landingToContact") {
-        setAnimStage("contactToLanding");
-      } else if (animationStage === "landingToEvents") {
-        setAnimStage("eventsToLanding");
-      } else if (animationStage === "landingToSpeakers") {
-        setAnimStage("speakersToLanding");
-      }
-    }
 
     demoSheet.project.ready.then(() => {
       if (animationStage === "landingToContact") {
