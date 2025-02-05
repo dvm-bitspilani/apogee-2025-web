@@ -1,4 +1,4 @@
-import { OrbitControls, Environment, Float } from "@react-three/drei";
+import { Environment, Float } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import * as THREE from "three";
 import { useCallback, useEffect, useRef } from "react";
@@ -7,7 +7,10 @@ import EnergyOrb from "../EnergyOrb/EnergyOrb.jsx";
 import { CityModel } from "./CityModel/CityModel.jsx";
 import { Blimp } from "./Blimp/Blimp.jsx";
 
-import { experienceAnimationsActions } from "../../store/experienceAnimationsSlice/experienceAnimationsSlice.js";
+import {
+  curStageUpdate,
+  experienceAnimationsActions,
+} from "../../store/experienceAnimationsSlice/experienceAnimationsSlice.js";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useGSAP } from "@gsap/react";
@@ -71,6 +74,7 @@ export default function Experience() {
   const setAnimStage = useCallback(
     (name) => {
       dispatch(experienceAnimationsActions.setAnimationStage(name));
+      dispatch(curStageUpdate(name));
     },
     [dispatch]
   );
