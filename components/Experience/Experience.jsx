@@ -1,4 +1,4 @@
-import { OrbitControls, Environment, Float } from "@react-three/drei";
+import { Environment, Float } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import * as THREE from "three";
 import { useCallback, useEffect, useRef } from "react";
@@ -7,14 +7,17 @@ import EnergyOrb from "../EnergyOrb/EnergyOrb.jsx";
 import { CityModel } from "./CityModel/CityModel.jsx";
 import { Blimp } from "./Blimp/Blimp.jsx";
 
-import { experienceAnimationsActions } from "../../store/experienceAnimationsSlice/experienceAnimationsSlice.js";
+import {
+  curStageUpdate,
+  experienceAnimationsActions,
+} from "../../store/experienceAnimationsSlice/experienceAnimationsSlice.js";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
-import studio from "@theatre/studio";
-import extension from "@theatre/r3f/dist/extension";
+// import studio from "@theatre/studio";
+// import extension from "@theatre/r3f/dist/extension";
 import {
   aboutToLanding,
   contactToLanding,
@@ -29,14 +32,16 @@ import { PerspectiveCamera, SheetProvider } from "@theatre/r3f";
 
 import { getProject } from "@theatre/core";
 
-import animationStates from "../../utils/animation_states/animations.json";
+import animationStatesDesktop from "../../utils/animation_states/desktop/Landing Project.theatre-project-state.json";
+import animationStatesMobile from "../../utils/animation_states/mobile/Landing Project.theatre-project-state.json";
 
-export const demoSheet = getProject("Demo Project", {
-  state: animationStates,
-}).sheet("Demo Sheet");
+export const landingSheet = getProject("Landing Project", {
+  state:
+    window.innerWidth < 850 ? animationStatesMobile : animationStatesDesktop,
+}).sheet("Landing Sheet");
 
-studio.initialize();
-studio.extend(extension);
+// studio.initialize();
+// studio.extend(extension);
 
 const CAMERA_POSITION_LANDING = {
   x: 0.014999999999999462,
@@ -71,6 +76,7 @@ export default function Experience() {
   const setAnimStage = useCallback(
     (name) => {
       dispatch(experienceAnimationsActions.setAnimationStage(name));
+      dispatch(curStageUpdate(name));
     },
     [dispatch]
   );
@@ -126,10 +132,10 @@ export default function Experience() {
   useEffect(() => {
     let stopIntro;
 
-    demoSheet.project.ready.then(() => {
-      demoSheet.sequence.play({ iterationCount: 1 });
+    landingSheet.project.ready.then(() => {
+      landingSheet.sequence.play({ iterationCount: 1 });
       stopIntro = setTimeout(() => {
-        demoSheet.sequence.pause();
+        landingSheet.sequence.pause();
       }, 5500);
     });
 
@@ -141,7 +147,7 @@ export default function Experience() {
   useEffect(() => {
     let animationTimeout;
 
-    demoSheet.project.ready.then(() => {
+    landingSheet.project.ready.then(() => {
       if (animationStage === "landingToContact") {
         animationTimeout = landingToContact();
       } else if (animationStage === "contactToLanding") {
@@ -218,7 +224,7 @@ export default function Experience() {
         resolution={128}
       />
 
-      <SheetProvider sheet={demoSheet}>
+      <SheetProvider sheet={landingSheet}>
         <PerspectiveCamera
           theatreKey="camera"
           makeDefault
