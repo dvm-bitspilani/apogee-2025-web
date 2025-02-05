@@ -114,7 +114,7 @@ export default function ShaderDev() {
   // );
   return (
     <Canvas>
-      <OrbitControls />
+      {/* <OrbitControls /> */}
       <Environment preset="dawn" background />
 
       <Perf />

@@ -208,7 +208,7 @@ export default function Experience() {
         <meshBasicMaterial color="red" />
       </mesh>
 
-      {animationStage !== "intro" && <OrbitControls enableRotate={true} />}
+      {/* {animationStage !== "intro" && <OrbitControls enableRotate={true} />} */}
 
       <Environment
         files="/environments/sunset1QuarterResOrange.hdr"
