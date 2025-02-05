@@ -258,13 +258,13 @@ export function CityModel({ scale = 1, ...props }) {
                 receiveShadow
                 occlude="blending"
                 transform
-                position={[9, -43, 0]}
+                position={[9, -43.5, 3]}
                 rotation={[-Math.PI / 2, -Math.PI / 2, 0]}
               >
                 <iframe
                   title="embed"
-                  width={550}
-                  height={300}
+                  width={500}
+                  height={400}
                   src="https://apogee2025.netlify.app/contact"
                 />
               </Html>
