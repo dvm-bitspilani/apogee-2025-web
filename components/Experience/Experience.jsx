@@ -30,8 +30,6 @@ import { PerspectiveCamera, SheetProvider } from "@theatre/r3f";
 import { getProject } from "@theatre/core";
 
 import animationStates from "../../utils/animation_states/animations.json";
-import { useFrame } from "@react-three/fiber";
-import { Contactus } from "./ContactUs/ContactUs.jsx";
 
 export const demoSheet = getProject("Demo Project", {
   state: animationStates,
