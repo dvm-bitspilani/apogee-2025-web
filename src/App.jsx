@@ -6,6 +6,9 @@ import Register from "../routes/Register.jsx";
 import ProtectedRoute from "./utils/ProtectedRoute.jsx";
 import ShaderDev from "../components/ShaderDev/ShaderDev.jsx";
 import Contact from "../components/Contact/Contact.jsx";
+import ReactGA from "react-ga4";
+
+ReactGA.initialize("G-93KSJ6NXN3");
 
 function App() {
   return (
