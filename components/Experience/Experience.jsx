@@ -35,8 +35,8 @@ export const demoSheet = getProject("Demo Project", {
   state: animationStates,
 }).sheet("Demo Sheet");
 
-studio.initialize();
-studio.extend(extension);
+// studio.initialize();
+// studio.extend(extension);
 
 const CAMERA_POSITION_LANDING = {
   x: 0.014999999999999462,
@@ -186,27 +186,27 @@ export default function Experience() {
     };
   }, [animationStage]);
 
-  const { positionFinder } = useControls({
-    positionFinder: {
-      // value: [-0.7190000000000004, 0.11800000000000008, -0.663], // contact
-      // value: [0.9610000000000005, 0.07800000000000007, -0.653], // events
-      value: [-0.7590000000000005, 0.58, 0.7770000000000005], // speakers
-      step: 0.01,
-    },
-  });
+  // const { positionFinder } = useControls({
+  //   positionFinder: {
+  //     // value: [-0.7190000000000004, 0.11800000000000008, -0.663], // contact
+  //     // value: [0.9610000000000005, 0.07800000000000007, -0.653], // events
+  //     value: [-0.7590000000000005, 0.58, 0.7770000000000005], // speakers
+  //     step: 0.01,
+  //   },
+  // });
 
   return (
     <>
-      {window.innerWidth < 850 ? (
+      {/* {window.innerWidth < 850 ? (
         <Leva hidden={window.innerWidth < 850} />
       ) : (
         <Perf position="bottom-left" />
-      )}
+      )} */}
 
-      <mesh position={positionFinder}>
+      {/* <mesh position={positionFinder}>
         <sphereGeometry args={[0.01, 16, 16]} />
         <meshBasicMaterial color="red" />
-      </mesh>
+      </mesh> */}
 
       {/* {animationStage !== "intro" && <OrbitControls enableRotate={true} />} */}
 
