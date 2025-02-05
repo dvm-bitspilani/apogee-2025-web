@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styles from "./instructions.module.scss";
 import { useGoogleLogin } from "@react-oauth/google";
 import regWrapper from "../../../src/assets/Register/regWrapper.png";
 import RegForm from "../Form/RegForm";
 import axios from "axios";
 import { useCookies } from "react-cookie";
+import BackButton from "../BackButton/BackButton";
+import wheel from "../../../src/assets/Register/wheel.svg";
 
 export default function Instructions() {
   const [userState, setUserState] = useState(false);
@@ -14,6 +16,107 @@ export default function Instructions() {
     "Authorization",
     "Access_token",
   ]);
+  const wheelRef = useRef(null)
+  const mainContainerRef = useRef(null)
+
+  function handleScroll(inp) {
+    // const maxScrollTopValue = mainContainerRef.current.scrollTopMax;
+    const maxScrollTopValue =
+      mainContainerRef.current.scrollHeight -
+      mainContainerRef.current.clientHeight
+    // const percentage = (mainContainerRef.current.scrollTop / maxScrollTopValue )*100;
+    const percentage =
+      (mainContainerRef.current.scrollTop / maxScrollTopValue) * 100
+    percentage > 100
+      ? (wheelRef.current.style.top = "100%")
+      : (wheelRef.current.style.top = `${percentage}%`)
+    // console.log(percentage);
+    // wheelRef.current.style.top = `${percentage}%`;
+    // wheelElem.style.top = `${percentage}%`;
+  }
+
+  useEffect(() => {
+    mainContainerRef.current.addEventListener("scroll", handleScroll)
+
+    // Removing styling on radiobutton main label on click of other input tags
+    // const allInputs = document.querySelectorAll("input")
+    // allInputs.forEach((input) => {
+    //   input.addEventListener("focus", () => {
+    //     const allLabels = document.querySelectorAll("label")
+    //     allLabels.forEach((label) => {
+    //       label.classList.remove(styles.labelFocus)
+    //     })
+    //   })
+    // })
+
+    return () => {
+      // mainContainerRef.current.removeEventListener("scroll" , handleScroll)
+      document.removeEventListener("scroll", handleScroll)
+      // const allInputs = document.querySelectorAll("input")
+      // allInputs.forEach((input) => {
+      //   input.removeEventListener("focus", () => {
+      //     const allLabels = document.querySelectorAll("label")
+      //     allLabels.forEach((label) => {
+      //       label.classList.remove(styles.labelFocus)
+      //     })
+      //   })
+      // })
+    }
+  }, [])
+
+  const handlewheelMouseDown = (e) => {
+    e.preventDefault()
+
+    document.addEventListener("mousemove", handlewheelDragMove)
+    document.addEventListener("touchmove", handlewheelDragMove)
+
+    document.addEventListener("mouseup", handlewheelDragEnd)
+    document.addEventListener("touchend", handlewheelDragEnd)
+  }
+
+  const handlewheelDragMove = (e) => {
+    const mainWrapperElement = mainContainerRef.current
+    const scrollBarContainer = document.querySelector(
+      `.${styles.scrollBarContainer}`
+    )
+
+    const maxScrollTopValue =
+      mainWrapperElement.scrollHeight - mainWrapperElement.clientHeight
+
+    const clientY = e.clientY || e.touches[0].clientY
+
+    const percentage =
+      ((clientY - scrollBarContainer.offsetTop) /
+        scrollBarContainer.clientHeight) *
+      100
+
+    mainWrapperElement.scrollTop = (percentage / 100) * maxScrollTopValue
+  }
+
+  const handlewheelDragEnd = (e) => {
+    document.removeEventListener("mousemove", handlewheelDragMove)
+    document.removeEventListener("mouseup", handlewheelDragEnd)
+    document.removeEventListener("touchmove", handlewheelDragMove)
+    document.removeEventListener("touchend", handlewheelDragEnd)
+  }
+
+  const handleTrackSnap = (e) => {
+    const mainWrapperElement = mainContainerRef.current
+    const scrollBarContainer = document.querySelector(
+      `.${styles.scrollBarContainer}`
+    )
+    const percentage =
+      ((e.clientY - scrollBarContainer.offsetTop) /
+        scrollBarContainer.clientHeight) *
+      100
+    const maxScrollTopValue =
+      mainWrapperElement.scrollHeight - mainWrapperElement.clientHeight
+
+    mainWrapperElement.scrollTo({     // Smooth scroll to the percentage of the max scroll value
+      top: (percentage / 100) * maxScrollTopValue,
+      behavior: "smooth",
+    })
+  }
 
   const handleLoginError = () => {
     console.log("Login Failed");
@@ -47,6 +150,7 @@ export default function Instructions() {
             //   access_token: response.access_token,
             // });
             setUserEmail(res.data.email);
+            console.log("user aleready exists");
           } else {
             setCookies("user-auth", res.data);
             setUserState({
@@ -70,7 +174,19 @@ export default function Instructions() {
       {userState && userEmail ? (
         <RegForm email={userEmail} />
       ) : (
-        <div className={styles.wrapper}>
+        <div className={styles.wrapper} ref={mainContainerRef}>
+          <div className={styles.scrollBarContainer} onClick={handleTrackSnap}>
+            <div className={styles.scrollBar}></div>
+            <img
+              draggable={false}
+              onMouseDown={handlewheelMouseDown}
+              onTouchStart={handlewheelMouseDown}
+              id="wheel"
+              src={wheel}
+              alt="wheel"
+              ref={wheelRef}
+            />
+          </div>
           <div
             className={styles.dummyWrapper}
             style={{
@@ -79,15 +195,19 @@ export default function Instructions() {
             }}
           ></div>
           <div
+            onScroll={handleScroll}
             className={styles.mainWrapper}
             style={{
               background: `radial-gradient(40.9% 58.96% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.38) 100%), url(${regWrapper})`,
               boxShadow: "12px 12px 15.34px 10px rgba(0, 0, 0, 0.42)",
             }}
           >
+            <div className={styles.mobilebackContainer}>
+              <BackButton />
+            </div>
             <h2>REGISTRATION</h2>
 
-            <div className={styles.instructionContainer}>
+            <div className={styles.instructionContainer} ref={mainContainerRef}>
               <div className={styles.heading}>
                 <svg
                   width="15"

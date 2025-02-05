@@ -5,6 +5,32 @@
   justify-content: center;
   height: calc(100vh - 0rem);
   overflow-y: scroll;
+
+  .scrollBarContainer {
+    height: 80vh;
+    width: 10%;
+    margin: 10vh 0;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    right: 3rem;
+  }
+
+  .scrollBarContainer img {
+    position: absolute;
+    transform: translateY(-50%);
+    height: 110px;
+  }
+
+  .scrollBar {
+    background: #E6C189;
+    width: 4px;
+    stroke-width: 7px;
+    stroke: #7B6A69;
+    border-radius: 5px;
+    filter: drop-shadow(0px 0px 8px rgba(175, 148, 120, 0.40));
+    box-shadow: 0px 0px 12px 0px #AF947866;
+  }
 }
 
 .wrapper::-webkit-scrollbar {
@@ -43,6 +69,13 @@
   padding-bottom: 2.5rem;
   margin-top: 3rem;
   margin-bottom: 3rem;
+
+  .mobilebackContainer {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: none;
+  }
 
   h2 {
     padding-top: 2rem;
@@ -117,6 +150,32 @@
   }
 }
 
+@media(max-width: 1300px) {
+  .wrapper {
+    .scrollBarContainer {
+      right: 0rem;
+    }
+  }
+}
+
+@media(max-width: 1000px) {
+  .wrapper {
+    .scrollBarContainer {
+      display: none;
+    }
+  }
+}
+
+@media(max-width:980px)  {
+  
+  .mainWrapper {
+    
+    .mobilebackContainer {
+      display: block;
+    }
+  }
+}     
+
 @media (max-width: 885px) {
   .dummyWrapper {
     display: none;
@@ -128,6 +187,12 @@
     padding-bottom: 2.5rem;
     margin-top: 0rem;
     margin-bottom: 0rem;
+
+    .mobilebackContainer {
+      position: absolute;
+      top: 2.2rem;
+      left: 1.5rem;
+    }
 
     h2 {
       padding-top: 1.5rem;
@@ -186,8 +251,22 @@
   }
 }
 
+@media(max-width: 580px) {
+  
+  .mainWrapper {
+    padding-top: 1.5rem;
+
+    .mobilebackContainer {
+      position: absolute;
+      top: 1rem;
+      left: 1.5rem;
+    }
+  }  
+}
+
 @media (max-width: 500px) {
   .mainWrapper {
+    padding-top: 1rem;
 
     h2 {
       padding-top: 1.5rem;
@@ -251,6 +330,8 @@
 
 @media(max-width: 410px) {
   .mainWrapper {
+    padding-top: 1.6rem;
+
     .instructionContainer {
       .content {
         svg {

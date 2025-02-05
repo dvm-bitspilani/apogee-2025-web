@@ -3,6 +3,7 @@ import styles from "./form.module.scss";
 import regWrapper from "../../../src/assets/Register/regWrapper.png";
 import regButton from "../../../src/assets/Register/regButton.png";
 import RegistrationModal from "../RegistrationModal/RegistrationModal";
+import BackButton from "../BackButton/BackButton";
 
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -370,6 +371,10 @@ export default function RegForm({ email }) {
         }}
       >
         <div className={styles.overflowWrapper}></div>
+
+        <div className={styles.mobilebackContainer}>
+          <BackButton />
+        </div>
         <h2>REGISTRATION</h2>
 
         <div className={styles.formContainer}>
