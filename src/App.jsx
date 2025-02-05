@@ -8,7 +8,7 @@ import ShaderDev from "../components/ShaderDev/ShaderDev.jsx";
 import Contact from "../components/Contact/Contact.jsx";
 import ReactGA from "react-ga4";
 
-ReactGA.initialize("G-93KSJ6NXN3");
+ReactGA.initialize("G-45DB3M9465");
 
 function App() {
   return (
