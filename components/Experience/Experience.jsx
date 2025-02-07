@@ -248,7 +248,7 @@ export default function Experience() {
             floatIntensity={0.75}
             floatingRange={[-0.1, 0.1]}
           >
-            <Blimp scale={0.15} position={[0, 0.75, 0]} />
+            <Blimp scale={0.25} position={[0, 0.75, 0]} />
           </Float>
         </group>
       </SheetProvider>

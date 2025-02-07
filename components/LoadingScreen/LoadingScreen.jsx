@@ -28,6 +28,17 @@ export default function LoadingScreen() {
         <meshStandardMaterial color="black" />
       </mesh>
       <group position={[-0.013, 1.5, 0]}>
+        <Html center>
+          <h1
+            style={{
+              color: "black",
+              fontSize: "2rem",
+              fontFamily: "sans-serif",
+            }}
+          >
+            {parseInt(progress)}%
+          </h1>
+        </Html>
         <EnergyOrb color="orange" isBloom={false} />
       </group>
     </>
