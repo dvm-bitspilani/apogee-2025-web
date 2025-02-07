@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import Contact from "../Contact/Contact";
 import About from "../About/About";
 import { reverseAnimation } from "../../store/experienceAnimationsSlice/experienceAnimationsSlice";
-import back from "../../src/assets/Register/mobilebackbtn.png";
+import back from "../../src/assets/back.svg";
 export default function Overlay() {
   const dispatch = useDispatch();
 

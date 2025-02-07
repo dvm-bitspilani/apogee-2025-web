@@ -149,7 +149,7 @@
 
             p {
                 color: #CDBB93;
-                text-shadow: 4px 5px 1px #000;
+                text-shadow: 4px 5px 1px #00000076;
                 font-family: "OldNewspaperTypes";
                 font-weight: 500;
                 font-size: 25px;
@@ -244,6 +244,9 @@
 
         .mainBody {
             gap: 2.4rem;
+            margin-bottom: 3rem;
+            height: calc(100vh - 130px);
+            overflow-y: scroll;
 
             .textContainer {
                 width: 100%;
