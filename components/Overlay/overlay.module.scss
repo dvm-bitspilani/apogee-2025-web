@@ -1,0 +1,9 @@
+.overlay {
+  z-index: 9;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  right: 0;
+  transition: opacity 250ms linear;
+}

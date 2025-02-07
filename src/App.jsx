@@ -7,6 +7,7 @@ import ProtectedRoute from "./utils/ProtectedRoute.jsx";
 import ShaderDev from "../components/ShaderDev/ShaderDev.jsx";
 import Contact from "../components/Contact/Contact.jsx";
 import ComingSoon from "../components/ComingSoon/ComingSoon.jsx";
+import About from "../components/About/About.jsx";
 import ReactGA from "react-ga4";
 
 ReactGA.initialize("G-45DB3M9465");
@@ -21,6 +22,7 @@ function App() {
       {/* <Route element={<ProtectedRoute />}>
         <Route path="/registration" element={<Register1 />} />
       </Route> */}
+      <Route path="/about" element={<About />} />
       <Route path="*" element={<ComingSoon />} />
     </Routes>
   );
