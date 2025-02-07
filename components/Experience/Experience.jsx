@@ -213,10 +213,10 @@ export default function Experience() {
         <Perf position="bottom-left" />
       )}
 
-      <mesh position={positionFinder}>
+      {/* <mesh position={positionFinder}>
         <sphereGeometry args={[0.01, 16, 16]} />
         <meshBasicMaterial color="red" />
-      </mesh>
+      </mesh> */}
 
       {/* {animationStage !== "intro" && <OrbitControls enableRotate={true} />} */}
 
@@ -252,12 +252,18 @@ export default function Experience() {
           </mesh>
         )}
 
-        <group position={[-0.013, 1.5, 0]} ref={orb}>
-          <EnergyOrb color="orange" lightIntensity={3} />
-        </group>
-
         <group rotation={[0, 0, 0]}>
+          {/* <Float
+            speed={1}
+            rotationIntensity={0.5}
+            floatIntensity={0.75}
+            floatingRange={[-0.1, 0.1]}
+          > */}
+          <group position={[-0.013, 1.5, 0]} ref={orb}>
+            <EnergyOrb color="orange" lightIntensity={3} />
+          </group>
           <CityModel scale={0.02} />
+          {/* </Float> */}
           <Float
             speed={1}
             rotationIntensity={1}

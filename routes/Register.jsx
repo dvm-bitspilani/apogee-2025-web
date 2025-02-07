@@ -4,8 +4,11 @@ import styles from "./register.module.scss";
 import BackButton from "../components/Registration/BackButton/BackButton";
 import regBackground from "../src/assets/Register/regBackground.png";
 import Preloader from "../components/Registration/Preloader/Preloader";
+import { useLocation } from "react-router";
 
 export default function Register() {
+  const location = useLocation();
+
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [imagesLoadedOnInstructions, setImagesLoadedOnInstructions] =
     useState(false);
@@ -29,6 +32,10 @@ export default function Register() {
         }
       };
     });
+
+    return () => {
+      localStorage.setItem("lastLocation", location.pathname);
+    };
   }, []);
 
   if (!imagesLoaded) {
