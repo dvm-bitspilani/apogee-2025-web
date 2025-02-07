@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setNavigationStage } from "../../../store/experienceAnimationsSlice/experienceAnimationsSlice";
 import { Contactus } from "../ContactUs/ContactUs";
 import { useControls } from "leva";
+import { ContactBoard } from "../ContactBoard/ContactBoard";
 
 export function CityModel({ scale = 1, ...props }) {
   const dispatch = useDispatch();
@@ -202,7 +203,8 @@ export function CityModel({ scale = 1, ...props }) {
             handleContactClick();
           }}
         >
-          <Contactus position={[-92, -39, -27]} scale={0.5} />
+          {/* <Contactus position={[-92, -39, -27]} scale={0.5} /> */}
+          <ContactBoard position={[-30, -30, -17]} scale={4} />
         </group>
         <mesh
           name="BrassPipe1752"
