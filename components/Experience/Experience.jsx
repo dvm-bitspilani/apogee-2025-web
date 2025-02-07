@@ -1,4 +1,4 @@
-import { Environment, Float } from "@react-three/drei";
+import { Environment, Float, OrbitControls } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import * as THREE from "three";
 import { useCallback, useEffect, useRef } from "react";
@@ -9,7 +9,9 @@ import { Blimp } from "./Blimp/Blimp.jsx";
 
 import {
   curStageUpdate,
+  setNavigationStage,
   experienceAnimationsActions,
+  reverseAnimation,
 } from "../../store/experienceAnimationsSlice/experienceAnimationsSlice.js";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -73,24 +75,6 @@ export default function Experience() {
     [cameraTarget]
   );
 
-  const setAnimStage = useCallback(
-    (name) => {
-      dispatch(experienceAnimationsActions.setAnimationStage(name));
-      dispatch(curStageUpdate(name));
-    },
-    [dispatch]
-  );
-
-  const reverseAnim = useCallback(() => {
-    if (animationStage === "landingToContact") {
-      setAnimStage("contactToLanding");
-    } else if (animationStage === "landingToEvents") {
-      setAnimStage("eventsToLanding");
-    } else if (animationStage === "landingToSpeakers") {
-      setAnimStage("speakersToLanding");
-    }
-  }, [animationStage, setAnimStage]);
-
   useGSAP(
     () => {
       // const timeline = gsap.timeline();
@@ -122,6 +106,8 @@ export default function Experience() {
         cameraTargetPosHelper([0.961, 0.078, -0.653]);
       } else if (animationStage === "landingToSpeakers") {
         cameraTargetPosHelper([-0.759, 0.58, 0.777]);
+      } else if (animationStage === "landingToAbout") {
+        cameraTargetPosHelper([0.9, 0.0599, 0.797]);
       } else {
         cameraTargetPosHelper([0, 0, 0]);
       }
@@ -169,22 +155,25 @@ export default function Experience() {
 
     window.addEventListener("keyup", (e) => {
       if (e.key === "a") {
-        setAnimStage("landingToSpeakers");
+        dispatch(setNavigationStage("landingToSpeakers"));
       } else if (e.key === "z") {
-        setAnimStage("landingToEvents");
+        dispatch(setNavigationStage("landingToEvents"));
+      } else if (e.key === "c") {
+        dispatch(setNavigationStage("landingToAbout"));
       } else if (e.key === "x") {
-        reverseAnim();
+        // reverseAnim();
+        dispatch(reverseAnimation(animationStage));
       }
     });
 
     return () => {
       window.addEventListener("keyup", (e) => {
         if (e.key === "a") {
-          setAnimStage("landingToSpeakers");
+          dispatch(setNavigationStage("landingToSpeakers"));
         } else if (e.key === "z") {
-          setAnimStage("landingToEvents");
+          dispatch(setNavigationStage("landingToEvents"));
         } else if (e.key === "x") {
-          reverseAnim();
+          dispatch(reverseAnimation(animationStage));
         }
       });
 
