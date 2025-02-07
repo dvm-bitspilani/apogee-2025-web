@@ -10,13 +10,7 @@ export default function Landing() {
     <>
       <Overlay />
       <Navbar />
-      <Canvas
-        camera={{
-          position: [0, 2.5, 0],
-          fov: 50,
-        }}
-        id="landingExperience"
-      >
+      <Canvas id="landingExperience">
         <Suspense fallback={<LoadingScreen />}>
           <Experience />
         </Suspense>
