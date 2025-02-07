@@ -1,7 +1,7 @@
 .aboutUs {
     height: 100vh;
     width: 100vw;
-    background-color: #000;
+    background-color: transparent;
     display: flex;
     flex-direction: column;
     background-size: cover;
@@ -38,9 +38,75 @@
                     width: 390px;
                     top: 100px;
                     left: 100px;
+                    overflow: hidden;
+
+                    .left {
+                        animation: left 0.7s ease-in-out;
+                    }
+
+                    .right {
+                        animation: right 0.7s ease-in-out;
+                    }
+                }
+
+                @keyframes left {
+                    10% {
+                        // transform: translateX(-50%);
+                    }
+
+                    15% {
+                        opacity: 0;
+                    }
+
+                    60% {
+                        opacity: 0;
+                        // transform: translateX(0);
+                    }
+
+                    80% {
+                        // transform: translateX(50%);
+                        opacity: 0;
+                    }
+
+                    85% {
+                        opacity: 1;
+                    }
+
+                    100% {
+                        transform: translateX(0);
+                    }
+                }
+
+                @keyframes right {
+                    10% {
+                        // transform: translateX(100%);
+                    }
+
+                    15% {
+                        opacity: 0;
+                    }
+
+                    60% {
+                        opacity: 0;
+                        // transform: translateX(0);
+                    }
+
+                    80% {
+                        // transform: translateX(-100%);
+                        opacity: 0;
+                    }
+
+                    85% {
+                        opacity: 1;
+                    }
+
+                    100% {
+                        // transform: translateX(0);
+                    }
                 }
             }
         }
+
         .textContainer {
             width: 50%;
 

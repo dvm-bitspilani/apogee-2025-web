@@ -9,7 +9,9 @@ import { Blimp } from "./Blimp/Blimp.jsx";
 
 import {
   curStageUpdate,
+  setNavigationStage,
   experienceAnimationsActions,
+  reverseAnimation,
 } from "../../store/experienceAnimationsSlice/experienceAnimationsSlice.js";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -34,7 +36,6 @@ import { getProject } from "@theatre/core";
 
 import animationStatesDesktop from "../../utils/animation_states/desktop/Landing Project.theatre-project-state.json";
 import animationStatesMobile from "../../utils/animation_states/mobile/Landing Project.theatre-project-state.json";
-import { setNavigationStage } from "../../utils/Helpers/Helpers.js";
 
 export const landingSheet = getProject("Landing Project", {
   state:
@@ -73,18 +74,6 @@ export default function Experience() {
     },
     [cameraTarget]
   );
-
-  const reverseAnim = useCallback(() => {
-    if (animationStage === "landingToContact") {
-      setNavigationStage(dispatch, "contactToLanding");
-    } else if (animationStage === "landingToEvents") {
-      setNavigationStage(dispatch, "eventsToLanding");
-    } else if (animationStage === "landingToSpeakers") {
-      setNavigationStage(dispatch, "speakersToLanding");
-    } else if (animationStage === "landingToAbout") {
-      setNavigationStage(dispatch, "aboutToLanding");
-    }
-  }, [animationStage, setNavigationStage]);
 
   useGSAP(
     () => {
@@ -166,24 +155,25 @@ export default function Experience() {
 
     window.addEventListener("keyup", (e) => {
       if (e.key === "a") {
-        setNavigationStage(dispatch, "landingToSpeakers");
+        dispatch(setNavigationStage("landingToSpeakers"));
       } else if (e.key === "z") {
-        setNavigationStage(dispatch, "landingToEvents");
+        dispatch(setNavigationStage("landingToEvents"));
       } else if (e.key === "c") {
-        setNavigationStage(dispatch, "landingToAbout");
+        dispatch(setNavigationStage("landingToAbout"));
       } else if (e.key === "x") {
-        reverseAnim();
+        // reverseAnim();
+        dispatch(reverseAnimation(animationStage));
       }
     });
 
     return () => {
       window.addEventListener("keyup", (e) => {
         if (e.key === "a") {
-          setNavigationStage(dispatch, "landingToSpeakers");
+          dispatch(setNavigationStage("landingToSpeakers"));
         } else if (e.key === "z") {
-          setNavigationStage(dispatch, "landingToEvents");
+          dispatch(setNavigationStage("landingToEvents"));
         } else if (e.key === "x") {
-          reverseAnim();
+          dispatch(reverseAnimation(animationStage));
         }
       });
 

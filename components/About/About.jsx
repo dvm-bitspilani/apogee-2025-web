@@ -5,9 +5,47 @@ import videoframeBackground from "../../src/assets/About/videoframeBackground.sv
 import back from "../../src/assets/About/back.png";
 
 export default function About() {
+
+  const [index, setIndex] = useState(0);
+  
+  const videoLinks = [
+    {
+      id: 0,
+      videoSrc: "https://www.youtube.com/embed/TY7h1Wnqb_A",
+      videoTitle: "APOGEE '24 | A Celestial Epiphany",
+    },
+    {
+      id: 1,
+      videoSrc: "https://www.youtube.com/embed/vEhXhoynQLc?si=azysTYvJ9YcPaFPN",
+      videoTitle: "APOGEE '23 | Official Aftermovie",
+    },
+    {
+      id: 2,
+      videoSrc:"https://www.youtube.com/embed/Mdhw5tI7HgE?si=Z2WNrhu5q8iyGREw&amp;controls=0",
+      videoTitle: "APOGEE '22 | The Encrypted Dimension",
+    },
+  ];
+
+  const prev = () => {
+    setIndex((currentIndex) => (currentIndex -1 + videoLinks.length) % videoLinks.length); 
+    // const slide = document.querySelector('#video');
+    // slide.classList.add(styles.left);
+    // setTimeout(() => {
+    //   slide.classList.remove(styles.left);
+    // }, 1000);
+  }
+
+  const next = () => {
+    setIndex((currentIndex) => (currentIndex + 1) % videoLinks.length);
+    // const slide = document.querySelector('#video');
+    // slide.classList.add(styles.right);
+    // setTimeout(() => {
+    //   slide.classList.remove(styles.right);
+    // },1000);
+  }
   return (
     <>
-      <div className={styles.aboutUs} style={{background: `url(${back})`}}>
+      <div className={styles.aboutUs}>
         <div className={styles.heading}>
           <img src={heading} alt="heading" />
         </div>
@@ -16,18 +54,22 @@ export default function About() {
           <div className={styles.videoWrapper}>
             <div className={styles.videoBackground}>
               <img src={videoframeBackground} alt="videoframeBackground"></img>
+              <div className={styles.buttonContainer}>
+                <button on onClick={prev}>Previous</button>
+                <button on onClick={next}>Next</button>
+              </div>
               <div className={styles.video}>
                 <iframe
-                  src="https://www.youtube.com/embed/TY7h1Wnqb_A"
+                  src={videoLinks[index].videoSrc}
                   title="YouTube video player"
                   // title={videoTitle}
                   preload="metadata"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  frameBorder="0"
                   webkitallowfullscreen="true"
                   mozallowfullscreen="true"
                   allowFullScreen
                   style={{ height: "100%", width: "100%" }}
+                  id="video"
                 />
               </div>
             </div>
