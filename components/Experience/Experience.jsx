@@ -160,8 +160,7 @@ export default function Experience() {
         dispatch(setNavigationStage("landingToEvents"));
       } else if (e.key === "c") {
         dispatch(setNavigationStage("landingToAbout"));
-      } else if (e.key === "x") {
-        // reverseAnim();
+      } else if (e.key === "Escape") {
         dispatch(reverseAnimation(animationStage));
       }
     });
@@ -172,7 +171,9 @@ export default function Experience() {
           dispatch(setNavigationStage("landingToSpeakers"));
         } else if (e.key === "z") {
           dispatch(setNavigationStage("landingToEvents"));
-        } else if (e.key === "x") {
+        } else if (e.key === "c") {
+          dispatch(setNavigationStage("landingToAbout"));
+        } else if (e.key === "Escape") {
           dispatch(reverseAnimation(animationStage));
         }
       });
