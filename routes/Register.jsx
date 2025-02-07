@@ -37,7 +37,7 @@ export default function Register() {
 
   return (
     <>
-      {window.innerWidth > 885 && (
+      {window.innerWidth > 885 && imagesLoadedOnInstructions && (
         <img
           src={regBackground}
           className={styles.backgroundImage}

@@ -9,7 +9,7 @@ import BackButton from "../BackButton/BackButton";
 import wheel from "../../../src/assets/Register/wheel.svg";
 import Preloader from "../Preloader/Preloader";
 
-export default function Instructions(setImagesLoadedOnInstructions) {
+export default function Instructions({ setImagesLoadedOnInstructions }) {
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
   const [userState, setUserState] = useState(false);
