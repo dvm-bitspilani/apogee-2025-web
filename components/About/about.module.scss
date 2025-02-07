@@ -236,16 +236,19 @@
 @media(max-width: 600px) {
 
     .aboutUs {
-        overflow-y: scroll;
+        height: 100lvh;
+        overflow-y: hidden;
 
         .heading {
             height: 130px;
         }
 
         .mainBody {
-            gap: 2.4rem;
+            gap: 1rem;
+            margin-top: 0;
+            padding-top: 6rem;
             margin-bottom: 3rem;
-            height: calc(100vh - 130px);
+            // height: calc(100vh - 130px);
             overflow-y: scroll;
 
             .textContainer {
@@ -256,6 +259,7 @@
                     margin-right: 2.3rem;
                     font-size: 17px;
                     line-height: normal;
+                    margin-bottom: 2rem;
                 }
             }
         }
