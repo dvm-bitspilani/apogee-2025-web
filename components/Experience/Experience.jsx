@@ -36,6 +36,7 @@ import { getProject } from "@theatre/core";
 
 import animationStatesDesktop from "../../utils/animation_states/desktop/Landing Project.theatre-project-state.json";
 import animationStatesMobile from "../../utils/animation_states/mobile/Landing Project.theatre-project-state.json";
+import { useThree } from "@react-three/fiber";
 import { ContactBoard } from "./ContactBoard/ContactBoard.jsx";
 import { AboutUs } from "./AboutUs/AboutUs.jsx";
 
@@ -55,10 +56,12 @@ const CAMERA_POSITION_LANDING = {
 
 export default function Experience() {
   const dispatch = useDispatch();
+  const { gl } = useThree();
 
   const cameraTarget = useRef(new THREE.Vector3(0, 0, 0));
   const orb = useRef();
   const blackScreen = useRef();
+  const cameraRef = useRef();
 
   const animationStage = useSelector(
     (state) => state.experienceAnimations.animationStage
@@ -133,6 +136,11 @@ export default function Experience() {
 
     return () => {
       clearTimeout(stopIntro);
+      landingSheet.project.ready.then(() => {
+        landingSheet.sequence.pause();
+        landingSheet.sequence.position = 0;
+      });
+      dispatch(experienceAnimationsActions.resetState());
     };
   }, []);
 
@@ -159,7 +167,7 @@ export default function Experience() {
       }
     });
 
-    window.addEventListener("keyup", (e) => {
+    const handleKeyUp = (e) => {
       if (e.key === "a") {
         dispatch(setNavigationStage("landingToSpeakers"));
       } else if (e.key === "z") {
@@ -169,20 +177,12 @@ export default function Experience() {
       } else if (e.key === "Escape") {
         dispatch(reverseAnimation(animationStage));
       }
-    });
+    };
+
+    window.addEventListener("keyup", handleKeyUp);
 
     return () => {
-      window.addEventListener("keyup", (e) => {
-        if (e.key === "a") {
-          dispatch(setNavigationStage("landingToSpeakers"));
-        } else if (e.key === "z") {
-          dispatch(setNavigationStage("landingToEvents"));
-        } else if (e.key === "c") {
-          dispatch(setNavigationStage("landingToAbout"));
-        } else if (e.key === "Escape") {
-          dispatch(reverseAnimation(animationStage));
-        }
-      });
+      window.removeEventListener("keyup", handleKeyUp);
 
       clearInterval(animationTimeout);
     };
@@ -232,9 +232,11 @@ export default function Experience() {
           theatreKey="camera"
           makeDefault
           fov={50}
+          position={[0, 2.5, 0]}
           lookAt={cameraTarget.current}
           far={4}
           near={0.03}
+          ref={cameraRef}
         />
 
         {animationStage === "intro" && (
