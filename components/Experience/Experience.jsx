@@ -1,4 +1,4 @@
-import { Environment, Float } from "@react-three/drei";
+import { Environment, Float, OrbitControls } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import * as THREE from "three";
 import { useCallback, useEffect, useRef } from "react";
@@ -16,8 +16,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
-// import studio from "@theatre/studio";
-// import extension from "@theatre/r3f/dist/extension";
+import studio from "@theatre/studio";
+import extension from "@theatre/r3f/dist/extension";
 import {
   aboutToLanding,
   contactToLanding,
@@ -34,14 +34,15 @@ import { getProject } from "@theatre/core";
 
 import animationStatesDesktop from "../../utils/animation_states/desktop/Landing Project.theatre-project-state.json";
 import animationStatesMobile from "../../utils/animation_states/mobile/Landing Project.theatre-project-state.json";
+import { setNavigationStage } from "../../utils/Helpers/Helpers.js";
 
 export const landingSheet = getProject("Landing Project", {
   state:
     window.innerWidth < 850 ? animationStatesMobile : animationStatesDesktop,
 }).sheet("Landing Sheet");
 
-// studio.initialize();
-// studio.extend(extension);
+studio.initialize();
+studio.extend(extension);
 
 const CAMERA_POSITION_LANDING = {
   x: 0.014999999999999462,
@@ -73,23 +74,17 @@ export default function Experience() {
     [cameraTarget]
   );
 
-  const setAnimStage = useCallback(
-    (name) => {
-      dispatch(experienceAnimationsActions.setAnimationStage(name));
-      dispatch(curStageUpdate(name));
-    },
-    [dispatch]
-  );
-
   const reverseAnim = useCallback(() => {
     if (animationStage === "landingToContact") {
-      setAnimStage("contactToLanding");
+      setNavigationStage(dispatch, "contactToLanding");
     } else if (animationStage === "landingToEvents") {
-      setAnimStage("eventsToLanding");
+      setNavigationStage(dispatch, "eventsToLanding");
     } else if (animationStage === "landingToSpeakers") {
-      setAnimStage("speakersToLanding");
+      setNavigationStage(dispatch, "speakersToLanding");
+    } else if (animationStage === "landingToAbout") {
+      setNavigationStage(dispatch, "aboutToLanding");
     }
-  }, [animationStage, setAnimStage]);
+  }, [animationStage, setNavigationStage]);
 
   useGSAP(
     () => {
@@ -122,6 +117,8 @@ export default function Experience() {
         cameraTargetPosHelper([0.961, 0.078, -0.653]);
       } else if (animationStage === "landingToSpeakers") {
         cameraTargetPosHelper([-0.759, 0.58, 0.777]);
+      } else if (animationStage === "landingToAbout") {
+        cameraTargetPosHelper([0.9, 0.0599, 0.797]);
       } else {
         cameraTargetPosHelper([0, 0, 0]);
       }
@@ -169,9 +166,11 @@ export default function Experience() {
 
     window.addEventListener("keyup", (e) => {
       if (e.key === "a") {
-        setAnimStage("landingToSpeakers");
+        setNavigationStage(dispatch, "landingToSpeakers");
       } else if (e.key === "z") {
-        setAnimStage("landingToEvents");
+        setNavigationStage(dispatch, "landingToEvents");
+      } else if (e.key === "c") {
+        setNavigationStage(dispatch, "landingToAbout");
       } else if (e.key === "x") {
         reverseAnim();
       }
@@ -180,9 +179,9 @@ export default function Experience() {
     return () => {
       window.addEventListener("keyup", (e) => {
         if (e.key === "a") {
-          setAnimStage("landingToSpeakers");
+          setNavigationStage(dispatch, "landingToSpeakers");
         } else if (e.key === "z") {
-          setAnimStage("landingToEvents");
+          setNavigationStage(dispatch, "landingToEvents");
         } else if (e.key === "x") {
           reverseAnim();
         }
@@ -196,7 +195,8 @@ export default function Experience() {
     positionFinder: {
       // value: [-0.7190000000000004, 0.11800000000000008, -0.663], // contact
       // value: [0.9610000000000005, 0.07800000000000007, -0.653], // events
-      value: [-0.7590000000000005, 0.58, 0.7770000000000005], // speakers
+      // value: [-0.7590000000000005, 0.58, 0.7770000000000005], // speakers
+      value: [0.9, 0.05999999999999972, 0.7970000000000005], // about
       step: 0.01,
     },
   });

@@ -21,15 +21,15 @@ export const experienceAnimationsActions = experienceAnimationsSlice.actions;
 // ASYNC ACTIONS
 
 export const curStageUpdate = (stage) => {
-  return async (dispatch) => {
+  return async (dispatch, dur1 = 0, animationDur = 2000) => {
     if (stage.split("To")[1].toLowerCase() === "landing") {
       setTimeout(() => {
         dispatch(experienceAnimationsActions.setCurStage(stage));
-      }, 300);
+      }, dur1);
     } else {
       setTimeout(() => {
         dispatch(experienceAnimationsActions.setCurStage(stage));
-      }, 1000);
+      }, animationDur);
     }
   };
 };
