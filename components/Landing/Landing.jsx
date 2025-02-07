@@ -22,7 +22,14 @@ export default function Landing() {
     <>
       <Overlay />
       <Navbar />
-      <Canvas id="landingExperience">
+      <Canvas
+        id="landingExperience"
+        camera={{
+          position: [0, 2.5, 0],
+          fov: 50,
+          zoom: window.innerWidth < 850 ? 0.5 : 1,
+        }}
+      >
         <Suspense fallback={<LoadingScreen />}>
           <Experience />
         </Suspense>

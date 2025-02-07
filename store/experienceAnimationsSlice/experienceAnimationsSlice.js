@@ -5,6 +5,7 @@ const experienceAnimationsSlice = createSlice({
   initialState: {
     animationStage: "intro",
     curStage: "landing",
+    isLoading: true,
   },
   reducers: {
     setAnimationStage: (state, action) => {
@@ -20,6 +21,9 @@ const experienceAnimationsSlice = createSlice({
     resetState: (state, action) => {
       state.animationStage = "intro";
       state.curStage = "landing";
+    },
+    toggleIsLoading: (state) => {
+      state.isLoading = !state.isLoading;
     },
   },
 });

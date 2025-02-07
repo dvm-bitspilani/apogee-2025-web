@@ -61,10 +61,13 @@ import { useSelector } from "react-redux";
 
 export default function Navbar() {
   const curStage = useSelector((state) => state.experienceAnimations.curStage);
+  const isLoading = useSelector(
+    (state) => state.experienceAnimations.isLoading
+  );
   return (
     <div
       className={styles.regbtnContainer}
-      style={{ opacity: curStage === "landing" ? 1 : 0 }}
+      style={{ opacity: curStage === "landing" && !isLoading ? 1 : 0 }}
     >
       <Link to="/registration">
         <div
