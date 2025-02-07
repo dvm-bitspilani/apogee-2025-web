@@ -116,7 +116,7 @@ export default function Instructions() {
         .then((res) => {
           // console.log("dlakjdalkdj2");
           setCookies("Access_token", response.access_token);
-          if (res.data.exists) {
+          if (!true && res.data.exists) {
             setCookies("user-auth", res.data);
             setCookies("Authorization", res.data.tokens.access);
             // router.push(

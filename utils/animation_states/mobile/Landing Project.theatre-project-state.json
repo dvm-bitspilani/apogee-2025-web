@@ -27,7 +27,7 @@
             },
             "far": 10,
             "near": 0.03,
-            "zoom": 0.65
+            "zoom": 0.5
           }
         }
       },
@@ -140,6 +140,14 @@
                     "handles": [0.5, 1, 0.5, 0],
                     "type": "bezier",
                     "value": 0.014999999999999462
+                  },
+                  {
+                    "id": "fMP1tmznZ6",
+                    "position": 17,
+                    "connectedRight": true,
+                    "handles": [0.5, 1, 0.5, 0],
+                    "type": "bezier",
+                    "value": 0.9
                   }
                 ]
               },
@@ -239,6 +247,14 @@
                     "handles": [0.5, 1, 0.5, 0],
                     "type": "bezier",
                     "value": 0.8809999999999996
+                  },
+                  {
+                    "id": "Lf4Q0c4dTK",
+                    "position": 17,
+                    "connectedRight": true,
+                    "handles": [0.5, 1, 0.5, 0],
+                    "type": "bezier",
+                    "value": 0.0599
                   }
                 ]
               },
@@ -341,6 +357,25 @@
                     "handles": [0.5, 1, 0.5, 0],
                     "type": "bezier",
                     "value": 2.4520800000000054
+                  },
+                  {
+                    "id": "OVKccnjARC",
+                    "position": 16.533,
+                    "connectedRight": true,
+                    "handles": [
+                      0.48556557554240076, 0.5066075747071525,
+                      0.5247270654519903, 1.0278559478614309
+                    ],
+                    "type": "bezier",
+                    "value": 1.1981381306337098
+                  },
+                  {
+                    "id": "KOAMJxBxcX",
+                    "position": 17,
+                    "connectedRight": true,
+                    "handles": [0.5, 1, 0.5, 0],
+                    "type": "bezier",
+                    "value": 0.9270226618075357
                   }
                 ]
               },
@@ -375,6 +410,7 @@
   },
   "definitionVersion": "0.4.0",
   "revisionHistory": [
+    "uV4NNEya1GxWlTlK",
     "CHs4M7QQRnXsgy2-",
     "mm09rvHrtXARh2os",
     "wpUjJ6jX4lZsCtaT",
