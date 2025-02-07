@@ -87,6 +87,7 @@
   z-index: 10;
   display: flex;
   justify-content: center;
+  transition: opacity 250ms linear;
 
   a {
     text-decoration: none;
@@ -101,11 +102,15 @@
       display: flex;
       justify-content: center;
       align-items: center;
-  
+
       img {
         margin-top: 1rem;
         height: 60px;
       }
     }
+  }
+  @media screen and (max-width: 768px) {
+    scale: 0.7;
+    transform: translate(0, 20.5%);
   }
 }

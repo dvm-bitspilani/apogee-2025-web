@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styles from "./about.module.scss";
-import heading from "../../src/assets/About/heading.svg";
+import heading from "../../src/assets/About/heading.png";
 import videoframeBackground from "../../src/assets/About/videoframeBackground.svg";
-import back from "../../src/assets/About/back.png";
+import left from "../../src/assets/About/left.svg";
+import right from "../../src/assets/About/right.svg";
 
 export default function About() {
 
@@ -53,10 +54,10 @@ export default function About() {
         <div className={styles.mainBody}>
           <div className={styles.videoWrapper}>
             <div className={styles.videoBackground}>
-              <img src={videoframeBackground} alt="videoframeBackground"></img>
+              <img id={styles.frame} src={videoframeBackground} alt="videoframeBackground"></img>
               <div className={styles.buttonContainer}>
-                <button on onClick={prev}>Previous</button>
-                <button on onClick={next}>Next</button>
+                <button on onClick={prev} className={styles.prev}><img  src={left}></img></button>
+                <button on onClick={next} className={styles.next}><img  src={right}></img></button>
               </div>
               <div className={styles.video}>
                 <iframe

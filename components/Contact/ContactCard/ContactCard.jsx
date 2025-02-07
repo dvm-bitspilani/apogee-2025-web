@@ -3,7 +3,7 @@ import styles from "./contactcard.module.scss";
 import poster from "../../../src/assets/contact-poster.png";
 import person from "../../../src/assets/contact-demo.png";
 
-const ContactCard = () => {
+const ContactCard = ({ name, dept, personImg }) => {
   return (
     <>
       <div className={styles.wrapper}>
@@ -28,14 +28,12 @@ const ContactCard = () => {
               strokeWidth="0.690498"
             />
           </svg>
-          <div className={styles.text}>pratham sonawane</div>
+          <div className={styles.text}>{name}</div>
         </div>
         <div className={styles.pic}>
-          <img src={person} alt="" />
+          <img src={personImg} alt="" />
         </div>
-        <div className={styles.dept}>
-          Sponsorships and Company Collaborations
-        </div>
+        <div className={styles.dept}>{dept}</div>
         <div className={styles.contact}>
           <svg
             xmlns="http://www.w3.org/2000/svg"

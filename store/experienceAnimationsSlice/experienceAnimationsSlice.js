@@ -5,13 +5,25 @@ const experienceAnimationsSlice = createSlice({
   initialState: {
     animationStage: "intro",
     curStage: "landing",
+    isLoading: true,
   },
   reducers: {
     setAnimationStage: (state, action) => {
       state.animationStage = action.payload;
     },
     setCurStage: (state, action) => {
-      state.curStage = action.payload.split("To")[1].toLowerCase();
+      if (action.payload === "landing") {
+        state.curStage === action.payload;
+      } else {
+        state.curStage = action.payload.split("To")[1].toLowerCase();
+      }
+    },
+    resetState: (state, action) => {
+      state.animationStage = "intro";
+      state.curStage = "landing";
+    },
+    toggleIsLoading: (state) => {
+      state.isLoading = !state.isLoading;
     },
   },
 });
