@@ -15,7 +15,7 @@ export function CityModel({ scale = 1, ...props }) {
 
   const group = useRef();
   const { nodes, materials, animations } = useGLTF(
-    "/models/ActualWebsiteModel2-v1.glb"
+    "/models/ActualWebsiteModel2-v2.glb"
   );
   const { actions } = useAnimations(animations, group);
 
@@ -39,8 +39,6 @@ export function CityModel({ scale = 1, ...props }) {
       <group name="Scene">
         <mesh
           name="Circle002"
-          castShadow
-          receiveShadow
           geometry={nodes.Circle002.geometry}
           material={materials["Material__188.001"]}
           position={[1.485, 28.162, 5.106]}
@@ -49,8 +47,6 @@ export function CityModel({ scale = 1, ...props }) {
         />
         <mesh
           name="Plane261"
-          castShadow
-          receiveShadow
           geometry={nodes.Plane261.geometry}
           material={materials["Material__188.001"]}
           position={[6.648, 6.776, 0.019]}
@@ -59,8 +55,6 @@ export function CityModel({ scale = 1, ...props }) {
         />
         <mesh
           name="Gear1006"
-          castShadow
-          receiveShadow
           geometry={nodes.Gear1006.geometry}
           material={materials["Material__188.001"]}
           position={[42.216, 7.738, -9.619]}
@@ -69,8 +63,6 @@ export function CityModel({ scale = 1, ...props }) {
         />
         <mesh
           name="Empy"
-          castShadow
-          receiveShadow
           geometry={nodes.Empy.geometry}
           material={materials["Material__188.001"]}
           position={[33.525, 7, -9.173]}
@@ -85,8 +77,6 @@ export function CityModel({ scale = 1, ...props }) {
         >
           <mesh
             name="BrassPipe1406"
-            castShadow
-            receiveShadow
             geometry={nodes.BrassPipe1406.geometry}
             material={materials["Material__188.001"]}
             position={[0, -9.639, 0.564]}
@@ -103,8 +93,6 @@ export function CityModel({ scale = 1, ...props }) {
         />
         <mesh
           name="BrassPipe1311"
-          castShadow
-          receiveShadow
           geometry={nodes.BrassPipe1311.geometry}
           material={materials["Material__188.001"]}
           position={[33.9, 3.87, -3.423]}
@@ -113,8 +101,6 @@ export function CityModel({ scale = 1, ...props }) {
         />
         <mesh
           name="BrassPipe1313"
-          castShadow
-          receiveShadow
           geometry={nodes.BrassPipe1313.geometry}
           material={materials["Material__188.001"]}
           position={[33.9, 3.87, -3.992]}
@@ -123,8 +109,6 @@ export function CityModel({ scale = 1, ...props }) {
         />
         <mesh
           name="Gear1026"
-          castShadow
-          receiveShadow
           geometry={nodes.Gear1026.geometry}
           material={materials["Material__188.001"]}
           position={[33.9, 3.87, -3.319]}
@@ -133,8 +117,6 @@ export function CityModel({ scale = 1, ...props }) {
         />
         <mesh
           name="Brass90Turn1249"
-          castShadow
-          receiveShadow
           geometry={nodes.Brass90Turn1249.geometry}
           material={materials["Material__188.001"]}
           position={[38.907, 4.251, -2.592]}
@@ -143,8 +125,6 @@ export function CityModel({ scale = 1, ...props }) {
         />
         <mesh
           name="WoodPlankWall13752"
-          castShadow
-          receiveShadow
           geometry={nodes.WoodPlankWall13752.geometry}
           material={materials["Material__188.001"]}
           position={[-52.183, 18.762, 12.523]}
@@ -153,8 +133,6 @@ export function CityModel({ scale = 1, ...props }) {
         />
         <mesh
           name="WoodPlankWall13754"
-          castShadow
-          receiveShadow
           geometry={nodes.WoodPlankWall13754.geometry}
           material={materials["Material__188.001"]}
           position={[-53.554, 15.516, 9.779]}
@@ -163,8 +141,6 @@ export function CityModel({ scale = 1, ...props }) {
         />
         <mesh
           name="Empy003"
-          castShadow
-          receiveShadow
           geometry={nodes.Empy003.geometry}
           material={materials["Material__188.001"]}
           position={[-49.698, 6.633, 15.489]}
@@ -177,8 +153,6 @@ export function CityModel({ scale = 1, ...props }) {
         >
           <mesh
             name="BrassPipe1694"
-            castShadow
-            receiveShadow
             geometry={nodes.BrassPipe1694.geometry}
             material={materials["Material__188.001"]}
             position={[0, -9.525, 0]}
@@ -206,8 +180,6 @@ export function CityModel({ scale = 1, ...props }) {
         </group>
         <mesh
           name="BrassPipe1752"
-          castShadow
-          receiveShadow
           geometry={nodes.BrassPipe1752.geometry}
           material={materials["Material__188.001"]}
           position={[-43.151, 8.879, 9.191]}
@@ -216,8 +188,6 @@ export function CityModel({ scale = 1, ...props }) {
         />
         <mesh
           name="Brass90Turn1497"
-          castShadow
-          receiveShadow
           geometry={nodes.Brass90Turn1497.geometry}
           material={materials["Material__188.001"]}
           position={[-43.151, 5.654, 9.191]}
@@ -226,8 +196,6 @@ export function CityModel({ scale = 1, ...props }) {
         />
         <mesh
           name="Brass90Turn1498"
-          castShadow
-          receiveShadow
           geometry={nodes.Brass90Turn1498.geometry}
           material={materials["Material__188.001"]}
           position={[-43.151, 4.984, 9.927]}
@@ -236,8 +204,6 @@ export function CityModel({ scale = 1, ...props }) {
         />
         <mesh
           name="BrassPipe1754"
-          castShadow
-          receiveShadow
           geometry={nodes.BrassPipe1754.geometry}
           material={materials["Material__188.001"]}
           position={[-45.355, 4.237, 17.379]}
@@ -246,8 +212,6 @@ export function CityModel({ scale = 1, ...props }) {
         />
         <mesh
           name="Brass90Turn1855"
-          castShadow
-          receiveShadow
           geometry={nodes.Brass90Turn1855.geometry}
           material={materials["Material__188.001"]}
           position={[45.516, 1.729, -35.905]}
@@ -256,8 +220,6 @@ export function CityModel({ scale = 1, ...props }) {
         />
         <mesh
           name="BrassPipe11469"
-          castShadow
-          receiveShadow
           geometry={nodes.BrassPipe11469.geometry}
           material={materials["Material__188.001"]}
           position={[54.823, 10.254, -30.306]}
@@ -269,4 +231,4 @@ export function CityModel({ scale = 1, ...props }) {
   );
 }
 
-useGLTF.preload("/models/ActualWebsiteModel2-v1.glb");
+useGLTF.preload("/models/ActualWebsiteModel2-v2.glb");
