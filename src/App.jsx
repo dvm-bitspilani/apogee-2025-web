@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router";
+import { Route, Routes, useLocation } from "react-router";
 import GlobalLayout from "../layouts/GlobalLayout.jsx";
 import Experience from "../components/Experience/Experience.jsx";
 import Landing from "../components/Landing/Landing.jsx";
