@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router";
+import { Route, Routes, useLocation } from "react-router";
 import GlobalLayout from "../layouts/GlobalLayout.jsx";
 import Experience from "../components/Experience/Experience.jsx";
 import Landing from "../components/Landing/Landing.jsx";
@@ -18,22 +18,30 @@ const Register = lazy(() => import("../routes/Register.jsx"));
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Landing />} />
-      <Route path="/shader-dev" element={<ShaderDev />} />
-      <Route
-        path="/registration"
-        element={
-          <Suspense fallback={<Preloader />}>
-            <Register />
-          </Suspense>
-        }
-      />
-      <Route path="/contact" element={<Contact />} />
-      {/* <Route element={<ProtectedRoute />}>
+      <Route element={<GlobalLayout />}>
+        <Route path="/" element={<Landing />} />
+        <Route path="/shader-dev" element={<ShaderDev />} />
+        <Route
+          path="/registration"
+          element={
+            <Suspense fallback={<Preloader />}>
+              <Register />
+            </Suspense>
+          }
+        />
+        <Route path="/contact" element={<Contact />} />
+        {/* <Route element={<ProtectedRoute />}>
+      <Route element={<GlobalLayout />}>
+        <Route path="/" element={<Landing />} />
+        <Route path="/registration" element={<Register />} />
+        <Route path="/shader-dev" element={<ShaderDev />} />
+        <Route path="/contact" element={<Contact />} />
+        {/* <Route element={<ProtectedRoute />}>
         <Route path="/registration" element={<Register1 />} />
-      </Route> */}
-      <Route path="/about" element={<About />} />
-      <Route path="*" element={<ComingSoon />} />
+        </Route> */}
+        <Route path="/about" element={<About />} />
+        <Route path="*" element={<ComingSoon />} />
+      </Route>
     </Routes>
   );
 }

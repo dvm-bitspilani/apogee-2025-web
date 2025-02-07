@@ -1,7 +1,7 @@
 import { Environment, Float, OrbitControls } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import * as THREE from "three";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Leva, useControls } from "leva";
 import EnergyOrb from "../EnergyOrb/EnergyOrb.jsx";
 import { CityModel } from "./CityModel/CityModel.jsx";
@@ -36,6 +36,10 @@ import { getProject } from "@theatre/core";
 
 import animationStatesDesktop from "../../utils/animation_states/desktop/Landing Project.theatre-project-state.json";
 import animationStatesMobile from "../../utils/animation_states/mobile/Landing Project.theatre-project-state.json";
+import { useThree } from "@react-three/fiber";
+import { ContactBoard } from "./ContactBoard/ContactBoard.jsx";
+import { AboutUs } from "./AboutUs/AboutUs.jsx";
+import { Speakers } from "./Speakers/Speakers.jsx";
 
 export const landingSheet = getProject("Landing Project", {
   state:
@@ -53,14 +57,20 @@ const CAMERA_POSITION_LANDING = {
 
 export default function Experience() {
   const dispatch = useDispatch();
+  const { gl } = useThree();
 
   const cameraTarget = useRef(new THREE.Vector3(0, 0, 0));
   const orb = useRef();
   const blackScreen = useRef();
+  const cameraRef = useRef();
 
   const animationStage = useSelector(
     (state) => state.experienceAnimations.animationStage
   );
+
+  const handleAboutClick = () => {
+    dispatch(setNavigationStage("landingToAbout"));
+  };
 
   const cameraTargetPosHelper = useCallback(
     (pos) => {
@@ -127,6 +137,11 @@ export default function Experience() {
 
     return () => {
       clearTimeout(stopIntro);
+      landingSheet.project.ready.then(() => {
+        landingSheet.sequence.pause();
+        landingSheet.sequence.position = 0;
+      });
+      dispatch(experienceAnimationsActions.resetState());
     };
   }, []);
 
@@ -153,7 +168,7 @@ export default function Experience() {
       }
     });
 
-    window.addEventListener("keyup", (e) => {
+    const handleKeyUp = (e) => {
       if (e.key === "a") {
         dispatch(setNavigationStage("landingToSpeakers"));
       } else if (e.key === "z") {
@@ -163,20 +178,12 @@ export default function Experience() {
       } else if (e.key === "Escape") {
         dispatch(reverseAnimation(animationStage));
       }
-    });
+    };
+
+    window.addEventListener("keyup", handleKeyUp);
 
     return () => {
-      window.addEventListener("keyup", (e) => {
-        if (e.key === "a") {
-          dispatch(setNavigationStage("landingToSpeakers"));
-        } else if (e.key === "z") {
-          dispatch(setNavigationStage("landingToEvents"));
-        } else if (e.key === "c") {
-          dispatch(setNavigationStage("landingToAbout"));
-        } else if (e.key === "Escape") {
-          dispatch(reverseAnimation(animationStage));
-        }
-      });
+      window.removeEventListener("keyup", handleKeyUp);
 
       clearInterval(animationTimeout);
     };
@@ -192,6 +199,12 @@ export default function Experience() {
     },
   });
 
+  const [hovered, setHovered] = useState(false);
+
+  useEffect(() => {
+    document.body.style.cursor = hovered ? "pointer" : "auto";
+  }, [hovered]);
+
   return (
     <>
       {window.innerWidth < 850 ? (
@@ -200,10 +213,10 @@ export default function Experience() {
         <Perf position="bottom-left" />
       )}
 
-      <mesh position={positionFinder}>
+      {/* <mesh position={positionFinder}>
         <sphereGeometry args={[0.01, 16, 16]} />
         <meshBasicMaterial color="red" />
-      </mesh>
+      </mesh> */}
 
       {/* {animationStage !== "intro" && <OrbitControls enableRotate={true} />} */}
 
@@ -220,9 +233,11 @@ export default function Experience() {
           theatreKey="camera"
           makeDefault
           fov={50}
+          position={[0, 2.5, 0]}
           lookAt={cameraTarget.current}
           far={4}
           near={0.03}
+          ref={cameraRef}
         />
 
         {animationStage === "intro" && (
@@ -237,12 +252,18 @@ export default function Experience() {
           </mesh>
         )}
 
-        <group position={[-0.013, 1.5, 0]} ref={orb}>
-          <EnergyOrb color="orange" lightIntensity={3} />
-        </group>
-
         <group rotation={[0, 0, 0]}>
+          {/* <Float
+            speed={1}
+            rotationIntensity={0.5}
+            floatIntensity={0.75}
+            floatingRange={[-0.1, 0.1]}
+          > */}
+          <group position={[-0.013, 1.5, 0]} ref={orb}>
+            <EnergyOrb color="orange" lightIntensity={3} />
+          </group>
           <CityModel scale={0.02} />
+          {/* </Float> */}
           <Float
             speed={1}
             rotationIntensity={1}
@@ -252,6 +273,31 @@ export default function Experience() {
             <Blimp scale={0.25} position={[0, 0.75, 0]} />
           </Float>
         </group>
+
+        <group
+          position={[0.85, 0.4, 0.75]}
+          rotation={[Math.PI / 2, 0, Math.PI / 4.5]}
+          onClick={() => {
+            handleAboutClick();
+          }}
+          onPointerOver={() => setHovered(true)}
+          onPointerOut={() => setHovered(false)}
+        >
+          <AboutUs position={[0, 0, 0]} scale={0.1} />
+        </group>
+
+        {/* <group
+          position={[-0.72, 0.47, 0.80]}
+          rotation={[Math.PI / 2, 0, -Math.PI / 4.5]}
+          onClick={() => {
+            handleAboutClick();
+          }}
+          onPointerOver={() => setHovered(true)}
+          onPointerOut={() => setHovered(false)}
+        >
+          <Speakers position={[0, 0, 0]} scale={0.1} />
+        </group> */}
+      
       </SheetProvider>
     </>
   );

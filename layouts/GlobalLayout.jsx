@@ -1,10 +1,12 @@
-import {Outlet} from "react-router";
+import { useEffect } from "react";
+import { Outlet, useLocation } from "react-router";
 
 export default function GlobalLayout() {
-    return (
-        <>
-            <h1>Global Layout</h1>
-            <Outlet/>
-        </>
-    )
+  const location = useLocation();
+  return (
+    <>
+      {/* <h1>Global Layout</h1> */}
+      <Outlet />
+    </>
+  );
 }

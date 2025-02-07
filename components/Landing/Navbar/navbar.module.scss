@@ -87,6 +87,7 @@
   z-index: 10;
   display: flex;
   justify-content: center;
+  transition: opacity 250ms linear;
 
   a {
     text-decoration: none;

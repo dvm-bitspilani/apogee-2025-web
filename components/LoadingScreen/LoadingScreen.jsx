@@ -3,6 +3,7 @@ import {
   OrbitControls,
   useProgress,
   Environment,
+  PerspectiveCamera,
 } from "@react-three/drei";
 import "react-circular-progressbar/dist/styles.css";
 import EnergyOrb from "../EnergyOrb/EnergyOrb";
@@ -16,6 +17,7 @@ export default function LoadingScreen() {
   });
   return (
     <>
+      <PerspectiveCamera makeDefault position={[0, 2.5, 0]} />
       <Environment
         files="/environments/sunset1by64.hdr"
         environmentIntensity={1}
