@@ -160,8 +160,7 @@ export default function Experience() {
         dispatch(setNavigationStage("landingToEvents"));
       } else if (e.key === "c") {
         dispatch(setNavigationStage("landingToAbout"));
-      } else if (e.key === "x") {
-        // reverseAnim();
+      } else if (e.key === "Escape") {
         dispatch(reverseAnimation(animationStage));
       }
     });
@@ -172,7 +171,9 @@ export default function Experience() {
           dispatch(setNavigationStage("landingToSpeakers"));
         } else if (e.key === "z") {
           dispatch(setNavigationStage("landingToEvents"));
-        } else if (e.key === "x") {
+        } else if (e.key === "c") {
+          dispatch(setNavigationStage("landingToAbout"));
+        } else if (e.key === "Escape") {
           dispatch(reverseAnimation(animationStage));
         }
       });
@@ -248,7 +249,7 @@ export default function Experience() {
             floatIntensity={0.75}
             floatingRange={[-0.1, 0.1]}
           >
-            <Blimp scale={0.15} position={[0, 0.75, 0]} />
+            <Blimp scale={0.25} position={[0, 0.75, 0]} />
           </Float>
         </group>
       </SheetProvider>
