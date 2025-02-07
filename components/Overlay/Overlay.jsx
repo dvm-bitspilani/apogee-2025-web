@@ -15,8 +15,8 @@ export default function Overlay() {
       className={styles.overlay}
       style={
         curState === "landing"
-          ? { display: "none", pointerEvents: "none" }
-          : { display: "block", pointerEvents: "auto" }
+          ? { opacity: 0, pointerEvents: "none" }
+          : { opacity: 1, pointerEvents: "auto" }
       }
     >
       {curState === "contact" && <Contact />}

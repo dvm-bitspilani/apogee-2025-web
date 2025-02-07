@@ -16,8 +16,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
-import studio from "@theatre/studio";
-import extension from "@theatre/r3f/dist/extension";
+// import studio from "@theatre/studio";
+// import extension from "@theatre/r3f/dist/extension";
 import {
   aboutToLanding,
   contactToLanding,
@@ -41,8 +41,8 @@ export const landingSheet = getProject("Landing Project", {
     window.innerWidth < 850 ? animationStatesMobile : animationStatesDesktop,
 }).sheet("Landing Sheet");
 
-studio.initialize();
-studio.extend(extension);
+// studio.initialize();
+// studio.extend(extension);
 
 const CAMERA_POSITION_LANDING = {
   x: 0.014999999999999462,
