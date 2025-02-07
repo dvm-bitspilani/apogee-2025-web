@@ -54,7 +54,7 @@ export default function About() {
         <div className={styles.mainBody}>
           <div className={styles.videoWrapper}>
             <div className={styles.videoBackground}>
-              <img src={videoframeBackground} alt="videoframeBackground"></img>
+              <img id={styles.frame} src={videoframeBackground} alt="videoframeBackground"></img>
               <div className={styles.buttonContainer}>
                 <button on onClick={prev} className={styles.prev}><img  src={left}></img></button>
                 <button on onClick={next} className={styles.next}><img  src={right}></img></button>
