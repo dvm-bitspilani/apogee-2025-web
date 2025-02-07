@@ -269,7 +269,7 @@ export default function Experience() {
 
         <group
           position={[0.85, 0.4, 0.75]}
-          rotation={[Math.PI / 2, 0, Math.PI / 10]}
+          rotation={[Math.PI / 2, 0, Math.PI / 4.5]}
           onClick={() => {
             handleAboutClick();
           }}

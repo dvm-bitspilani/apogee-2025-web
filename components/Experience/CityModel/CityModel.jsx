@@ -178,7 +178,7 @@ export function CityModel({ scale = 1, ...props }) {
           rotation={[0, 1.571, 0]}
         />
         <group
-          rotation={[Math.PI / 2, 0, 0]}
+          rotation={[Math.PI / 2, 0, -Math.PI / 10]}
           onClick={() => {
             handleContactClick();
           }}
@@ -186,7 +186,7 @@ export function CityModel({ scale = 1, ...props }) {
           onPointerOut={() => setHovered(false)}
         >
           {/* <Contactus position={[-92, -39, -27]} scale={0.5} /> */}
-          <ContactBoard position={[-34, -30, -19]} scale={5.5} />
+          <ContactBoard position={[-30, -35, -19]} scale={5.5} />
           {/* <pointLight
             intensity={0}
             position={[-30, -30, -25]}
