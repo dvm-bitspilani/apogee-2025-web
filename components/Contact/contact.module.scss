@@ -30,6 +30,13 @@
     gap: 1rem;
     justify-content: center;
     align-items: center;
-    margin-top: 2rem;
+    margin-top: 1rem;
+    height: 75%;
+    @media (width<1100px) {
+      overflow-y: scroll;
+    }
+    @media (width<460px) {
+      gap: 0.4rem;
+    }
   }
 }
