@@ -8,7 +8,7 @@
 
     .heading {
         text-align: center;
-        height: 120px;
+        height: 190px;
 
         img {
             height: 100%;
@@ -25,20 +25,53 @@
         .videoWrapper {
 
             .videoBackground {
-                height: 400px;
+                height: 370px;
                 position: relative;
 
                 img {
                     height: 100%;
+                    // pointer-events: none;
+                }
+
+                .buttonContainer {
+
+                    .prev {
+                        position: absolute;
+                        left: -5px;
+                        top: calc(50% - 17.5px);
+
+                        img {
+                            height: 35px;
+                            cursor: pointer;
+                        }
+                    }
+
+                    .next {
+                        position: absolute;
+                        right: -5px;
+                        top: calc(50% - 17.5px);
+
+                        img {
+                            height: 35px;
+                            cursor: pointer;
+                        }
+                    }
                 }
 
                 .video {
                     position: absolute;
-                    height: 200px;
-                    width: 390px;
-                    top: 100px;
-                    left: 100px;
+                    height: 218px;
+                    width: 376px;
+                    top: 75px;
+                    left: 82px;
                     overflow: hidden;
+                    border-radius: 15px;
+                    // z-index: -2;
+                    
+                    iframe{
+                        pointer-events: all !important;
+                        cursor: pointer;
+                    }
 
                     .left {
                         animation: left 0.7s ease-in-out;
@@ -111,7 +144,8 @@
             width: 50%;
 
             p {
-                color: white;
+                color: #CDBB93;
+                text-shadow: 4px 5px 1px #000;
                 font-family: "OldNewspaperTypes";
                 font-weight: 500;
                 font-size: 25px;
