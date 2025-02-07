@@ -31,7 +31,7 @@ export default function Register() {
     });
   }, []);
 
-  if (!imagesLoaded && !imagesLoadedOnInstructions) {
+  if (!imagesLoaded) {
     return <Preloader />;
   }
 

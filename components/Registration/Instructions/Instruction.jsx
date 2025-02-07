@@ -179,9 +179,9 @@ export default function Instructions({ setImagesLoadedOnInstructions }) {
     onFailure: handleLoginError,
   });
 
-  // if (!imagesLoaded) {
-  //   return <Preloader />;
-  // }
+  if (!imagesLoaded) {
+    return <Preloader />;
+  }
 
   return (
     <>
