@@ -1,7 +1,7 @@
 import { Environment, Float, OrbitControls } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import * as THREE from "three";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Leva, useControls } from "leva";
 import EnergyOrb from "../EnergyOrb/EnergyOrb.jsx";
 import { CityModel } from "./CityModel/CityModel.jsx";
@@ -197,6 +197,12 @@ export default function Experience() {
     },
   });
 
+  const [hovered, setHovered] = useState(false);
+
+  useEffect(() => {
+    document.body.style.cursor = hovered ? "pointer" : "auto";
+  }, [hovered]);
+
   return (
     <>
       {window.innerWidth < 850 ? (
@@ -264,6 +270,8 @@ export default function Experience() {
           onClick={() => {
             handleAboutClick();
           }}
+          onPointerOver={() => setHovered(true)}
+          onPointerOut={() => setHovered(false)}
         >
           <ContactBoard position={[0, 0, 0]} scale={0.1} />
         </group>
