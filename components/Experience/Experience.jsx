@@ -1,7 +1,7 @@
 import { Environment, Float, OrbitControls } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import * as THREE from "three";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Leva, useControls } from "leva";
 import EnergyOrb from "../EnergyOrb/EnergyOrb.jsx";
 import { CityModel } from "./CityModel/CityModel.jsx";
@@ -37,6 +37,8 @@ import { getProject } from "@theatre/core";
 import animationStatesDesktop from "../../utils/animation_states/desktop/Landing Project.theatre-project-state.json";
 import animationStatesMobile from "../../utils/animation_states/mobile/Landing Project.theatre-project-state.json";
 import { useThree } from "@react-three/fiber";
+import { ContactBoard } from "./ContactBoard/ContactBoard.jsx";
+import { AboutUs } from "./AboutUs/AboutUs.jsx";
 
 export const landingSheet = getProject("Landing Project", {
   state:
@@ -64,6 +66,10 @@ export default function Experience() {
   const animationStage = useSelector(
     (state) => state.experienceAnimations.animationStage
   );
+
+  const handleAboutClick = () => {
+    dispatch(setNavigationStage("landingToAbout"));
+  };
 
   const cameraTargetPosHelper = useCallback(
     (pos) => {
@@ -192,6 +198,12 @@ export default function Experience() {
     },
   });
 
+  const [hovered, setHovered] = useState(false);
+
+  useEffect(() => {
+    document.body.style.cursor = hovered ? "pointer" : "auto";
+  }, [hovered]);
+
   return (
     <>
       {window.innerWidth < 850 ? (
@@ -253,6 +265,18 @@ export default function Experience() {
           >
             <Blimp scale={0.25} position={[0, 0.75, 0]} />
           </Float>
+        </group>
+
+        <group
+          position={[0.85, 0.4, 0.75]}
+          rotation={[Math.PI / 2, 0, Math.PI / 10]}
+          onClick={() => {
+            handleAboutClick();
+          }}
+          onPointerOver={() => setHovered(true)}
+          onPointerOut={() => setHovered(false)}
+        >
+          <AboutUs position={[0, 0, 0]} scale={0.1} />
         </group>
       </SheetProvider>
     </>
