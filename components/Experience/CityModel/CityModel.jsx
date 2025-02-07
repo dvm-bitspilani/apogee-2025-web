@@ -187,11 +187,11 @@ export function CityModel({ scale = 1, ...props }) {
         >
           {/* <Contactus position={[-92, -39, -27]} scale={0.5} /> */}
           <ContactBoard position={[-34, -30, -19]} scale={5.5} />
-          <pointLight
+          {/* <pointLight
             intensity={0}
             position={[-30, -30, -25]}
             color="#fc4103"
-          />
+          /> */}
         </group>
         <mesh
           name="BrassPipe1752"

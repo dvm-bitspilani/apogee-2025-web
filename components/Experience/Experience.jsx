@@ -37,6 +37,7 @@ import { getProject } from "@theatre/core";
 import animationStatesDesktop from "../../utils/animation_states/desktop/Landing Project.theatre-project-state.json";
 import animationStatesMobile from "../../utils/animation_states/mobile/Landing Project.theatre-project-state.json";
 import { ContactBoard } from "./ContactBoard/ContactBoard.jsx";
+import { AboutUs } from "./AboutUs/AboutUs.jsx";
 
 export const landingSheet = getProject("Landing Project", {
   state:
@@ -265,15 +266,15 @@ export default function Experience() {
         </group>
 
         <group
-          position={[0.8, 0.34, 0.66]}
-          rotation={[Math.PI / 2, 0, 0]}
+          position={[0.85, 0.4, 0.75]}
+          rotation={[Math.PI / 2, 0, Math.PI / 10]}
           onClick={() => {
             handleAboutClick();
           }}
           onPointerOver={() => setHovered(true)}
           onPointerOut={() => setHovered(false)}
         >
-          <ContactBoard position={[0, 0, 0]} scale={0.1} />
+          <AboutUs position={[0, 0, 0]} scale={0.1} />
         </group>
       </SheetProvider>
     </>
