@@ -39,8 +39,9 @@
 
                     .prev {
                         position: absolute;
-                        left: -5px;
+                        left: -15px;
                         top: calc(50% - 17.5px);
+                        background-color: transparent;
 
                         img {
                             height: 35px;
@@ -50,8 +51,9 @@
 
                     .next {
                         position: absolute;
-                        right: -5px;
+                        right: -15px;
                         top: calc(50% - 17.5px);
+                        background-color: transparent;
 
                         img {
                             height: 35px;
