@@ -6,7 +6,7 @@ import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 
 export function Speakers({ scale = 1, position = [0, 0, 0], ...props }) {
-  const { nodes, materials } = useGLTF("/models/AboutUsBoardEmm.glb");
+  const { nodes, materials } = useGLTF("/models/SpeakerBoard-v2.glb");
   return (
     <group {...props} dispose={null} position={position} scale={scale}>
       <mesh
@@ -16,22 +16,20 @@ export function Speakers({ scale = 1, position = [0, 0, 0], ...props }) {
         material={materials["Material.001"]}
         scale={[1.032, 1, 1]}
       />
-      <group position={[0, 0.015, 0]}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Text008.geometry}
-          material={materials["Material.001"]}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Text008_1.geometry}
-          material={materials.Material}
-        />
-      </group>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Text010.geometry}
+        material={materials["Material.001"]}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Text010_1.geometry}
+        material={materials.Material}
+      />
     </group>
   );
 }
 
-useGLTF.preload("/models/AboutUsBoardEmm.glb");
+useGLTF.preload("/models/SpeakerBoard-v2.glb");
