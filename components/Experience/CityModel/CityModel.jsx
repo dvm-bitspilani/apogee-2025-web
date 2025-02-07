@@ -10,7 +10,8 @@ import { useGLTF, useAnimations } from "@react-three/drei";
 // import * as THREE from "three";
 import { useDispatch, useSelector } from "react-redux";
 import { Contactus } from "../ContactUs/ContactUs";
-import { setNavigationStage } from "../../../utils/Helpers/Helpers";
+// import { setNavigationStage } from "../../../utils/Helpers/Helpers";
+import { setNavigationStage } from "../../../store/experienceAnimationsSlice/experienceAnimationsSlice";
 
 export function CityModel({ scale = 1, ...props }) {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ export function CityModel({ scale = 1, ...props }) {
   const { actions } = useAnimations(animations, group);
 
   const handleContactClick = () => {
-    setNavigationStage(dispatch, "landingToContact");
+    dispatch(setNavigationStage("landingToContact"));
   };
 
   useEffect(() => {
