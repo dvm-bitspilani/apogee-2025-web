@@ -7,8 +7,11 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 import BackButton from "../BackButton/BackButton";
 import wheel from "../../../src/assets/Register/wheel.svg";
+import Preloader from "../Preloader/Preloader";
 
-export default function Instructions() {
+export default function Instructions({ setImagesLoadedOnInstructions }) {
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+
   const [userState, setUserState] = useState(false);
   const [userEmail, setUserEmail] = useState("");
   const [cookies, setCookies, removeCookie] = useCookies([
@@ -18,6 +21,29 @@ export default function Instructions() {
   ]);
   const wheelRef = useRef(null);
   const mainContainerRef = useRef(null);
+
+  useEffect(() => {
+    const imageUrls = [regWrapper, wheel];
+    let loadedCount = 0;
+    imageUrls.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+      img.onload = () => {
+        loadedCount++;
+        if (loadedCount === imageUrls.length) {
+          setImagesLoaded(true);
+          setImagesLoadedOnInstructions(true);
+        }
+      };
+      img.onerror = () => {
+        loadedCount++;
+        if (loadedCount === imageUrls.length) {
+          setImagesLoaded(true);
+          setImagesLoadedOnInstructions(true);
+        }
+      };
+    });
+  }, []);
 
   function handleScroll(inp) {
     // const maxScrollTopValue = mainContainerRef.current.scrollTopMax;
@@ -36,12 +62,14 @@ export default function Instructions() {
   }
 
   useEffect(() => {
-    mainContainerRef.current.addEventListener("scroll", handleScroll);
+    if (imagesLoaded) {
+      mainContainerRef.current.addEventListener("scroll", handleScroll);
 
-    return () => {
-      document.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+      return () => {
+        document.removeEventListener("scroll", handleScroll);
+      };
+    }
+  }, [imagesLoaded]);
 
   const handlewheelMouseDown = (e) => {
     e.preventDefault();
@@ -150,6 +178,10 @@ export default function Instructions() {
     },
     onFailure: handleLoginError,
   });
+
+  if (!imagesLoaded) {
+    return <Preloader />;
+  }
 
   return (
     <>
