@@ -2,6 +2,7 @@ import styles from "./preloader.module.scss";
 import loader1 from "../../../src/assets/Register/preloaderimg1.png";
 import loader2 from "../../../src/assets/Register/preloaderimg2.png";
 import loader3 from "../../../src/assets/Register/preloaderimg3.png";
+// import loader4 from "../../../src/assets/Register/preloaderimg4.png";
 
 const Preloader = () => {
   return (
@@ -16,6 +17,9 @@ const Preloader = () => {
         <div className={styles.image3}>
           <img src={loader3} alt="Loader 3" className={styles.rotatingImage3} />
         </div>
+        {/* <div className={styles.image4}>
+          <img src={loader4} alt="Loader 4" className={styles.rotatingImage4} />
+        </div> */}
       </div>
     </div>
   );

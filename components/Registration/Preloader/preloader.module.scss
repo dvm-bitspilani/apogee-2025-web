@@ -19,10 +19,19 @@
 
 .rotatingImage1,
 .rotatingImage2,
-.rotatingImage3 {
+.rotatingImage3,
+.rotatingImage4 {
   width: 100px;
   height: 100px;
-  animation: rotate 2s linear infinite;
+  animation: rotate 4s linear infinite;
+
+  @media screen and (max-width: 768px) {
+    scale: 0.7;
+  }
+
+  @media screen and (max-width: 480px) {
+    scale: 0.5;
+  }
 }
 
 .rotatingImage1 {
@@ -38,6 +47,10 @@
   left: 43%;
   transform: translate(-50%, -50%);
   z-index: 2;
+
+  @media screen and (max-width: 768px) {
+    top: 40%;
+  }
 }
 
 .rotatingImage2 {
@@ -69,6 +82,21 @@
   transform: translate(-50%, -50%);
   z-index: 3;
 }
+
+// .rotatingImage4 {
+//   width: 246px;
+//   height: 246px;
+// }
+
+// .image4 {
+//   position: absolute;
+//   width: 246px;
+//   height: 246px;
+//   top: 50%;
+//   left: 60%;
+//   transform: translate(-50%, -50%);
+//   z-index: 4;
+// }
 
 @keyframes rotate {
   0% {
