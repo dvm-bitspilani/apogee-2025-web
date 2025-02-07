@@ -36,6 +36,7 @@ import { getProject } from "@theatre/core";
 
 import animationStatesDesktop from "../../utils/animation_states/desktop/Landing Project.theatre-project-state.json";
 import animationStatesMobile from "../../utils/animation_states/mobile/Landing Project.theatre-project-state.json";
+import { ContactBoard } from "./ContactBoard/ContactBoard.jsx";
 
 export const landingSheet = getProject("Landing Project", {
   state:
@@ -61,6 +62,10 @@ export default function Experience() {
   const animationStage = useSelector(
     (state) => state.experienceAnimations.animationStage
   );
+
+  const handleAboutClick = () => {
+    dispatch(setNavigationStage("landingToAbout"));
+  };
 
   const cameraTargetPosHelper = useCallback(
     (pos) => {
@@ -251,6 +256,16 @@ export default function Experience() {
           >
             <Blimp scale={0.25} position={[0, 0.75, 0]} />
           </Float>
+        </group>
+
+        <group
+          position={[0.8, 0.34, 0.66]}
+          rotation={[Math.PI / 2, 0, 0]}
+          onClick={() => {
+            handleAboutClick();
+          }}
+        >
+          <ContactBoard position={[0, 0, 0]} scale={0.1} />
         </group>
       </SheetProvider>
     </>
