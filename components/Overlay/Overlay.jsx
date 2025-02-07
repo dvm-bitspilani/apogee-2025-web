@@ -8,16 +8,11 @@ import { reverseAnimation } from "../../store/experienceAnimationsSlice/experien
 export default function Overlay() {
   const dispatch = useDispatch();
 
-  const [curState, animationStage] = useSelector((state) => {
-    return [
-      state.experienceAnimations.curStage,
-      state.experienceAnimations.animationStage,
-    ];
-  });
+  const curState = useSelector((state) => state.experienceAnimations.curStage);
+  const animationStage = useSelector(
+    (state) => state.experienceAnimations.animationStage
+  );
 
-  useEffect(() => {
-    console.log(curState);
-  }, []);
   return (
     <div
       className={styles.overlay}
