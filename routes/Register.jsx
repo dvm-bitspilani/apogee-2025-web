@@ -7,6 +7,8 @@ import Preloader from "../components/Registration/Preloader/Preloader";
 
 export default function Register() {
   const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [imagesLoadedOnInstructions, setImagesLoadedOnInstructions] =
+    useState(false);
 
   useEffect(() => {
     const imageUrls = [regBackground];
@@ -29,7 +31,7 @@ export default function Register() {
     });
   }, []);
 
-  if (!imagesLoaded) {
+  if (!imagesLoaded && !imagesLoadedOnInstructions) {
     return <Preloader />;
   }
 
@@ -43,7 +45,9 @@ export default function Register() {
         />
       )}
       <div className={styles.registerContainer}>
-        <Instructions />
+        <Instructions
+          setImagesLoadedOnInstructions={setImagesLoadedOnInstructions}
+        />
       </div>
       <div className={styles.backbtnContainer}>
         <BackButton />

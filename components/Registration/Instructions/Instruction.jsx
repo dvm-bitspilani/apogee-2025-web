@@ -9,7 +9,7 @@ import BackButton from "../BackButton/BackButton";
 import wheel from "../../../src/assets/Register/wheel.svg";
 import Preloader from "../Preloader/Preloader";
 
-export default function Instructions() {
+export default function Instructions(setImagesLoadedOnInstructions) {
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
   const [userState, setUserState] = useState(false);
@@ -32,12 +32,14 @@ export default function Instructions() {
         loadedCount++;
         if (loadedCount === imageUrls.length) {
           setImagesLoaded(true);
+          setImagesLoadedOnInstructions(true);
         }
       };
       img.onerror = () => {
         loadedCount++;
         if (loadedCount === imageUrls.length) {
           setImagesLoaded(true);
+          setImagesLoadedOnInstructions(true);
         }
       };
     });
@@ -177,9 +179,9 @@ export default function Instructions() {
     onFailure: handleLoginError,
   });
 
-  if (!imagesLoaded) {
-    return <Preloader />;
-  }
+  // if (!imagesLoaded) {
+  //   return <Preloader />;
+  // }
 
   return (
     <>
