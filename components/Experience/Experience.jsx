@@ -286,7 +286,7 @@ export default function Experience() {
           <AboutUs position={[0, 0, 0]} scale={0.1} />
         </group>
 
-        {/* <group
+        <group
           position={[-0.72, 0.47, 0.80]}
           rotation={[Math.PI / 2, 0, -Math.PI / 4.5]}
           onClick={() => {
@@ -296,7 +296,7 @@ export default function Experience() {
           onPointerOut={() => setHovered(false)}
         >
           <Speakers position={[0, 0, 0]} scale={0.1} />
-        </group> */}
+        </group>
       
       </SheetProvider>
     </>
