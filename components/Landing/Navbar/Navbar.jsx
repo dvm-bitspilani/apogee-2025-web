@@ -71,19 +71,6 @@ export default function Navbar() {
   return (
     <>
       <div
-        className={styles.socialsContainer}
-        style={{ opacity: curStage === "landing" && !isLoading ? 1 : 0 }}
-      >
-        <div className={styles.leftSide}>
-          <img className={styles.youtube} src={yticon} />
-          <img className={styles.instagram} src={igicon} />
-        </div>
-        <div className={styles.rightSide}>
-          <img className={styles.linkedin} src={linkedin} />
-          <img className={styles.twitter} src={twitter} />
-        </div>
-      </div>
-      <div
         className={styles.regbtnContainer}
         style={{ opacity: curStage === "landing" && !isLoading ? 1 : 0 }}
       >
@@ -95,6 +82,27 @@ export default function Navbar() {
             <img src={text} alt="Register" />
           </div>
         </Link>
+        <div
+          className={styles.socialsContainer}
+          style={{ opacity: curStage === "landing" && !isLoading ? 1 : 0 }}
+        >
+          <div className={styles.leftSide}>
+            <Link to="https://www.youtube.com/@APOGEEBITS">
+              <img className={styles.youtube} src={yticon} />
+            </Link>
+            <Link to="https://www.instagram.com/bitsapogee/">
+              <img className={styles.instagram} src={igicon} />
+            </Link>
+          </div>
+          <div className={styles.rightSide}>
+            <Link to="https://www.linkedin.com/company/apogee-bits-pilani/">
+              <img className={styles.linkedin} src={linkedin} />
+            </Link>
+            <Link to="https://x.com/BITSApogee">
+              <img className={styles.twitter} src={twitter} />
+            </Link>
+          </div>
+        </div>
       </div>
     </>
   );
