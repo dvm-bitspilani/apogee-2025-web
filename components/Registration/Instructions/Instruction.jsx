@@ -152,7 +152,7 @@ export default function Instructions({ setImagesLoadedOnInstructions }) {
             // );
             // router.push("/");
 
-            window.location.href = `https://merge.bits-apogee.org/2025/main/registrations/`;
+            window.location.href = `https://merge.bits-apogee.org/2025/main/registrations?token=${res.data.tokens.access}`;
 
             // setUserState({
             //   ...res.data,
