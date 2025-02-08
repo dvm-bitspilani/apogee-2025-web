@@ -23,6 +23,7 @@ export default function LoadingScreen() {
   useEffect(() => {
     return () => {
       dispatch(experienceAnimationsActions.toggleIsLoading());
+      document.querySelector("#landingExperience").style.opacity = 1;
     };
   }, []);
   return (
