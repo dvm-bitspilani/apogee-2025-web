@@ -58,6 +58,10 @@ import regbtnLanding from "../../../src/assets/Landing/regbtnLanding.svg";
 import text from "../../../src/assets/Landing/registerText.svg";
 import { Link } from "react-router";
 import { useSelector } from "react-redux";
+import yticon from "../../../src/assets/Landing/yticon.png";
+import igicon from "../../../src/assets/Landing/igicon.png";
+import linkedin from "../../../src/assets/Landing/linkedin.png";
+import twitter from "../../../src/assets/Landing/xicon.png";
 
 export default function Navbar() {
   const curStage = useSelector((state) => state.experienceAnimations.curStage);
@@ -65,18 +69,30 @@ export default function Navbar() {
     (state) => state.experienceAnimations.isLoading
   );
   return (
-    <div
-      className={styles.regbtnContainer}
-      style={{ opacity: curStage === "landing" && !isLoading ? 1 : 0 }}
-    >
-      <Link to="/registration">
-        <div
-          className={styles.regbtn}
-          style={{ backgroundImage: `url(${regbtnLanding})` }}
-        >
-          <img src={text} alt="Register" />
+    <>
+      <div className={styles.socialsContainer}>
+        <div className={styles.leftSide}>
+          <img className={styles.youtube} src={yticon} />
+          <img className={styles.instagram} src={igicon} />
         </div>
-      </Link>
-    </div>
+        <div className={styles.rightSide}>
+          <img className={styles.linkedin} src={linkedin} />
+          <img className={styles.twitter} src={twitter} />
+        </div>
+      </div>
+      <div
+        className={styles.regbtnContainer}
+        style={{ opacity: curStage === "landing" && !isLoading ? 1 : 0 }}
+      >
+        <Link to="/registration">
+          <div
+            className={styles.regbtn}
+            style={{ backgroundImage: `url(${regbtnLanding})` }}
+          >
+            <img src={text} alt="Register" />
+          </div>
+        </Link>
+      </div>
+    </>
   );
 }
