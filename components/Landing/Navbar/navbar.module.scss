@@ -124,6 +124,7 @@
   transform: translateX(-50%);
   width: 620px;
   justify-content: space-between;
+  transition: opacity 250ms linear;
 
   .leftSide,
   .rightSide {
@@ -134,5 +135,9 @@
     height: 55px;
     width: 55px;
     z-index: 10000;
+  }
+
+  @media screen and (max-width: 768px) {
+    display: none;
   }
 }

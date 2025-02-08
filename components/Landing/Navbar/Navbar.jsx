@@ -70,7 +70,10 @@ export default function Navbar() {
   );
   return (
     <>
-      <div className={styles.socialsContainer}>
+      <div
+        className={styles.socialsContainer}
+        style={{ opacity: curStage === "landing" && !isLoading ? 1 : 0 }}
+      >
         <div className={styles.leftSide}>
           <img className={styles.youtube} src={yticon} />
           <img className={styles.instagram} src={igicon} />
