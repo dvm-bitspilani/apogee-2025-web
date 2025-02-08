@@ -15,6 +15,14 @@
   position: relative;
   height: 100vh;
   width: 100%;
+
+  @media screen and (max-width: 768px) {
+    scale: 0.6;
+  }
+
+  //   @media screen and (max-width: 480px) {
+  //     scale: 0.5;
+  //   }
 }
 
 .rotatingImage1,
@@ -24,14 +32,6 @@
   width: 100px;
   height: 100px;
   animation: rotate 4s linear infinite;
-
-  @media screen and (max-width: 768px) {
-    scale: 0.7;
-  }
-
-  @media screen and (max-width: 480px) {
-    scale: 0.5;
-  }
 }
 
 .rotatingImage1 {
@@ -41,27 +41,28 @@
 
 .image1 {
   position: absolute;
-  width: 212px;
-  height: 212px;
-  top: 32%;
-  left: 43%;
+  width: 96px;
+  height: 96px;
+  top: 42%;
+  left: 47%;
   transform: translate(-50%, -50%);
   z-index: 2;
 
   @media screen and (max-width: 768px) {
     top: 40%;
+    left: 40%;
   }
 }
 
 .rotatingImage2 {
-  width: 423px;
-  height: 423px;
+  width: 100%;
+  height: 100%;
 }
 
 .image2 {
   position: absolute;
-  width: 423px;
-  height: 423px;
+  width: 193px;
+  height: 193px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -69,18 +70,23 @@
 }
 
 .rotatingImage3 {
-  width: 175px;
-  height: 175px;
+  width: 100%;
+  height: 100%;
 }
 
 .image3 {
   position: absolute;
-  width: 175px;
-  height: 175px;
-  top: 64%;
-  left: 44%;
+  width: 80px;
+  height: 80px;
+  top: 58%;
+  left: 48%;
   transform: translate(-50%, -50%);
   z-index: 3;
+
+  @media screen and (max-width: 768px) {
+    left: 41%;
+    top: 59%;
+  }
 }
 
 // .rotatingImage4 {
