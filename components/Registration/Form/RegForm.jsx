@@ -23,8 +23,6 @@ export default function RegForm({ email }) {
   const [cityOptions, setCityOptions] = useState([]);
   const [waitingResponse, setWaitingResponse] = useState(false);
 
-  const [access_token, setAccess_token] = useState("");
-
   const [cookies, setCookie] = useCookies(["Access_Token", "user-auth"]);
 
   const wheelRef = useRef(null);
@@ -498,7 +496,6 @@ export default function RegForm({ email }) {
                   if (response.data.message === "User has been registered") {
                     // alert("Registration successful!");
                     // console.log(response.data.tokens.access);
-                    setAccess_token(response.data.tokens.access);
                     setNotification({
                       isOpen: true,
                       message: "Registration Successful.",
@@ -852,7 +849,7 @@ export default function RegForm({ email }) {
         onClose={() => setNotification({ ...notification, isOpen: false })}
         type={notification.type}
         handleClick={() => {
-          window.location.href = `https://merge.bits-apogee.org/2025/main/registrations?token=${access_token}`;
+          window.location.href = `https://merge.bits-apogee.org/2025/main/registrations`;
         }}
       />
     </div>
