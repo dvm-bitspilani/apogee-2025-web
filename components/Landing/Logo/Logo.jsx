@@ -10,16 +10,20 @@ export default function Logo() {
     (state) => state.experienceAnimations.isPointerEventsAllowed
   );
   return (
-    <img
-      src="/images/logo.svg"
-      className={styles.logo}
+    <div
+      className={styles.logoContainer}
       style={{
         opacity:
           curStage === "landing" && isPointerEventsAllowed && !isLoading
             ? 1
             : 0,
       }}
-      alt="APOGEE 2025 Logo"
-    />
+    >
+      <img
+        src="/images/logo.svg"
+        className={styles.logo}
+        alt="APOGEE 2025 Logo"
+      />
+    </div>
   );
 }

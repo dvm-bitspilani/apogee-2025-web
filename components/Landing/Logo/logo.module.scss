@@ -1,13 +1,23 @@
-.logo {
-  aspect-ratio: 544 / 229;
-  width: 20%;
+.logoContainer {
+  width: 25%;
   max-width: 300px;
   min-width: 180px;
-  top: clamp(-22px, -2vw, -17px);
+  //   top: clamp(-22px, -2vw, -17px);
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  pointer-events: none;
+  //   pointer-events: none;
   z-index: 10;
   transition: opacity 250ms linear;
+
+  //   background: url("../../../src/assets/Landing/regbtnLanding.svg");
+  //   background-size: contain;
+  //   background-repeat: no-repeat;
+
+  .logo {
+    aspect-ratio: 544 / 149;
+    width: 100%;
+    height: auto;
+    filter: invert(1);
+  }
 }

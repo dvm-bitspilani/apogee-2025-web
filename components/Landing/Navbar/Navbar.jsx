@@ -76,12 +76,14 @@ export default function Navbar() {
     <>
       <div
         className={styles.regbtnContainer}
-        style={{
-          opacity:
-            curStage === "landing" && isPointerEventsAllowed && !isLoading
-              ? 1
-              : 0,
-        }}
+        style={
+          curStage === "landing" && isPointerEventsAllowed && !isLoading
+            ? {
+                opacity: 1,
+                pointerEvents: "auto",
+              }
+            : { opacity: 0, pointerEvents: "none" }
+        }
       >
         <Link to="/registration">
           <div
@@ -93,12 +95,14 @@ export default function Navbar() {
         </Link>
         <div
           className={styles.socialsContainer}
-          style={{
-            opacity:
-              curStage === "landing" && isPointerEventsAllowed && !isLoading
-                ? 1
-                : 0,
-          }}
+          style={
+            curStage === "landing" && isPointerEventsAllowed && !isLoading
+              ? {
+                  opacity: 1,
+                  pointerEvents: "auto",
+                }
+              : { opacity: 0, pointerEvents: "none" }
+          }
         >
           <div className={styles.leftSide}>
             <Link to="https://www.youtube.com/@APOGEEBITS">
