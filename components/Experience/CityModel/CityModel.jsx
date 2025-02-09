@@ -186,11 +186,19 @@ export function CityModel({ scale = 1, ...props }) {
           onPointerOut={() => setHovered(false)}
         >
           {/* <Contactus position={[-92, -39, -27]} scale={0.5} /> */}
-          <ContactBoard position={[-30, -35, -19]} scale={5.5} />
+          {/* <ContactBoard position={[-65, -35, -85]} scale={5.5} /> */}
+          {/* <ContactBoard position={[-68, 35, -88]} scale={5.5} /> */}
+          <ContactBoard
+            position={
+              window.innerWidth < 850 ? [-68, 35, -88] : [-65, -35, -85]
+            }
+            scale={5.5}
+          />
           {/* <pointLight
-            intensity={0}
-            position={[-30, -30, -25]}
+            intensity={0.5}
+            position={[-25, -30, -25]}
             color="#fc4103"
+            // color="blue"
           /> */}
         </group>
         <mesh

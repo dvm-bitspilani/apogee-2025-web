@@ -68,11 +68,22 @@ export default function Navbar() {
   const isLoading = useSelector(
     (state) => state.experienceAnimations.isLoading
   );
+  const isPointerEventsAllowed = useSelector(
+    (state) => state.experienceAnimations.isPointerEventsAllowed
+  );
+
   return (
     <>
       <div
         className={styles.regbtnContainer}
-        style={{ opacity: curStage === "landing" && !isLoading ? 1 : 0 }}
+        style={
+          curStage === "landing" && isPointerEventsAllowed && !isLoading
+            ? {
+                opacity: 1,
+                pointerEvents: "auto",
+              }
+            : { opacity: 0, pointerEvents: "none" }
+        }
       >
         <Link to="/registration">
           <div
@@ -84,7 +95,14 @@ export default function Navbar() {
         </Link>
         <div
           className={styles.socialsContainer}
-          style={{ opacity: curStage === "landing" && !isLoading ? 1 : 0 }}
+          style={
+            curStage === "landing" && isPointerEventsAllowed && !isLoading
+              ? {
+                  opacity: 1,
+                  pointerEvents: "auto",
+                }
+              : { opacity: 0, pointerEvents: "none" }
+          }
         >
           <div className={styles.leftSide}>
             <Link to="https://www.youtube.com/@APOGEEBITS">

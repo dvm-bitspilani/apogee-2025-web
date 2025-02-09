@@ -72,6 +72,10 @@ export default function Experience() {
     dispatch(setNavigationStage("landingToAbout"));
   };
 
+  const handleSpeakersClick = () => {
+    dispatch(setNavigationStage("landingToSpeakers"));
+  };
+
   const cameraTargetPosHelper = useCallback(
     (pos) => {
       gsap.to(cameraTarget.current, {
@@ -185,12 +189,8 @@ export default function Experience() {
     });
 
     const handleKeyUp = (e) => {
-      if (e.key === "a") {
-        dispatch(setNavigationStage("landingToSpeakers"));
-      } else if (e.key === "z") {
+      if (e.key === "z") {
         dispatch(setNavigationStage("landingToEvents"));
-      } else if (e.key === "c") {
-        dispatch(setNavigationStage("landingToAbout"));
       } else if (e.key === "Escape") {
         dispatch(reverseAnimation(animationStage));
       }
@@ -290,28 +290,45 @@ export default function Experience() {
         </group>
 
         <group
-          position={[0.85, 0.4, 0.75]}
-          rotation={[Math.PI / 2, 0, Math.PI / 4.5]}
+          position={
+            window.innerWidth < 850 ? [0.30, 0.30, 1] : [0.85, 0.4, 0.75]
+          }
+          rotation={
+            window.innerWidth < 850
+              ? [Math.PI / 2, 0, Math.PI / 8.5]
+              : [Math.PI / 2, 0, Math.PI / 4.5]
+          }
           onClick={() => {
             handleAboutClick();
           }}
           onPointerOver={() => setHovered(true)}
           onPointerOut={() => setHovered(false)}
         >
-          <AboutUs position={[0, 0, 0]} scale={0.1} />
+          <AboutUs
+            position={[0, 0, 0]}
+            scale={window.innerWidth < 850 ? 0.13 : 0.1}
+          />
         </group>
-
-        {/* <group
-          position={[-0.72, 0.47, 0.80]}
-          rotation={[Math.PI / 2, 0, -Math.PI / 4.5]}
+        <group
+          position={
+            window.innerWidth < 850 ? [-0.26, 0.31, 1.14] : [-0.67, 0.4, 0.8]
+          }
+          rotation={
+            window.innerWidth < 850
+              ? [Math.PI / 2, 0, -Math.PI / 8.5]
+              : [Math.PI / 2, 0, -Math.PI / 4.5]
+          }
           onClick={() => {
-            handleAboutClick();
+            handleSpeakersClick();
           }}
           onPointerOver={() => setHovered(true)}
           onPointerOut={() => setHovered(false)}
         >
-          <Speakers position={[0, 0, 0]} scale={0.1} />
-        </group> */}
+          <Speakers
+            position={[0, 0, 0]}
+            scale={window.innerWidth < 850 ? 0.13 : 0.1}
+          />
+        </group>
       </SheetProvider>
     </>
   );

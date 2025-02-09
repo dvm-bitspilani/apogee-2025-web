@@ -149,7 +149,7 @@
 
             p {
                 color: #CDBB93;
-                text-shadow: 4px 5px 1px #00000076;
+                text-shadow: 2px 2px 2px #000;
                 font-family: "OldNewspaperTypes";
                 font-weight: 500;
                 font-size: 25px;
@@ -244,10 +244,10 @@
         }
 
         .mainBody {
-            gap: 1rem;
+            gap: 2rem;
             margin-top: 0;
-            padding-top: 6rem;
-            margin-bottom: 3rem;
+            padding-top: 0rem;
+            margin-bottom: 0rem;
             // height: calc(100vh - 130px);
             overflow-y: scroll;
 
@@ -291,6 +291,7 @@
                     height: 230px;
 
                     .buttonContainer {
+                        display: none;
 
                         .prev {
                             position: absolute;
@@ -322,6 +323,16 @@
                         overflow: hidden;
                         border-radius: 15px;
                     }
+                }
+            }
+
+            .textContainer {
+                p {
+                    margin-left: 1rem;
+                    margin-right: 1rem;
+                    font-size: 14.2px;
+                    font-weight: 450;
+                    line-height: normal;
                 }
             }
 
@@ -360,7 +371,7 @@
                     }
 
                     .buttonContainer {
-                        display: flex;
+                        display: none;
                         gap: 30vw;
                         justify-content: center;
 
@@ -397,15 +408,6 @@
                         top: 0px;
                         left: 0px;
                     }
-                }
-            }
-
-            .textContainer {
-                p {
-                    margin-left: 1.5rem;
-                    margin-right: 1.5rem;
-                    font-size: 15px;
-                    line-height: normal;
                 }
             }
 
