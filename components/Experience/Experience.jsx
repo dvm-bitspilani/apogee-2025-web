@@ -20,6 +20,7 @@ import gsap from "gsap";
 
 // import studio from "@theatre/studio";
 // import extension from "@theatre/r3f/dist/extension";
+
 import {
   aboutToLanding,
   contactToLanding,
@@ -291,9 +292,7 @@ export default function Experience() {
         </group>
 
         <group
-          position={
-            window.innerWidth < 850 ? [0.30, 0.30, 1] : [0.85, 0.4, 0.75]
-          }
+          position={window.innerWidth < 850 ? [0.3, 0.3, 1] : [0.85, 0.4, 0.75]}
           rotation={
             window.innerWidth < 850
               ? [Math.PI / 2, 0, Math.PI / 8.5]
