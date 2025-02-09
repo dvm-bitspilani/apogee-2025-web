@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import Contact from "../Contact/Contact";
 import About from "../About/About";
 import { reverseAnimation } from "../../store/experienceAnimationsSlice/experienceAnimationsSlice";
-import back from "../../src/assets/back.svg";
 export default function Overlay() {
   const dispatch = useDispatch();
 
@@ -28,7 +27,7 @@ export default function Overlay() {
           dispatch(reverseAnimation(animationStage));
         }}
       >
-        <img src={back} alt="back" />
+        <img src="/images/backBtnLanding.png" alt="back" />
       </button>
       {curState === "contact" && <Contact />}
       {curState === "about" && <About />}
