@@ -194,12 +194,12 @@ export function CityModel({ scale = 1, ...props }) {
             }
             scale={5.5}
           />
-          {/* <pointLight
-            intensity={0.5}
+          <pointLight
+            intensity={1}
             position={[-25, -30, -25]}
-            color="#fc4103"
-            // color="blue"
-          /> */}
+            // color="#fc4103"
+            color="blue"
+          />
         </group>
         <mesh
           name="BrassPipe1752"
