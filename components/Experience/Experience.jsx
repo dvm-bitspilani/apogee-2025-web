@@ -92,23 +92,37 @@ export default function Experience() {
 
   useGSAP(
     () => {
-      // const timeline = gsap.timeline();
+      const timeline = gsap.timeline();
 
-      gsap.to(blackScreen.current?.material, {
-        opacity: 0,
-        duration: 1.5,
-      });
-      gsap.to(orb.current.position, {
-        y: 0.85,
-        duration: 5,
-        ease: "power2.inOut",
-      });
-      gsap.to(cameraTarget.current, {
-        y: 0,
-        z: 0,
-        duration: 5.5,
-        ease: "power2.inOut",
-      });
+      timeline
+        .fromTo(
+          "#landingExperience",
+          { opacity: 0 },
+          { opacity: 1, duration: 1 }
+        )
+        .to(blackScreen.current?.material, {
+          opacity: 0,
+          duration: 1.5,
+        })
+        .to(
+          orb.current.position,
+          {
+            y: 0.85,
+            duration: 5,
+            ease: "power2.inOut",
+          },
+          "<"
+        )
+        .to(
+          cameraTarget.current,
+          {
+            y: 0,
+            z: 0,
+            duration: 5.5,
+            ease: "power2.inOut",
+          },
+          "<"
+        );
     },
     { dependencies: [] }
   );
@@ -131,18 +145,21 @@ export default function Experience() {
   );
 
   useEffect(() => {
-    let stopIntro;
+    let stopIntro, startIntro;
 
     landingSheet.project.ready.then(() => {
-      landingSheet.sequence.play({ iterationCount: 1 });
+      startIntro = setTimeout(() => {
+        landingSheet.sequence.play({ iterationCount: 1 });
+      }, 1000);
       stopIntro = setTimeout(() => {
         landingSheet.sequence.pause();
         dispatch(experienceAnimationsActions.toggleIsPointerEventsAllowed());
-      }, 5500);
+      }, 6500);
     });
 
     return () => {
       clearTimeout(stopIntro);
+      clearTimeout(startIntro);
       landingSheet.project.ready.then(() => {
         landingSheet.sequence.pause();
         landingSheet.sequence.position = 0;
@@ -265,7 +282,7 @@ export default function Experience() {
             ref={blackScreen}
           >
             <planeGeometry />
-            <meshStandardMaterial color="black" transparent />
+            <meshStandardMaterial color="gray" transparent />
           </mesh>
         )}
 

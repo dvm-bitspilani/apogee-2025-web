@@ -1,6 +1,10 @@
 .loader {
-  //   color: white;
-  //   font-family: sans-serif;
-  width: 100vw;
-  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .progress {
+    color: white;
+    font-family: sans-serif;
+  }
 }
