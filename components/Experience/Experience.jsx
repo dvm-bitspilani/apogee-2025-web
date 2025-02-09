@@ -316,12 +316,7 @@ export default function Experience() {
           onPointerOut={() => setHovered(false)}
         >
           <Speakers position={[0, 0, 0]} scale={0.1} />
-<<<<<<< HEAD
-        </group>
-      
-=======
-        </group> */}
->>>>>>> 670fdae24c0e94edf9b430c5937803a0d473b7b4
+        </group> 
       </SheetProvider>
     </>
   );
