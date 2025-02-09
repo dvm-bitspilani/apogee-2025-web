@@ -303,11 +303,14 @@ export default function Experience() {
           onPointerOver={() => setHovered(true)}
           onPointerOut={() => setHovered(false)}
         >
-          <AboutUs position={[0, 0, 0]} scale={0.1} />
+          <AboutUs
+            position={[0, 0, 0]}
+            scale={window.innerWidth < 850 ? 0.1 : 0.5}
+          />
         </group>
 
         <group
-          position={[-0.67, 0.40, 0.80]}
+          position={[-0.67, 0.4, 0.8]}
           rotation={[Math.PI / 2, 0, -Math.PI / 4.5]}
           onClick={() => {
             handleSpeakersClick();
@@ -316,7 +319,7 @@ export default function Experience() {
           onPointerOut={() => setHovered(false)}
         >
           <Speakers position={[0, 0, 0]} scale={0.1} />
-        </group> 
+        </group>
       </SheetProvider>
     </>
   );
