@@ -307,7 +307,6 @@ export default function Experience() {
 
         <group
           position={[-0.67, 0.4, 0.8]}
-          position={[-0.67, 0.4, 0.8]}
           rotation={[Math.PI / 2, 0, -Math.PI / 4.5]}
           onClick={() => {
             handleSpeakersClick();
