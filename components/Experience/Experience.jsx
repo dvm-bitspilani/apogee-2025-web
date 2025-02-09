@@ -229,10 +229,10 @@ export default function Experience() {
         <Perf position="bottom-left" />
       )}
 
-      <mesh position={positionFinder}>
+      {/* <mesh position={positionFinder}>
         <sphereGeometry args={[0.01, 16, 16]} />
         <meshBasicMaterial color="red" />
-      </mesh>
+      </mesh> */}
 
       {/* {animationStage !== "intro" && <OrbitControls enableRotate={true} />} */}
 
