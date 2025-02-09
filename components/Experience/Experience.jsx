@@ -305,7 +305,7 @@ export default function Experience() {
         >
           <AboutUs
             position={[0, 0, 0]}
-            scale={window.innerWidth < 850 ? 0.1 : 0.5}
+            scale={window.innerWidth < 850 ? 0.15 : 0.1}
           />
         </group>
 
@@ -318,7 +318,7 @@ export default function Experience() {
           onPointerOver={() => setHovered(true)}
           onPointerOut={() => setHovered(false)}
         >
-          <Speakers position={[0, 0, 0]} scale={0.1} />
+          <Speakers position={[0, 0, 0]} scale={window.innerWidth < 850 ? 0.15 : 0.1} />
         </group>
       </SheetProvider>
     </>
