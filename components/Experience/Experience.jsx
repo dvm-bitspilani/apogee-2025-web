@@ -72,6 +72,10 @@ export default function Experience() {
     dispatch(setNavigationStage("landingToAbout"));
   };
 
+  const handleSpeakersClick = () => {
+    dispatch(setNavigationStage("landingToSpeakers"));
+  };
+
   const cameraTargetPosHelper = useCallback(
     (pos) => {
       gsap.to(cameraTarget.current, {
@@ -229,10 +233,10 @@ export default function Experience() {
         <Perf position="bottom-left" />
       )}
 
-      {/* <mesh position={positionFinder}>
+      <mesh position={positionFinder}>
         <sphereGeometry args={[0.01, 16, 16]} />
         <meshBasicMaterial color="red" />
-      </mesh> */}
+      </mesh>
 
       {/* {animationStage !== "intro" && <OrbitControls enableRotate={true} />} */}
 
@@ -302,17 +306,17 @@ export default function Experience() {
           <AboutUs position={[0, 0, 0]} scale={0.1} />
         </group>
 
-        {/* <group
-          position={[-0.72, 0.47, 0.80]}
+        <group
+          position={[-0.67, 0.40, 0.80]}
           rotation={[Math.PI / 2, 0, -Math.PI / 4.5]}
           onClick={() => {
-            handleAboutClick();
+            handleSpeakersClick();
           }}
           onPointerOver={() => setHovered(true)}
           onPointerOut={() => setHovered(false)}
         >
           <Speakers position={[0, 0, 0]} scale={0.1} />
-        </group> */}
+        </group> 
       </SheetProvider>
     </>
   );
