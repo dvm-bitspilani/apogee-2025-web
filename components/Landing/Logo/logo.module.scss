@@ -1,23 +1,18 @@
 .logoContainer {
-  width: 25%;
-  max-width: 300px;
-  min-width: 180px;
-  //   top: clamp(-22px, -2vw, -17px);
+  width: 20%;
+  max-width: 280px;
+  min-width: 160px;
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  //   pointer-events: none;
   z-index: 10;
   transition: opacity 250ms linear;
-  //   background: url("../../../src/assets/Landing/regbtnLanding.svg");
-  //   background-size: contain;
-  //   background-repeat: no-repeat;
 
   .bg {
     position: absolute;
-    // width: 100%;
-    height: 100%;
-    transform: rotateX(180deg);
+    height: 120%;
+    left: 50%;
+    transform: rotateX(180deg) translateX(-50%);
   }
 
   .logo {
