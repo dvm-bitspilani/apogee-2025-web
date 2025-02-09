@@ -261,8 +261,25 @@ export default function RegForm({ email }) {
       return 28;
     }
   };
-
   const fontsize = calculateFontSize();
+
+  const calculateIndicatorSize = () => {
+    if (window.innerWidth < 600) {
+      return 22;
+    } else {
+      return 28;
+    }
+  };
+  const indicatorSize = calculateIndicatorSize();
+
+  const findReferralplaceholder = () => {
+    if (window.innerWidth < 600) {
+      return "Enter code (optional)";
+    } else {
+      return "Enter referral code (optional)";
+    }
+  };
+  const refferalplaceholder = findReferralplaceholder();
 
   const customStyles = {
     control: (provided) => ({
@@ -321,8 +338,8 @@ export default function RegForm({ email }) {
       width: "0",
       transform: "translateX(-30px)",
       "& svg": {
-        width: "30px",
-        height: "30px",
+        width: indicatorSize,
+        height: indicatorSize,
       },
     }),
     dropdownIndicator: (provided, state) => ({
@@ -425,8 +442,8 @@ export default function RegForm({ email }) {
       width: "0",
       transform: "translateX(-30px)",
       "& svg": {
-        width: "30px",
-        height: "30px",
+        width: indicatorSize,
+        height: indicatorSize,
       },
     }),
     clearIndicator: (provided) => ({
@@ -436,6 +453,7 @@ export default function RegForm({ email }) {
         color: "#2B1B03",
       },
       cursor: "pointer",
+      display: "none",
     }),
   };
 
@@ -824,7 +842,7 @@ export default function RegForm({ email }) {
                     type="text"
                     id="referral_code"
                     name="referral_code"
-                    placeholder="Enter referral code (optional)"
+                    placeholder= {refferalplaceholder}
                     className={styles.inputField}
                   />
                 </div>
