@@ -9,10 +9,16 @@
   //   pointer-events: none;
   z-index: 10;
   transition: opacity 250ms linear;
-
   //   background: url("../../../src/assets/Landing/regbtnLanding.svg");
   //   background-size: contain;
   //   background-repeat: no-repeat;
+
+  .bg {
+    position: absolute;
+    // width: 100%;
+    height: 100%;
+    transform: rotateX(180deg);
+  }
 
   .logo {
     aspect-ratio: 544 / 149;
