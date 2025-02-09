@@ -18,6 +18,7 @@ export default function Landing() {
   useEffect(() => {
     const lastLocation = localStorage.getItem("lastLocation");
     if (lastLocation === "/registration") {
+      localStorage.setItem("lastLocation", location.pathname);
       window.location.reload();
     }
 
