@@ -136,6 +136,7 @@ export default function Experience() {
       landingSheet.sequence.play({ iterationCount: 1 });
       stopIntro = setTimeout(() => {
         landingSheet.sequence.pause();
+        dispatch(experienceAnimationsActions.toggleIsPointerEventsAllowed());
       }, 5500);
     });
 
@@ -151,24 +152,39 @@ export default function Experience() {
 
   useEffect(() => {
     let animationTimeout;
+    let pointerEventsTimeout;
+
+    const pointerEventsToggleHelper = (duration = 2) => {
+      return setTimeout(() => {
+        dispatch(experienceAnimationsActions.toggleIsPointerEventsAllowed());
+      }, duration * 1000);
+    };
 
     landingSheet.project.ready.then(() => {
       if (animationStage === "landingToContact") {
         animationTimeout = landingToContact();
+        pointerEventsTimeout = pointerEventsToggleHelper(0);
       } else if (animationStage === "contactToLanding") {
         animationTimeout = contactToLanding();
+        pointerEventsTimeout = pointerEventsToggleHelper(2);
       } else if (animationStage === "landingToEvents") {
         animationTimeout = landingToEvents();
+        pointerEventsTimeout = pointerEventsToggleHelper(0);
       } else if (animationStage === "eventsToLanding") {
         animationTimeout = eventsToLanding();
+        pointerEventsTimeout = pointerEventsToggleHelper(2);
       } else if (animationStage === "landingToSpeakers") {
         animationTimeout = landingToSpeakers();
+        pointerEventsTimeout = pointerEventsToggleHelper(0);
       } else if (animationStage === "speakersToLanding") {
         animationTimeout = speakersToLanding();
+        pointerEventsTimeout = pointerEventsToggleHelper(2);
       } else if (animationStage === "landingToAbout") {
         animationTimeout = landingToAbout();
+        pointerEventsTimeout = pointerEventsToggleHelper(0);
       } else if (animationStage === "aboutToLanding") {
         animationTimeout = aboutToLanding();
+        pointerEventsTimeout = pointerEventsToggleHelper(2);
       }
     });
 
@@ -300,8 +316,12 @@ export default function Experience() {
           onPointerOut={() => setHovered(false)}
         >
           <Speakers position={[0, 0, 0]} scale={0.1} />
+<<<<<<< HEAD
         </group>
       
+=======
+        </group> */}
+>>>>>>> 670fdae24c0e94edf9b430c5937803a0d473b7b4
       </SheetProvider>
     </>
   );

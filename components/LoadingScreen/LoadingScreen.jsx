@@ -8,16 +8,27 @@ import {
 import "react-circular-progressbar/dist/styles.css";
 import EnergyOrb from "../EnergyOrb/EnergyOrb";
 import { useFrame } from "@react-three/fiber";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { experienceAnimationsActions } from "../../store/experienceAnimationsSlice/experienceAnimationsSlice";
 
 export default function LoadingScreen() {
+  const dispatch = useDispatch();
   const { progress, active, item } = useProgress();
   useFrame(() => {
     document.querySelector("#landingExperience").style.opacity =
       parseInt(progress) / 100;
   });
+
+  useEffect(() => {
+    return () => {
+      dispatch(experienceAnimationsActions.toggleIsLoading());
+      document.querySelector("#landingExperience").style.opacity = 1;
+    };
+  }, []);
   return (
     <>
-      <PerspectiveCamera makeDefault position={[0, 2.5, 0]} />
+      {/* <PerspectiveCamera makeDefault position={[0, 2.5, 0]} /> */}
       <Environment
         files="/environments/sunset1by64.hdr"
         environmentIntensity={1}

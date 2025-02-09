@@ -144,14 +144,13 @@ export default function Instructions({ setImagesLoadedOnInstructions }) {
         .then((res) => {
           // console.log("dlakjdalkdj2");
           setCookies("Access_token", response.access_token);
-          if (!true && res.data.exists) {
+          if (res.data.exists) {
             setCookies("user-auth", res.data);
             setCookies("Authorization", res.data.tokens.access);
             // router.push(
             //   "https://merge.bits-apogee.org/2025/main/registrations"
             // );
             // router.push("/");
-            // console.log("Access Token:", res.data.tokens.access);
 
             window.location.href = `https://merge.bits-apogee.org/2025/main/registrations?token=${res.data.tokens.access}`;
 
@@ -160,7 +159,7 @@ export default function Instructions({ setImagesLoadedOnInstructions }) {
             //   access_token: response.access_token,
             // });
             setUserEmail(res.data.email);
-            console.log("user aleready exists");
+            // console.log("user aleready exists");
           } else {
             setCookies("user-auth", res.data);
             setUserState({
@@ -169,7 +168,7 @@ export default function Instructions({ setImagesLoadedOnInstructions }) {
             });
             setUserEmail(res.data.email);
             // console.log(res.data);
-            console.log("no route");
+            // console.log("no route");
           }
         })
         .catch((err) => {

@@ -58,22 +58,52 @@ import regbtnLanding from "../../../src/assets/Landing/regbtnLanding.svg";
 import text from "../../../src/assets/Landing/registerText.svg";
 import { Link } from "react-router";
 import { useSelector } from "react-redux";
+import yticon from "../../../src/assets/Landing/yticon.png";
+import igicon from "../../../src/assets/Landing/igicon.png";
+import linkedin from "../../../src/assets/Landing/linkedin.png";
+import twitter from "../../../src/assets/Landing/xicon.png";
 
 export default function Navbar() {
   const curStage = useSelector((state) => state.experienceAnimations.curStage);
+  const isLoading = useSelector(
+    (state) => state.experienceAnimations.isLoading
+  );
   return (
-    <div
-      className={styles.regbtnContainer}
-      style={{ opacity: curStage === "landing" ? 1 : 0 }}
-    >
-      <Link to="/registration">
+    <>
+      <div
+        className={styles.regbtnContainer}
+        style={{ opacity: curStage === "landing" && !isLoading ? 1 : 0 }}
+      >
+        <Link to="/registration">
+          <div
+            className={styles.regbtn}
+            style={{ backgroundImage: `url(${regbtnLanding})` }}
+          >
+            <img src={text} alt="Register" />
+          </div>
+        </Link>
         <div
-          className={styles.regbtn}
-          style={{ backgroundImage: `url(${regbtnLanding})` }}
+          className={styles.socialsContainer}
+          style={{ opacity: curStage === "landing" && !isLoading ? 1 : 0 }}
         >
-          <img src={text} alt="Register" />
+          <div className={styles.leftSide}>
+            <Link to="https://www.youtube.com/@APOGEEBITS">
+              <img className={styles.youtube} src={yticon} />
+            </Link>
+            <Link to="https://www.instagram.com/bitsapogee/">
+              <img className={styles.instagram} src={igicon} />
+            </Link>
+          </div>
+          <div className={styles.rightSide}>
+            <Link to="https://www.linkedin.com/company/apogee-bits-pilani/">
+              <img className={styles.linkedin} src={linkedin} />
+            </Link>
+            <Link to="https://x.com/BITSApogee">
+              <img className={styles.twitter} src={twitter} />
+            </Link>
+          </div>
         </div>
-      </Link>
-    </div>
+      </div>
+    </>
   );
 }

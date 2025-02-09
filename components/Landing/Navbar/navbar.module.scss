@@ -93,6 +93,7 @@
     text-decoration: none;
     height: 85px;
     // transform: scale(0.9);
+    z-index: 12;
 
     .regbtn {
       height: 85px;
@@ -112,5 +113,37 @@
   @media screen and (max-width: 768px) {
     scale: 0.7;
     transform: translate(0, 20.5%);
+  }
+}
+
+.socialsContainer {
+  position: fixed;
+  display: flex;
+  z-index: 11;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 620px;
+  justify-content: space-between;
+  transition: opacity 250ms linear;
+
+  a {
+    height: unset !important;
+  }
+
+  .leftSide,
+  .rightSide {
+    position: relative;
+    display: flex;
+  }
+  img {
+    height: 55px;
+    width: 55px;
+    z-index: 10000;
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 768px) {
+    display: none;
   }
 }
