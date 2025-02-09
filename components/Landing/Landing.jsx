@@ -6,6 +6,7 @@ import Navbar from "./Navbar/Navbar";
 import Overlay from "../Overlay/Overlay";
 import { useLocation } from "react-router";
 import { useSelector } from "react-redux";
+import Logo from "./Logo/Logo";
 
 export default function Landing() {
   const location = useLocation();
@@ -29,6 +30,7 @@ export default function Landing() {
     <>
       <Overlay />
       <Navbar />
+      <Logo />
       <Canvas
         id="landingExperience"
         camera={{
