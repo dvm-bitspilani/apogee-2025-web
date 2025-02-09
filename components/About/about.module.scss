@@ -280,7 +280,7 @@
 
         .mainBody {
             margin-top: 0rem;
-            padding-top: 2rem;
+            padding-top: 1rem;
 
             .videoWrapper {
                 
@@ -334,12 +334,22 @@
                         box-shadow: 0px 0px 24px 0px rgba(169, 143, 108, 0.6);
                         margin-left: calc((100% - 90% - 8px) / 2);
                         position: static;
-                        // height: 230px;
+                        height: 160px;
                         width: 90%;
-                        aspect-ratio: 16/9;
+                        // aspect-ratio: 16/9;
                         top: 0px;
                         left: 0px;
                     }
+                }
+            }
+
+            .textContainer {
+
+                p {
+                    margin-left: 1.3rem;
+                    margin-right: 1.3rem;
+                    font-size: 14px;
+                    margin-bottom: 2rem;
                 }
             }
         }
