@@ -7,6 +7,7 @@ import right from "../../src/assets/About/right.svg";
 
 export default function About() {
   const [index, setIndex] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const videoLinks = [
     {
@@ -57,10 +58,26 @@ export default function About() {
         <div className={styles.mainBody}>
           <div className={styles.videoWrapper}>
             <div className={styles.videoBackground}>
+              {!isLoaded && (
+                <div
+                  className={styles.skeleton}
+                  style={{
+                    opacity: isLoaded ? 0 : 1,
+                    transition: "opacity 0.1s ease-in-out",
+                    zIndex: "3",
+                  }}
+                ></div>
+              )}
               <img
                 id={styles.frame}
                 src={videoframeBackground}
                 alt="videoframeBackground"
+                onLoad={() => setIsLoaded(true)}
+                style={{
+                  opacity: isLoaded ? 1 : 0,
+                  transition: "opacity 0.1s ease-in-out",
+                  // zIndex: 2,
+                }}
               ></img>
               <div className={styles.buttonContainer}>
                 <button on onClick={prev} className={styles.prev}>
