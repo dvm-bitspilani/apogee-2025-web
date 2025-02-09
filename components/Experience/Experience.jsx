@@ -327,11 +327,7 @@ export default function Experience() {
         >
           <Speakers
             position={[0, 0, 0]}
-<<<<<<< HEAD
             scale={window.innerWidth < 850 ? 0.13 : 0.1}
-=======
-            scale={window.innerWidth < 850 ? 0.15 : 0.1}
->>>>>>> 251d78f91013724bfd692aa8ef7b528b260dd2af
           />
         </group>
       </SheetProvider>
