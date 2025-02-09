@@ -189,12 +189,8 @@ export default function Experience() {
     });
 
     const handleKeyUp = (e) => {
-      if (e.key === "a") {
-        dispatch(setNavigationStage("landingToSpeakers"));
-      } else if (e.key === "z") {
+      if (e.key === "z") {
         dispatch(setNavigationStage("landingToEvents"));
-      } else if (e.key === "c") {
-        dispatch(setNavigationStage("landingToAbout"));
       } else if (e.key === "Escape") {
         dispatch(reverseAnimation(animationStage));
       }
@@ -307,7 +303,7 @@ export default function Experience() {
         </group>
 
         <group
-          position={[-0.67, 0.40, 0.80]}
+          position={[-0.67, 0.4, 0.8]}
           rotation={[Math.PI / 2, 0, -Math.PI / 4.5]}
           onClick={() => {
             handleSpeakersClick();
@@ -316,7 +312,7 @@ export default function Experience() {
           onPointerOut={() => setHovered(false)}
         >
           <Speakers position={[0, 0, 0]} scale={0.1} />
-        </group> 
+        </group>
       </SheetProvider>
     </>
   );
