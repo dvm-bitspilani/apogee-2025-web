@@ -105,18 +105,18 @@ export default function Navbar() {
           }
         >
           <div className={styles.leftSide}>
-            <Link to="https://www.youtube.com/@APOGEEBITS">
+            <Link to="https://www.youtube.com/@APOGEEBITS" target="_blank">
               <img className={styles.youtube} src={yticon} />
             </Link>
-            <Link to="https://www.instagram.com/bitsapogee/">
+            <Link to="https://www.instagram.com/bitsapogee/" target="_blank">
               <img className={styles.instagram} src={igicon} />
             </Link>
           </div>
           <div className={styles.rightSide}>
-            <Link to="https://www.linkedin.com/company/apogee-bits-pilani/">
+            <Link to="https://www.linkedin.com/company/apogee-bits-pilani/" target="_blank">
               <img className={styles.linkedin} src={linkedin} />
             </Link>
-            <Link to="https://x.com/BITSApogee">
+            <Link to="https://x.com/BITSApogee" target="_blank">
               <img className={styles.twitter} src={twitter} />
             </Link>
           </div>
