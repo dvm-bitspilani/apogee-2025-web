@@ -217,8 +217,23 @@ export default function Experience() {
 
     window.addEventListener("keyup", handleKeyUp);
 
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        landingSheet.project.ready.then(() => {
+          landingSheet.sequence.pause();
+          landingSheet.sequence.position = 5.5;
+        });
+      } else {
+        landingSheet.sequence.pause();
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
     return () => {
       window.removeEventListener("keyup", handleKeyUp);
+
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
 
       clearInterval(animationTimeout);
     };
