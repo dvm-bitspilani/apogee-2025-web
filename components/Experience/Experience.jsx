@@ -111,7 +111,7 @@ export default function Experience() {
             duration: 5,
             ease: "power2.inOut",
           },
-          "<"
+          "-=1"
         )
         .to(
           cameraTarget.current,
