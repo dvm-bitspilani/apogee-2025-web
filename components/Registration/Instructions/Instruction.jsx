@@ -9,6 +9,7 @@ import BackButton from "../BackButton/BackButton";
 import wheel from "../../../src/assets/Register/wheel.svg";
 import Preloader from "../Preloader/Preloader";
 import bullet from "../../../src/assets/Register/bullet.svg";
+import regBackground from "../../../src/assets/Register/regBackground.png";
 
 export default function Instructions({ setImagesLoadedOnInstructions }) {
   const [imagesLoaded, setImagesLoaded] = useState(false);
@@ -34,10 +35,11 @@ export default function Instructions({ setImagesLoadedOnInstructions }) {
         loadedCount++;
         if (loadedCount === imageUrls.length) {
           setTimeout(() => {
+            setImagesLoadedOnInstructions(true);
             setImagesLoaded(true);
             setTimeout(() => {
               setShowPreloader(false);
-            }, 500);
+            }, 0);
           }, 0);
         }
       };
@@ -201,6 +203,7 @@ export default function Instructions({ setImagesLoadedOnInstructions }) {
             style={{
               opacity: showPreloader ? 0 : 1,
               transition: "opacity 0.8s ease-in-out",
+              background: `radial-gradient(40.9% 58.96% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.38) 100%), url(${regBackground})`,
             }}
           >
             <div
