@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import styles from "./about.module.scss";
 import heading from "../../src/assets/About/heading.png";
 import videoframeBackground from "../../src/assets/About/videoframeBackground.svg";
-import left from "../../src/assets/About/left.svg";
-import right from "../../src/assets/About/right.svg";
+import left from "../../src/assets/About/left.png";
+import right from "../../src/assets/About/right.png";
 
 export default function About() {
   const [index, setIndex] = useState(0);

@@ -46,7 +46,7 @@ export default function Register() {
     <>
       {window.innerWidth > 885 && imagesLoadedOnInstructions && (
         <img
-          // src={regBackground}
+          src={regBackground}
           className={styles.backgroundImage}
           alt="background"
         />
