@@ -1,4 +1,4 @@
-import { Environment, Float, OrbitControls } from "@react-three/drei";
+import { Environment, Float, Html, OrbitControls } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import * as THREE from "three";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -41,6 +41,7 @@ import { useThree } from "@react-three/fiber";
 import { ContactBoard } from "./ContactBoard/ContactBoard.jsx";
 import { AboutUs } from "./AboutUs/AboutUs.jsx";
 import { Speakers } from "./Speakers/Speakers.jsx";
+import Arrow from "../Landing/Arrow/Arrow.jsx";
 
 export const landingSheet = getProject("Landing Project", {
   state:
@@ -307,6 +308,9 @@ export default function Experience() {
             position={[0, 0, 0]}
             scale={window.innerWidth < 850 ? 0.13 : 0.1}
           />
+          {/* <Html position={[0, 0, 0]} center>
+            <Arrow />
+          </Html> */}
         </group>
         <group
           position={
