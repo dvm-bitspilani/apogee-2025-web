@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./navbar.module.scss";
-import regbtnLanding from "../../../src/assets/Landing/regbtnLanding.svg";
+import regbtnLanding from "../../../src/assets/Landing/regbtnLanding.png";
 import text from "../../../src/assets/Landing/registerText.svg";
 import { Link } from "react-router";
 import { useSelector } from "react-redux";
@@ -32,22 +32,22 @@ export default function Navbar() {
         }
       >
         <div className={styles.leftSide}>
-          <a to="https://www.youtube.com/@APOGEEBITS" target="_blank">
-            <img className={styles.youtube} src={yticon} />
+          <a href="https://www.youtube.com/@APOGEEBITS" target="_blank">
+            <img className={styles.youtube} src={yticon} draggable={false} />
           </a>
-          <a to="https://www.instagram.com/bitsapogee/" target="_blank">
-            <img className={styles.instagram} src={igicon} />
+          <a href="https://www.instagram.com/bitsapogee/" target="_blank">
+            <img className={styles.instagram} src={igicon} draggable={false} />
           </a>
         </div>
         <div className={styles.rightSide}>
           <a
-            to="https://www.linkedin.com/company/apogee-bits-pilani/"
+            href="https://www.linkedin.com/company/apogee-bits-pilani/"
             target="_blank"
           >
-            <img className={styles.linkedin} src={linkedin} />
+            <img className={styles.linkedin} src={linkedin} draggable={false} />
           </a>
-          <a to="https://x.com/BITSApogee" target="_blank">
-            <img className={styles.twitter} src={twitter} />
+          <a href="https://x.com/BITSApogee" target="_blank">
+            <img className={styles.twitter} src={twitter} draggable={false} />
           </a>
         </div>
       </div>
@@ -56,19 +56,14 @@ export default function Navbar() {
         style={
           curStage === "landing" && isPointerEventsAllowed && !isLoading
             ? {
-                transform: "translateY(0)",
+                transform: "translate(-50%,0)",
                 pointerEvents: "auto",
               }
-            : { transform: "translateY(100%)", pointerEvents: "none" }
+            : { transform: "translate(-50%,100%)", pointerEvents: "none" }
         }
       >
         <Link to="/registration">
-          <div
-            className={styles.regbtn}
-            style={{ backgroundImage: `url(${regbtnLanding})` }}
-          >
-            <img src={text} alt="Register" />
-          </div>
+          <img className={styles.regbtn} src={regbtnLanding}></img>
         </Link>
       </div>
     </>
