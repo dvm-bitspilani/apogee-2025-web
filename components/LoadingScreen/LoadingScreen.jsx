@@ -20,15 +20,19 @@ export default function LoadingScreen() {
     <>
       <Html center>
         <div className={styles.loader}>
+          <div
+            className={styles.bgGlow}
+            style={{ opacity: parseInt(progress) / 100 }}
+          ></div>
           {/* <LottiePreloader /> */}
           <div className={styles.circle}>
             <div
               className={styles.waveGenerator}
-              style={{ top: `-${parseInt(progress) + 100}%` }}
+              style={{ top: `-${parseInt(progress) + 120}%` }}
             ></div>
             <div
               className={styles.waveGenerator}
-              style={{ top: `-${parseInt(progress) + 100}%` }}
+              style={{ top: `-${parseInt(progress) + 120}%` }}
             ></div>
           </div>
           <h1 className={styles.progress}>{parseInt(progress)}%</h1>

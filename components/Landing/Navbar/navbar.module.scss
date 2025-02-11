@@ -83,27 +83,37 @@
   bottom: 0;
   text-align: center;
   height: 85px;
-  width: 100%;
-  z-index: 10;
+  // width: 100%;
+  left: 50%;
+  z-index: 12;
   display: flex;
   justify-content: center;
   // transition: opacity 250ms linear;
   transition: transform 400ms ease-in-out;
 
+  @media screen and (max-width: 768px) {
+    width: 259px;
+    height: 60px;
+  }
+
   a {
     text-decoration: none;
     height: 85px;
     // transform: scale(0.9);
-    z-index: 12;
 
     .regbtn {
+      position: relative;
       height: 85px;
       cursor: pointer;
       width: 370px;
-      background-size: cover;
       display: flex;
       justify-content: center;
       align-items: center;
+
+      @media screen and (max-width: 768px) {
+        width: 259px;
+        height: 60px;
+      }
 
       img {
         margin-top: 1rem;
@@ -111,10 +121,10 @@
       }
     }
   }
-  @media screen and (max-width: 768px) {
-    scale: 0.7;
-    transform: translate(0, 20.5%);
-  }
+  // @media screen and (max-width: 768px) {
+  //   scale: 0.7;
+  //   transform: translate(0, 20.5%);
+  // }
 }
 
 .socialsContainer {
