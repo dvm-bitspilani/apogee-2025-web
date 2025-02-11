@@ -62,6 +62,8 @@ import yticon from "../../../src/assets/Landing/yticon.png";
 import igicon from "../../../src/assets/Landing/igicon.png";
 import linkedin from "../../../src/assets/Landing/linkedin.png";
 import twitter from "../../../src/assets/Landing/xicon.png";
+import countdownBg from "../../../src/assets/Landing/countdownBg.png";
+import Countdown from "../Countdown/Countdown";
 
 export default function Navbar() {
   const curStage = useSelector((state) => state.experienceAnimations.curStage);
@@ -119,6 +121,22 @@ export default function Navbar() {
         <Link to="/registration">
           <img className={styles.regbtn} src={regbtnLanding}></img>
         </Link>
+      </div>
+      <div
+        className={styles.countdownContainer}
+        style={
+          curStage === "landing" && isPointerEventsAllowed && !isLoading
+            ? {
+                opacity: 1,
+                pointerEvents: "auto",
+              }
+            : { opacity: 0, pointerEvents: "none" }
+        }
+      >
+        <img src={countdownBg} className={styles.countdownBg} />
+        <div className={styles.countdownText}>
+          <Countdown />
+        </div>
       </div>
     </>
   );
