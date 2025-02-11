@@ -1,13 +1,43 @@
 import React, { useState, useEffect } from "react";
 import styles from "./about.module.scss";
 import heading from "../../src/assets/About/heading.png";
+import mobileHeading from "../../src/assets/About/mobileHeading.png";
 import videoframeBackground from "../../src/assets/About/videoframeBackground.svg";
 import left from "../../src/assets/About/left.png";
 import right from "../../src/assets/About/right.png";
+import Preloader from "../Registration/Preloader/Preloader";
 
 export default function About() {
   const [index, setIndex] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [showPreloader, setShowPreloader] = useState(true);
+
+  useEffect(() => {
+    const imageUrls = [left, right, videoframeBackground, heading, mobileHeading];
+    let loadedCount = 0;
+    imageUrls.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+      img.onload = () => {
+        loadedCount++;
+        if (loadedCount === imageUrls.length) {
+          setTimeout(() => {
+            setImagesLoaded(true);
+            setTimeout(() => {
+              setShowPreloader(false);
+            }, 0);
+          }, 500);
+        }
+      };
+      img.onerror = () => {
+        loadedCount++;
+        if (loadedCount === imageUrls.length) {
+          setImagesLoaded(true);
+        }
+      };
+    });
+  }, []);
 
   const videoLinks = [
     {
@@ -50,9 +80,17 @@ export default function About() {
   };
   return (
     <>
-      <div className={styles.aboutUs}>
+      {showPreloader && <Preloader />}
+      <div
+        className={styles.aboutUs}
+        style={{
+          opacity: showPreloader ? 0 : 1,
+          transition: "opacity 0.8s ease-in-out",
+        }}
+      >
         <div className={styles.heading}>
-          <img src={heading} alt="heading" />
+          <img src={heading} alt="heading" id={styles.first} />
+          <img src={mobileHeading} alt="mobileHeading"  id={styles.second} />
         </div>
 
         <div className={styles.mainBody}>
@@ -92,6 +130,7 @@ export default function About() {
                   src={videoLinks[index].videoSrc}
                   title="YouTube video player"
                   // title={videoTitle}
+                  referrerPolicy="strict-origin-when-cross-origin"
                   preload="metadata"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   webkitallowfullscreen="true"

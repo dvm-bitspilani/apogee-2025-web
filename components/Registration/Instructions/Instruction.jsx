@@ -26,7 +26,7 @@ export default function Instructions() {
   const mainContainerRef = useRef(null);
 
   useEffect(() => {
-    const imageUrls = [regWrapper, wheel];
+    const imageUrls = [regWrapper, wheel, regBackground];
     let loadedCount = 0;
     imageUrls.forEach((src) => {
       const img = new Image();

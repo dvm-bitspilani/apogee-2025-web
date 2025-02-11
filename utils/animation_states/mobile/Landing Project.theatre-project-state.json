@@ -27,7 +27,8 @@
             },
             "far": 10,
             "near": 0.03,
-            "zoom": 0.5
+            "zoom": 0.5,
+            "fov": 50
           }
         }
       },
@@ -375,7 +376,7 @@
                     "connectedRight": true,
                     "handles": [0.5, 1, 0.5, 0],
                     "type": "bezier",
-                    "value": 0.9270226618075357
+                    "value": 0.8370226618075356
                   }
                 ]
               },
@@ -410,6 +411,8 @@
   },
   "definitionVersion": "0.4.0",
   "revisionHistory": [
+    "4L7ipgyqeW0FjTVa",
+    "KjhI-a5pUBXXL6QC",
     "0B0fwVd0Jn2LCbwA",
     "uV4NNEya1GxWlTlK",
     "CHs4M7QQRnXsgy2-",
