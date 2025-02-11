@@ -1,11 +1,9 @@
 import styles from "./loading.module.scss";
 
 import { Html, useProgress } from "@react-three/drei";
-import "react-circular-progressbar/dist/styles.css";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { experienceAnimationsActions } from "../../store/experienceAnimationsSlice/experienceAnimationsSlice";
-import LottiePreloader from "./LottiePreloader/LottiePreloader";
 
 export default function LoadingScreen() {
   const dispatch = useDispatch();
@@ -24,7 +22,6 @@ export default function LoadingScreen() {
             className={styles.bgGlow}
             style={{ opacity: parseInt(progress) / 100 }}
           ></div>
-          {/* <LottiePreloader /> */}
           <div className={styles.circle}>
             <div
               className={styles.waveGenerator}
