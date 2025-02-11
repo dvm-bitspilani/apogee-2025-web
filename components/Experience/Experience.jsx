@@ -12,6 +12,7 @@ import { Leva, useControls } from "leva";
 import EnergyOrb from "../EnergyOrb/EnergyOrb.jsx";
 import { CityModel } from "./CityModel/CityModel.jsx";
 import { Blimp } from "./Blimp/Blimp.jsx";
+import down from "../../src/assets/Landing/down.png";
 
 import {
   curStageUpdate,
@@ -384,19 +385,19 @@ export default function Experience() {
         </group>
 
         <Image
-          url="../../src/assets/Landing/down.png"
+          url={down}
           position={[0.85, 0.49, 0.75]}
           scale={0.06}
           transparent
         />
         <Image
-          url="../../src/assets/Landing/down.png"
+          url={down}
           position={[0.85, 0.52, 0.75]}
           scale={0.06}
           transparent
         />
         <Image
-          url="../../src/assets/Landing/down.png"
+          url={down}
           position={[0.85, 0.55, 0.75]}
           scale={0.06}
           transparent
@@ -424,19 +425,19 @@ export default function Experience() {
 
         {/* <Arrow position={[0, 0, 0]} /> */}
         <Image
-          url="../../src/assets/Landing/down.png"
+          url={down}
           position={[-0.67, 0.49, 0.8]}
           scale={0.06}
           transparent
         />
         <Image
-          url="../../src/assets/Landing/down.png"
+          url={down}
           position={[-0.67, 0.52, 0.8]}
           scale={0.06}
           transparent
         />
         <Image
-          url="../../src/assets/Landing/down.png"
+          url={down}
           position={[-0.67, 0.55, 0.8]}
           scale={0.06}
           transparent
@@ -459,38 +460,38 @@ export default function Experience() {
         </group>
 
         <Image
-          url="../../src/assets/Landing/down.png"
+          url={down}
           position={[0.55, 0.42, -0.6]}
           scale={0.06}
           transparent
         />
         <Image
-          url="../../src/assets/Landing/down.png"
+          url={down}
           position={[0.55, 0.45, -0.6]}
           scale={0.06}
           transparent
         />
         <Image
-          url="../../src/assets/Landing/down.png"
+          url={down}
           position={[0.55, 0.48, -0.6]}
           scale={0.06}
           transparent
         />
         <Image
-          url="../../src/assets/Landing/down.png"
-          position={[-0.61,0.47,-0.52]}
+          url={down}
+          position={[-0.61, 0.47, -0.52]}
           scale={0.06}
           transparent
         />
         <Image
-          url="../../src/assets/Landing/down.png"
-          position={[-0.61,0.50,-0.52]}
+          url={down}
+          position={[-0.61, 0.5, -0.52]}
           scale={0.06}
           transparent
         />
         <Image
-          url="../../src/assets/Landing/down.png"
-          position={[-0.61,0.53,-0.52]}
+          url={down}
+          position={[-0.61, 0.53, -0.52]}
           scale={0.06}
           transparent
         />
