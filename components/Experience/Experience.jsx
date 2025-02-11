@@ -398,16 +398,11 @@ export default function Experience() {
             scale={window.innerWidth < 850 ? 0.13 : 0.1}
           />
         </group>
-
         <group
           position={
-            window.innerWidth < 850 ? [-0.26, 0.31, 1.14] : [0.55, 0.39, -0.5]
+            window.innerWidth < 850 ? [0.33, 0.55, 0.75] : [0.55, 0.44, -0.5]
           }
-          rotation={
-            window.innerWidth < 850
-              ? [Math.PI / 2, 0, -Math.PI / 8.5]
-              : [0, 0, 0]
-          }
+          rotation={window.innerWidth < 850 ? [0, -Math.PI/10, 0] : [0, 0, 0]}
           onClick={() => {
             handleEventsClick();
           }}
