@@ -10,18 +10,40 @@
 .loader {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  width: 100vw;
+  height: 100vh;
   gap: 1rem;
 
+  .bgGlow {
+    aspect-ratio: 1920 / 1080;
+    height: 100%;
+    width: auto;
+    position: fixed;
+    background: radial-gradient(
+      28.4% 50% at 50% 50%,
+      #804602 0%,
+      #4b2500 38.57%,
+      #060000 100%
+    );
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 250ms linear;
+  }
+
   .progress {
-    color: white;
+    color: rgb(255, 255, 127);
+    mix-blend-mode: difference;
     font-family: sans-serif;
+    position: fixed;
+    z-index: 2;
   }
 
   .circle {
     aspect-ratio: 1 / 1;
     width: 175px;
-    background-color: yellow;
+    background: radial-gradient(50% 50% at 50% 50%, #eced8e 0%, #e4e74e 100%);
     height: auto;
     border-radius: 50%;
     overflow: hidden;
@@ -36,7 +58,7 @@
       left: 50%;
       transform: translateX(-50%);
       top: -100%;
-      transition: top 500ms ease-in-out;
+      transition: top 250ms ease-in-out;
 
       &:first-of-type {
         background-color: black;
@@ -47,7 +69,7 @@
 
       &:last-of-type {
         background-color: black;
-        // opacity: 0.5;
+        opacity: 0.5;
         border-radius: 45%;
         animation: waveGeneratorAnimation 10s linear infinite;
       }
