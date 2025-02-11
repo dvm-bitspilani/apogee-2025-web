@@ -5,6 +5,7 @@ import "react-circular-progressbar/dist/styles.css";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { experienceAnimationsActions } from "../../store/experienceAnimationsSlice/experienceAnimationsSlice";
+import LottiePreloader from "./LottiePreloader/LottiePreloader";
 
 export default function LoadingScreen() {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ export default function LoadingScreen() {
     <>
       <Html center>
         <div className={styles.loader}>
+          <LottiePreloader />
           <h1 className={styles.progress}>{parseInt(progress)}%</h1>
         </div>
       </Html>

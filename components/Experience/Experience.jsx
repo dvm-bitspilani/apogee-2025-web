@@ -218,14 +218,42 @@ export default function Experience() {
     window.addEventListener("keyup", handleKeyUp);
 
     const handleVisibilityChange = () => {
-      if (document.hidden) {
-        landingSheet.project.ready.then(() => {
+      landingSheet.project.ready.then(() => {
+        if (document.hidden) {
           landingSheet.sequence.pause();
-          landingSheet.sequence.position = 5.5;
-        });
-      } else {
-        landingSheet.sequence.pause();
-      }
+          switch (animationStage) {
+            case "intro":
+              landingSheet.sequence.position = 5.5;
+              break;
+            case "contactToLanding":
+              landingSheet.sequence.position = 6;
+              break;
+            case "landingToContact":
+              landingSheet.sequence.position = 8;
+              break;
+            case "eventsToLanding":
+              landingSheet.sequence.position = 9;
+              break;
+            case "landingToEvents":
+              landingSheet.sequence.position = 11;
+              break;
+            case "speakersToLanding":
+              landingSheet.sequence.position = 12;
+              break;
+            case "landingToSpeakers":
+              landingSheet.sequence.position = 14;
+              break;
+            case "aboutToLanding":
+              landingSheet.sequence.position = 15;
+              break;
+            case "landingToAbout":
+              landingSheet.sequence.position = 17;
+              break;
+          }
+        } else {
+          landingSheet.sequence.pause();
+        }
+      });
     };
 
     document.addEventListener("visibilitychange", handleVisibilityChange);
