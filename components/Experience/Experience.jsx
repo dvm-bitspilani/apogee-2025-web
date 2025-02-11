@@ -42,6 +42,7 @@ import { ContactBoard } from "./ContactBoard/ContactBoard.jsx";
 import { AboutUs } from "./AboutUs/AboutUs.jsx";
 import { Speakers } from "./Speakers/Speakers.jsx";
 import Arrow from "../Landing/Arrow/Arrow.jsx";
+import { Events } from "./Events/Events.jsx";
 
 export const landingSheet = getProject("Landing Project", {
   state:
@@ -78,6 +79,10 @@ export default function Experience() {
     dispatch(setNavigationStage("landingToSpeakers"));
   };
 
+  const handleEventsClick = () => {
+    dispatch(setNavigationStage("landingToEvents"));
+  };
+
   const cameraTargetPosHelper = useCallback(
     (pos) => {
       gsap.to(cameraTarget.current, {
@@ -93,23 +98,37 @@ export default function Experience() {
 
   useGSAP(
     () => {
-      // const timeline = gsap.timeline();
+      const timeline = gsap.timeline();
 
-      gsap.to(blackScreen.current?.material, {
-        opacity: 0,
-        duration: 1.5,
-      });
-      gsap.to(orb.current.position, {
-        y: 0.85,
-        duration: 5,
-        ease: "power2.inOut",
-      });
-      gsap.to(cameraTarget.current, {
-        y: 0,
-        z: 0,
-        duration: 5.5,
-        ease: "power2.inOut",
-      });
+      timeline
+        .fromTo(
+          "#landingExperience",
+          { opacity: 0 },
+          { opacity: 1, duration: 1 }
+        )
+        .to(blackScreen.current?.material, {
+          opacity: 0,
+          duration: 1.5,
+        })
+        .to(
+          orb.current.position,
+          {
+            y: 0.85,
+            duration: 5,
+            ease: "power2.inOut",
+          },
+          "-=1"
+        )
+        .to(
+          cameraTarget.current,
+          {
+            y: 0,
+            z: 0,
+            duration: 5.5,
+            ease: "power2.inOut",
+          },
+          "<"
+        );
     },
     { dependencies: [] }
   );
@@ -132,18 +151,21 @@ export default function Experience() {
   );
 
   useEffect(() => {
-    let stopIntro;
+    let stopIntro, startIntro;
 
     landingSheet.project.ready.then(() => {
-      landingSheet.sequence.play({ iterationCount: 1 });
+      startIntro = setTimeout(() => {
+        landingSheet.sequence.play({ iterationCount: 1 });
+      }, 1000);
       stopIntro = setTimeout(() => {
         landingSheet.sequence.pause();
         dispatch(experienceAnimationsActions.toggleIsPointerEventsAllowed());
-      }, 5500);
+      }, 6500);
     });
 
     return () => {
       clearTimeout(stopIntro);
+      clearTimeout(startIntro);
       landingSheet.project.ready.then(() => {
         landingSheet.sequence.pause();
         landingSheet.sequence.position = 0;
@@ -200,8 +222,51 @@ export default function Experience() {
 
     window.addEventListener("keyup", handleKeyUp);
 
+    const handleVisibilityChange = () => {
+      landingSheet.project.ready.then(() => {
+        if (document.hidden) {
+          landingSheet.sequence.pause();
+          switch (animationStage) {
+            case "intro":
+              landingSheet.sequence.position = 5.5;
+              break;
+            case "contactToLanding":
+              landingSheet.sequence.position = 6;
+              break;
+            case "landingToContact":
+              landingSheet.sequence.position = 8;
+              break;
+            case "eventsToLanding":
+              landingSheet.sequence.position = 9;
+              break;
+            case "landingToEvents":
+              landingSheet.sequence.position = 11;
+              break;
+            case "speakersToLanding":
+              landingSheet.sequence.position = 12;
+              break;
+            case "landingToSpeakers":
+              landingSheet.sequence.position = 14;
+              break;
+            case "aboutToLanding":
+              landingSheet.sequence.position = 15;
+              break;
+            case "landingToAbout":
+              landingSheet.sequence.position = 17;
+              break;
+          }
+        } else {
+          landingSheet.sequence.pause();
+        }
+      });
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
     return () => {
       window.removeEventListener("keyup", handleKeyUp);
+
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
 
       clearInterval(animationTimeout);
     };
@@ -230,10 +295,10 @@ export default function Experience() {
         <Perf position="bottom-left" />
       )} */}
 
-      {/* <mesh position={positionFinder}>
+      <mesh position={positionFinder}>
         <sphereGeometry args={[0.01, 16, 16]} />
         <meshBasicMaterial color="red" />
-      </mesh> */}
+      </mesh>
 
       {/* {animationStage !== "intro" && <OrbitControls enableRotate={true} />} */}
 
@@ -330,6 +395,22 @@ export default function Experience() {
           <Speakers
             position={[0, 0, 0]}
             scale={window.innerWidth < 850 ? 0.13 : 0.1}
+          />
+        </group>
+        <group
+          position={
+            window.innerWidth < 850 ? [0.33, 0.55, 0.75] : [0.55, 0.44, -0.5]
+          }
+          rotation={window.innerWidth < 850 ? [0, -Math.PI/10, 0] : [0, 0, 0]}
+          onClick={() => {
+            handleEventsClick();
+          }}
+          onPointerOver={() => setHovered(true)}
+          onPointerOut={() => setHovered(false)}
+        >
+          <Events
+            position={[0, 0, 0]}
+            scale={window.innerWidth < 850 ? 0.13 : 0.125}
           />
         </group>
       </SheetProvider>

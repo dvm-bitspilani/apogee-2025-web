@@ -15,10 +15,10 @@ export default function Logo() {
     <div
       className={styles.logoContainer}
       style={{
-        opacity:
+        transform:
           curStage === "landing" && isPointerEventsAllowed && !isLoading
-            ? 1
-            : 0,
+            ? "translateY(0) translateX(-50%)"
+            : "translateY(-120%) translateX(-50%)",
       }}
     >
       <img

@@ -11,10 +11,10 @@ import Preloader from "../Preloader/Preloader";
 import bullet from "../../../src/assets/Register/bullet.svg";
 import regBackground from "../../../src/assets/Register/regBackground.png";
 
-export default function Instructions({ setImagesLoadedOnInstructions }) {
+export default function Instructions() {
+
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [showPreloader, setShowPreloader] = useState(true);
-
   const [userState, setUserState] = useState(false);
   const [userEmail, setUserEmail] = useState("");
   const [cookies, setCookies, removeCookie] = useCookies([
@@ -35,7 +35,6 @@ export default function Instructions({ setImagesLoadedOnInstructions }) {
         loadedCount++;
         if (loadedCount === imageUrls.length) {
           setTimeout(() => {
-            setImagesLoadedOnInstructions(true);
             setImagesLoaded(true);
             setTimeout(() => {
               setShowPreloader(false);
@@ -47,7 +46,6 @@ export default function Instructions({ setImagesLoadedOnInstructions }) {
         loadedCount++;
         if (loadedCount === imageUrls.length) {
           setImagesLoaded(true);
-          setImagesLoadedOnInstructions(true);
         }
       };
     });
@@ -155,11 +153,6 @@ export default function Instructions({ setImagesLoadedOnInstructions }) {
           if (res.data.exists) {
             setCookies("user-auth", res.data);
             setCookies("Authorization", res.data.tokens.access);
-            // router.push(
-            //   "https://merge.bits-apogee.org/2025/main/registrations"
-            // );
-            // router.push("/");
-
             window.location.href = `https://merge.bits-apogee.org/2025/main/registrations?token=${res.data.tokens.access}`;
 
             // setUserState({
@@ -186,10 +179,6 @@ export default function Instructions({ setImagesLoadedOnInstructions }) {
     onFailure: handleLoginError,
   });
 
-  // if (!imagesLoaded) {
-  //   return <Preloader />;
-  // }
-
   return (
     <>
       {userState && userEmail ? (
@@ -201,9 +190,10 @@ export default function Instructions({ setImagesLoadedOnInstructions }) {
             className={styles.wrapper}
             ref={mainContainerRef}
             style={{
+              background: `radial-gradient(40.9% 58.96% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.38) 100%), url(${regBackground})`,
               opacity: showPreloader ? 0 : 1,
               transition: "opacity 0.8s ease-in-out",
-              background: `radial-gradient(40.9% 58.96% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.38) 100%), url(${regBackground})`,
+              backgroundSize: "cover",
             }}
           >
             <div
