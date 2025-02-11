@@ -27,7 +27,8 @@
             },
             "far": 10,
             "near": 0.03,
-            "zoom": 0.9
+            "zoom": 0.9,
+            "fov": 50
           }
         }
       },
@@ -559,7 +560,7 @@
                       0
                     ],
                     "type": "bezier",
-                    "value": 0.9270226618075357
+                    "value": 0.8870226618075356
                   }
                 ]
               },
@@ -594,6 +595,9 @@
   },
   "definitionVersion": "0.4.0",
   "revisionHistory": [
+    "QRZQa0bs1tb7AOQH",
+    "4L7ipgyqeW0FjTVa",
+    "KjhI-a5pUBXXL6QC",
     "0B0fwVd0Jn2LCbwA",
     "uV4NNEya1GxWlTlK",
     "CHs4M7QQRnXsgy2-",
