@@ -1,10 +1,32 @@
 .loader {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
 
   .progress {
     color: white;
     font-family: sans-serif;
+  }
+
+  .circle {
+    aspect-ratio: 1 / 1;
+    width: 175px;
+    background-color: transparent;
+    height: auto;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 2;
+    position: relative;
+
+    .innerCircle {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      z-index: 1;
+      transform: translateY(100%);
+      transition: transform 250ms linear;
+    }
   }
 }

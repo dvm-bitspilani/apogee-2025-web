@@ -21,6 +21,12 @@ export default function LoadingScreen() {
       <Html center>
         <div className={styles.loader}>
           {/* <LottiePreloader /> */}
+          <div className={styles.circle}>
+            <div
+              className={styles.innerCircle}
+              style={{ transform: `translateY(${100 - parseInt(progress)}%)` }}
+            ></div>
+          </div>
           <h1 className={styles.progress}>{parseInt(progress)}%</h1>
         </div>
       </Html>
