@@ -302,6 +302,7 @@ export default function Experience() {
       </mesh>
 
       {/* {animationStage !== "intro" && <OrbitControls enableRotate={true} />} */}
+      <OrbitControls enablePan={true} enableZoom={true} enableRotate={true} />
 
       <Environment
         files="/environments/sunset1QuarterResOrange.hdr"
@@ -398,11 +399,13 @@ export default function Experience() {
             scale={window.innerWidth < 850 ? 0.13 : 0.1}
           />
         </group>
+
+        {/* <Arrow position={[0, 0, 0]} /> */}
         <group
           position={
             window.innerWidth < 850 ? [0.33, 0.55, 0.75] : [0.55, 0.44, -0.5]
           }
-          rotation={window.innerWidth < 850 ? [0, -Math.PI/10, 0] : [0, 0, 0]}
+          rotation={window.innerWidth < 850 ? [0, -Math.PI / 10, 0] : [0, 0, 0]}
           onClick={() => {
             handleEventsClick();
           }}

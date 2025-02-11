@@ -7,6 +7,7 @@ import Overlay from "../Overlay/Overlay";
 import { useLocation } from "react-router";
 import { useSelector } from "react-redux";
 import Logo from "./Logo/Logo";
+import Arrow from "./Arrow/Arrow";
 
 export default function Landing() {
   const location = useLocation();
