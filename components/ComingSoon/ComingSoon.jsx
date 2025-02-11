@@ -12,13 +12,13 @@ const ComingSoon = () => {
         <BackButton />
       </div>
       <div className={styles.backgroundImage}>
-        <img src={clouds} alt="" />
+        <img src={clouds} alt="background image" />
       </div>
       <div>
-        <img src={logo} className={styles.logo} alt="" />
+        <img src={logo} className={styles.logo} alt="apogee logo" />
       </div>
       <div className={styles.content}>
-        <img src={text} className={styles.text} />
+        <img src={text} className={styles.text} alt="coming soon text" />
       </div>
     </div>
   );

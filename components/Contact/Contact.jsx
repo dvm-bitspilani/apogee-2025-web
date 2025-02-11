@@ -17,7 +17,7 @@ const Contact = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.heading}>
-        <img src={heading} alt="" />
+        <img src={heading} alt="contact us heading" />
         <div className={styles.text}>contact us</div>
       </div>
       <div className={styles.container}>

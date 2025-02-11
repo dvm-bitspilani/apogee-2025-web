@@ -7,7 +7,7 @@ const ContactCard = ({ name, dept, personImg }) => {
   return (
     <>
       <div className={styles.wrapper}>
-        <img src={poster} alt="" />
+        <img src={poster} alt="poster background image" />
         <div className={styles.name}>
           <svg
             width="281"
@@ -31,7 +31,7 @@ const ContactCard = ({ name, dept, personImg }) => {
           <div className={styles.text}>{name}</div>
         </div>
         <div className={styles.pic}>
-          <img src={personImg} alt="" />
+          <img src={personImg} alt="costaan image" />
         </div>
         <div className={styles.dept}>{dept}</div>
         <div className={styles.contact}>
