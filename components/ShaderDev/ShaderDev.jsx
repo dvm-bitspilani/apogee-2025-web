@@ -24,6 +24,11 @@ import ParticleOrb from "../EnergyOrb/ParticleOrb";
 import GlowingSphere from "./GlowingSphere";
 
 export default function ShaderDev() {
+  return (
+    <Canvas>
+      <LoadingScreen />
+    </Canvas>
+  );
   const lineRef1 = useRef();
   const lineRef2 = useRef();
   const lineRef3 = useRef();

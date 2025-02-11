@@ -25,7 +25,9 @@ export default function LoadingScreen() {
             <div
               className={styles.innerCircle}
               style={{ transform: `translateY(${100 - parseInt(progress)}%)` }}
-            ></div>
+            >
+              <div className={styles.wave}></div>
+            </div>
           </div>
           <h1 className={styles.progress}>{parseInt(progress)}%</h1>
         </div>
