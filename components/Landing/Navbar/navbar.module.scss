@@ -158,3 +158,26 @@
     display: none;
   }
 }
+
+.countdownContainer {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  margin: 2rem;
+  width: 226px;
+  height: 80px;
+  transition: opacity 400ms linear;
+
+  .countdownBg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .countdownText {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+}
