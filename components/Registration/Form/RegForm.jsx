@@ -5,6 +5,7 @@ import regButton from "../../../src/assets/Register/regButton.png";
 import RegistrationModal from "../RegistrationModal/RegistrationModal";
 import BackButton from "../BackButton/BackButton";
 import wheel from "../../../src/assets/Register/wheel.svg";
+import regBackground from "../../../src/assets/Register/regBackground.png";
 
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -458,7 +459,14 @@ export default function RegForm({ email }) {
   };
 
   return (
-    <div className={styles.wrapper} ref={mainContainerRef}>
+    <div
+      className={styles.wrapper}
+      ref={mainContainerRef}
+      style={{
+        background: `radial-gradient(40.9% 58.96% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.38) 100%), url(${regBackground})`,
+        backgroundSize: "cover",
+      }}
+    >
       <div className={styles.scrollBarContainer} onClick={handleTrackSnap}>
         <div className={styles.scrollBar}></div>
         <img
@@ -842,7 +850,7 @@ export default function RegForm({ email }) {
                     type="text"
                     id="referral_code"
                     name="referral_code"
-                    placeholder= {refferalplaceholder}
+                    placeholder={refferalplaceholder}
                     className={styles.inputField}
                   />
                 </div>

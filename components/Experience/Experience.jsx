@@ -42,6 +42,7 @@ import { ContactBoard } from "./ContactBoard/ContactBoard.jsx";
 import { AboutUs } from "./AboutUs/AboutUs.jsx";
 import { Speakers } from "./Speakers/Speakers.jsx";
 import Arrow from "../Landing/Arrow/Arrow.jsx";
+import { Events } from "./Events/Events.jsx";
 
 export const landingSheet = getProject("Landing Project", {
   state:
@@ -76,6 +77,10 @@ export default function Experience() {
 
   const handleSpeakersClick = () => {
     dispatch(setNavigationStage("landingToSpeakers"));
+  };
+
+  const handleEventsClick = () => {
+    dispatch(setNavigationStage("landingToEvents"));
   };
 
   const cameraTargetPosHelper = useCallback(
@@ -291,10 +296,10 @@ export default function Experience() {
         <Perf position="bottom-left" />
       )}
 
-      {/* <mesh position={positionFinder}>
+      <mesh position={positionFinder}>
         <sphereGeometry args={[0.01, 16, 16]} />
         <meshBasicMaterial color="red" />
-      </mesh> */}
+      </mesh>
 
       {/* {animationStage !== "intro" && <OrbitControls enableRotate={true} />} */}
 
@@ -391,6 +396,22 @@ export default function Experience() {
           <Speakers
             position={[0, 0, 0]}
             scale={window.innerWidth < 850 ? 0.13 : 0.1}
+          />
+        </group>
+        <group
+          position={
+            window.innerWidth < 850 ? [0.33, 0.55, 0.75] : [0.55, 0.44, -0.5]
+          }
+          rotation={window.innerWidth < 850 ? [0, -Math.PI/10, 0] : [0, 0, 0]}
+          onClick={() => {
+            handleEventsClick();
+          }}
+          onPointerOver={() => setHovered(true)}
+          onPointerOut={() => setHovered(false)}
+        >
+          <Events
+            position={[0, 0, 0]}
+            scale={window.innerWidth < 850 ? 0.13 : 0.125}
           />
         </group>
       </SheetProvider>
