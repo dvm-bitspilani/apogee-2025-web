@@ -326,7 +326,7 @@ export default function Experience() {
             ref={blackScreen}
           >
             <planeGeometry />
-            <meshStandardMaterial color="gray" transparent />
+            <meshStandardMaterial color="black" transparent />
           </mesh>
         )}
 
