@@ -21,7 +21,7 @@
   .circle {
     aspect-ratio: 1 / 1;
     width: 175px;
-    background-color: white;
+    background-color: yellow;
     height: auto;
     border-radius: 50%;
     overflow: hidden;
@@ -39,13 +39,15 @@
       transition: top 500ms ease-in-out;
 
       &:first-of-type {
-        background-color: gray;
+        background-color: black;
+        opacity: 0.75;
         border-radius: 40%;
         animation: waveGeneratorAnimation 5s linear infinite;
       }
 
       &:last-of-type {
         background-color: black;
+        // opacity: 0.5;
         border-radius: 45%;
         animation: waveGeneratorAnimation 10s linear infinite;
       }
