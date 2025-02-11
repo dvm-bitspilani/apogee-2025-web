@@ -23,11 +23,13 @@ export default function LoadingScreen() {
           {/* <LottiePreloader /> */}
           <div className={styles.circle}>
             <div
-              className={styles.innerCircle}
-              style={{ transform: `translateY(${100 - parseInt(progress)}%)` }}
-            >
-              <div className={styles.wave}></div>
-            </div>
+              className={styles.waveGenerator}
+              style={{ top: `-${parseInt(progress) + 100}%` }}
+            ></div>
+            <div
+              className={styles.waveGenerator}
+              style={{ top: `-${parseInt(progress) + 100}%` }}
+            ></div>
           </div>
           <h1 className={styles.progress}>{parseInt(progress)}%</h1>
         </div>

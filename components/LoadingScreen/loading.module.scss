@@ -1,23 +1,10 @@
-$translateYWave: -100%;
-
-@keyframes animate {
-  0% {
-    transform: translate(-50%, $translateYWave) rotate(0deg);
+@keyframes waveGeneratorAnimation {
+  from {
+    transform: translateX(-50%) rotate(360deg);
   }
-  100% {
-    transform: translate(-50%, $translateYWave) rotate(360deg);
+  to {
+    transform: translateX(-50%) rotate(0deg);
   }
-}
-
-@mixin waveStyles() {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 200%;
-  height: 200%;
-  background: black;
-  transform: translate(-50%, $translateYWave);
 }
 
 .loader {
@@ -34,43 +21,35 @@ $translateYWave: -100%;
   .circle {
     aspect-ratio: 1 / 1;
     width: 175px;
-    background-color: transparent;
+    background-color: yellow;
     height: auto;
     border-radius: 50%;
     overflow: hidden;
     z-index: 2;
     position: relative;
 
-    .innerCircle {
+    .waveGenerator {
+      aspect-ratio: 1 / 1;
+      width: 200%;
+      height: auto;
       position: absolute;
-      width: 100%;
-      height: 100%;
-      background-color: white;
-      z-index: 1;
-      transform: translateY(100%);
-      transition: transform 250ms linear;
+      left: 50%;
+      transform: translateX(-50%);
+      top: -100%;
+      transition: top 500ms ease-in-out;
 
-      .wave {
-        position: relative;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background: #2c74b3;
-        box-shadow: inset 0 0 50px 0 rgba(0, 0, 0, 0.5);
+      &:first-of-type {
+        background-color: black;
+        opacity: 0.75;
+        border-radius: 40%;
+        animation: waveGeneratorAnimation 5s linear infinite;
+      }
 
-        &::before {
-          @include waveStyles();
-          border-radius: 45%;
-          background: rgba(255, 255, 255, 1);
-          animation: animate 5s linear infinite;
-        }
-
-        &::after {
-          @include waveStyles();
-          border-radius: 40%;
-          background: rgba(255, 255, 255, 0.5);
-          animation: animate 10s linear infinite;
-        }
+      &:last-of-type {
+        background-color: black;
+        // opacity: 0.5;
+        border-radius: 45%;
+        animation: waveGeneratorAnimation 10s linear infinite;
       }
     }
   }
