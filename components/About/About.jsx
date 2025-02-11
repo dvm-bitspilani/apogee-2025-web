@@ -128,6 +128,7 @@ export default function About() {
                   src={videoLinks[index].videoSrc}
                   title="YouTube video player"
                   // title={videoTitle}
+                  referrerPolicy="strict-origin-when-cross-origin"
                   preload="metadata"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   webkitallowfullscreen="true"
