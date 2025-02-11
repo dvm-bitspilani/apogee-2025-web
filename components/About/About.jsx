@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import styles from "./about.module.scss";
 import heading from "../../src/assets/About/heading.png";
 import videoframeBackground from "../../src/assets/About/videoframeBackground.svg";
-import left from "../../src/assets/About/left.svg";
-import right from "../../src/assets/About/right.svg";
+import left from "../../src/assets/About/left.png";
+import right from "../../src/assets/About/right.png";
 
 export default function About() {
   const [index, setIndex] = useState(0);
@@ -106,15 +106,15 @@ export default function About() {
           <div className={styles.textContainer}>
             <p>
               BITS Pilani, India is back with the 43rd edition of APOGEE (A
-              Professions Oriented Gathering over Educational Experiences) the
+              Professions Oriented Gathering over Educational Experiences), the
               institute's annual technical extravaganza, from 28th March to 31st
               March 2025, this time as Revved-Up Rhapsody! APOGEE, a unique
               blend of technology, innovation, and inspiration, gathers the
               brightest minds worldwide. This premier technical conference
               features groundbreaking papers, innovative projects, and
-              exhibitions showcasing mankind's best creations. With guest
-              lectures sharing unheard stories, APOGEE challenges the intellect
-              of the participants and piques the minds of the audience.
+              exhibitions showcasing humanity's best creations. With guest
+              lectures sharing unheard stories, APOGEE challenges the
+              participants' intellect and piques the audience's minds.
             </p>
           </div>
         </div>
