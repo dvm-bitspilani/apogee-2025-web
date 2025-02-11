@@ -3,8 +3,9 @@
   width: 100vw;
   display: flex;
   justify-content: center;
-  height: calc(100dvh - 0rem);
+  height: 100dvh;
   overflow-y: scroll;
+  background: none;
 
   .scrollBarContainer {
     height: 80vh;
@@ -71,10 +72,10 @@
   margin-bottom: 3rem;
 
   .mobilebackContainer {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    display: none;
+    position: fixed;
+    z-index: 3;
+    top: 1.2rem;
+    left: 1.2rem;
   }
 
   h2 {
@@ -178,7 +179,9 @@
   .mainWrapper {
     
     .mobilebackContainer {
-      display: block;
+      position: absolute;
+      top: 0.7rem;
+      left: 0.5rem;
     }
   }
 }     
