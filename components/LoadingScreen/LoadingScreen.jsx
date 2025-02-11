@@ -20,7 +20,7 @@ export default function LoadingScreen() {
     <>
       <Html center>
         <div className={styles.loader}>
-          <LottiePreloader />
+          {/* <LottiePreloader /> */}
           <h1 className={styles.progress}>{parseInt(progress)}%</h1>
         </div>
       </Html>
