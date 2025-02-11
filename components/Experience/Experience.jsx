@@ -1,4 +1,10 @@
-import { Environment, Float, Html, OrbitControls } from "@react-three/drei";
+import {
+  Environment,
+  Float,
+  Html,
+  Image,
+  OrbitControls,
+} from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import * as THREE from "three";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -6,6 +12,7 @@ import { Leva, useControls } from "leva";
 import EnergyOrb from "../EnergyOrb/EnergyOrb.jsx";
 import { CityModel } from "./CityModel/CityModel.jsx";
 import { Blimp } from "./Blimp/Blimp.jsx";
+import down from "../../src/assets/Landing/down.png";
 
 import {
   curStageUpdate,
@@ -302,6 +309,7 @@ export default function Experience() {
       </mesh>
 
       {/* {animationStage !== "intro" && <OrbitControls enableRotate={true} />} */}
+      {/* <OrbitControls enablePan={true} enableZoom={true} enableRotate={true} /> */}
 
       <Environment
         files="/environments/sunset1QuarterResOrange.hdr"
@@ -374,10 +382,26 @@ export default function Experience() {
             position={[0, 0, 0]}
             scale={window.innerWidth < 850 ? 0.13 : 0.1}
           />
-          {/* <Html position={[0, 0, 0]} center>
-            <Arrow />
-          </Html> */}
         </group>
+
+        <Image
+          url={down}
+          position={[0.85, 0.49, 0.75]}
+          scale={0.06}
+          transparent
+        />
+        <Image
+          url={down}
+          position={[0.85, 0.52, 0.75]}
+          scale={0.06}
+          transparent
+        />
+        <Image
+          url={down}
+          position={[0.85, 0.55, 0.75]}
+          scale={0.06}
+          transparent
+        />
         <group
           position={
             window.innerWidth < 850 ? [-0.26, 0.31, 1.14] : [-0.67, 0.4, 0.8]
@@ -398,11 +422,31 @@ export default function Experience() {
             scale={window.innerWidth < 850 ? 0.13 : 0.1}
           />
         </group>
+
+        {/* <Arrow position={[0, 0, 0]} /> */}
+        <Image
+          url={down}
+          position={[-0.67, 0.49, 0.8]}
+          scale={0.06}
+          transparent
+        />
+        <Image
+          url={down}
+          position={[-0.67, 0.52, 0.8]}
+          scale={0.06}
+          transparent
+        />
+        <Image
+          url={down}
+          position={[-0.67, 0.55, 0.8]}
+          scale={0.06}
+          transparent
+        />
         <group
           position={
             window.innerWidth < 850 ? [0.33, 0.55, 0.75] : [0.55, 0.44, -0.5]
           }
-          rotation={window.innerWidth < 850 ? [0, -Math.PI/10, 0] : [0, 0, 0]}
+          rotation={window.innerWidth < 850 ? [0, -Math.PI / 10, 0] : [0, 0, 0]}
           onClick={() => {
             handleEventsClick();
           }}
@@ -414,6 +458,43 @@ export default function Experience() {
             scale={window.innerWidth < 850 ? 0.13 : 0.125}
           />
         </group>
+
+        <Image
+          url={down}
+          position={[0.55, 0.42, -0.6]}
+          scale={0.06}
+          transparent
+        />
+        <Image
+          url={down}
+          position={[0.55, 0.45, -0.6]}
+          scale={0.06}
+          transparent
+        />
+        <Image
+          url={down}
+          position={[0.55, 0.48, -0.6]}
+          scale={0.06}
+          transparent
+        />
+        <Image
+          url={down}
+          position={[-0.61, 0.47, -0.52]}
+          scale={0.06}
+          transparent
+        />
+        <Image
+          url={down}
+          position={[-0.61, 0.5, -0.52]}
+          scale={0.06}
+          transparent
+        />
+        <Image
+          url={down}
+          position={[-0.61, 0.53, -0.52]}
+          scale={0.06}
+          transparent
+        />
       </SheetProvider>
     </>
   );
