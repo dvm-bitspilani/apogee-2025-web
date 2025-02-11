@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./about.module.scss";
 import heading from "../../src/assets/About/heading.png";
+import mobileHeading from "../../src/assets/About/mobileHeading.png";
 import videoframeBackground from "../../src/assets/About/videoframeBackground.svg";
 import left from "../../src/assets/About/left.png";
 import right from "../../src/assets/About/right.png";
@@ -13,7 +14,7 @@ export default function About() {
   const [showPreloader, setShowPreloader] = useState(true);
 
   useEffect(() => {
-    const imageUrls = [left, right, videoframeBackground, heading];
+    const imageUrls = [left, right, videoframeBackground, heading, mobileHeading];
     let loadedCount = 0;
     imageUrls.forEach((src) => {
       const img = new Image();
@@ -88,7 +89,8 @@ export default function About() {
         }}
       >
         <div className={styles.heading}>
-          <img src={heading} alt="heading" />
+          <img src={heading} alt="heading" id={styles.first} />
+          <img src={mobileHeading} alt="mobileHeading"  id={styles.second} />
         </div>
 
         <div className={styles.mainBody}>

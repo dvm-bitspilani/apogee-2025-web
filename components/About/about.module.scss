@@ -14,6 +14,10 @@
         img {
             height: 100%;
         }
+
+        #second {
+            display: none;
+        }
     }
 
     .mainBody {
@@ -157,7 +161,7 @@
 
             p {
                 color: #cdbb93;
-                text-shadow: 3.916px 4.896px 0.979px #000;
+                text-shadow: 2px 3px 2px rgba(0, 0, 0, 0.80);
                 font-family: "Artifika";
                 font-weight: 400;
                 font-size: 25px;
@@ -267,15 +271,25 @@
 @media (max-width: 500px) {
     .aboutUs {
         width: 100vw;
+        overflow-x: hidden;
 
         .heading {
-            width: 96vw;
-            margin-left: 3vw;
-            margin-right: 2vw;
+            width: 230px;
+            height: 95px;
+            margin-left: calc((100% - 230px)/2);
+            text-align: center;
 
             img {
                 transform: translateX(-5px);
                 width: 100%;
+            }
+
+            #first {
+                display: none;
+            }
+
+            #second {
+                display: block;
             }
         }
 
