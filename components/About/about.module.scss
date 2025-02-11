@@ -48,24 +48,24 @@
                 .buttonContainer {
                     .prev {
                         position: absolute;
-                        left: -15px;
-                        top: calc(50% - 17.5px);
+                        left: -47px;
+                        top: calc(50% - 30px);
                         background-color: transparent;
 
                         img {
-                            height: 35px;
+                            height: 60px;
                             cursor: pointer;
                         }
                     }
 
                     .next {
                         position: absolute;
-                        right: -15px;
-                        top: calc(50% - 17.5px);
+                        right: -50px;
+                        top: calc(50% - 30px);
                         background-color: transparent;
 
                         img {
-                            height: 35px;
+                            height: 60px;
                             cursor: pointer;
                         }
                     }
@@ -269,8 +269,9 @@
         width: 100vw;
 
         .heading {
-            width: 96%;
-            margin-left: 2%;
+            width: 96vw;
+            margin-left: 3vw;
+            margin-right: 2vw;
 
             img {
                 transform: translateX(-5px);
