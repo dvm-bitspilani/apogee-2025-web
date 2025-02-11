@@ -1,4 +1,10 @@
-import { Environment, Float, Html, OrbitControls } from "@react-three/drei";
+import {
+  Environment,
+  Float,
+  Html,
+  Image,
+  OrbitControls,
+} from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import * as THREE from "three";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -302,7 +308,7 @@ export default function Experience() {
       </mesh>
 
       {/* {animationStage !== "intro" && <OrbitControls enableRotate={true} />} */}
-      <OrbitControls enablePan={true} enableZoom={true} enableRotate={true} />
+      {/* <OrbitControls enablePan={true} enableZoom={true} enableRotate={true} /> */}
 
       <Environment
         files="/environments/sunset1QuarterResOrange.hdr"
@@ -401,6 +407,24 @@ export default function Experience() {
         </group>
 
         {/* <Arrow position={[0, 0, 0]} /> */}
+        <Image
+          url="../../src/assets/Landing/down.png"
+          position={[-0.67, 0.49, 0.8]}
+          scale={0.06}
+          transparent
+        />
+        <Image
+          url="../../src/assets/Landing/down.png"
+          position={[-0.67, 0.52, 0.8]}
+          scale={0.06}
+          transparent
+        />
+        <Image
+          url="../../src/assets/Landing/down.png"
+          position={[-0.67, 0.55, 0.8]}
+          scale={0.06}
+          transparent
+        />
         <group
           position={
             window.innerWidth < 850 ? [0.33, 0.55, 0.75] : [0.55, 0.44, -0.5]
@@ -417,6 +441,25 @@ export default function Experience() {
             scale={window.innerWidth < 850 ? 0.13 : 0.125}
           />
         </group>
+
+        <Image
+          url="../../src/assets/Landing/down.png"
+          position={[0.55, 0.45, -0.6]}
+          scale={0.06}
+          transparent
+        />
+        <Image
+          url="../../src/assets/Landing/down.png"
+          position={[0.55, 0.48, -0.6]}
+          scale={0.06}
+          transparent
+        />
+        <Image
+          url="../../src/assets/Landing/down.png"
+          position={[0.55, 0.51, -0.6]}
+          scale={0.06}
+          transparent
+        />
       </SheetProvider>
     </>
   );
