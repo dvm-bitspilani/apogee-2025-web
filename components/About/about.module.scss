@@ -8,8 +8,8 @@
 
     .heading {
         text-align: center;
-        height: 190px;
-        transform: translateY(-20px);
+        height: 180px;
+        transform: translateY(-2px);
 
         img {
             height: 100%;
@@ -25,8 +25,10 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        margin-top: 6rem;
-        gap: 2.6vw;
+        margin-top: 6vh;
+        gap: 5.6vw;
+        margin-left: 2rem;
+        margin-right: 2rem;
 
         .videoWrapper {
             .skeleton {
@@ -52,7 +54,7 @@
                 .buttonContainer {
                     .prev {
                         position: absolute;
-                        left: -47px;
+                        left: -63px;
                         top: calc(50% - 30px);
                         background-color: transparent;
 
@@ -64,7 +66,7 @@
 
                     .next {
                         position: absolute;
-                        right: -50px;
+                        right: -67px;
                         top: calc(50% - 30px);
                         background-color: transparent;
 
@@ -157,7 +159,7 @@
         }
 
         .textContainer {
-            width: 50%;
+            width: 43%;
 
             p {
                 color: #cdbb93;
@@ -165,7 +167,7 @@
                 font-family: "Artifika";
                 font-weight: 400;
                 font-size: 25px;
-                line-height: 39px;
+                line-height: 33px;
                 text-align: center;
             }
         }
@@ -190,6 +192,9 @@
 
 @media (max-width: 1000px) {
     .aboutUs {
+        height: 100dvh;
+        overflow-y: scroll;
+
         .heading {
             height: 160px;
             transform: translateY(-20px);
@@ -206,6 +211,7 @@
                 p {
                     font-size: 22px;
                     line-height: normal;
+                    margin-bottom: 2rem;
                 }
             }
         }
@@ -237,8 +243,6 @@
 
 @media (max-width: 600px) {
     .aboutUs {
-        height: 100lvh;
-        overflow-y: hidden;
 
         .heading {
             height: 130px;
