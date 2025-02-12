@@ -20,7 +20,7 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Artifika&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Artifika&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 
 * {
   border: none;
@@ -43,6 +43,11 @@ body {
   // opacity: 0;
   // transition: opacity 250ms linear;
   z-index: 0;
+}
+
+img,
+canvas {
+  user-select: none;
 }
 
 input:-webkit-autofill,
