@@ -9,17 +9,17 @@ const Arrow = ({ position = [0, 0, 0] }) => {
       <div className={styles.arrows}>
         <img
           src="../../public/images/arrow.svg"
-          alt=""
+          alt="first arrow"
           className={styles.first}
         />
         <img
           src="../../public/images/arrow.svg"
-          alt=""
+          alt="second arrow"
           className={styles.second}
         />
         <img
           src="../../public/images/arrow.svg"
-          alt=""
+          alt="third arrow"
           className={styles.third}
         />
       </div>

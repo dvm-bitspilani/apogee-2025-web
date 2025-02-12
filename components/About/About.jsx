@@ -14,7 +14,13 @@ export default function About() {
   const [showPreloader, setShowPreloader] = useState(true);
 
   useEffect(() => {
-    const imageUrls = [left, right, videoframeBackground, heading, mobileHeading];
+    const imageUrls = [
+      left,
+      right,
+      videoframeBackground,
+      heading,
+      mobileHeading,
+    ];
     let loadedCount = 0;
     imageUrls.forEach((src) => {
       const img = new Image();
@@ -90,7 +96,7 @@ export default function About() {
       >
         <div className={styles.heading}>
           <img src={heading} alt="heading" id={styles.first} />
-          <img src={mobileHeading} alt="mobileHeading"  id={styles.second} />
+          <img src={mobileHeading} alt="mobileHeading" id={styles.second} />
         </div>
 
         <div className={styles.mainBody}>
@@ -116,13 +122,13 @@ export default function About() {
                   transition: "opacity 0.1s ease-in-out",
                   // zIndex: 2,
                 }}
-              ></img>
+              />
               <div className={styles.buttonContainer}>
                 <button on onClick={prev} className={styles.prev}>
-                  <img src={left}></img>
+                  <img src={left} alt="left" />
                 </button>
                 <button on onClick={next} className={styles.next}>
-                  <img src={right}></img>
+                  <img src={right} alt="right" />
                 </button>
               </div>
               <div className={styles.video}>

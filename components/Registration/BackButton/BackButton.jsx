@@ -13,10 +13,10 @@ export default function BackButton() {
       href="https://bits-apogee.org/"
     > */}
       <div className={styles.backBtn}>
-        <img src={backbtn} alt="backbtn"></img>
+        <img src={backbtn} alt="back button"></img>
       </div>
       <div className={styles.mobilebackBtn}>
-        <img src={mobilebackbtn} alt="mobilebackbtn"></img>
+        <img src={mobilebackbtn} alt="mobile back button"></img>
       </div>
       {/* </a> */}
     </Link>

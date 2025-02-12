@@ -31,9 +31,17 @@ const RegistrationModal = ({ message, isOpen, onClose, type, handleClick }) => {
           onClick={type === "Success" ? () => handleClick() : onClose}
         >
           {type === "Success" ? "DASHBOARD" : "OK"}
-          <img className={styles.buttonBg} src={modalButton} />
+          <img
+            className={styles.buttonBg}
+            src={modalButton}
+            alt="modal button background"
+          />
         </div>
-        <img className={styles.modalBg} src={regWrapper} />
+        <img
+          className={styles.modalBg}
+          src={regWrapper}
+          alt="registration wrapper"
+        />
       </div>
     </div>
   );
