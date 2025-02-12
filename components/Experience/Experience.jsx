@@ -384,7 +384,7 @@ export default function Experience() {
           />
         </group>
 
-        <Image
+        {/* <Image
           url={down}
           position={[0.85, 0.49, 0.75]}
           scale={window.innerWidth < 850 ? 0 : 0.06}
@@ -401,7 +401,7 @@ export default function Experience() {
           position={[0.85, 0.55, 0.75]}
           scale={window.innerWidth < 850 ? 0 : 0.06}
           transparent
-        />
+        /> */}
         <group
           position={
             window.innerWidth < 850 ? [-0.26, 0.31, 1.14] : [-0.67, 0.4, 0.8]
@@ -423,8 +423,7 @@ export default function Experience() {
           />
         </group>
 
-        {/* <Arrow position={[0, 0, 0]} /> */}
-        <Image
+        {/* <Image
           url={down}
           position={[-0.67, 0.49, 0.8]}
           scale={window.innerWidth < 850 ? 0 : 0.06}
@@ -441,7 +440,7 @@ export default function Experience() {
           position={[-0.67, 0.55, 0.8]}
           scale={window.innerWidth < 850 ? 0 : 0.06}
           transparent
-        />
+        /> */}
         <group
           position={
             window.innerWidth < 850 ? [0.33, 0.55, 0.75] : [0.55, 0.44, -0.5]
@@ -459,7 +458,7 @@ export default function Experience() {
           />
         </group>
 
-        <Image
+        {/* <Image
           url={down}
           position={
             window.innerWidth < 850 ? [0.33, 0.53, 0.65] : [0.55, 0.42, -0.6]
@@ -486,7 +485,7 @@ export default function Experience() {
         <Image
           url={down}
           position={
-            window.innerWidth < 850 ? [-0.27, 0.53, 0.80] : [-0.61, 0.47, -0.52]
+            window.innerWidth < 850 ? [-0.27, 0.53, 0.8] : [-0.61, 0.47, -0.52]
           }
           scale={0.06}
           transparent
@@ -494,7 +493,7 @@ export default function Experience() {
         <Image
           url={down}
           position={
-            window.innerWidth < 850 ? [-0.27, 0.56, 0.80] : [-0.61, 0.5, -0.52]
+            window.innerWidth < 850 ? [-0.27, 0.56, 0.8] : [-0.61, 0.5, -0.52]
           }
           scale={0.06}
           transparent
@@ -502,10 +501,33 @@ export default function Experience() {
         <Image
           url={down}
           position={
-            window.innerWidth < 850 ? [-0.27, 0.59, 0.80] : [-0.61, 0.53, -0.52]
+            window.innerWidth < 850 ? [-0.27, 0.59, 0.8] : [-0.61, 0.53, -0.52]
           }
           scale={0.06}
           transparent
+        /> */}
+        <Arrow
+          basePosition={[0.85, 0.49, 0.75]}
+          scale={window.innerWidth < 850 ? 0 : 0.06}
+        />
+
+        <Arrow
+          basePosition={[-0.67, 0.49, 0.8]}
+          scale={window.innerWidth < 850 ? 0 : 0.06}
+        />
+
+        <Arrow
+          basePosition={
+            window.innerWidth < 850 ? [0.33, 0.53, 0.65] : [0.55, 0.42, -0.6]
+          }
+          scale={0.06}
+        />
+
+        <Arrow
+          basePosition={
+            window.innerWidth < 850 ? [-0.27, 0.53, 0.8] : [-0.61, 0.47, -0.52]
+          }
+          scale={0.06}
         />
       </SheetProvider>
     </>
