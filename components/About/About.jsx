@@ -5,7 +5,14 @@ import mobileHeading from "../../src/assets/About/mobileHeading.png";
 import videoframeBackground from "../../src/assets/About/videoframeBackground.svg";
 import left from "../../src/assets/About/left.png";
 import right from "../../src/assets/About/right.png";
+import mobileLeft from "../../src/assets/About/mobileLeft.svg";
+import mobileRight from "../../src/assets/About/mobileRight.svg";
 import Preloader from "../Registration/Preloader/Preloader";
+
+import yticon from "../../src/assets/Landing/yticon.png";
+import igicon from "../../src/assets/Landing/igicon.png";
+import linkedin from "../../src/assets/Landing/linkedin.png";
+import twitter from "../../src/assets/Landing/xicon.png";
 
 export default function About() {
   const [index, setIndex] = useState(0);
@@ -20,6 +27,12 @@ export default function About() {
       videoframeBackground,
       heading,
       mobileHeading,
+      mobileLeft,
+      mobileRight,
+      yticon,
+      igicon,
+      linkedin,
+      twitter,
     ];
     let loadedCount = 0;
     imageUrls.forEach((src) => {
@@ -125,10 +138,12 @@ export default function About() {
               />
               <div className={styles.buttonContainer}>
                 <button on onClick={prev} className={styles.prev}>
-                  <img src={left} alt="left" />
+                  <img src={left} alt="left" id={styles.laptop} />
+                  <img src={mobileLeft} alt="mobileleft" id={styles.mobile} />
                 </button>
                 <button on onClick={next} className={styles.next}>
-                  <img src={right} alt="right" />
+                  <img src={right} alt="right" id={styles.laptop} />
+                  <img src={mobileRight} alt="mobileright" id={styles.mobile} />
                 </button>
               </div>
               <div className={styles.video}>
@@ -161,6 +176,43 @@ export default function About() {
               lectures sharing unheard stories, APOGEE challenges the
               participants' intellect and piques the audience's minds.
             </p>
+          </div>
+          <div className={styles.socialIconsContainer}>
+            <a href="https://www.youtube.com/@APOGEEBITS" target="_blank">
+              <img
+                className={styles.youtube}
+                alt="YouTube Link icon"
+                src={yticon}
+                draggable={false}
+              />
+            </a>
+            <a href="https://www.instagram.com/bitsapogee/" target="_blank">
+              <img
+                className={styles.instagram}
+                alt="instagram link icon"
+                src={igicon}
+                draggable={false}
+              />
+            </a>
+            <a
+              href="https://www.linkedin.com/company/apogee-bits-pilani/"
+              target="_blank"
+            >
+              <img
+                className={styles.linkedin}
+                alt="linkedin icon"
+                src={linkedin}
+                draggable={false}
+              />
+            </a>
+            <a href="https://x.com/BITSApogee" target="_blank">
+              <img
+                className={styles.twitter}
+                alt="twitter or X icon"
+                src={twitter}
+                draggable={false}
+              />
+            </a>
           </div>
         </div>
       </div>

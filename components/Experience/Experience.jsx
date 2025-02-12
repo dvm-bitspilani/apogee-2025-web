@@ -368,7 +368,7 @@ export default function Experience() {
           position={window.innerWidth < 850 ? [0.3, 0.3, 1] : [0.85, 0.4, 0.75]}
           rotation={
             window.innerWidth < 850
-              ? [Math.PI / 2, 0, Math.PI / 8.5]
+              ? [Math.PI / 2, 0, Math.PI / 12.5]
               : [Math.PI / 2, 0, Math.PI / 4.5]
           }
           onClick={() => {
@@ -383,31 +383,13 @@ export default function Experience() {
           />
         </group>
 
-        <Image
-          url={down}
-          position={[0.85, 0.49, 0.75]}
-          scale={0.06}
-          transparent
-        />
-        <Image
-          url={down}
-          position={[0.85, 0.52, 0.75]}
-          scale={0.06}
-          transparent
-        />
-        <Image
-          url={down}
-          position={[0.85, 0.55, 0.75]}
-          scale={0.06}
-          transparent
-        />
         <group
           position={
             window.innerWidth < 850 ? [-0.26, 0.31, 1.14] : [-0.67, 0.4, 0.8]
           }
           rotation={
             window.innerWidth < 850
-              ? [Math.PI / 2, 0, -Math.PI / 8.5]
+              ? [Math.PI / 2, 0, -Math.PI / 12.5]
               : [Math.PI / 2, 0, -Math.PI / 4.5]
           }
           onClick={() => {
@@ -422,30 +404,11 @@ export default function Experience() {
           />
         </group>
 
-        {/* <Arrow position={[0, 0, 0]} /> */}
-        <Image
-          url={down}
-          position={[-0.67, 0.49, 0.8]}
-          scale={0.06}
-          transparent
-        />
-        <Image
-          url={down}
-          position={[-0.67, 0.52, 0.8]}
-          scale={0.06}
-          transparent
-        />
-        <Image
-          url={down}
-          position={[-0.67, 0.55, 0.8]}
-          scale={0.06}
-          transparent
-        />
         <group
           position={
             window.innerWidth < 850 ? [0.33, 0.55, 0.75] : [0.55, 0.44, -0.5]
           }
-          rotation={window.innerWidth < 850 ? [0, -Math.PI / 10, 0] : [0, 0, 0]}
+          rotation={window.innerWidth < 850 ? [0, -Math.PI / 12, 0] : [0, 0, 0]}
           onClick={() => {
             handleEventsClick();
           }}
@@ -458,41 +421,28 @@ export default function Experience() {
           />
         </group>
 
-        <Image
-          url={down}
-          position={[0.55, 0.42, -0.6]}
-          scale={0.06}
-          transparent
+        <Arrow
+          basePosition={[0.85, 0.49, 0.75]}
+          scale={window.innerWidth < 850 ? 0 : 0.06}
         />
-        <Image
-          url={down}
-          position={[0.55, 0.45, -0.6]}
-          scale={0.06}
-          transparent
+
+        <Arrow
+          basePosition={[-0.67, 0.49, 0.8]}
+          scale={window.innerWidth < 850 ? 0 : 0.06}
         />
-        <Image
-          url={down}
-          position={[0.55, 0.48, -0.6]}
+
+        <Arrow
+          basePosition={
+            window.innerWidth < 850 ? [0.33, 0.53, 0.65] : [0.55, 0.42, -0.6]
+          }
           scale={0.06}
-          transparent
         />
-        <Image
-          url={down}
-          position={[-0.61, 0.47, -0.52]}
+
+        <Arrow
+          basePosition={
+            window.innerWidth < 850 ? [-0.27, 0.53, 0.8] : [-0.61, 0.47, -0.52]
+          }
           scale={0.06}
-          transparent
-        />
-        <Image
-          url={down}
-          position={[-0.61, 0.5, -0.52]}
-          scale={0.06}
-          transparent
-        />
-        <Image
-          url={down}
-          position={[-0.61, 0.53, -0.52]}
-          scale={0.06}
-          transparent
         />
       </SheetProvider>
     </>

@@ -178,7 +178,7 @@ export function CityModel({ scale = 1, ...props }) {
           rotation={[0, 1.571, 0]}
         />
         <group
-          rotation={[Math.PI / 2, 0, -Math.PI / 10]}
+          rotation={window.innerWidth < 850 ? [Math.PI / 2, 0, -Math.PI / 12] : [Math.PI / 2, 0, -Math.PI / 10]}
           onClick={() => {
             handleContactClick();
           }}
