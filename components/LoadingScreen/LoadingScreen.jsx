@@ -1,19 +1,19 @@
 import styles from "./loading.module.scss";
 
 import { Html, useProgress } from "@react-three/drei";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { experienceAnimationsActions } from "../../store/experienceAnimationsSlice/experienceAnimationsSlice";
+// import { useEffect } from "react";
+// import { useDispatch } from "react-redux";
+// import { experienceAnimationsActions } from "../../store/experienceAnimationsSlice/experienceAnimationsSlice";
 
 export default function LoadingScreen() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const { progress, active, item } = useProgress();
 
-  useEffect(() => {
-    return () => {
-      dispatch(experienceAnimationsActions.toggleIsLoading());
-    };
-  }, []);
+  // useEffect(() => {
+  //   return () => {
+  // dispatch(experienceAnimationsActions.toggleIsLoading());
+  //   };
+  // }, []);
   return (
     <>
       <Html center>
