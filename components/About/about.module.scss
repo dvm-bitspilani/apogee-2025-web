@@ -179,6 +179,10 @@
                 text-align: center;
             }
         }
+
+        .socialIconsContainer {
+            display: none;
+        }
     }
 }
 
@@ -394,7 +398,26 @@
                     margin-left: 1.3rem;
                     margin-right: 1.3rem;
                     font-size: 14px;
-                    margin-bottom: 2rem;
+                    margin-bottom: 0rem;
+                }
+            }
+
+            .socialIconsContainer {
+                width: 100vw;
+                display: flex;
+                flex-direction: row;
+                gap: 1rem;
+                justify-content: center;
+                margin-bottom: 1rem;
+
+                a {
+                    height: 55px;
+                    width: 55px;
+
+                    img {
+                        height: 100%;
+                        width: auto;
+                    }
                 }
             }
         }
