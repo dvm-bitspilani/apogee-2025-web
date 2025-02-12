@@ -5,6 +5,8 @@ import mobileHeading from "../../src/assets/About/mobileHeading.png";
 import videoframeBackground from "../../src/assets/About/videoframeBackground.svg";
 import left from "../../src/assets/About/left.png";
 import right from "../../src/assets/About/right.png";
+import mobileLeft from "../../src/assets/About/mobileLeft.svg";
+import mobileRight from "../../src/assets/About/mobileRight.svg";
 import Preloader from "../Registration/Preloader/Preloader";
 
 export default function About() {
@@ -20,6 +22,8 @@ export default function About() {
       videoframeBackground,
       heading,
       mobileHeading,
+      mobileLeft,
+      mobileRight,
     ];
     let loadedCount = 0;
     imageUrls.forEach((src) => {
@@ -125,10 +129,12 @@ export default function About() {
               />
               <div className={styles.buttonContainer}>
                 <button on onClick={prev} className={styles.prev}>
-                  <img src={left} alt="left" />
+                  <img src={left} alt="left" id={styles.laptop} />
+                  <img src={mobileLeft} alt="mobileleft" id={styles.mobile} />
                 </button>
                 <button on onClick={next} className={styles.next}>
-                  <img src={right} alt="right" />
+                  <img src={right} alt="right" id={styles.laptop} />
+                  <img src={mobileRight} alt="mobileright" id={styles.mobile} />
                 </button>
               </div>
               <div className={styles.video}>
