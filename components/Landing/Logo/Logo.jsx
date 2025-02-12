@@ -5,9 +5,6 @@ import logoBackground from "../../../src/assets/Landing/regbtnLanding.svg";
 
 export default function Logo() {
   const curStage = useSelector((state) => state.experienceAnimations.curStage);
-  const isLoading = useSelector(
-    (state) => state.experienceAnimations.isLoading
-  );
   const isPointerEventsAllowed = useSelector(
     (state) => state.experienceAnimations.isPointerEventsAllowed
   );
@@ -16,7 +13,7 @@ export default function Logo() {
       className={styles.logoContainer}
       style={{
         transform:
-          curStage === "landing" && isPointerEventsAllowed && !isLoading
+          curStage === "landing" && isPointerEventsAllowed
             ? "translateY(0) translateX(-50%)"
             : "translateY(-120%) translateX(-50%)",
       }}

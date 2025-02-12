@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./navbar.module.scss";
 import regbtnLanding from "../../../src/assets/Landing/regbtnLanding.png";
-import text from "../../../src/assets/Landing/registerText.svg";
 import { Link } from "react-router";
 import { useSelector } from "react-redux";
 import yticon from "../../../src/assets/Landing/yticon.png";
@@ -13,9 +12,6 @@ import Countdown from "../Countdown/Countdown";
 
 export default function Navbar() {
   const curStage = useSelector((state) => state.experienceAnimations.curStage);
-  const isLoading = useSelector(
-    (state) => state.experienceAnimations.isLoading
-  );
   const isPointerEventsAllowed = useSelector(
     (state) => state.experienceAnimations.isPointerEventsAllowed
   );
@@ -25,7 +21,7 @@ export default function Navbar() {
       <div
         className={styles.socialsContainer}
         style={
-          curStage === "landing" && isPointerEventsAllowed && !isLoading
+          curStage === "landing" && isPointerEventsAllowed
             ? {
                 opacity: 1,
                 pointerEvents: "auto",
@@ -76,7 +72,7 @@ export default function Navbar() {
       <div
         className={styles.regbtnContainer}
         style={
-          curStage === "landing" && isPointerEventsAllowed && !isLoading
+          curStage === "landing" && isPointerEventsAllowed
             ? {
                 transform: "translate(-50%,0)",
                 pointerEvents: "auto",
@@ -95,7 +91,7 @@ export default function Navbar() {
       <div
         className={styles.countdownContainer}
         style={
-          curStage === "landing" && isPointerEventsAllowed && !isLoading
+          curStage === "landing" && isPointerEventsAllowed
             ? {
                 opacity: 1,
                 pointerEvents: "auto",

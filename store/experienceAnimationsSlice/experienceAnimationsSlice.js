@@ -5,7 +5,7 @@ const experienceAnimationsSlice = createSlice({
   initialState: {
     animationStage: "intro",
     curStage: "landing",
-    isLoading: true,
+    // isLoading: true,
     isPointerEventsAllowed: false,
   },
   reducers: {
@@ -22,12 +22,12 @@ const experienceAnimationsSlice = createSlice({
     resetState: (state, action) => {
       state.animationStage = "intro";
       state.curStage = "landing";
-      state.isLoading = true;
+      // state.isLoading = true;
       state.isPointerEventsAllowed = false;
     },
-    toggleIsLoading: (state) => {
-      state.isLoading = !state.isLoading;
-    },
+    // toggleIsLoading: (state) => {
+    //   state.isLoading = !state.isLoading;
+    // },
     toggleIsPointerEventsAllowed: (state) => {
       state.isPointerEventsAllowed = !state.isPointerEventsAllowed;
     },
