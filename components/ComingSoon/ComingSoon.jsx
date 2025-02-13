@@ -8,9 +8,9 @@ import text from "../../src/assets/ComingSoon/text.png";
 const ComingSoon = () => {
   return (
     <div className={styles.Wrapper}>
-      <div className={styles.buttonWrapper}>
+      {/* <div className={styles.buttonWrapper}>
         <BackButton />
-      </div>
+      </div> */}
       <div className={styles.backgroundImage}>
         <img src={clouds} alt="background image" />
       </div>

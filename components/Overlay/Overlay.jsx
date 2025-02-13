@@ -3,6 +3,7 @@ import styles from "./overlay.module.scss";
 import { useEffect } from "react";
 import Contact from "../Contact/Contact";
 import About from "../About/About";
+import ComingSoon from "../ComingSoon/ComingSoon";
 import { reverseAnimation } from "../../store/experienceAnimationsSlice/experienceAnimationsSlice";
 export default function Overlay() {
   const dispatch = useDispatch();
@@ -31,6 +32,8 @@ export default function Overlay() {
       </button>
       {curState === "contact" && <Contact />}
       {curState === "about" && <About />}
+      {curState === "events" && <ComingSoon />}
+      {curState === "speakers" && <ComingSoon />}
     </div>
   );
 }
