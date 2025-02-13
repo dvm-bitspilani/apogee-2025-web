@@ -407,7 +407,7 @@ export default function Experience() {
 
         <group
           position={
-            window.innerWidth < 850 ? [0.65, 0.80, -0.5] : [0.55, 0.44, -0.5]
+            window.innerWidth < 850 ? [0.78, 0.80, -0.5] : [0.55, 0.44, -0.5]
           }
           // position={[0.55, 0.44, -0.5]}
           rotation={window.innerWidth < 850 ? [0, 0, 0] : [0, 0, 0]}
