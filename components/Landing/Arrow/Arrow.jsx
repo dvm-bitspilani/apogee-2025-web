@@ -7,37 +7,42 @@ const Arrow = ({ basePosition, scale }) => {
   const arrows = [useRef(), useRef(), useRef()];
 
   useEffect(() => {
-    const tl = gsap.timeline({
+    const masterTl = gsap.timeline({
       repeat: -1,
-      defaults: { duration: 1, ease: "power1.inOut" },
+      defaults: {
+        duration: 1.5,
+        ease: "sine.inOut",
+      },
     });
 
     const yOffsets = [0, 0.03, 0.06];
-    const moveDistance = 0.02;
-
+    const moveDistance = 0.025;
+    const staggerDelay = 0.15;
     arrows.forEach((arrowRef, index) => {
-      tl.to(
-        arrowRef.current.position,
-        {
+      const arrowTl = gsap
+        .timeline()
+        .to(arrowRef.current.position, {
           y: basePosition[1] + yOffsets[index] + moveDistance,
-          duration: 1,
-          ease: "power1.inOut",
-        },
-        index * 0.2
-      ).to(
-        arrowRef.current.position,
-        {
-          y: basePosition[1] + yOffsets[index],
-          duration: 1,
-          ease: "power1.inOut",
-        },
-        `>-0.5`
-      );
+          duration: 1.5,
+          ease: "sine.inOut",
+          
+        })
+        .to(
+          arrowRef.current.position,
+          {
+            y: basePosition[1] + yOffsets[index],
+            duration: 1.5,
+            ease: "sine.inOut",
+          },
+          ">"
+        );
+
+      masterTl.add(arrowTl, index * staggerDelay);
     });
 
-    // return () => {
-    //   tl.kill();
-    // };
+    return () => {
+      masterTl.kill();
+    };
   }, [basePosition]);
 
   return (
