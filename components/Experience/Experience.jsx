@@ -106,6 +106,7 @@ export default function Experience() {
   useGSAP(
     () => {
       const timeline = gsap.timeline();
+      console.log(orb.current);
 
       timeline
         .fromTo(
@@ -120,6 +121,7 @@ export default function Experience() {
         .to(
           orb.current.position,
           {
+            x: -0.013,
             y: 0.85,
             duration: 5,
             ease: "power2.inOut",
@@ -349,7 +351,7 @@ export default function Experience() {
             floatIntensity={0.75}
             floatingRange={[-0.1, 0.1]}
           > */}
-          <group position={[-0.013, 1.5, 0]} ref={orb}>
+          <group position={[0, 1.5, 0]} ref={orb}>
             <EnergyOrb color="orange" lightIntensity={3} />
           </group>
           <CityModel scale={0.02} />
@@ -365,10 +367,12 @@ export default function Experience() {
         </group>
 
         <group
-          position={window.innerWidth < 850 ? [0.3, 0.3, 1] : [0.85, 0.4, 0.75]}
+          position={
+            window.innerWidth < 850 ? [0.3, 0.31, 1.14] : [0.85, 0.4, 0.75]
+          }
           rotation={
             window.innerWidth < 850
-              ? [Math.PI / 2, 0, Math.PI / 12.5]
+              ? [Math.PI / 2.5, 0, 0]
               : [Math.PI / 2, 0, Math.PI / 4.5]
           }
           onClick={() => {
@@ -389,7 +393,7 @@ export default function Experience() {
           }
           rotation={
             window.innerWidth < 850
-              ? [Math.PI / 2, 0, -Math.PI / 12.5]
+              ? [Math.PI / 2.5, 0, 0]
               : [Math.PI / 2, 0, -Math.PI / 4.5]
           }
           onClick={() => {
@@ -406,9 +410,10 @@ export default function Experience() {
 
         <group
           position={
-            window.innerWidth < 850 ? [0.33, 0.55, 0.75] : [0.55, 0.44, -0.5]
+            window.innerWidth < 850 ? [0.78, 0.8, -0.5] : [0.55, 0.44, -0.5]
           }
-          rotation={window.innerWidth < 850 ? [0, -Math.PI / 12, 0] : [0, 0, 0]}
+          // position={[0.55, 0.44, -0.5]}
+          rotation={window.innerWidth < 850 ? [0, 0, 0] : [0, 0, 0]}
           onClick={() => {
             handleEventsClick();
           }}
@@ -417,7 +422,7 @@ export default function Experience() {
         >
           <Events
             position={[0, 0, 0]}
-            scale={window.innerWidth < 850 ? 0.13 : 0.125}
+            scale={window.innerWidth < 850 ? 0.2 : 0.125}
           />
         </group>
 
@@ -435,14 +440,14 @@ export default function Experience() {
           basePosition={
             window.innerWidth < 850 ? [0.33, 0.53, 0.65] : [0.55, 0.42, -0.6]
           }
-          scale={0.06}
+          scale={window.innerWidth < 850 ? 0 : 0.06}
         />
 
         <Arrow
           basePosition={
             window.innerWidth < 850 ? [-0.27, 0.53, 0.8] : [-0.61, 0.47, -0.52]
           }
-          scale={0.06}
+          scale={window.innerWidth < 850 ? 0 : 0.06}
         />
       </SheetProvider>
     </>

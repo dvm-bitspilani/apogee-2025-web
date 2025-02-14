@@ -1,103 +1,136 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./countdown.module.scss";
+import { useSelector } from "react-redux";
 
 const MAX_DIGITS = 6;
-// Target Unix timestamp (in seconds)
-const targetTimestamp = 1743359400;
+const targetTimestamp = 1743172200;
 
 const Countdown = () => {
-  // Initialize digits as an array of strings ("0")
-  const [digits, setDigits] = useState(Array(MAX_DIGITS).fill("0"));
-  const [activeOpacity, setActiveOpacity] = useState(1);
+  const [digits, setDigits] = useState(Array(MAX_DIGITS).fill("7"));
+  const [opacities, setOpacities] = useState(Array(MAX_DIGITS).fill(1));
+  const [phase, setPhase] = useState("waiting");
+
+  const countdownIntervalRef = useRef(null);
+
+  const curStage = useSelector((state) => state.experienceAnimations.curStage);
+  const isPointerEventsAllowed = useSelector(
+    (state) => state.experienceAnimations.isPointerEventsAllowed
+  );
 
   useEffect(() => {
-    const targetTimeMs = targetTimestamp * 1000;
+    if (curStage === "landing" && isPointerEventsAllowed) {
+      setPhase("blinking");
+    }
+  }, [curStage, isPointerEventsAllowed]);
+
+  useEffect(() => {
+    if (phase !== "blinking") return;
+
+    let cancelled = false;
+
+    const runBlinkAnimation = async () => {
+      const promises = digits.map(
+        (_, i) =>
+          new Promise((resolve) => {
+            const delay = Math.random() * 50 + 50;
+            setTimeout(() => {
+              if (cancelled) return;
+              let flickerCount = 0;
+              const flickerInterval = setInterval(() => {
+                if (cancelled) {
+                  clearInterval(flickerInterval);
+                  return;
+                }
+                setDigits((prev) => {
+                  const newDigits = [...prev];
+                  newDigits[i] = Math.floor(Math.random() * 10).toString();
+                  return newDigits;
+                });
+                setOpacities((prev) => {
+                  const newOpacities = [...prev];
+                  newOpacities[i] = Math.random() * 0.8 + 0.2;
+                  return newOpacities;
+                });
+
+                if (++flickerCount >= 10) {
+                  clearInterval(flickerInterval);
+                  setOpacities((prev) => {
+                    const newOpacities = [...prev];
+                    newOpacities[i] = 1;
+                    return newOpacities;
+                  });
+                  resolve();
+                }
+              }, 100);
+            }, delay);
+          })
+      );
+
+      await Promise.all(promises);
+      if (!cancelled) setPhase("countdown");
+    };
+
+    runBlinkAnimation();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [phase]);
+
+  useEffect(() => {
+    if (phase !== "countdown") return;
 
     const updateCountdown = () => {
       const now = Date.now();
-      let diff = targetTimeMs - now;
-      if (diff < 0) {
-        diff = 0;
-      }
+      let diff = targetTimestamp * 1000 - now;
+      if (diff < 0) diff = 0;
 
-      // Calculate remaining time in days, hours, and minutes
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const remainderAfterDays = diff % (1000 * 60 * 60 * 24);
-      const hours = Math.floor(remainderAfterDays / (1000 * 60 * 60));
-      const remainderAfterHours = remainderAfterDays % (1000 * 60 * 60);
-      const minutes = Math.floor(remainderAfterHours / (1000 * 60));
+      const hours = Math.floor(
+        (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
 
-      // Convert each value to a two-digit string (pad with zero if needed)
-      const dayString = days.toString().padStart(2, "0");
-      const hourString = hours.toString().padStart(2, "0");
-      const minuteString = minutes.toString().padStart(2, "0");
-
-      // Combine all digits into one array (e.g., ["0", "1", "1", "2", "3", "4"])
       const newDigits = [
-        ...dayString.split(""),
-        ...hourString.split(""),
-        ...minuteString.split(""),
+        ...days.toString().padStart(2, "0"),
+        ...hours.toString().padStart(2, "0"),
+        ...minutes.toString().padStart(2, "0"),
       ];
+
       setDigits(newDigits);
-      setActiveOpacity(1); // Always fully visible in this countdown
     };
 
-    // Update the countdown once per second
     updateCountdown();
-    const interval = setInterval(updateCountdown, 1000);
-    return () => clearInterval(interval);
-  }, []);
+    countdownIntervalRef.current = setInterval(updateCountdown, 1000);
+
+    return () => {
+      if (countdownIntervalRef.current)
+        clearInterval(countdownIntervalRef.current);
+    };
+  }, [phase]);
 
   return (
     <div className={styles.container}>
-      {/* Days Group */}
       <div className={styles.timeContainer}>
-        <div className={styles.group}>
-          <div className={styles.digits}>
-            {digits.slice(0, 2).map((digit, index) => (
-              <span
-                key={index}
-                className={styles.number}
-                style={{ opacity: activeOpacity }}
-              >
-                {digit}
-              </span>
-            ))}
+        {["Days", "Hours", "Mins"].map((label, groupIdx) => (
+          <div key={groupIdx} className={styles.group}>
+            <div className={styles.digits}>
+              {digits
+                .slice(groupIdx * 2, groupIdx * 2 + 2)
+                .map((digit, index) => (
+                  <span
+                    key={index}
+                    className={styles.number}
+                    style={{ opacity: opacities[groupIdx * 2 + index] }}
+                  >
+                    {digit}
+                  </span>
+                ))}
+            </div>
+            {groupIdx < 2 && <span className={styles.colon}>:</span>}
           </div>
-        </div>
-        <span className={styles.colon}>:</span>
-        {/* Hours Group */}
-        <div className={styles.group}>
-          <div className={styles.digits}>
-            {digits.slice(2, 4).map((digit, index) => (
-              <span
-                key={index + 2}
-                className={styles.number}
-                style={{ opacity: activeOpacity }}
-              >
-                {digit}
-              </span>
-            ))}
-          </div>
-        </div>
-        <span className={styles.colon}>:</span>
-        {/* Minutes Group */}
-        <div className={styles.group}>
-          <div className={styles.digits}>
-            {digits.slice(4, 6).map((digit, index) => (
-              <span
-                key={index + 4}
-                className={styles.number}
-                style={{ opacity: activeOpacity }}
-              >
-                {digit}
-              </span>
-            ))}
-          </div>
-        </div>
+        ))}
       </div>
-
-      {/* Labels placed below the digits row */}
       <div className={styles.labelsRow}>
         <div className={styles.label}>DAYS</div>
         <div className={styles.label}>HOURS</div>

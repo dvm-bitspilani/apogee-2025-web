@@ -25,10 +25,10 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        margin-top: 6vh;
+        margin-top: 7vh;
         gap: 5.6vw;
         margin-left: 2rem;
-        margin-right: 2rem;
+        margin-right: 0rem;
 
         .videoWrapper {
             .skeleton {
@@ -167,7 +167,7 @@
         }
 
         .textContainer {
-            width: 43%;
+            width: 50%;
 
             p {
                 color: #cdbb93;

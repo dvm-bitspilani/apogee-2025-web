@@ -178,7 +178,11 @@ export function CityModel({ scale = 1, ...props }) {
           rotation={[0, 1.571, 0]}
         />
         <group
-          rotation={window.innerWidth < 850 ? [Math.PI / 2, 0, -Math.PI / 12] : [Math.PI / 2, 0, -Math.PI / 10]}
+          rotation={
+            window.innerWidth < 850
+              ? [Math.PI / 2, 0, 0]
+              : [Math.PI / 2, 0, -Math.PI / 10]
+          }
           onClick={() => {
             handleContactClick();
           }}
@@ -190,9 +194,11 @@ export function CityModel({ scale = 1, ...props }) {
           {/* <ContactBoard position={[-68, 35, -88]} scale={5.5} /> */}
           <ContactBoard
             position={
-              window.innerWidth < 850 ? [-68, 35, -88] : [-65, -35, -85]
+              window.innerWidth < 850 ? [-114, -35, -145] : [-65, -35, -85]
             }
-            scale={5.5}
+            // position={[-65, -35, -85]}
+            // scale={5.5}
+            scale={window.innerWidth < 850 ? 9.5 : 5.5}
           />
           {/* <pointLight
             intensity={1}
@@ -201,7 +207,7 @@ export function CityModel({ scale = 1, ...props }) {
             color="blue"
           /> */}
         </group>
-        
+
         <mesh
           name="BrassPipe1752"
           geometry={nodes.BrassPipe1752.geometry}
