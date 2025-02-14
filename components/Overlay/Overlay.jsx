@@ -30,10 +30,50 @@ export default function Overlay() {
       >
         <img src="/images/backBtnLanding.png" alt="back button" />
       </button>
-      {curState === "contact" && <Contact />}
+      {/* {curState === "contact" && <Contact />}
       {curState === "about" && <About />}
       {curState === "events" && <ComingSoon />}
-      {curState === "speakers" && <ComingSoon />}
+      {curState === "speakers" && <ComingSoon />} */}
+      <div
+        className={styles.overlayContainer}
+        style={
+          curState === "contact"
+            ? { opacity: 1, pointerEvents: "auto" }
+            : { opacity: 0, pointerEvents: "none" }
+        }
+      >
+        <Contact />
+      </div>
+      <div
+        className={styles.overlayContainer}
+        style={
+          curState === "about"
+            ? { opacity: 1, pointerEvents: "auto" }
+            : { opacity: 0, pointerEvents: "none" }
+        }
+      >
+        <About />
+      </div>
+      <div
+        className={styles.overlayContainer}
+        style={
+          curState === "events"
+            ? { opacity: 1, pointerEvents: "auto" }
+            : { opacity: 0, pointerEvents: "none" }
+        }
+      >
+        <ComingSoon />
+      </div>
+      <div
+        className={styles.overlayContainer}
+        style={
+          curState === "speakers"
+            ? { opacity: 1, pointerEvents: "auto" }
+            : { opacity: 0, pointerEvents: "none" }
+        }
+      >
+        <ComingSoon />
+      </div>
     </div>
   );
 }
