@@ -8,6 +8,7 @@ import { useLocation } from "react-router";
 import { useSelector } from "react-redux";
 import Logo from "./Logo/Logo";
 import Arrow from "./Arrow/Arrow";
+import { Helmet } from "react-helmet-async";
 
 export default function Landing() {
   const location = useLocation();
@@ -30,6 +31,10 @@ export default function Landing() {
 
   return (
     <>
+      {/* <Helmet>
+        <title>APOGEE 2025 | Revved-Up Rhapsody</title>
+        <link rel="canonical" href="https://apogee2025.com" />
+      </Helmet> */}
       <Overlay />
       <Navbar />
       <Logo />
