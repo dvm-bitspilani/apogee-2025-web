@@ -28,7 +28,11 @@ export default function Overlay() {
           dispatch(reverseAnimation(animationStage));
         }}
       >
-        <img src="/images/backBtnLanding.png" alt="back button" />
+        <img
+          src="/images/backBtnLanding.png"
+          alt="back button"
+          draggable={false}
+        />
       </button>
       {/* {curState === "contact" && <Contact />}
       {curState === "about" && <About />}
