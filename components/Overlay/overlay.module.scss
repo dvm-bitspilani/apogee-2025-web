@@ -20,6 +20,18 @@
     img {
       height: 100%;
     }
+
+    @media (width < 660px) {
+      // top: 0.5rem;
+      left: 0.5rem;
+      height: 80px;
+    }
+
+    @media (width < 600px) {
+      top: 1.25rem;
+      left: 0.5rem;
+      height: 60px;
+    }
   }
 
   .overlayContainer {

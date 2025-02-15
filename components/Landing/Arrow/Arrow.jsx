@@ -1,49 +1,48 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { Image } from "@react-three/drei";
 import gsap from "gsap";
 import down from "../../../src/assets/Landing/down.png";
+import { useGSAP } from "@gsap/react";
 
 const Arrow = ({ basePosition, scale }) => {
   const arrows = [useRef(), useRef(), useRef()];
 
-  useEffect(() => {
-    const masterTl = gsap.timeline({
-      repeat: -1,
-      defaults: {
-        duration: 1.5,
-        ease: "sine.inOut",
-      },
-    });
-
-    const yOffsets = [0, 0.03, 0.06];
-    const moveDistance = 0.025;
-    const staggerDelay = 0.15;
-    arrows.forEach((arrowRef, index) => {
-      const arrowTl = gsap
-        .timeline()
-        .to(arrowRef.current.position, {
-          y: basePosition[1] + yOffsets[index] + moveDistance,
+  useGSAP(
+    () => {
+      const masterTl = gsap.timeline({
+        repeat: -1,
+        defaults: {
           duration: 1.5,
           ease: "sine.inOut",
-          
-        })
-        .to(
-          arrowRef.current.position,
-          {
-            y: basePosition[1] + yOffsets[index],
+        },
+      });
+
+      const yOffsets = [0, 0.03, 0.06];
+      const moveDistance = 0.025;
+      const staggerDelay = 0.15;
+      arrows.forEach((arrowRef, index) => {
+        const arrowTl = gsap
+          .timeline()
+          .to(arrowRef.current.position, {
+            y: basePosition[1] + yOffsets[index] + moveDistance,
             duration: 1.5,
             ease: "sine.inOut",
-          },
-          ">"
-        );
+          })
+          .to(
+            arrowRef.current.position,
+            {
+              y: basePosition[1] + yOffsets[index],
+              duration: 1.5,
+              ease: "sine.inOut",
+            },
+            ">"
+          );
 
-      masterTl.add(arrowTl, index * staggerDelay);
-    });
-
-    return () => {
-      masterTl.kill();
-    };
-  }, [basePosition]);
+        masterTl.add(arrowTl, index * staggerDelay);
+      });
+    },
+    { dependencies: [basePosition] }
+  );
 
   return (
     <group>
@@ -55,7 +54,7 @@ const Arrow = ({ basePosition, scale }) => {
           position={[
             basePosition[0],
             basePosition[1] + index * 0.03,
-            basePosition[2],
+            basePosition[2] + index * 0.001,
           ]}
           scale={scale}
           transparent
