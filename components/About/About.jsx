@@ -13,12 +13,15 @@ import yticon from "../../src/assets/Landing/yticon.png";
 import igicon from "../../src/assets/Landing/igicon.png";
 import linkedin from "../../src/assets/Landing/linkedin.png";
 import twitter from "../../src/assets/Landing/xicon.png";
+import { useSelector } from "react-redux";
 
 export default function About() {
   const [index, setIndex] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [showPreloader, setShowPreloader] = useState(true);
+
+  const curState = useSelector((state) => state.experienceAnimations.curStage);
 
   useEffect(() => {
     const imageUrls = [
@@ -147,19 +150,21 @@ export default function About() {
                 </button>
               </div>
               <div className={styles.video}>
-                <iframe
-                  src={videoLinks[index].videoSrc}
-                  title="YouTube video player"
-                  // title={videoTitle}
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  preload="metadata"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  webkitallowfullscreen="true"
-                  mozallowfullscreen="true"
-                  allowFullScreen
-                  style={{ height: "100%", width: "100%" }}
-                  id="video"
-                />
+                {curState === "about" && (
+                  <iframe
+                    src={videoLinks[index].videoSrc}
+                    title="YouTube video player"
+                    // title={videoTitle}
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    preload="metadata"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    webkitallowfullscreen="true"
+                    mozallowfullscreen="true"
+                    allowFullScreen
+                    style={{ height: "100%", width: "100%" }}
+                    id="video"
+                  />
+                )}
               </div>
             </div>
           </div>

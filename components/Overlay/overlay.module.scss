@@ -21,4 +21,12 @@
       height: 100%;
     }
   }
+
+  .overlayContainer {
+    width: 100vw;
+    height: 100lvh;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
 }

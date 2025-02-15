@@ -106,6 +106,7 @@ export default function Experience() {
   useGSAP(
     () => {
       const timeline = gsap.timeline();
+      console.log(orb.current);
 
       timeline
         .fromTo(
@@ -120,6 +121,7 @@ export default function Experience() {
         .to(
           orb.current.position,
           {
+            x: -0.013,
             y: 0.85,
             duration: 5,
             ease: "power2.inOut",
@@ -350,7 +352,7 @@ export default function Experience() {
             floatIntensity={0.75}
             floatingRange={[-0.1, 0.1]}
           > */}
-          <group position={[-0.013, 1.5, 0]} ref={orb}>
+          <group position={[0, 1.5, 0]} ref={orb}>
             <EnergyOrb color="orange" lightIntensity={3} />
           </group>
           <CityModel scale={0.02} />
@@ -366,7 +368,9 @@ export default function Experience() {
         </group>
 
         <group
-          position={window.innerWidth < 850 ? [0.3, 0.31, 1.14] : [0.85, 0.4, 0.75]}
+          position={
+            window.innerWidth < 850 ? [0.3, 0.31, 1.14] : [0.85, 0.4, 0.75]
+          }
           rotation={
             window.innerWidth < 850
               ? [Math.PI / 2.5, 0, 0]
@@ -407,7 +411,7 @@ export default function Experience() {
 
         <group
           position={
-            window.innerWidth < 850 ? [0.78, 0.80, -0.5] : [0.55, 0.44, -0.5]
+            window.innerWidth < 850 ? [0.78, 0.8, -0.5] : [0.55, 0.44, -0.5]
           }
           // position={[0.55, 0.44, -0.5]}
           rotation={window.innerWidth < 850 ? [0, 0, 0] : [0, 0, 0]}
