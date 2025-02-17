@@ -101,6 +101,8 @@
     font-size: 1rem;
     width: 80%;
     text-align: center;
+    display: flex;
+    flex-direction: column;
     // @media (width<1700px) {
     //   font-size: 0.9rem;
     // }
