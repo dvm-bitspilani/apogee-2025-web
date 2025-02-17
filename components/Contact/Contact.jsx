@@ -18,7 +18,8 @@ const Contact = () => {
               <ContactCard
                 personImg={`/images/contact/${costaa.personImg}.png`}
                 name={costaa.name}
-                dept={costaa.dept}
+                dept1={costaa.dept1}
+                dept2={costaa.dept2}
                 phone={costaa.phone}
                 email={costaa.email}
               />

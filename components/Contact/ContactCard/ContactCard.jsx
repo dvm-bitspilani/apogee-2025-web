@@ -2,7 +2,14 @@ import React from "react";
 import styles from "./contactcard.module.scss";
 import poster from "../../../src/assets/contact-poster.png";
 
-const ContactCard = ({ name, dept, personImg, phone = null, email = null }) => {
+const ContactCard = ({
+  name,
+  dept1,
+  dept2,
+  personImg,
+  phone = null,
+  email = null,
+}) => {
   return (
     <>
       <div className={styles.wrapper}>
@@ -32,7 +39,10 @@ const ContactCard = ({ name, dept, personImg, phone = null, email = null }) => {
         <div className={styles.pic}>
           <img src={personImg} alt="costaan image" />
         </div>
-        <div className={styles.dept}>{dept}</div>
+        <div className={styles.dept}>
+          <p>{dept1}</p>
+          <p>{dept2}</p>
+        </div>
         <div className={styles.contact}>
           <a
             style={
@@ -42,7 +52,7 @@ const ContactCard = ({ name, dept, personImg, phone = null, email = null }) => {
                 ? { display: "none" }
                 : { opacity: 0, pointerEvents: "none" }
             }
-            href={email}
+            href={`mailto:${email}`}
             target="_blank"
           >
             <svg
@@ -80,7 +90,7 @@ const ContactCard = ({ name, dept, personImg, phone = null, email = null }) => {
                 ? { display: "none" }
                 : { opacity: 0, pointerEvents: "none" }
             }
-            href={phone}
+            href={`tel:${phone}`}
             target="_blank"
           >
             <svg
