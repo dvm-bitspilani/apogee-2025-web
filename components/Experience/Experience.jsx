@@ -357,14 +357,14 @@ export default function Experience() {
           </group>
           <CityModel scale={0.02} />
           {/* </Float> */}
-          <Float
+          {/* <Float
             speed={1}
             rotationIntensity={1}
             floatIntensity={0.75}
             floatingRange={[-0.1, 0.1]}
           >
             <Blimp scale={0.25} position={[0, 0.75, 0]} />
-          </Float>
+          </Float> */}
         </group>
 
         <group
