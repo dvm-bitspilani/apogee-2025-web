@@ -89,7 +89,7 @@
                     "connectedRight": true,
                     "handles": [0.5, 1, 0.5, 0],
                     "type": "bezier",
-                    "value": -0.8600000000000001
+                    "value": -0.8500286066485183
                   },
                   {
                     "id": "tofS7Ksxzs",
@@ -376,7 +376,7 @@
                     "connectedRight": true,
                     "handles": [0.5, 1, 0.5, 0],
                     "type": "bezier",
-                    "value": 0.8370226618075356
+                    "value": 0.8870226618075356
                   }
                 ]
               },
@@ -411,6 +411,8 @@
   },
   "definitionVersion": "0.4.0",
   "revisionHistory": [
+    "ww8yWnyB9AMmQYeB",
+    "QRZQa0bs1tb7AOQH",
     "4L7ipgyqeW0FjTVa",
     "KjhI-a5pUBXXL6QC",
     "0B0fwVd0Jn2LCbwA",
