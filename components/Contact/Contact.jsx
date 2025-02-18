@@ -16,6 +16,7 @@ const Contact = () => {
           {CoStAAnData.map((costaa, index) => {
             return (
               <ContactCard
+                key={costaa.name}
                 personImg={`/images/contact/${costaa.personImg}.png`}
                 name={costaa.name}
                 dept1={costaa.dept1}

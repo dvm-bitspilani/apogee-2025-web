@@ -50,6 +50,8 @@ import { AboutUs } from "./AboutUs/AboutUs.jsx";
 import { Speakers } from "./Speakers/Speakers.jsx";
 import Arrow from "../Landing/Arrow/Arrow.jsx";
 import { Events } from "./Events/Events.jsx";
+import { Car } from "./Car/Car.jsx";
+import { Train } from "./Train/Train.jsx";
 
 export const landingSheet = getProject("Landing Project", {
   state:
@@ -291,6 +293,15 @@ export default function Experience() {
     },
   });
 
+  const { trainPos, trainScale, trainRot } = useControls({
+    trainPos: [-0.02099999999999999, -0.06700000000000003, 1.3379999999999956],
+    trainScale: {
+      value: 0.019999999999999407,
+      step: 0.001,
+    },
+    trainRot: [0, -Math.PI / 2, 0],
+  });
+
   const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
@@ -310,7 +321,6 @@ export default function Experience() {
         <meshBasicMaterial color="red" />
       </mesh>
 
-      {/* {animationStage !== "intro" && <OrbitControls enableRotate={true} />} */}
       {/* <OrbitControls enablePan={true} enableZoom={true} enableRotate={true} /> */}
 
       <Environment
@@ -357,14 +367,24 @@ export default function Experience() {
           </group>
           <CityModel scale={0.02} />
           {/* </Float> */}
-          {/* <Float
+          <Float
             speed={1}
             rotationIntensity={1}
             floatIntensity={0.75}
             floatingRange={[-0.1, 0.1]}
           >
             <Blimp scale={0.25} position={[0, 0.75, 0]} />
-          </Float> */}
+          </Float>
+
+          {window.innerWidth > 1000 && (
+            <Car
+              position={[-0.615, 0.001, 0.413]}
+              scale={0.06}
+              rotation={[0, Math.PI / 2, 0]}
+            />
+          )}
+
+          {/* <Train position={trainPos} scale={trainScale} rotation={trainRot} /> */}
         </group>
 
         <group
