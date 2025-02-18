@@ -32,6 +32,15 @@
       left: 0.5rem;
       height: 60px;
     }
+
+    @media (width < 430px) {
+      left: 0.25rem;
+    }
+
+    @media (width < 400px) {
+      height: 50px;
+      top: 1.25rem;
+    }
   }
 
   .overlayContainer {
