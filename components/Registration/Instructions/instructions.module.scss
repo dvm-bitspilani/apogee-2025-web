@@ -15,7 +15,7 @@
     justify-content: center;
     position: fixed;
     right: 3rem;
-    cursor:-webkit-grab;
+    cursor: -webkit-grab;
   }
 
   .scrollBarContainer img {
@@ -148,7 +148,7 @@
         padding-left: 10px;
         height: 36px;
       }
-      
+
       p {
         font-family: "Playfair Display";
         color: #AB9163;
@@ -157,6 +157,94 @@
       }
     }
   }
+}
+
+@media(max-width: 4000px) and (min-width: 2100px) {
+
+  .wrapper {
+
+    .scrollBarContainer img {
+      height: 140px;
+    }
+
+    .scrollBar {
+      width: 6px;
+      stroke-width: 10px;
+    }
+  }
+
+  .dummyWrapper {
+    top: 6rem;
+    height: 1304px;
+    width: 1150px;
+    transform: rotate(3deg);
+  }
+
+  .mainWrapper {
+    width: 1100px;
+    padding-bottom: 2.5rem;
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+
+    .mobilebackContainer {
+      top: 4rem;
+      left: 4rem;
+      scale: 1.6;
+    }
+
+    h2 {
+      padding-top: 3rem;
+      font-size: 125px;
+      letter-spacing: 6px;
+    }
+
+    .instructionContainer {
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+      width: 950px;
+      border: 6px solid #483312;
+  
+      .heading {
+        padding-top: 2rem;
+        gap: 16px;
+  
+        h3 {
+          font-size: 42px;
+        }
+      }
+  
+      .content {
+        padding-top: 3rem;
+        padding-left: 3rem;
+        padding-right: 3rem;
+        font-size: 34px;
+        gap: 28px;
+  
+        img {
+          height: 40px;
+          transform: translateY(8px);
+        }
+      }
+  
+      .glogin {
+        gap: 17px;
+        padding: 1.5rem;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+        cursor: pointer;
+  
+        svg {
+          padding-left: 10px;
+          height: 42px;
+        }
+  
+        p {
+          font-size: 34px;
+        }
+      }
+    }
+  }
+
 }
 
 @media(max-width: 1300px) {
@@ -175,17 +263,17 @@
   }
 }
 
-@media(max-width:980px)  {
-  
+@media(max-width:980px) {
+
   .mainWrapper {
-    
+
     .mobilebackContainer {
       position: absolute;
       top: 0.7rem;
       left: 0.5rem;
     }
   }
-}     
+}
 
 @media (max-width: 885px) {
   .dummyWrapper {
@@ -243,13 +331,13 @@
         margin-top: 2rem;
         margin-bottom: 2rem;
         cursor: pointer;
-  
+
         svg {
           padding-left: 10px;
           height: 34px;
           width: auto;
         }
-        
+
         p {
           font-size: 28px;
         }
@@ -259,7 +347,7 @@
 }
 
 @media(max-width: 580px) {
-  
+
   .mainWrapper {
     padding-top: 1.5rem;
 
@@ -268,7 +356,7 @@
       top: 1rem;
       left: 1.5rem;
     }
-  }  
+  }
 }
 
 @media (max-width: 500px) {
@@ -290,6 +378,7 @@
         h3 {
           font-size: 20px;
         }
+
         svg {
           height: 11px;
           width: 11px;
@@ -316,13 +405,13 @@
         margin-top: 1.7rem;
         margin-bottom: 2rem;
         cursor: pointer;
-  
+
         svg {
           padding-left: 9px;
           height: 22px;
           width: auto;
         }
-        
+
         p {
           font-size: 20px;
         }
