@@ -25,7 +25,7 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        margin-top: 7vh;
+        height: calc(100vh - 180px);
         gap: 5.6vw;
         margin-left: 2rem;
         margin-right: 0rem;
@@ -216,9 +216,10 @@
             gap: 2rem;
             margin-top: 3rem;
             flex-direction: column;
+            margin-left: 0;
 
             .textContainer {
-                width: 80%;
+                width: 86%;
 
                 p {
                     font-size: 22px;
@@ -233,6 +234,8 @@
 @media (max-width: 800px) {
     .aboutUs {
         .mainBody {
+            height: fit-content;
+            
             .videoWrapper {
                 .videoBackground {
                     height: 320px;
@@ -314,6 +317,7 @@
             padding-top: 1rem;
             margin: 0;
             gap: 1rem;
+            height: fit-content;
 
             .videoWrapper {
                 
