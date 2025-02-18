@@ -216,7 +216,7 @@
       .content {
         padding-top: 3rem;
         padding-left: 3rem;
-        padding-right: 3rem;
+        padding-right: 2.7rem;
         font-size: 34px;
         gap: 30px;
   
@@ -304,7 +304,7 @@
       .content {
         padding-top: 2.5rem;
         padding-left: 2.5rem;
-        padding-right: 2.5rem;
+        padding-right: 2.3rem;
         font-size: 29px;
         gap: 26px;
   
@@ -315,7 +315,7 @@
       }
   
       .glogin {
-        gap: 14px;
+        gap: 17px;
         padding: 1.3rem;
         margin-top: 2.5rem;
         margin-bottom: 2.5rem;
@@ -329,6 +329,84 @@
         p {
           font-size: 31px;
         }
+      }
+    }
+  }
+
+}
+
+@media(max-width: 1800px) and (min-width: 1600px) {
+
+  .wrapper {
+
+    .scrollBarContainer img {
+      height: 128px;
+    }
+
+    .scrollBar {
+      width: 4.2px;
+      stroke-width: 8.2px;
+    }
+  }
+
+  .dummyWrapper {
+    top: 4rem;
+    height: 1000px;
+    width: 910px;
+    transform: rotate(3deg);
+  }
+
+  .mainWrapper {
+    width: 910px;
+    padding-bottom: 2rem;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+
+    .mobilebackContainer {
+      top: 2rem;
+      left: 2rem;
+      scale: 1.2;
+    }
+
+    h2 {
+      padding-top: 2.2rem;
+      font-size: 102px;
+      letter-spacing: 4.5px;
+    }
+
+    .instructionContainer {
+      margin-top: 2.2rem;
+      margin-bottom: 2.2rem;
+      width: 780px;
+      border: 3.4px solid #483312;
+  
+      .heading {
+        padding-top: 1.5rem;
+        gap: 14px;
+  
+        h3 {
+          font-size: 33px;
+        }
+      }
+  
+      .content {
+        padding-top: 2.3rem;
+        padding-left: 2.3rem;
+        padding-right: 2.1rem;
+        font-size: 26.5px;
+        gap: 23px;
+  
+        img {
+          height: 33px;
+          transform: translateY(4px);
+        }
+      }
+  
+      .glogin {
+        gap: 15px;
+        padding: 1.2rem;
+        margin-top: 2.3rem;
+        margin-bottom: 2.3rem;
       }
     }
   }
