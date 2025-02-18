@@ -218,7 +218,7 @@
         padding-left: 3rem;
         padding-right: 3rem;
         font-size: 34px;
-        gap: 28px;
+        gap: 30px;
   
         img {
           height: 40px;
@@ -240,6 +240,94 @@
   
         p {
           font-size: 34px;
+        }
+      }
+    }
+  }
+
+}
+
+@media(max-width: 2100px) and (min-width: 1800px) {
+
+  .wrapper {
+
+    .scrollBarContainer img {
+      height: 136px;
+    }
+
+    .scrollBar {
+      width: 4.5px;
+      stroke-width: 8.5px;
+    }
+  }
+
+  .dummyWrapper {
+    top: 5rem;
+    height: 1114px;
+    width: 1000px;
+    transform: rotate(3deg);
+  }
+
+  .mainWrapper {
+    width: 1000px;
+    padding-bottom: 2rem;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+
+    .mobilebackContainer {
+      top: 2.4rem;
+      left: 2.4rem;
+      scale: 1.3;
+    }
+
+    h2 {
+      padding-top: 2.5rem;
+      font-size: 111px;
+      letter-spacing: 5px;
+    }
+
+    .instructionContainer {
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+      width: 850px;
+      border: 4px solid #483312;
+  
+      .heading {
+        padding-top: 1.5rem;
+        gap: 14px;
+  
+        h3 {
+          font-size: 37px;
+        }
+      }
+  
+      .content {
+        padding-top: 2.5rem;
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+        font-size: 29px;
+        gap: 26px;
+  
+        img {
+          height: 36px;
+          transform: translateY(4px);
+        }
+      }
+  
+      .glogin {
+        gap: 14px;
+        padding: 1.3rem;
+        margin-top: 2.5rem;
+        margin-bottom: 2.5rem;
+        cursor: pointer;
+  
+        svg {
+          padding-left: 10px;
+          height: 36px;
+        }
+  
+        p {
+          font-size: 31px;
         }
       }
     }
