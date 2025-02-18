@@ -25,7 +25,7 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        margin-top: 7vh;
+        height: calc(100vh - 180px);
         gap: 5.6vw;
         margin-left: 2rem;
         margin-right: 0rem;
@@ -186,6 +186,140 @@
     }
 }
 
+@media(max-width: 4000px) and (min-width: 2100px) {
+
+    .aboutUs {
+    
+        .heading {
+            height: 230px;
+        }
+    
+        .mainBody {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 230px);
+            gap: calc((100% - 50% - 700px) / 2.6);
+            margin-left: 2rem;
+            margin-right: 0rem;
+    
+            .videoWrapper {
+    
+                .videoBackground {
+                    height: 500px;
+                    width: 700px;
+    
+                    .buttonContainer {
+                        .prev {
+                            left: -100px;
+                            top: calc(50% - 40px);
+    
+                            img {
+                                height: 80px;
+                            }
+                        }
+    
+                        .next {
+                            right: -137px;
+                            top: calc(50% - 40px);
+    
+                            img {
+                                height: 80px;
+                            }
+                        }
+                    }
+    
+                    .video {
+                        height: 304px;
+                        width: 504px;
+                        top: 100px;
+                        left: 116px;
+                        border-radius: 25px;
+                    }
+                }
+            }
+    
+            .textContainer {
+                width: 50%;
+    
+                p {
+                    font-weight: 420;
+                    font-size: 40px;
+                    line-height: 55px;
+                }
+            }
+        }
+    }
+
+}
+
+@media(max-width: 2100px) and (min-width: 1800px) {
+
+    .aboutUs {
+    
+        .heading {
+            height: 200px;
+        }
+    
+        .mainBody {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 200px);
+            gap: calc((100% - 48% - 640px) / 2.4);
+    
+            .videoWrapper {
+    
+                .videoBackground {
+                    height: 450px;
+                    width: 640px;
+    
+                    .buttonContainer {
+                        .prev {
+                            left: -80px;
+                            top: calc(50% - 35px);
+    
+                            img {
+                                height: 70px;
+                            }
+                        }
+    
+                        .next {
+                            right: -107px;
+                            top: calc(50% - 35px);
+    
+                            img {
+                                height: 70px;
+                            }
+                        }
+                    }
+    
+                    .video {
+                        height: 270px;
+                        width: 460px;
+                        top: 88px;
+                        left: 100px;
+                        border-radius: 20px;
+                    }
+                }
+            }
+    
+            .textContainer {
+                width: 48%;
+    
+                p {
+                    font-weight: 410;
+                    font-size: 33px;
+                    line-height: 47px;
+                }
+            }
+        }
+    }
+
+}
+
 @media (max-width: 1200px) {
     .aboutUs {
         .mainBody {
@@ -216,9 +350,10 @@
             gap: 2rem;
             margin-top: 3rem;
             flex-direction: column;
+            margin-left: 0;
 
             .textContainer {
-                width: 80%;
+                width: 86%;
 
                 p {
                     font-size: 22px;
@@ -233,6 +368,8 @@
 @media (max-width: 800px) {
     .aboutUs {
         .mainBody {
+            height: fit-content;
+
             .videoWrapper {
                 .videoBackground {
                     height: 320px;
@@ -314,6 +451,7 @@
             padding-top: 1rem;
             margin: 0;
             gap: 1rem;
+            height: fit-content;
 
             .videoWrapper {
                 

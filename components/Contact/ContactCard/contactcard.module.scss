@@ -5,9 +5,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // @media (width<1475px) {
-  //   width: 14rem;
-  // }
+  @media (width<1475px) {
+    width: 14rem;
+  }
   @media (width>1999px) {
     width: 21rem;
   }
@@ -20,6 +20,10 @@
   @media (1810px>width>1710px) {
     width: 18rem;
   }
+  // @media(width>1960px)
+  // {
+  //   width: 18rem;
+  // }
   @media (1710px>width>1610px) {
     width: 17rem;
   }
