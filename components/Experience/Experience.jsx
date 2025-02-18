@@ -376,11 +376,13 @@ export default function Experience() {
             <Blimp scale={0.25} position={[0, 0.75, 0]} />
           </Float>
 
-          <Car
-            position={[-0.615, 0.001, 0.413]}
-            scale={0.06}
-            rotation={[0, Math.PI / 2, 0]}
-          />
+          {window.innerWidth > 1000 && (
+            <Car
+              position={[-0.615, 0.001, 0.413]}
+              scale={0.06}
+              rotation={[0, Math.PI / 2, 0]}
+            />
+          )}
 
           {/* <Train position={trainPos} scale={trainScale} rotation={trainRot} /> */}
         </group>
