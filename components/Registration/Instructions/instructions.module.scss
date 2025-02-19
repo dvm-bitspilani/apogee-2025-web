@@ -15,7 +15,7 @@
     justify-content: center;
     position: fixed;
     right: 3rem;
-    cursor:-webkit-grab;
+    cursor: -webkit-grab;
   }
 
   .scrollBarContainer img {
@@ -148,7 +148,7 @@
         padding-left: 10px;
         height: 36px;
       }
-      
+
       p {
         font-family: "Playfair Display";
         color: #AB9163;
@@ -157,6 +157,260 @@
       }
     }
   }
+}
+
+@media(max-width: 4000px) and (min-width: 2100px) {
+
+  .wrapper {
+
+    .scrollBarContainer img {
+      height: 140px;
+    }
+
+    .scrollBar {
+      width: 6px;
+      stroke-width: 10px;
+    }
+  }
+
+  .dummyWrapper {
+    top: 6rem;
+    height: 1304px;
+    width: 1150px;
+    transform: rotate(3deg);
+  }
+
+  .mainWrapper {
+    width: 1100px;
+    padding-bottom: 2.5rem;
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+
+    .mobilebackContainer {
+      top: 4rem;
+      left: 4rem;
+      scale: 1.6;
+    }
+
+    h2 {
+      padding-top: 3rem;
+      font-size: 125px;
+      letter-spacing: 6px;
+    }
+
+    .instructionContainer {
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+      width: 950px;
+      border: 6px solid #483312;
+  
+      .heading {
+        padding-top: 2rem;
+        gap: 16px;
+  
+        h3 {
+          font-size: 42px;
+        }
+      }
+  
+      .content {
+        padding-top: 3rem;
+        padding-left: 3rem;
+        padding-right: 2.7rem;
+        font-size: 34px;
+        gap: 30px;
+  
+        img {
+          height: 40px;
+          transform: translateY(8px);
+        }
+      }
+  
+      .glogin {
+        gap: 17px;
+        padding: 1.5rem;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+        cursor: pointer;
+  
+        svg {
+          padding-left: 10px;
+          height: 42px;
+        }
+  
+        p {
+          font-size: 34px;
+        }
+      }
+    }
+  }
+
+}
+
+@media(max-width: 2100px) and (min-width: 1800px) {
+
+  .wrapper {
+
+    .scrollBarContainer img {
+      height: 136px;
+    }
+
+    .scrollBar {
+      width: 4.5px;
+      stroke-width: 8.5px;
+    }
+  }
+
+  .dummyWrapper {
+    top: 5rem;
+    height: 1114px;
+    width: 1000px;
+    transform: rotate(3deg);
+  }
+
+  .mainWrapper {
+    width: 1000px;
+    padding-bottom: 2rem;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+
+    .mobilebackContainer {
+      top: 2.4rem;
+      left: 2.4rem;
+      scale: 1.3;
+    }
+
+    h2 {
+      padding-top: 2.5rem;
+      font-size: 111px;
+      letter-spacing: 5px;
+    }
+
+    .instructionContainer {
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+      width: 850px;
+      border: 4px solid #483312;
+  
+      .heading {
+        padding-top: 1.5rem;
+        gap: 14px;
+  
+        h3 {
+          font-size: 37px;
+        }
+      }
+  
+      .content {
+        padding-top: 2.5rem;
+        padding-left: 2.5rem;
+        padding-right: 2.3rem;
+        font-size: 29px;
+        gap: 26px;
+  
+        img {
+          height: 36px;
+          transform: translateY(4px);
+        }
+      }
+  
+      .glogin {
+        gap: 17px;
+        padding: 1.3rem;
+        margin-top: 2.5rem;
+        margin-bottom: 2.5rem;
+        cursor: pointer;
+  
+        svg {
+          padding-left: 10px;
+          height: 36px;
+        }
+  
+        p {
+          font-size: 31px;
+        }
+      }
+    }
+  }
+
+}
+
+@media(max-width: 1800px) and (min-width: 1600px) {
+
+  .wrapper {
+
+    .scrollBarContainer img {
+      height: 128px;
+    }
+
+    .scrollBar {
+      width: 4.2px;
+      stroke-width: 8.2px;
+    }
+  }
+
+  .dummyWrapper {
+    top: 4rem;
+    height: 1000px;
+    width: 910px;
+    transform: rotate(3deg);
+  }
+
+  .mainWrapper {
+    width: 910px;
+    padding-bottom: 2rem;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+
+    .mobilebackContainer {
+      top: 2rem;
+      left: 2rem;
+      scale: 1.2;
+    }
+
+    h2 {
+      padding-top: 2.2rem;
+      font-size: 102px;
+      letter-spacing: 4.5px;
+    }
+
+    .instructionContainer {
+      margin-top: 2.2rem;
+      margin-bottom: 2.2rem;
+      width: 780px;
+      border: 3.4px solid #483312;
+  
+      .heading {
+        padding-top: 1.5rem;
+        gap: 14px;
+  
+        h3 {
+          font-size: 33px;
+        }
+      }
+  
+      .content {
+        padding-top: 2.3rem;
+        padding-left: 2.3rem;
+        padding-right: 2.1rem;
+        font-size: 26.5px;
+        gap: 23px;
+  
+        img {
+          height: 33px;
+          transform: translateY(4px);
+        }
+      }
+  
+      .glogin {
+        gap: 15px;
+        padding: 1.2rem;
+        margin-top: 2.3rem;
+        margin-bottom: 2.3rem;
+      }
+    }
+  }
+
 }
 
 @media(max-width: 1300px) {
@@ -175,17 +429,17 @@
   }
 }
 
-@media(max-width:980px)  {
-  
+@media(max-width:980px) {
+
   .mainWrapper {
-    
+
     .mobilebackContainer {
       position: absolute;
       top: 0.7rem;
       left: 0.5rem;
     }
   }
-}     
+}
 
 @media (max-width: 885px) {
   .dummyWrapper {
@@ -243,13 +497,13 @@
         margin-top: 2rem;
         margin-bottom: 2rem;
         cursor: pointer;
-  
+
         svg {
           padding-left: 10px;
           height: 34px;
           width: auto;
         }
-        
+
         p {
           font-size: 28px;
         }
@@ -259,7 +513,7 @@
 }
 
 @media(max-width: 580px) {
-  
+
   .mainWrapper {
     padding-top: 1.5rem;
 
@@ -268,7 +522,7 @@
       top: 1rem;
       left: 1.5rem;
     }
-  }  
+  }
 }
 
 @media (max-width: 500px) {
@@ -290,6 +544,7 @@
         h3 {
           font-size: 20px;
         }
+
         svg {
           height: 11px;
           width: 11px;
@@ -316,13 +571,13 @@
         margin-top: 1.7rem;
         margin-bottom: 2rem;
         cursor: pointer;
-  
+
         svg {
           padding-left: 9px;
           height: 22px;
           width: auto;
         }
-        
+
         p {
           font-size: 20px;
         }

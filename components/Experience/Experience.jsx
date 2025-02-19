@@ -1,10 +1,4 @@
-import {
-  Environment,
-  Float,
-  Html,
-  Image,
-  OrbitControls,
-} from "@react-three/drei";
+import { Environment, Float } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import * as THREE from "three";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -12,10 +6,8 @@ import { Leva, useControls } from "leva";
 import EnergyOrb from "../EnergyOrb/EnergyOrb.jsx";
 import { CityModel } from "./CityModel/CityModel.jsx";
 import { Blimp } from "./Blimp/Blimp.jsx";
-import down from "../../src/assets/Landing/down.png";
 
 import {
-  curStageUpdate,
   setNavigationStage,
   experienceAnimationsActions,
   reverseAnimation,
@@ -45,11 +37,12 @@ import { getProject } from "@theatre/core";
 import animationStatesDesktop from "../../utils/animation_states/desktop/Landing Project.theatre-project-state.json";
 import animationStatesMobile from "../../utils/animation_states/mobile/Landing Project.theatre-project-state.json";
 import { useThree } from "@react-three/fiber";
-import { ContactBoard } from "./ContactBoard/ContactBoard.jsx";
 import { AboutUs } from "./AboutUs/AboutUs.jsx";
 import { Speakers } from "./Speakers/Speakers.jsx";
-import Arrow from "../Landing/Arrow/Arrow.jsx";
 import { Events } from "./Events/Events.jsx";
+import { Car } from "./Car/Car.jsx";
+// import { Train } from "./Train/Train.jsx";
+import Arrows from "./Arrows/Arrows.jsx";
 
 export const landingSheet = getProject("Landing Project", {
   state:
@@ -76,6 +69,10 @@ export default function Experience() {
 
   const animationStage = useSelector(
     (state) => state.experienceAnimations.animationStage
+  );
+
+  const isUserUnfocusAtPreloader = useSelector(
+    (state) => state.experienceAnimations.isUserUnfocusAtPreloader
   );
 
   const handleAboutClick = () => {
@@ -231,9 +228,16 @@ export default function Experience() {
 
     window.addEventListener("keyup", handleKeyUp);
 
+    if (isUserUnfocusAtPreloader && animationStage === "intro") {
+      landingSheet.project.ready.then(() => {
+        landingSheet.sequence.pause();
+        landingSheet.sequence.position = 5.5;
+      });
+    }
+
     const handleVisibilityChange = () => {
       landingSheet.project.ready.then(() => {
-        if (document.hidden) {
+        if (document.hidden && !isUserUnfocusAtPreloader) {
           landingSheet.sequence.pause();
           switch (animationStage) {
             case "intro":
@@ -274,12 +278,11 @@ export default function Experience() {
 
     return () => {
       window.removeEventListener("keyup", handleKeyUp);
-
       document.removeEventListener("visibilitychange", handleVisibilityChange);
 
       clearInterval(animationTimeout);
     };
-  }, [animationStage]);
+  }, [animationStage, isUserUnfocusAtPreloader]);
 
   const { positionFinder } = useControls({
     positionFinder: {
@@ -289,6 +292,15 @@ export default function Experience() {
       value: [0.9, 0.05999999999999972, 0.7970000000000005], // about
       step: 0.01,
     },
+  });
+
+  const { trainPos, trainScale, trainRot } = useControls({
+    trainPos: [-0.02099999999999999, -0.06700000000000003, 1.3379999999999956],
+    trainScale: {
+      value: 0.019999999999999407,
+      step: 0.001,
+    },
+    trainRot: [0, -Math.PI / 2, 0],
   });
 
   const [hovered, setHovered] = useState(false);
@@ -310,11 +322,10 @@ export default function Experience() {
         <meshBasicMaterial color="red" />
       </mesh>
 
-      {/* {animationStage !== "intro" && <OrbitControls enableRotate={true} />} */}
       {/* <OrbitControls enablePan={true} enableZoom={true} enableRotate={true} /> */}
 
       <Environment
-        files="/environments/sunset1QuarterResOrange.hdr"
+        files="/environments/sunset1by16Orange.hdr"
         environmentIntensity={1}
         backgroundIntensity={1}
         background={true}
@@ -365,6 +376,16 @@ export default function Experience() {
           >
             <Blimp scale={0.25} position={[0, 0.75, 0]} />
           </Float>
+
+          {window.innerWidth > 1000 && (
+            <Car
+              position={[-0.615, 0.001, 0.413]}
+              scale={0.06}
+              rotation={[0, Math.PI / 2, 0]}
+            />
+          )}
+
+          {/* <Train position={trainPos} scale={trainScale} rotation={trainRot} /> */}
         </group>
 
         <group
@@ -427,29 +448,7 @@ export default function Experience() {
           />
         </group>
 
-        <Arrow
-          basePosition={[0.85, 0.49, 0.75]}
-          scale={window.innerWidth < 850 ? 0 : 0.06}
-        />
-
-        <Arrow
-          basePosition={[-0.67, 0.49, 0.8]}
-          scale={window.innerWidth < 850 ? 0 : 0.06}
-        />
-
-        <Arrow
-          basePosition={
-            window.innerWidth < 850 ? [0.33, 0.53, 0.65] : [0.55, 0.42, -0.6]
-          }
-          scale={window.innerWidth < 850 ? 0 : 0.06}
-        />
-
-        <Arrow
-          basePosition={
-            window.innerWidth < 850 ? [-0.27, 0.53, 0.8] : [-0.61, 0.47, -0.52]
-          }
-          scale={window.innerWidth < 850 ? 0 : 0.06}
-        />
+        <Arrows />
       </SheetProvider>
     </>
   );
