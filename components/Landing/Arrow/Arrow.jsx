@@ -3,6 +3,7 @@ import { Image } from "@react-three/drei";
 import gsap from "gsap";
 import down from "../../../src/assets/Landing/down.png";
 import { useGSAP } from "@gsap/react";
+import { DoubleSide } from "three";
 
 const Arrow = ({ basePosition, scale }) => {
   const arrows = [useRef(), useRef(), useRef()];
@@ -11,11 +12,11 @@ const Arrow = ({ basePosition, scale }) => {
     () => {
       arrows.forEach((arrowRef, index) => {
         gsap.to(arrowRef.current.position, {
-          y: basePosition[1] + index * 0.03 + 0.025,
+          y: basePosition[1] + index * 0.03 + 0.035,
           duration: 1.5,
           repeat: -1,
           yoyo: true,
-          ease: "sine.inOut",
+          ease: "back.inOut",
           delay: index * 0.15,
         });
       });
@@ -37,6 +38,7 @@ const Arrow = ({ basePosition, scale }) => {
           ]}
           scale={scale}
           transparent
+          side={DoubleSide}
         />
       ))}
     </group>
