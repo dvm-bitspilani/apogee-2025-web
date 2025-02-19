@@ -71,6 +71,10 @@ export default function Experience() {
     (state) => state.experienceAnimations.animationStage
   );
 
+  const isUserUnfocusAtPreloader = useSelector(
+    (state) => state.experienceAnimations.isUserUnfocusAtPreloader
+  );
+
   const handleAboutClick = () => {
     dispatch(setNavigationStage("landingToAbout"));
   };
@@ -224,9 +228,16 @@ export default function Experience() {
 
     window.addEventListener("keyup", handleKeyUp);
 
+    if (isUserUnfocusAtPreloader && animationStage === "intro") {
+      landingSheet.project.ready.then(() => {
+        landingSheet.sequence.pause();
+        landingSheet.sequence.position = 5.5;
+      });
+    }
+
     const handleVisibilityChange = () => {
       landingSheet.project.ready.then(() => {
-        if (document.hidden) {
+        if (document.hidden && !isUserUnfocusAtPreloader) {
           landingSheet.sequence.pause();
           switch (animationStage) {
             case "intro":
@@ -267,12 +278,11 @@ export default function Experience() {
 
     return () => {
       window.removeEventListener("keyup", handleKeyUp);
-
       document.removeEventListener("visibilitychange", handleVisibilityChange);
 
       clearInterval(animationTimeout);
     };
-  }, [animationStage]);
+  }, [animationStage, isUserUnfocusAtPreloader]);
 
   const { positionFinder } = useControls({
     positionFinder: {
