@@ -254,7 +254,9 @@ export default function RegForm({ email }) {
   };
 
   const calculateFontSize = () => {
-    if (window.innerWidth < 500) {
+    if (window.innerWidth > 2100) {
+      return 41;
+    } else if (window.innerWidth < 500) {
       return 20;
     } else if (window.innerWidth < 885) {
       return 24;
@@ -265,7 +267,9 @@ export default function RegForm({ email }) {
   const fontsize = calculateFontSize();
 
   const calculateIndicatorSize = () => {
-    if (window.innerWidth < 600) {
+    if (window.innerWidth > 2100) {
+      return 41;
+    } else if (window.innerWidth < 600) {
       return 22;
     } else {
       return 28;
