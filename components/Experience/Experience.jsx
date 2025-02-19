@@ -292,14 +292,14 @@ export default function Experience() {
   //   },
   // });
 
-  const { trainPos, trainScale, trainRot } = useControls({
-    trainPos: [-0.02099999999999999, -0.06700000000000003, 1.3379999999999956],
-    trainScale: {
-      value: 0.019999999999999407,
-      step: 0.001,
-    },
-    trainRot: [0, -Math.PI / 2, 0],
-  });
+  // const { trainPos, trainScale, trainRot } = useControls({
+  //   trainPos: [-0.02099999999999999, -0.06700000000000003, 1.3379999999999956],
+  //   trainScale: {
+  //     value: 0.019999999999999407,
+  //     step: 0.001,
+  //   },
+  //   trainRot: [0, -Math.PI / 2, 0],
+  // });
 
   const [hovered, setHovered] = useState(false);
 

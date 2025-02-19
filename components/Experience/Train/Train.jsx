@@ -42,10 +42,10 @@ export function Train(props) {
     { dependencies: [train, trainRotRef] }
   );
 
-  const { rot } = useControls({
-    // rot: [1.358796326794899, 0, 0],
-    rot: [Math.PI / 2, 0, 0],
-  });
+  //   const { rot } = useControls({
+  //     // rot: [1.358796326794899, 0, 0],
+  //     rot: [Math.PI / 2, 0, 0],
+  //   });
   return (
     <group ref={train} {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]} scale={2.222}>
