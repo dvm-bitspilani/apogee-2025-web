@@ -324,7 +324,7 @@ export default function Experience() {
       {/* <OrbitControls enablePan={true} enableZoom={true} enableRotate={true} /> */}
 
       <Environment
-        files="/environments/sunset1QuarterResOrange.hdr"
+        files="/environments/sunset1by16Orange.hdr"
         environmentIntensity={1}
         backgroundIntensity={1}
         background={true}
