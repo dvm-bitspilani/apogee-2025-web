@@ -9,36 +9,15 @@ const Arrow = ({ basePosition, scale }) => {
 
   useGSAP(
     () => {
-      const masterTl = gsap.timeline({
-        repeat: -1,
-        defaults: {
-          duration: 1.5,
-          ease: "sine.inOut",
-        },
-      });
-
-      const yOffsets = [0, 0.03, 0.06];
-      const moveDistance = 0.025;
-      const staggerDelay = 0.15;
       arrows.forEach((arrowRef, index) => {
-        const arrowTl = gsap
-          .timeline()
-          .to(arrowRef.current.position, {
-            y: basePosition[1] + yOffsets[index] + moveDistance,
-            duration: 1.5,
-            ease: "sine.inOut",
-          })
-          .to(
-            arrowRef.current.position,
-            {
-              y: basePosition[1] + yOffsets[index],
-              duration: 1.5,
-              ease: "sine.inOut",
-            },
-            ">"
-          );
-
-        masterTl.add(arrowTl, index * staggerDelay);
+        gsap.to(arrowRef.current.position, {
+          y: basePosition[1] + index * 0.03 + 0.025,
+          duration: 1.5,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          delay: index * 0.15,
+        });
       });
     },
     { dependencies: [basePosition] }
