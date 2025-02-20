@@ -5,6 +5,7 @@ import ShaderDev from "../components/ShaderDev/ShaderDev.jsx";
 import ComingSoon from "../components/ComingSoon/ComingSoon.jsx";
 import ReactGA from "react-ga4";
 import Instructions from "../components/Registration/Instructions/Instruction.jsx";
+import ContactPage from "../routes/ContactPage/ContactPage.jsx";
 
 ReactGA.initialize("G-45DB3M9465");
 
@@ -14,6 +15,7 @@ function App() {
       <Route element={<GlobalLayout />}>
         <Route path="/" element={<Landing />} />
         <Route path="/shader-dev" element={<ShaderDev />} />
+        <Route path="/contact" element={<ContactPage />} />
         <Route path="/registration" element={<Instructions />} />
         <Route path="*" element={<ComingSoon />} />
       </Route>

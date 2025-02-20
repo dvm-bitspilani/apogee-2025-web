@@ -5,6 +5,7 @@ import Contact from "../Contact/Contact";
 import About from "../About/About";
 import ComingSoon from "../ComingSoon/ComingSoon";
 import { reverseAnimation } from "../../store/experienceAnimationsSlice/experienceAnimationsSlice";
+import OverlayBackBtn from "./OverlayBackBtn/OverlayBackBtn";
 export default function Overlay() {
   const dispatch = useDispatch();
 
@@ -22,18 +23,7 @@ export default function Overlay() {
           : { opacity: 1, pointerEvents: "auto" }
       }
     >
-      <button
-        className={styles.backBtn}
-        onClick={() => {
-          dispatch(reverseAnimation(animationStage));
-        }}
-      >
-        <img
-          src="/images/backBtnLanding.png"
-          alt="back button"
-          draggable={false}
-        />
-      </button>
+      <OverlayBackBtn />
       {/* {curState === "contact" && <Contact />}
       {curState === "about" && <About />}
       {curState === "events" && <ComingSoon />}
