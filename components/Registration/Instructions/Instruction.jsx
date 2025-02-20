@@ -10,9 +10,9 @@ import wheel from "../../../src/assets/Register/wheel.svg";
 import Preloader from "../Preloader/Preloader";
 import bullet from "../../../src/assets/Register/bullet.svg";
 import regBackground from "../../../src/assets/Register/regBackground.png";
+import { Helmet } from "react-helmet-async";
 
 export default function Instructions() {
-
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [showPreloader, setShowPreloader] = useState(true);
   const [userState, setUserState] = useState(false);
@@ -181,6 +181,10 @@ export default function Instructions() {
 
   return (
     <>
+      <Helmet>
+        <title>Registration | APOGEE 2025</title>
+        <link rel="canonical" href="https://bits-apogee.org/registration" />
+      </Helmet>
       {userState && userEmail ? (
         <RegForm email={userEmail} />
       ) : (

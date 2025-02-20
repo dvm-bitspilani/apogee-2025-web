@@ -7,6 +7,7 @@ const experienceAnimationsSlice = createSlice({
     curStage: "landing",
     // isLoading: true,
     isPointerEventsAllowed: false,
+    isUserUnfocusAtPreloader: false,
   },
   reducers: {
     setAnimationStage: (state, action) => {
@@ -30,6 +31,9 @@ const experienceAnimationsSlice = createSlice({
     // },
     toggleIsPointerEventsAllowed: (state) => {
       state.isPointerEventsAllowed = !state.isPointerEventsAllowed;
+    },
+    toggleIsUserUnfocusAtPreloader: (state) => {
+      state.isUserUnfocusAtPreloader = !state.isUserUnfocusAtPreloader;
     },
   },
 });

@@ -140,11 +140,11 @@ export default function About() {
                 }}
               />
               <div className={styles.buttonContainer}>
-                <button on onClick={prev} className={styles.prev}>
+                <button onClick={prev} className={styles.prev}>
                   <img src={left} alt="left" id={styles.laptop} />
                   <img src={mobileLeft} alt="mobileleft" id={styles.mobile} />
                 </button>
-                <button on onClick={next} className={styles.next}>
+                <button onClick={next} className={styles.next}>
                   <img src={right} alt="right" id={styles.laptop} />
                   <img src={mobileRight} alt="mobileright" id={styles.mobile} />
                 </button>

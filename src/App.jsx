@@ -17,9 +17,9 @@ function App() {
       <Route element={<GlobalLayout />}>
         <Route path="/" element={<Landing />} />
         <Route path="/shader-dev" element={<ShaderDev />} />
-        <Route path="/contact" element={<Contact />} />
+        {/* <Route path="/contact" element={<Contact />} /> */}
         <Route path="/registration" element={<Instructions />} />
-        <Route path="/about" element={<About />} />
+        {/* <Route path="/about" element={<About />} /> */}
         <Route path="*" element={<ComingSoon />} />
       </Route>
     </Routes>
