@@ -6,7 +6,7 @@ import ComingSoon from "../components/ComingSoon/ComingSoon.jsx";
 import ReactGA from "react-ga4";
 import Instructions from "../components/Registration/Instructions/Instruction.jsx";
 
-ReactGA.initialize("G-45DB3M9465");
+ReactGA.initialize("G-H9LEY5519K");
 
 function App() {
   return (
