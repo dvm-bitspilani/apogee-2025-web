@@ -6,6 +6,8 @@ import ComingSoon from "../components/ComingSoon/ComingSoon.jsx";
 import ReactGA from "react-ga4";
 import Instructions from "../components/Registration/Instructions/Instruction.jsx";
 import ContactPage from "../routes/ContactPage/ContactPage.jsx";
+import Quantaculus from "../routes/Quantaculus.jsx";
+import QuantaculusSubmitted from "../routes/QuantaculusSubmitted.jsx";
 
 ReactGA.initialize("G-H9LEY5519K");
 
@@ -18,6 +20,8 @@ function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/registration" element={<Instructions />} />
         <Route path="*" element={<ComingSoon />} />
+        <Route path="/quantaculus" element={<Quantaculus />} />
+        <Route path="/quantaculus/submitted" element={<QuantaculusSubmitted />} />
       </Route>
     </Routes>
   );
