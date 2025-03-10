@@ -91,7 +91,7 @@ const Login = ({ onLoginSuccess, onLoginError }) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        {errorMessage && <p className={styles.error}>{errorMessage}</p>}
+        {errorMessage && <p>{errorMessage}</p>}
         <input type="submit" value="Login" className={styles.submit} />
       </form>
     </div>
