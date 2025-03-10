@@ -14,6 +14,10 @@
   font-family: "Josefin Sans", sans-serif;
   font-size: 38px;
   //   letter-spacing: 0.1em;
+
+  @media screen and (max-width: 850px) {
+    font-size: 30px;
+  }
 }
 
 .timeContainer {
@@ -21,27 +25,22 @@
   flex-direction: row;
   align-items: center;
 }
-/* Row for the digits and colons */
 .digitsRow {
   display: flex;
   align-items: center;
 }
 
-/* Group container for each time segment */
 .group {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-/* Container for the digits within each group */
 .digits {
   display: flex;
 }
 
-/* Number style */
 .number {
-  //   margin: 0 0.2em;
   color: #ffdb9e;
   text-shadow: #ff4d00 0 0 56px, #ffa916 0 0 24px, #ef9700 0 0 12px,
     #ef9700 0 0 8px, #ef9700 0 0 2px;
@@ -49,17 +48,15 @@
   transition: opacity 0.1s linear;
 }
 
-/* Colon style */
 .colon {
   margin: 0 0.2em;
   color: #ffdb9e;
   text-shadow: #ff4d00 0 0 56px, #ffa916 0 0 24px, #ef9700 0 0 12px,
     #ef9700 0 0 8px, #ef9700 0 0 2px;
   -webkit-text-stroke: 1px #ff6e00;
-  line-height: 1; /* Ensure colon height is based on digits */
+  line-height: 1;
 }
 
-/* Row for the labels */
 .labelsRow {
   //   position: absolute;
   //   bottom: 10px;
@@ -68,9 +65,12 @@
   //   width: 100%;
   //   margin-top: 0.5em;
   gap: 1.5rem;
+
+  @media screen and (max-width: 850px) {
+    gap: 1rem;
+  }
 }
 
-/* Label style */
 .label {
   flex: 1;
   font-family: "Inter", sans-serif;
@@ -80,4 +80,8 @@
     #ef9700 0 0 8px, #ef9700 0 0 2px;
   -webkit-text-stroke: 1px #ff6e00;
   text-align: center;
+
+  @media screen and (max-width: 850px) {
+    font-size: 10px;
+  }
 }
