@@ -77,6 +77,16 @@
     }
   }
 
+  .leftContainer,
+  .rightContainer {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 22;
+    transition: all 800ms ease-out;
+  }
+
   .hamLeft,
   .hamRight {
     position: absolute;
@@ -84,11 +94,9 @@
     width: 100%;
     height: 100%;
     z-index: 22;
-    transform: translateX(-100%);
     transition: all 800ms ease-out;
   }
-
-  .hamRight {
-    transform: translateX(100%);
+  .leftContainer {
+    z-index: 23;
   }
 }

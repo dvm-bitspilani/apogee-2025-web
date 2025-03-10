@@ -39,32 +39,34 @@ export default function Menu() {
       >
         <div className={styles.ham}></div>
         <div className={styles.hamBackground}>
-          <button
-            className={styles.backBtn}
-            onClick={() => {
-              setIsMenuOpen(false);
-            }}
-          >
-            <img
-              src="/images/backBtnLanding.png"
-              alt="back button"
-              draggable={false}
-            />
-          </button>
-          <img
-            className={styles.hamLeft}
-            src={hamLeft}
+          <div
+            className={styles.leftContainer}
             style={{
               transform: isMenuOpen ? "translateX(0)" : "translateX(-100%)",
             }}
-          />
-          <img
-            className={styles.hamRight}
-            src={hamRight}
+          >
+            <button
+              className={styles.backBtn}
+              onClick={() => {
+                setIsMenuOpen(false);
+              }}
+            >
+              <img
+                src="/images/backBtnLanding.png"
+                alt="back button"
+                draggable={false}
+              />
+            </button>
+            <img className={styles.hamLeft} src={hamLeft} />
+          </div>
+          <div
+            className={styles.rightContainer}
             style={{
               transform: isMenuOpen ? "translateX(0)" : "translateX(100%)",
             }}
-          />
+          >
+            <img className={styles.hamRight} src={hamRight} />
+          </div>
         </div>
       </div>
     </>
