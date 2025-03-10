@@ -15,9 +15,7 @@ export function CityModel({ scale = 1, ...props }) {
   const curStage = useSelector((state) => state.experienceAnimations.curStage);
 
   const group = useRef();
-  const { nodes, materials, animations } = useGLTF(
-    "/models/ActualWebsiteModel2-v2.glb"
-  );
+  const { nodes, materials, animations } = useGLTF("/models/CityOptimised.glb");
   const { actions } = useAnimations(animations, group);
 
   const handleContactClick = () => {
@@ -256,4 +254,4 @@ export function CityModel({ scale = 1, ...props }) {
   );
 }
 
-useGLTF.preload("/models/ActualWebsiteModel2-v2.glb");
+useGLTF.preload("/models/CityOptimised.glb");
