@@ -44,7 +44,7 @@ const Quantaculus = () => {
         transition={{ duration: 1, ease: "easeInOut", delay: 0 }}
         className={styles.pageContainer}
       >
-        <img
+        {/* <img
           draggable={false}
           src="/images/Left helm.png"
           alt=""
@@ -55,9 +55,9 @@ const Quantaculus = () => {
           src="/images/Right helm.png"
           alt=""
           className={styles.rightHelm}
-        />
+        /> */}
         <div className={styles.pageWrapper}>
-          <img src="/images/topHudQuiz.png" alt="" className={styles.hud} />
+          {/* <img src="/images/topHudQuiz.png" alt="" className={styles.hud} /> */}
           <div className={styles.homeBtn} onClick={handleHomeClick}>
             <span>Home</span>
           </div>
