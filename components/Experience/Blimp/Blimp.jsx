@@ -7,7 +7,7 @@ import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 
 export function Blimp({ scale = 1, position = [0, 0, 0], ...props }) {
-  const { nodes, materials } = useGLTF("/models/AirshipOptimised-v2.glb");
+  const { nodes, materials } = useGLTF("/models/AirshipFinal.glb");
 
   const blimpRef = useRef();
 
@@ -44,4 +44,4 @@ export function Blimp({ scale = 1, position = [0, 0, 0], ...props }) {
   );
 }
 
-useGLTF.preload("/models/AirshipOptimised-v2.glb");
+useGLTF.preload("/models/AirshipFinal.glb");

@@ -189,15 +189,10 @@ export function CityModel({ scale = 1, ...props }) {
           onPointerOver={() => setHovered(true)}
           onPointerOut={() => setHovered(false)}
         >
-          {/* <Contactus position={[-92, -39, -27]} scale={0.5} /> */}
-          {/* <ContactBoard position={[-65, -35, -85]} scale={5.5} /> */}
-          {/* <ContactBoard position={[-68, 35, -88]} scale={5.5} /> */}
           <ContactBoard
             position={
               window.innerWidth < 850 ? [-114, -35, -145] : [-65, -35, -85]
             }
-            // position={[-65, -35, -85]}
-            // scale={5.5}
             scale={window.innerWidth < 850 ? 9.5 : 5.5}
           />
           {/* <pointLight

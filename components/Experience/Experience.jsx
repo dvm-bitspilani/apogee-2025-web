@@ -37,9 +37,9 @@ import { getProject } from "@theatre/core";
 import animationStatesDesktop from "../../utils/animation_states/desktop/Landing Project.theatre-project-state.json";
 import animationStatesMobile from "../../utils/animation_states/mobile/Landing Project.theatre-project-state.json";
 import { useThree } from "@react-three/fiber";
-import { AboutUs } from "./AboutUs/AboutUs.jsx";
-import { Speakers } from "./Speakers/Speakers.jsx";
-import { Events } from "./Events/Events.jsx";
+import { AboutUsBoard } from "./AboutUs/AboutUsBoard.jsx";
+import { SpeakersBoard } from "./Speakers/SpeakersBoard.jsx";
+import { EventsBoard } from "./Events/EventsBoard.jsx";
 import { Car } from "./Car/Car.jsx";
 // import { Train } from "./Train/Train.jsx";
 import Arrows from "./Arrows/Arrows.jsx";
@@ -403,7 +403,7 @@ export default function Experience() {
           onPointerOver={() => setHovered(true)}
           onPointerOut={() => setHovered(false)}
         >
-          <AboutUs
+          <AboutUsBoard
             position={[0, 0, 0]}
             scale={window.innerWidth < 850 ? 0.13 : 0.1}
           />
@@ -424,7 +424,7 @@ export default function Experience() {
           onPointerOver={() => setHovered(true)}
           onPointerOut={() => setHovered(false)}
         >
-          <Speakers
+          <SpeakersBoard
             position={[0, 0, 0]}
             scale={window.innerWidth < 850 ? 0.13 : 0.1}
           />
@@ -442,7 +442,11 @@ export default function Experience() {
           onPointerOver={() => setHovered(true)}
           onPointerOut={() => setHovered(false)}
         >
-          <Events
+          {/* <Events
+            position={[0, 0, 0]}
+            scale={window.innerWidth < 850 ? 0.2 : 0.125}
+          /> */}
+          <EventsBoard
             position={[0, 0, 0]}
             scale={window.innerWidth < 850 ? 0.2 : 0.125}
           />
