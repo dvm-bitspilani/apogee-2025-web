@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./about.module.scss";
 import heading from "../../src/assets/About/heading.png";
 import mobileHeading from "../../src/assets/About/mobileHeading.png";
@@ -7,7 +7,6 @@ import left from "../../src/assets/About/left.png";
 import right from "../../src/assets/About/right.png";
 import mobileLeft from "../../src/assets/About/mobileLeft.svg";
 import mobileRight from "../../src/assets/About/mobileRight.svg";
-import Preloader from "../Registration/Preloader/Preloader";
 
 import yticon from "../../src/assets/Landing/yticon.png";
 import igicon from "../../src/assets/Landing/igicon.png";
@@ -18,48 +17,8 @@ import { useSelector } from "react-redux";
 export default function About() {
   const [index, setIndex] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [imagesLoaded, setImagesLoaded] = useState(false);
-  const [showPreloader, setShowPreloader] = useState(true);
 
   const curState = useSelector((state) => state.experienceAnimations.curStage);
-
-  useEffect(() => {
-    const imageUrls = [
-      left,
-      right,
-      videoframeBackground,
-      heading,
-      mobileHeading,
-      mobileLeft,
-      mobileRight,
-      yticon,
-      igicon,
-      linkedin,
-      twitter,
-    ];
-    let loadedCount = 0;
-    imageUrls.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-      img.onload = () => {
-        loadedCount++;
-        if (loadedCount === imageUrls.length) {
-          setTimeout(() => {
-            setImagesLoaded(true);
-            setTimeout(() => {
-              setShowPreloader(false);
-            }, 0);
-          }, 500);
-        }
-      };
-      img.onerror = () => {
-        loadedCount++;
-        if (loadedCount === imageUrls.length) {
-          setImagesLoaded(true);
-        }
-      };
-    });
-  }, []);
 
   const videoLinks = [
     {
@@ -102,14 +61,7 @@ export default function About() {
   };
   return (
     <>
-      {showPreloader && <Preloader />}
-      <div
-        className={styles.aboutUs}
-        style={{
-          opacity: showPreloader ? 0 : 1,
-          transition: "opacity 0.8s ease-in-out",
-        }}
-      >
+      <div className={styles.aboutUs}>
         <div className={styles.heading}>
           <img src={heading} alt="heading" id={styles.first} />
           <img src={mobileHeading} alt="mobileHeading" id={styles.second} />

@@ -320,13 +320,20 @@
 
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1400px) {
     .aboutUs {
+        overflow-y: scroll;
+
         .mainBody {
             gap: 2rem;
-            margin-top: 4.5rem;
+            padding-right: 0rem;
+
+            .videoWrapper {
+              scale: 0.85;
+            }
 
             .textContainer {
+                width: 48%;
                 p {
                     font-size: 22px;
                     line-height: normal;
@@ -335,6 +342,31 @@
         }
     }
 }
+
+@media (max-width: 1300px) {
+    .aboutUs {
+
+        .mainBody {
+            gap: 2rem;
+            padding-right: 1rem;
+            margin-left: 0;
+
+            .videoWrapper {
+              scale: 0.75;
+            }
+
+            .textContainer {
+                width: 50%;
+
+                p {
+                    font-size: 20px;
+                    line-height: normal;
+                }
+            }
+        }
+    }
+}
+
 
 @media (max-width: 1000px) {
     .aboutUs {
@@ -348,15 +380,23 @@
 
         .mainBody {
             gap: 2rem;
-            margin-top: 3rem;
+            margin-top: 2rem;
             flex-direction: column;
             margin-left: 0;
+            padding-right: 0;
+
+            .videoWrapper {
+                // scale: 1;
+                transform: scale(1);
+                transform-origin: bottom;
+
+            }
 
             .textContainer {
                 width: 86%;
 
                 p {
-                    font-size: 22px;
+                    font-size: 20px;
                     line-height: normal;
                     margin-bottom: 2rem;
                 }
@@ -371,6 +411,10 @@
             height: fit-content;
 
             .videoWrapper {
+                scale: 1;
+                transform: scale(1);
+                padding-top: 0;
+
                 .videoBackground {
                     height: 320px;
                     width: auto;
