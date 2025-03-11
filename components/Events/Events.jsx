@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./events.module.scss";
 import left from "../../src/assets/About/left.png";
 import right from "../../src/assets/About/right.png";
@@ -54,6 +54,22 @@ const Events = () => {
         "Provide solutions to existing and real life industry-level problem statements given by companies.",
     },
   ];
+
+  useEffect(() => {
+    const loadImages = async () => {
+      await Promise.all(
+        events.map((event) => {
+          return new Promise((resolve) => {
+            const img = new Image();
+            img.src = event.image;
+            img.onload = resolve;
+          });
+        })
+      );
+      setPreloaded(true);
+    };
+    loadImages();
+  }, []);
 
   return (
     <div className={styles.Wrapper}>
