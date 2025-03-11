@@ -235,36 +235,50 @@ export default function Experience() {
       });
     }
 
+    const camTargetSkipHelper = (x, y, z) => {
+      gsap.killTweensOf(cameraTarget.current);
+      gsap.set(cameraTarget.current, { x, y, z });
+    };
+
     const handleVisibilityChange = () => {
       landingSheet.project.ready.then(() => {
         if (document.hidden && !isUserUnfocusAtPreloader) {
           landingSheet.sequence.pause();
           switch (animationStage) {
             case "intro":
+              camTargetSkipHelper(0, 0, 0);
               landingSheet.sequence.position = 5.5;
               break;
             case "contactToLanding":
+              camTargetSkipHelper(0, 0, 0);
               landingSheet.sequence.position = 6;
               break;
             case "landingToContact":
+              camTargetSkipHelper(-0.72, 0.12, -0.663);
               landingSheet.sequence.position = 8;
               break;
             case "eventsToLanding":
+              camTargetSkipHelper(0, 0, 0);
               landingSheet.sequence.position = 9;
               break;
             case "landingToEvents":
+              camTargetSkipHelper(0.961, 0.078, -0.653);
               landingSheet.sequence.position = 11;
               break;
             case "speakersToLanding":
+              camTargetSkipHelper(0, 0, 0);
               landingSheet.sequence.position = 12;
               break;
             case "landingToSpeakers":
+              camTargetSkipHelper(-0.759, 0.58, 0.777);
               landingSheet.sequence.position = 14;
               break;
             case "aboutToLanding":
+              camTargetSkipHelper(0, 0, 0);
               landingSheet.sequence.position = 15;
               break;
             case "landingToAbout":
+              camTargetSkipHelper(0.9, 0.0599, 0.797);
               landingSheet.sequence.position = 17;
               break;
           }
