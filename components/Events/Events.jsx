@@ -9,6 +9,8 @@ import coding from "../../src/assets/Events/coding.png";
 import sharktank from "../../src/assets/Events/sharktank.png";
 import innovation from "../../src/assets/Events/innovation.png";
 import carouselbg from "../../src/assets/Events/carouselbg.png";
+import heading from "../../src/assets/Events/header.png";
+import mobileHeading from "../../src/assets/Events/mobileheader.png";
 
 const Events = () => {
   const [index, setIndex] = useState(0);
@@ -56,7 +58,39 @@ const Events = () => {
   return (
     <div className={styles.Wrapper}>
       <div className={styles.content}>
-        <img src={carouselbg} className={styles.carouselbg} alt="" />
+        <div className={styles.heading}>
+          <img src={heading} alt="heading" id={styles.first} />
+          <img src={mobileHeading} alt="mobileHeading" id={styles.second} />
+        </div>
+        <div className={styles.carousel}>
+          <div className={styles.carouselContent}>
+            <div className={styles.carouselImage}>
+              <img
+                src={events[index].image}
+                alt={events[index].name}
+                draggable={false}
+              />
+            </div>
+            <div className={styles.carouselText}>
+              <h1>{events[index].name}</h1>
+              <p>{events[index].description}</p>
+            </div>
+          </div>
+        </div>
+        <div className={styles.carouselControls}>
+          <div
+            className={styles.left}
+            onClick={() => setIndex((index + 5) % 6)}
+          >
+            <img src={left} alt="left" />
+          </div>
+          <div
+            className={styles.right}
+            onClick={() => setIndex((index + 1) % 6)}
+          >
+            <img src={right} alt="right" />
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -2,61 +2,170 @@
   height: 100%;
   width: 100%;
 
-  .buttonWrapper {
-    position: fixed;
-    top: 49px;
-    left: 74px;
-    z-index: 3;
-
-    @media screen and (max-width: 768px) {
-      top: 20px;
-      left: 20px;
-    }
-  }
-
-  .backgroundImage {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
+  .heading {
+    text-align: center;
+    height: 180px;
+    transform: translateY(-2px);
 
     img {
-      width: 100%;
       height: 100%;
-      object-fit: cover;
-      object-position: center;
+    }
+
+    #second {
+      display: none;
     }
   }
 
-  .logo {
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
-    z-index: 2;
-    width: 30%;
-    -webkit-user-drag: none;
-
-    @media screen and (max-width: 768px) {
-      width: 50%;
+  @media (max-width: 4000px) and (min-width: 2100px) {
+    .heading {
+      height: 230px;
     }
   }
 
-  .carouselbg {
+  @media (max-width: 2100px) and (min-width: 1800px) {
+    .heading {
+      height: 200px;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .heading {
+      height: 160px;
+      transform: translateY(-20px);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .heading {
+      width: 230px;
+      height: 95px;
+      margin-left: calc((100% - 230px) / 2);
+      text-align: center;
+
+      img {
+        transform: translateX(-5px);
+        width: 100%;
+      }
+
+      #first {
+        display: none;
+      }
+
+      #second {
+        display: block;
+      }
+    }
+  }
+
+  .carousel {
     position: fixed;
     left: 50%;
     top: 50%;
     width: 50%;
+    aspect-ratio: 361/192;
     transform: translate(-50%, -50%);
     border-radius: 11px;
     background: rgba(0, 0, 0, 0.5);
     z-index: 2;
-    -webkit-user-drag: none;
+    background: url("../../src/assets/Events/carouselbg.png");
+    background-size: 100% 100%;
 
     @media screen and (max-width: 768px) {
       width: 80%;
+    }
+  }
+
+  .carouselContent {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .carouselImage {
+      width: 70%;
+      height: 100%;
+      img {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 361/192;
+        border-radius: 11px;
+        z-index: 2;
+      }
+
+      @media (max-width: 600px) {
+        width: 100%;
+      }
+    }
+    .carouselText {
+      color: #d3aa67;
+      font-family: "Artifika";
+      padding: 1rem;
+      height: 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      h1 {
+        text-align: center;
+
+        @media (max-width: 600px) {
+          font-size: 16px;
+        }
+      }
+
+      p {
+        text-align: center;
+
+        @media (max-width: 600px) {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  .carouselControls {
+    height: 100%;
+    width: 100%;
+    .left {
+      position: absolute;
+      left: 40%;
+      top: 80%;
+      background-color: transparent;
+
+      img {
+        height: 60px;
+        cursor: pointer;
+      }
+
+      @media (max-width: 600px) {
+        left: 30%;
+      }
+
+      @media (max-width: 400px) {
+        left: 20%;
+      }
+    }
+
+    .right {
+      position: absolute;
+      right: 40%;
+      top: 80%;
+      background-color: transparent;
+
+      img {
+        height: 60px;
+        cursor: pointer;
+      }
+
+      @media (max-width: 600px) {
+        right: 30%;
+      }
+
+      @media (max-width: 400px) {
+        right: 20%;
+      }
     }
   }
 }
