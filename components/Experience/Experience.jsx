@@ -19,6 +19,8 @@ import gsap from "gsap";
 
 // import studio from "@theatre/studio";
 // import extension from "@theatre/r3f/dist/extension";
+// studio.initialize();
+// studio.extend(extension);
 
 import {
   aboutToLanding,
@@ -37,20 +39,26 @@ import { getProject } from "@theatre/core";
 import animationStatesDesktop from "../../utils/animation_states/desktop/Landing Project.theatre-project-state.json";
 import animationStatesMobile from "../../utils/animation_states/mobile/Landing Project.theatre-project-state.json";
 import { useThree } from "@react-three/fiber";
-import { AboutUs } from "./AboutUs/AboutUs.jsx";
-import { Speakers } from "./Speakers/Speakers.jsx";
-import { Events } from "./Events/Events.jsx";
+import { AboutUsBoard } from "./AboutUs/AboutUsBoard.jsx";
+import { SpeakersBoard } from "./Speakers/SpeakersBoard.jsx";
+import { EventsBoard } from "./Events/EventsBoard.jsx";
 import { Car } from "./Car/Car.jsx";
 // import { Train } from "./Train/Train.jsx";
 import Arrows from "./Arrows/Arrows.jsx";
+
+const CAMERA_TARGET_COORDS = {
+  landingToContact: { x: -0.72, y: 0.12, z: -0.663 },
+  // landingToEvents: { x: 0.961, y: 0.078, z: -0.653 },
+  landingToEvents: { x: 0.961, y: 0.4, z: -0.89 },
+  landingToSpeakers: { x: -0.759, y: 0.58, z: 0.777 },
+  landingToAbout: { x: 0.9, y: 0.0599, z: 0.797 },
+  default: { x: 0, y: 0, z: 0 },
+};
 
 export const landingSheet = getProject("Landing Project", {
   state:
     window.innerWidth < 850 ? animationStatesMobile : animationStatesDesktop,
 }).sheet("Landing Sheet");
-
-// studio.initialize();
-// studio.extend(extension);
 
 const CAMERA_POSITION_LANDING = {
   x: 0.014999999999999462,
@@ -141,17 +149,9 @@ export default function Experience() {
 
   useGSAP(
     () => {
-      if (animationStage === "landingToContact") {
-        cameraTargetPosHelper([-0.72, 0.12, -0.663]);
-      } else if (animationStage === "landingToEvents") {
-        cameraTargetPosHelper([0.961, 0.078, -0.653]);
-      } else if (animationStage === "landingToSpeakers") {
-        cameraTargetPosHelper([-0.759, 0.58, 0.777]);
-      } else if (animationStage === "landingToAbout") {
-        cameraTargetPosHelper([0.9, 0.0599, 0.797]);
-      } else {
-        cameraTargetPosHelper([0, 0, 0]);
-      }
+      const coords =
+        CAMERA_TARGET_COORDS[animationStage] || CAMERA_TARGET_COORDS.default;
+      cameraTargetPosHelper([coords.x, coords.y, coords.z]);
     },
     { dependencies: [animationStage] }
   );
@@ -235,36 +235,86 @@ export default function Experience() {
       });
     }
 
+    const camTargetSkipHelper = (x, y, z) => {
+      gsap.killTweensOf(cameraTarget.current);
+      gsap.set(cameraTarget.current, { x, y, z });
+    };
+
     const handleVisibilityChange = () => {
       landingSheet.project.ready.then(() => {
         if (document.hidden && !isUserUnfocusAtPreloader) {
           landingSheet.sequence.pause();
           switch (animationStage) {
             case "intro":
+              camTargetSkipHelper(
+                CAMERA_TARGET_COORDS.default.x,
+                CAMERA_TARGET_COORDS.default.y,
+                CAMERA_TARGET_COORDS.default.z
+              );
               landingSheet.sequence.position = 5.5;
               break;
             case "contactToLanding":
+              camTargetSkipHelper(
+                CAMERA_TARGET_COORDS.default.x,
+                CAMERA_TARGET_COORDS.default.y,
+                CAMERA_TARGET_COORDS.default.z
+              );
               landingSheet.sequence.position = 6;
               break;
             case "landingToContact":
+              camTargetSkipHelper(
+                CAMERA_TARGET_COORDS.landingToContact.x,
+                CAMERA_TARGET_COORDS.landingToContact.y,
+                CAMERA_TARGET_COORDS.landingToContact.z
+              );
               landingSheet.sequence.position = 8;
               break;
             case "eventsToLanding":
+              camTargetSkipHelper(
+                CAMERA_TARGET_COORDS.default.x,
+                CAMERA_TARGET_COORDS.default.y,
+                CAMERA_TARGET_COORDS.default.z
+              );
               landingSheet.sequence.position = 9;
               break;
             case "landingToEvents":
+              camTargetSkipHelper(
+                CAMERA_TARGET_COORDS.landingToEvents.x,
+                CAMERA_TARGET_COORDS.landingToEvents.y,
+                CAMERA_TARGET_COORDS.landingToEvents.z
+              );
               landingSheet.sequence.position = 11;
               break;
             case "speakersToLanding":
+              camTargetSkipHelper(
+                CAMERA_TARGET_COORDS.default.x,
+                CAMERA_TARGET_COORDS.default.y,
+                CAMERA_TARGET_COORDS.default.z
+              );
               landingSheet.sequence.position = 12;
               break;
             case "landingToSpeakers":
+              camTargetSkipHelper(
+                CAMERA_TARGET_COORDS.landingToSpeakers.x,
+                CAMERA_TARGET_COORDS.landingToSpeakers.y,
+                CAMERA_TARGET_COORDS.landingToSpeakers.z
+              );
               landingSheet.sequence.position = 14;
               break;
             case "aboutToLanding":
+              camTargetSkipHelper(
+                CAMERA_TARGET_COORDS.default.x,
+                CAMERA_TARGET_COORDS.default.y,
+                CAMERA_TARGET_COORDS.default.z
+              );
               landingSheet.sequence.position = 15;
               break;
             case "landingToAbout":
+              camTargetSkipHelper(
+                CAMERA_TARGET_COORDS.landingToAbout.x,
+                CAMERA_TARGET_COORDS.landingToAbout.y,
+                CAMERA_TARGET_COORDS.landingToAbout.z
+              );
               landingSheet.sequence.position = 17;
               break;
           }
@@ -376,13 +426,11 @@ export default function Experience() {
             <Blimp scale={0.25} position={[0, 0.75, 0]} />
           </Float>
 
-          {window.innerWidth > 1000 && (
-            <Car
-              position={[-0.615, 0.001, 0.413]}
-              scale={0.06}
-              rotation={[0, Math.PI / 2, 0]}
-            />
-          )}
+          <Car
+            position={[-0.615, 0.001, 0.413]}
+            scale={0.06}
+            rotation={[0, Math.PI / 2, 0]}
+          />
 
           {/* <Train position={trainPos} scale={trainScale} rotation={trainRot} /> */}
         </group>
@@ -402,7 +450,7 @@ export default function Experience() {
           onPointerOver={() => setHovered(true)}
           onPointerOut={() => setHovered(false)}
         >
-          <AboutUs
+          <AboutUsBoard
             position={[0, 0, 0]}
             scale={window.innerWidth < 850 ? 0.13 : 0.1}
           />
@@ -423,7 +471,7 @@ export default function Experience() {
           onPointerOver={() => setHovered(true)}
           onPointerOut={() => setHovered(false)}
         >
-          <Speakers
+          <SpeakersBoard
             position={[0, 0, 0]}
             scale={window.innerWidth < 850 ? 0.13 : 0.1}
           />
@@ -441,7 +489,11 @@ export default function Experience() {
           onPointerOver={() => setHovered(true)}
           onPointerOut={() => setHovered(false)}
         >
-          <Events
+          {/* <Events
+            position={[0, 0, 0]}
+            scale={window.innerWidth < 850 ? 0.2 : 0.125}
+          /> */}
+          <EventsBoard
             position={[0, 0, 0]}
             scale={window.innerWidth < 850 ? 0.2 : 0.125}
           />

@@ -3,6 +3,7 @@ import styles from "./overlay.module.scss";
 import { useEffect } from "react";
 import Contact from "../Contact/Contact";
 import About from "../About/About";
+import Events from "../Events/Events";
 import ComingSoon from "../ComingSoon/ComingSoon";
 import { reverseAnimation } from "../../store/experienceAnimationsSlice/experienceAnimationsSlice";
 import OverlayBackBtn from "./OverlayBackBtn/OverlayBackBtn";
@@ -56,7 +57,7 @@ export default function Overlay() {
             : { opacity: 0, pointerEvents: "none" }
         }
       >
-        <ComingSoon />
+        <Events />
       </div>
       <div
         className={styles.overlayContainer}
