@@ -23,7 +23,7 @@ const POSITIONS = [
 
 export function Car(props) {
   const group = useRef();
-  const { nodes, materials, animations } = useGLTF("/models/car.glb");
+  const { nodes, materials, animations } = useGLTF("/models/carOptimised.glb");
   const { actions } = useAnimations(animations, group);
 
   useGSAP(
@@ -611,4 +611,4 @@ export function Car(props) {
   );
 }
 
-useGLTF.preload("/models/car.glb");
+useGLTF.preload("/models/carOptimised.glb");
