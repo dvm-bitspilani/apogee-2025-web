@@ -20,7 +20,7 @@ const Quiz = () => {
         throw new Error('Missing JWT token');
       }
 
-      const response = await fetch("https://bits-apogee.org/2024/main/quanta/question-paper/", {
+      const response = await fetch("https://bits-apogee.org/2025/main/quanta/question-paper/", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -35,6 +35,9 @@ const Quiz = () => {
       setQuestions(data);
       // localStorage.setItem('startTime', data.start_time);
       setStartTime(parseInt(data.start_time) * 1000);
+      console.log("questions:", questions);
+      console.log("question_paper:", questions?.question_paper);
+      console.log("currentQuestion:", currentQuestion);
     } catch (error) {
       // alert(error);
       if (confirm(error)) {
@@ -108,7 +111,7 @@ const Quiz = () => {
         throw new Error('Missing JWT token');
       }
 
-      const response = await fetch("https://bits-apogee.org/2024/main/quanta/answers/", {
+      const response = await fetch("https://bits-apogee.org/2025/main/quanta/answers/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -128,9 +131,9 @@ const Quiz = () => {
       alert(error);
     }
   };
-  // useEffect(() => {
-  //   fetchQuestions();
-  // }, []);
+  useEffect(() => {
+    fetchQuestions();
+  }, []);
 
   const renderer = ({ minutes, seconds }) => {
     return (
