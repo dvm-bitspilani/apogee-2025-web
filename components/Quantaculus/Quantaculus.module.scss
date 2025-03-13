@@ -2,7 +2,7 @@
     width: 100lvw;
     height: 100dvh;
     position: relative;
-    background-image: url(../../src/assets/Quantaculus/quiz.png);
+    background-image: url(../../src/assets/Quantaculus/background.png);
     background-size: 100lvw 100dvh;
     position: fixed;
     inset: 0;
@@ -12,12 +12,13 @@
     justify-content: center;
 
     @media screen and (max-width: 800px) {
-        background-image: url(../../src/assets/Quantaculus/starsAsset.png);
+        background-image: url(../../src/assets/Quantaculus/background-tab.png);
 
     }
 
     @media screen and (max-width: 568px) {
         overflow-y: scroll;
+        background-image: url(../../src/assets/Quantaculus/background-mobile.png);
     }
 
     .leftHelm {
