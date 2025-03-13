@@ -7,12 +7,8 @@ $button-hover-color: rgba(18, 10, 8, 0.5);
 .pageContainer {
     width: 100%;
     height: 100dvh;
-    // position: relative;
     background-image: url(../../src/assets/Quantaculus/background.png);
-    // background-size: 100vw 100dvh;
-    // position: fixed;
-    // inset: 0;
-    // overflow: hidden;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -277,29 +273,12 @@ $button-hover-color: rgba(18, 10, 8, 0.5);
 }
 
 .contentBox {
-    // position: relative;
-    // margin-top: 2rem;
-    // scale: .9;
     width: 100%;
+    height: 100dvh;
     display: flex;
     justify-content: center;
     align-items: center;
-
-    // @media screen and (max-width: 1200px) {
-    //     scale: .7;
-    // }
-
-    // @media screen and (max-width: 900px) {
-    //     scale: .6;
-    // }
-
-    // @media screen and (max-width: 768px) {
-    //     scale: 1;
-    // }
-
-    // @media screen and (max-width: 408px) {
-    //     scale: .7;
-    // }
+    overflow: hidden;
 
     .instructions {
         position: absolute;
@@ -312,14 +291,16 @@ $button-hover-color: rgba(18, 10, 8, 0.5);
         color: $text-color;
         padding: 2rem;
 
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 800px) {
             padding: 1.6rem;
         }
 
-        // @media screen and (max-width: 500px) {
-        //     padding: 1.6rem;
-        //     width: 100%;
-        // }
+        @media screen and (max-width: 500px) {
+            width: 100%;
+            padding: 0;
+            max-height: 100lvh;
+            overflow-y: scroll;
+        }
 
         h1 {
             font-family: "Birmingham";
@@ -333,6 +314,7 @@ $button-hover-color: rgba(18, 10, 8, 0.5);
 
             @media screen and (max-width: 500px) {
                 font-size: 24px;
+                padding-top: 1.6rem;
             }
         }
 
@@ -341,30 +323,40 @@ $button-hover-color: rgba(18, 10, 8, 0.5);
             margin-bottom: 3rem;
             height: fit-content;
 
+            @media screen and (max-width: 800px) {
+                margin-top: 2.5rem;
+                margin-bottom: 2.5rem;
+            }
+
+            @media screen and (max-width: 500px) {
+                margin-top: 2rem;
+                margin-bottom: 1.5rem;
+            }
+
             li {
                 margin-left: 2.5rem;
                 font-family: "Playfair Display";
                 font-size: 22px;
                 font-weight: 300;
-                line-height: 38px;
                 text-align: left;
+                margin-right: 2.5rem;
+                padding-bottom: 10px;
 
                 @media screen and (max-width: 900px) {
                     font-size: 18px;
-                    line-height: 34px;
                 }
     
                 @media screen and (max-width: 500px) {
-                    font-size: 16px;
-                    line-height: 32px;
+                    font-size: 15px;
+                    margin-left: 2rem;
+                    margin-right: 1.5rem;
+                    padding-bottom: 7px;
                 }
             }
 
         }
 
         button {
-            // margin-left: 1.25rem;
-            //background: #367F9A66;
             background-color: $button-color;
             color: $text-color;
             padding: 0.9rem 1.8rem;
@@ -376,144 +368,147 @@ $button-hover-color: rgba(18, 10, 8, 0.5);
             cursor: pointer;
             border-radius: 3px;
 
-            // @media screen and (max-width: 768px) {
-            //     margin-top: 5rem;
-            //     margin-left: 0;
-            // }
-
-            // @media screen and (max-height: 760px) {
-            //     margin-top: 1rem;
-            //     margin-left: 0;
-            // }
-        }
-
-        button:hover {
-            background: $button-hover-color;
-            // color: #D8575B;
-        }
-
-        .header {
-            width: 100%;
-            display: flex;
-            align-items: center;
-        }
-
-        .questionIndex {
-            margin-top: 2rem;
-            font-family: Alacrity Sans;
-            font-size: 2.5rem;
-            font-weight: 400;
-            line-height: 42.77px;
-            color: #9AF0F4;
-            text-shadow: 0px 0px 22.223052978515625px 0px #9AF0F4B2;
-            width: 100%;
-
-            @media screen and (max-width: 768px) {
-                margin-top: 0;
-                margin-inline: 1.5rem;
-                font-size: 2rem;
+            &:hover {
+                background: $button-hover-color;
             }
 
-            span {
-                font-size: 1.25rem;
+            @media screen and (max-width: 800px) {
+                font-size: 21px;
+                padding: 0.7rem 1.4rem;
+                width: fit-content;
+            }
+
+            @media screen and (max-width: 500px) {
+                font-size: 18px;
+                padding: 0.4rem 1rem;
+                border: 1.5px solid $border-color;
+                width: fit-content;
+                margin-bottom: 1.6rem;
             }
         }
 
-        .questionIndex:nth-child(2) {
-            text-align: right;
-        }
+        // .header {
+        //     width: 100%;
+        //     display: flex;
+        //     align-items: center;
+        // }
 
-        .problem {
-            margin-top: 3rem;
-            font-family: Space Grotesk;
-            font-size: 1.25rem;
-            font-weight: 400;
-            text-align: left;
-            color: #9AF0F4;
+        // .questionIndex {
+        //     margin-top: 2rem;
+        //     font-family: Alacrity Sans;
+        //     font-size: 2.5rem;
+        //     font-weight: 400;
+        //     line-height: 42.77px;
+        //     color: #9AF0F4;
+        //     text-shadow: 0px 0px 22.223052978515625px 0px #9AF0F4B2;
+        //     width: 100%;
 
-            @media screen and (max-width: 768px) {
-                font-size: 1rem;
-                margin-left: 1.5rem;
-                margin-top: .75rem;
-                padding-right: .5rem;
+        //     @media screen and (max-width: 768px) {
+        //         margin-top: 0;
+        //         margin-inline: 1.5rem;
+        //         font-size: 2rem;
+        //     }
 
-            }
+        //     span {
+        //         font-size: 1.25rem;
+        //     }
+        // }
 
-        }
+        // .questionIndex:nth-child(2) {
+        //     text-align: right;
+        // }
 
-        .answer {
-            width: 100%;
+        // .problem {
+        //     margin-top: 3rem;
+        //     font-family: Space Grotesk;
+        //     font-size: 1.25rem;
+        //     font-weight: 400;
+        //     text-align: left;
+        //     color: #9AF0F4;
 
-            @media screen and (max-width: 768px) {
-                margin-top: 1rem;
-                margin-left: 3rem;
-                padding-right: 2.5rem;
-                max-height: 35vh;
-                overflow-y: scroll;
-            }
+        //     @media screen and (max-width: 768px) {
+        //         font-size: 1rem;
+        //         margin-left: 1.5rem;
+        //         margin-top: .75rem;
+        //         padding-right: .5rem;
 
-            .option {
-                // margin-left: -2rem;
-                display: flex;
-                margin-top: 2rem;
-                font-family: Space Grotesk;
-                font-size: 1.25rem;
-                font-weight: 300;
-                text-align: left;
-                color: #9AF0F4;
-                display: flex;
-                align-items: center;
-                gap: 1rem;
+        //     }
 
-                @media screen and (max-width: 768px) {
-                    font-size: .75rem;
-                    margin-top: 1rem;
-                }
+        // }
 
-                label {
-                    cursor: pointer;
-                }
+        // .answer {
+        //     width: 100%;
 
-                input {
-                    width: 10%;
-                    cursor: pointer;
-                    aspect-ratio: 1;
-                }
+        //     @media screen and (max-width: 768px) {
+        //         margin-top: 1rem;
+        //         margin-left: 3rem;
+        //         padding-right: 2.5rem;
+        //         max-height: 35vh;
+        //         overflow-y: scroll;
+        //     }
 
-                input[type="radio"] {
-                    -webkit-appearance: none;
-                    width: 16px;
-                    height: 16px;
-                    border: 1px solid #9AF0F4;
-                    border-radius: 50%;
-                    outline: none;
-                    background: #132123;
-                    box-shadow: 0 0 1px #9AF0F4;
+        //     .option {
+        //         // margin-left: -2rem;
+        //         display: flex;
+        //         margin-top: 2rem;
+        //         font-family: Space Grotesk;
+        //         font-size: 1.25rem;
+        //         font-weight: 300;
+        //         text-align: left;
+        //         color: #9AF0F4;
+        //         display: flex;
+        //         align-items: center;
+        //         gap: 1rem;
 
-                    @media screen and (max-width: 768px) {
-                        // width: 35px;
-                        aspect-ratio: 1;
-                    }
-                }
+        //         @media screen and (max-width: 768px) {
+        //             font-size: .75rem;
+        //             margin-top: 1rem;
+        //         }
 
-                input[type="radio"]:checked {
-                    background: #9AF0F4;
-                }
-            }
-        }
+        //         label {
+        //             cursor: pointer;
+        //         }
 
-        .navButtons {
-            display: flex;
-            gap: 2rem;
+        //         input {
+        //             width: 10%;
+        //             cursor: pointer;
+        //             aspect-ratio: 1;
+        //         }
 
-            button {
-                @media screen and (max-width: 768px) {
-                    padding: .5rem 1.5rem;
-                    font-size: 1rem;
-                }
-            }
+        //         input[type="radio"] {
+        //             -webkit-appearance: none;
+        //             width: 16px;
+        //             height: 16px;
+        //             border: 1px solid #9AF0F4;
+        //             border-radius: 50%;
+        //             outline: none;
+        //             background: #132123;
+        //             box-shadow: 0 0 1px #9AF0F4;
+
+        //             @media screen and (max-width: 768px) {
+        //                 // width: 35px;
+        //                 aspect-ratio: 1;
+        //             }
+        //         }
+
+        //         input[type="radio"]:checked {
+        //             background: #9AF0F4;
+        //         }
+        //     }
+        // }
+
+        // .navButtons {
+        //     display: flex;
+        //     gap: 2rem;
+
+        //     button {
+        //         @media screen and (max-width: 768px) {
+        //             padding: .5rem 1.5rem;
+        //             font-size: 1rem;
+        //         }
+        //     }
 
 
-        }
+        // }
     }
 }
