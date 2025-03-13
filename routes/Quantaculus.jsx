@@ -14,7 +14,7 @@ const Quantaculus = () => {
     navigate("/");
   };
 
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   // const [errorMessage, setErrorMessage] = useState('');
   const [isQuizOpen, setIsQuizOpen] = useState(false)
 
