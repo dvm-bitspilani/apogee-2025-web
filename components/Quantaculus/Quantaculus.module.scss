@@ -391,25 +391,43 @@ $button-hover-color: rgba(18, 10, 8, 0.5);
             width: 100%;
             display: flex;
             align-items: center;
+            justify-content: space-between;
+
+            @media screen and (max-width: 500px) {
+                margin-top: 1rem;
+            }
         }
 
         .questionIndex {
-            margin-top: 2rem;
             font-family: "Birmingham";
             font-size: 2.5rem;
             font-weight: 400;
             line-height: 42.77px;
             color: $text-color;
-            width: 100%;
 
             @media screen and (max-width: 768px) {
-                margin-top: 0;
                 margin-inline: 1.5rem;
                 font-size: 2rem;
             }
 
             span {
-                font-size: 1.25rem;
+                font-size: 24px;
+            }
+        }
+
+        .timer {
+            display: flex;
+            font-family: sans-serif;
+            font-size: 20px;
+            padding-right: 2rem;
+
+            @media screen and (max-width: 800px) {
+                font-size: 16px;
+            }
+
+            @media screen and (max-width: 500px) {
+                font-size: 14px;
+                padding-right: 1.5rem;
             }
         }
 
@@ -420,7 +438,7 @@ $button-hover-color: rgba(18, 10, 8, 0.5);
         .problem {
             margin-top: 3rem;
             font-family: "Playfair Display";
-            font-size: 1.25rem;
+            font-size: 24px;
             font-weight: 400;
             text-align: left;
             color:$text-color;
@@ -429,7 +447,7 @@ $button-hover-color: rgba(18, 10, 8, 0.5);
                 font-size: 1rem;
                 margin-left: 1.5rem;
                 margin-top: .75rem;
-                padding-right: .5rem;
+                margin-right: 1.5rem;
 
             }
 
@@ -439,19 +457,19 @@ $button-hover-color: rgba(18, 10, 8, 0.5);
             width: 100%;
 
             @media screen and (max-width: 768px) {
+                width: calc(100% - 3rem);
                 margin-top: 1rem;
-                margin-left: 3rem;
-                padding-right: 2.5rem;
+                margin-left: 1.5rem;
+                margin-right: 1.5rem;
                 max-height: 35vh;
                 overflow-y: scroll;
             }
 
             .option {
-                // margin-left: -2rem;
                 display: flex;
                 margin-top: 2rem;
                 font-family: "Playfair Display";
-                font-size: 1.25rem;
+                font-size: 24px;
                 font-weight: 300;
                 text-align: left;
                 color: $text-color;
@@ -482,7 +500,6 @@ $button-hover-color: rgba(18, 10, 8, 0.5);
                     border-radius: 50%;
                     outline: none;
                     background: $button-color;
-                    // box-shadow: 0 0 1px #9AF0F4;
 
                     @media screen and (max-width: 768px) {
                         // width: 35px;
@@ -491,7 +508,7 @@ $button-hover-color: rgba(18, 10, 8, 0.5);
                 }
 
                 input[type="radio"]:checked {
-                    background: $button-color;
+                    background: $text-color;
                 }
             }
         }
@@ -499,6 +516,7 @@ $button-hover-color: rgba(18, 10, 8, 0.5);
         .navButtons {
             display: flex;
             gap: 2rem;
+            margin-top: 3rem;
 
             button {
                 @media screen and (max-width: 768px) {
