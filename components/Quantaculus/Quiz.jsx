@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import * as styles from "./Quantaculus.module.scss";
 import Countdown from 'react-countdown';
@@ -9,6 +8,7 @@ const Quiz = () => {
   const [startTime, setStartTime] = useState(0)
   const [isLoading, setIsLoading] = useState(true);
   const [selectedAnswers, setSelectedAnswers] = useState([]);
+  const [questionTimers, setQuestionTimers] = useState({});
 
   const fetchQuestions = async () => {
     setIsLoading(true);
@@ -35,9 +35,23 @@ const Quiz = () => {
       setQuestions(data);
       // localStorage.setItem('startTime', data.start_time);
       setStartTime(parseInt(data.start_time) * 1000);
-      console.log("questions:", questions);
-      console.log("question_paper:", questions?.question_paper);
-      console.log("currentQuestion:", currentQuestion);
+
+      // Initialize timers from localStorage or set default (30s per question)
+      const storedTimers = JSON.parse(localStorage.getItem("questionTimers"));
+      if (storedTimers) {
+        setQuestionTimers(storedTimers);
+      } else {
+        const initialTimers = Object.fromEntries(
+          dummyQuestions.map((_, index) => [index, 30])
+        );
+        setQuestionTimers(initialTimers);
+        localStorage.setItem("questionTimers", JSON.stringify(initialTimers));
+      }
+
+      // console.log("questions:", questions);
+      // console.log("question_paper:", questions?.question_paper);
+      // console.log("currentQuestion:", currentQuestion);
+
     } catch (error) {
       // alert(error);
       if (confirm(error)) {
@@ -135,6 +149,31 @@ const Quiz = () => {
     fetchQuestions();
   }, []);
 
+
+  useEffect(() => {
+    localStorage.setItem("questionTimers", JSON.stringify(questionTimers));
+  }, [questionTimers]);
+
+  // Timer logic
+  useEffect(() => {
+    if (questions.length === 0) return;
+  
+    const timer = setInterval(() => {
+      setQuestionTimers((prevTimers) => {
+        if (prevTimers[currentQuestion] > 0) {
+          const updatedTimers = { ...prevTimers, [currentQuestion]: prevTimers[currentQuestion] - 1 };
+          localStorage.setItem("questionTimers", JSON.stringify(updatedTimers));
+          return updatedTimers;
+        } else {
+          clearInterval(timer);
+          return prevTimers;
+        }
+      });
+    }, 1000);
+  
+    return () => clearInterval(timer);
+  }, [currentQuestion, questions.length]);
+
   const renderer = ({ minutes, seconds }) => {
     return (
       <span>
@@ -152,7 +191,10 @@ const Quiz = () => {
               Q{currentQuestion + 1} <span> / {questions.question_paper.length}</span>
             </div>
             <div className={styles.questionIndex}>
-              <Countdown renderer={renderer} zeroPadTime={2} autoStart="true" date={startTime + 15 * 60 * 1000} onComplete={() => handleSubmit(true)}/>
+              <Countdown renderer={renderer} zeroPadTime={2} autoStart="true" date={startTime + 15 * 60 * 1000} onComplete={() => handleSubmit(true)} />
+            </div>
+            <div className={styles.timer}>
+              <span>Time Left: <strong>{questionTimers[currentQuestion]}s</strong></span>
             </div>
           </div>
 
@@ -162,7 +204,13 @@ const Quiz = () => {
           <form action="" className={styles.answer}>
             {questions.question_paper[currentQuestion].options.map(
               (option, index) => (
-                <div key={index} className={styles.option}>
+                <div
+                  key={index}
+                  className={styles.option}
+                  style={{
+                    cursor: questionTimers[currentQuestion] === 0 ? "not-allowed" : "pointer",
+                  }}
+                >
                   <input
                     type="radio"
                     name={`option-${currentQuestion}`}
@@ -175,8 +223,14 @@ const Quiz = () => {
                       )
                     }
                     onChange={() => handleSelect(option.id)}
+                    disabled={questionTimers[currentQuestion] === 0}
                   />
-                  <label htmlFor={`option-${currentQuestion}-${index}`}>
+                  <label
+                    htmlFor={`option-${currentQuestion}-${index}`}
+                    style={{
+                      cursor: questionTimers[currentQuestion] === 0 ? "not-allowed" : "pointer",
+                    }}
+                  >
                     {option.text}
                   </label>
                 </div>

@@ -395,6 +395,7 @@ $button-hover-color: rgba(18, 10, 8, 0.5);
 
             @media screen and (max-width: 500px) {
                 margin-top: 1rem;
+                flex-wrap: wrap;
             }
         }
 
