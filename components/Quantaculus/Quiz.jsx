@@ -258,6 +258,7 @@ const Quiz = () => {
                 <img
                   src={questions.question_paper[currentQuestion].image}
                   alt="Problem"
+                  draggable="false"
                 />
               </div>
             )}
