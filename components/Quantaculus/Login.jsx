@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import * as styles from "./Quantaculus.module.scss";
-import quizLogin from "../../src/assets/Quantaculus/quiz-login.png";
 
 const Login = ({ onLoginSuccess, onLoginError }) => {
   const [username, setUsername] = useState("");
@@ -64,7 +63,6 @@ const Login = ({ onLoginSuccess, onLoginError }) => {
 
   return (
     <div className={styles.loginBox}>
-      {/* <img src={quizLogin} alt="" className={styles.loginFrame} /> */}
       <h1>LOGIN</h1>
       <h3>Enter your details to sign in to your account</h3>
       <form onSubmit={handleSubmit} className={styles.loginForm}>
