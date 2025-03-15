@@ -9,22 +9,22 @@ const Quiz = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   const [questionTimers, setQuestionTimers] = useState({});
-  const [isReloadAttempted, setIsReloadAttempted] = useState(false);
+  // const [isReloadAttempted, setIsReloadAttempted] = useState(false);
 
   // Prevent page reload
-  useEffect(() => {
-    const handleBeforeUnload = (event) => {
-      event.preventDefault();
-      event.returnValue = "";
-      setIsReloadAttempted(true);
-    };
+  // useEffect(() => {
+  //   const handleBeforeUnload = (event) => {
+  //     event.preventDefault();
+  //     event.returnValue = "";
+  //     setIsReloadAttempted(true);
+  //   };
 
-    window.addEventListener("beforeunload", handleBeforeUnload);
+  //   window.addEventListener("beforeunload", handleBeforeUnload);
 
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("beforeunload", handleBeforeUnload);
+  //   };
+  // }, []);
 
   // useEffect(() => {
   //   const handleBeforeUnload = (event) => {
