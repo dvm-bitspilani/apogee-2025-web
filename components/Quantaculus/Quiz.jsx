@@ -239,7 +239,7 @@ const Quiz = () => {
               Q{currentQuestion + 1} <span> / {questions.question_paper.length}</span>
             </div>
             <div className={styles.timer}>
-              <span>Time Left for Quiz : <strong><Countdown renderer={renderer} zeroPadTime={2} autoStart="true" date={startTime + 15 * 60 * 1000} onComplete={() => handleSubmit(true)} /> min</strong></span>
+              <span>Time Left for Quiz : <strong><Countdown renderer={renderer} zeroPadTime={2} autoStart="true" date={startTime + 25 * 60 * 1000} onComplete={() => handleSubmit(true)} /> min</strong></span>
             </div>
             <div className={styles.timer}>
               <span>Time Left for Question {[currentQuestion + 1]} : <strong>{questionTimers[currentQuestion]} sec</strong></span>
