@@ -8,6 +8,7 @@ import Instructions from "../components/Registration/Instructions/Instruction.js
 import ContactPage from "../routes/ContactPage/ContactPage.jsx";
 import Quantaculus from "../routes/Quantaculus.jsx";
 import QuantaculusSubmitted from "../routes/QuantaculusSubmitted.jsx";
+import GamblingMaths from "../routes/GamblingMaths.jsx";
 
 ReactGA.initialize("G-H9LEY5519K");
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="*" element={<ComingSoon />} />
         <Route path="/quantaculus" element={<Quantaculus />} />
         <Route path="/quantaculus/submitted" element={<QuantaculusSubmitted />} />
+        <Route path="/gamblingmaths" element={<GamblingMaths />} />
       </Route>
     </Routes>
   );
