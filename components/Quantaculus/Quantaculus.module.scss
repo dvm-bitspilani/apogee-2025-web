@@ -416,6 +416,15 @@ $button-hover-color: rgba(18, 10, 8, 0.5);
             span {
                 font-size: 24px;
             }
+
+            @media screen and (max-width: 400px) {
+                margin-inline: 1.25rem;
+                font-size: 28px;
+            }
+
+            span {
+                font-size: 20px;
+            }
         }
 
         .mobileTimer {
@@ -424,7 +433,7 @@ $button-hover-color: rgba(18, 10, 8, 0.5);
             @media screen and (max-width: 500px) {
                 display: flex;
                 font-family: sans-serif;
-                font-size: 14px;
+                font-size: 13px;
                 flex-direction: column;
                 gap: 7px;
                 margin-right: 1.5rem;
