@@ -80,7 +80,7 @@ export default function Navbar() {
             : { transform: "translate(-50%,100%)", pointerEvents: "none" }
         }
       >
-        <Link to="/registration">
+        <Link to="/registration" download={true}>
           <img
             className={styles.regbtn}
             alt="register button"

@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation } from "react-router";
+import { Route, Routes } from "react-router";
 import GlobalLayout from "../layouts/GlobalLayout.jsx";
 import Landing from "../components/Landing/Landing.jsx";
 import ShaderDev from "../components/ShaderDev/ShaderDev.jsx";
@@ -9,31 +9,10 @@ import ContactPage from "../routes/ContactPage/ContactPage.jsx";
 import Quantaculus from "../routes/Quantaculus.jsx";
 import QuantaculusSubmitted from "../routes/QuantaculusSubmitted.jsx";
 import GamblingMaths from "../routes/GamblingMaths.jsx";
-import { useEffect } from "react";
 
 ReactGA.initialize("G-H9LEY5519K");
 
 function App() {
-  useEffect(() => {
-    function isRunningInWebView() {
-      const userAgent = navigator.userAgent.toLowerCase();
-      return (
-        userAgent.includes("instagram") ||
-        (navigator.standalone === undefined &&
-          window.matchMedia("(display-mode: standalone)").matches === false)
-      );
-    }
-
-    function redirectToExternalBrowser() {
-      const currentUrl = encodeURIComponent(window.location.href);
-
-      window.location.href = `/external-redirect.html?redirect=${currentUrl}`;
-    }
-
-    if (isRunningInWebView()) {
-      redirectToExternalBrowser();
-    }
-  }, []);
   return (
     <Routes>
       <Route element={<GlobalLayout />}>
