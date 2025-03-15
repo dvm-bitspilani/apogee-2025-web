@@ -231,7 +231,7 @@ const Quiz = () => {
   return (
     <div
       className={styles.instructions}
-      style={{ overflowY: questions?.question_paper[currentQuestion].image === null ? "hidden" : "scroll" }}
+      // style={{ overflowY: questions?.question_paper[currentQuestion].image === null ? "hidden" : "scroll" }}
     >
       {!isLoading ? (
         <>
