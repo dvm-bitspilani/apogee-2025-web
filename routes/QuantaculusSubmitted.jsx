@@ -62,19 +62,9 @@ const QuantaculusSubmitted = () => {
             <span>Home</span>
           </div>
         </div>
-          <div className={styles.contentBox}>
-            {typeof window !== "undefined" ? (
-              window.innerWidth > 768 ? (
-                <img src={contentBox} alt="" />
-              ) : (
-                <img src={contentBoxMobile} alt="" />
-              )
-            ) : (
-              ""
-            )}
-            
-                <p className={styles.submitted}>Submitted Successfully!</p>
-          </div>
+        <div className={styles.submittedBox}>
+          <p className={styles.submitted}>Submitted Successfully!</p>
+        </div>
 
       </motion.div>
     </>
