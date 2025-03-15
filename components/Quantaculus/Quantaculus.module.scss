@@ -472,9 +472,12 @@ $button-hover-color: rgba(18, 10, 8, 0.5);
             flex-direction: column;
             gap: 2rem;
             user-select: none;
-            -webkit-user-select: none; /* Safari */
-            -moz-user-select: none; /* Firefox */
-            -ms-user-select: none;  /* IE/Edge */
+            -webkit-user-select: none;
+            /* Safari */
+            -moz-user-select: none;
+            /* Firefox */
+            -ms-user-select: none;
+            /* IE/Edge */
 
             @media screen and (max-width: 768px) {
                 font-size: 1rem;
@@ -533,10 +536,13 @@ $button-hover-color: rgba(18, 10, 8, 0.5);
                 align-items: center;
                 gap: 1rem;
                 user-select: none;
-                -webkit-user-select: none;  /* Safari */
-                -moz-user-select: none;  /* Firefox */
-                -ms-user-select: none;  /* IE/Edge */
-                
+                -webkit-user-select: none;
+                /* Safari */
+                -moz-user-select: none;
+                /* Firefox */
+                -ms-user-select: none;
+                /* IE/Edge */
+
 
                 @media screen and (max-width: 768px) {
                     font-size: .75rem;
@@ -612,4 +618,18 @@ $button-hover-color: rgba(18, 10, 8, 0.5);
             line-height: 36px;
         }
     }
+}
+
+.instructions::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.instructions {
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.instructions::-webkit-scrollbar-thumb {
+    display: none;
 }
