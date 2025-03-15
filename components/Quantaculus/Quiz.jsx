@@ -9,6 +9,41 @@ const Quiz = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   const [questionTimers, setQuestionTimers] = useState({});
+  const [isReloadAttempted, setIsReloadAttempted] = useState(false);
+
+  // Prevent page reload
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = "";
+      setIsReloadAttempted(true);
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
+  // useEffect(() => {
+  //   const handleBeforeUnload = (event) => {
+  //     event.preventDefault();
+  //     event.returnValue = ""; // Prevents the reload
+  //     setIsReloadAttempted(true);
+  
+  //     // Show an alert after 3 seconds
+  //     setTimeout(() => {
+  //       alert("You cannot reload the page!");
+  //     }, 3000);
+  //   };
+  
+  //   window.addEventListener("beforeunload", handleBeforeUnload);
+  
+  //   return () => {
+  //     window.removeEventListener("beforeunload", handleBeforeUnload);
+  //   };
+  // }, []);
 
   const fetchQuestions = async () => {
     setIsLoading(true);
@@ -36,17 +71,11 @@ const Quiz = () => {
       // localStorage.setItem('startTime', data.start_time);
       setStartTime(parseInt(data.start_time) * 1000);
 
-      // Initialize timers from localStorage or set default (30s per question)
-      const storedTimers = JSON.parse(localStorage.getItem("questionTimers"));
-      if (storedTimers) {
-        setQuestionTimers(storedTimers);
-      } else {
-        const initialTimers = Object.fromEntries(
-          dummyQuestions.map((_, index) => [index, 30])
-        );
-        setQuestionTimers(initialTimers);
-        localStorage.setItem("questionTimers", JSON.stringify(initialTimers));
-      }
+      // Initialize timers for each question
+      const initialTimers = Object.fromEntries(
+        Array.from({ length: 80 }, (_, index) => [index, 25])
+      );
+      setQuestionTimers(initialTimers);
 
       // console.log("questions:", questions);
       // console.log("question_paper:", questions?.question_paper);
@@ -62,6 +91,23 @@ const Quiz = () => {
     }
   };
 
+  useEffect(() => {
+    if (!questions?.question_paper?.length) return;
+
+    const timer = setInterval(() => {
+      setQuestionTimers((prevTimers) => {
+        if (prevTimers[currentQuestion] > 0) {
+          return { ...prevTimers, [currentQuestion]: prevTimers[currentQuestion] - 1 };
+        } else {
+          clearInterval(timer);
+          handleNext();
+          return prevTimers;
+        }
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [currentQuestion, questions?.question_paper]);
 
 
   const handlePrev = () => {
@@ -149,30 +195,29 @@ const Quiz = () => {
     fetchQuestions();
   }, []);
 
-
-  useEffect(() => {
-    localStorage.setItem("questionTimers", JSON.stringify(questionTimers));
-  }, [questionTimers]);
+  // useEffect(() => {
+  //   localStorage.setItem("questionTimers", JSON.stringify(questionTimers));
+  // }, [questionTimers]);
 
   // Timer logic
-  useEffect(() => {
-    if (questions.length === 0) return;
-  
-    const timer = setInterval(() => {
-      setQuestionTimers((prevTimers) => {
-        if (prevTimers[currentQuestion] > 0) {
-          const updatedTimers = { ...prevTimers, [currentQuestion]: prevTimers[currentQuestion] - 1 };
-          localStorage.setItem("questionTimers", JSON.stringify(updatedTimers));
-          return updatedTimers;
-        } else {
-          clearInterval(timer);
-          return prevTimers;
-        }
-      });
-    }, 1000);
-  
-    return () => clearInterval(timer);
-  }, [currentQuestion, questions.length]);
+  // useEffect(() => {
+  //   if (questions.length === 0) return;
+
+  //   const timer = setInterval(() => {
+  //     setQuestionTimers((prevTimers) => {
+  //       if (prevTimers[currentQuestion] > 0) {
+  //         const updatedTimers = { ...prevTimers, [currentQuestion]: prevTimers[currentQuestion] - 1 };
+  //         localStorage.setItem("questionTimers", JSON.stringify(updatedTimers));
+  //         return updatedTimers;
+  //       } else {
+  //         clearInterval(timer);
+  //         return prevTimers;
+  //       }
+  //     });
+  //   }, 1000);
+
+  //   return () => clearInterval(timer);
+  // }, [currentQuestion, questions.length]);
 
   const renderer = ({ minutes, seconds }) => {
     return (
@@ -190,11 +235,11 @@ const Quiz = () => {
             <div className={styles.questionIndex}>
               Q{currentQuestion + 1} <span> / {questions.question_paper.length}</span>
             </div>
-            <div className={styles.questionIndex}>
-              <Countdown renderer={renderer} zeroPadTime={2} autoStart="true" date={startTime + 15 * 60 * 1000} onComplete={() => handleSubmit(true)} />
+            <div className={styles.timer}>
+              <span>Time Left for Quiz : <strong><Countdown renderer={renderer} zeroPadTime={2} autoStart="true" date={startTime + 15 * 60 * 1000} onComplete={() => handleSubmit(true)} /> min</strong></span>
             </div>
             <div className={styles.timer}>
-              <span>Time Left: <strong>{questionTimers[currentQuestion]}s</strong></span>
+              <span>Time Left for Question {[currentQuestion + 1]} : <strong>{questionTimers[currentQuestion]} sec</strong></span>
             </div>
           </div>
 
