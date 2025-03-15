@@ -13,7 +13,7 @@ const Instructions = ({onQuizOpen}) => {
         <h1>INSTRUCTIONS</h1>
         <ul>
             <li>Total Questions: 80</li>
-            <li>Total Time: 25 minutes plus an additional 25 seconds per question</li>
+            <li>Total Time: 25 min and 25 sec per question</li>
             <li>Marking Scheme: +1 for correct answer/ -1 for wrong answer/ 0 for unattempted.</li>
             <li>The test will auto-submit after the countdown of 25 minutes runs out. Additionally, each question will auto submit after 25 seconds.</li>
             <li>The test has to be attempted using only one device. Both the teammates have to attempt it together through a single device.</li>
