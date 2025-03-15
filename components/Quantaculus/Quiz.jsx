@@ -31,15 +31,15 @@ const Quiz = () => {
   //     event.preventDefault();
   //     event.returnValue = ""; // Prevents the reload
   //     setIsReloadAttempted(true);
-  
+
   //     // Show an alert after 3 seconds
   //     setTimeout(() => {
   //       alert("You cannot reload the page!");
   //     }, 3000);
   //   };
-  
+
   //   window.addEventListener("beforeunload", handleBeforeUnload);
-  
+
   //   return () => {
   //     window.removeEventListener("beforeunload", handleBeforeUnload);
   //   };
@@ -77,9 +77,9 @@ const Quiz = () => {
       );
       setQuestionTimers(initialTimers);
 
-      // console.log("questions:", questions);
-      // console.log("question_paper:", questions?.question_paper);
-      // console.log("currentQuestion:", currentQuestion);
+      console.log("questions:", questions);
+      console.log("question_paper:", questions?.question_paper);
+      console.log("currentQuestion:", currentQuestion);
 
     } catch (error) {
       // alert(error);
@@ -228,7 +228,10 @@ const Quiz = () => {
   };
 
   return (
-    <div className={styles.instructions}>
+    <div
+      className={styles.instructions}
+      // style={{ overflowY: questions.question_paper[currentQuestion].image ? "hidden" : "scroll" }}
+    >
       {!isLoading ? (
         <>
           <div className={styles.header}>
@@ -241,10 +244,21 @@ const Quiz = () => {
             <div className={styles.timer}>
               <span>Time Left for Question {[currentQuestion + 1]} : <strong>{questionTimers[currentQuestion]} sec</strong></span>
             </div>
+            <div className={styles.mobileTimer}>
+              <span>Time Left for Quiz : <strong><Countdown renderer={renderer} zeroPadTime={2} autoStart="true" date={startTime + 15 * 60 * 1000} onComplete={() => handleSubmit(true)} /> min</strong></span>
+              <span>Time Left for Question {[currentQuestion + 1]} : <strong>{questionTimers[currentQuestion]} sec</strong></span>
+            </div>
           </div>
 
           <div className={styles.problem}>
-            {questions.question_paper[currentQuestion].text}
+            <span>{questions.question_paper[currentQuestion].text}</span>
+            <div className={styles.problemImage}>
+              <img
+                src={questions.question_paper[currentQuestion].image}
+                alt="Problem"
+                // style={{ display: questions.question_paper[currentQuestion].image ? "block" : "none" }}
+              />
+            </div>
           </div>
           <form action="" className={styles.answer}>
             {questions.question_paper[currentQuestion].options.map(
