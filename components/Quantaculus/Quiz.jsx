@@ -245,7 +245,7 @@ const Quiz = () => {
               <span>Time Left for Question {[currentQuestion + 1]} : <strong>{questionTimers[currentQuestion]} sec</strong></span>
             </div>
             <div className={styles.mobileTimer}>
-              <span>Time Left for Quiz : <strong><Countdown renderer={renderer} zeroPadTime={2} autoStart="true" date={startTime + 15 * 60 * 1000} onComplete={() => handleSubmit(true)} /> min</strong></span>
+              <span>Time Left for Quiz : <strong><Countdown renderer={renderer} zeroPadTime={2} autoStart="true" date={startTime + 25 * 60 * 1000} onComplete={() => handleSubmit(true)} /> min</strong></span>
               <span>Time Left for Question {[currentQuestion + 1]} : <strong>{questionTimers[currentQuestion]} sec</strong></span>
             </div>
           </div>
