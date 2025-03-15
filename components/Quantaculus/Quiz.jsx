@@ -80,6 +80,7 @@ const Quiz = () => {
       // console.log("questions:", questions);
       // console.log("question_paper:", questions?.question_paper);
       // console.log("currentQuestion:", currentQuestion);
+      // console.log(questions?.question_paper[currentQuestion].image);
 
     } catch (error) {
       // alert(error);
@@ -230,7 +231,7 @@ const Quiz = () => {
   return (
     <div
       className={styles.instructions}
-      // style={{ overflowY: questions.question_paper[currentQuestion].image ? "hidden" : "scroll" }}
+      style={{ overflowY: questions?.question_paper[currentQuestion].image === null ? "hidden" : "scroll" }}
     >
       {!isLoading ? (
         <>
@@ -252,13 +253,14 @@ const Quiz = () => {
 
           <div className={styles.problem}>
             <span>{questions.question_paper[currentQuestion].text}</span>
-            <div className={styles.problemImage}>
-              <img
-                src={questions.question_paper[currentQuestion].image}
-                alt="Problem"
-                // style={{ display: questions.question_paper[currentQuestion].image ? "block" : "none" }}
-              />
-            </div>
+            {questions.question_paper[currentQuestion].image && (
+              <div className={styles.problemImage}>
+                <img
+                  src={questions.question_paper[currentQuestion].image}
+                  alt="Problem"
+                />
+              </div>
+            )}
           </div>
           <form action="" className={styles.answer}>
             {questions.question_paper[currentQuestion].options.map(
