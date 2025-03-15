@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import * as styles from "./Quantaculus.module.scss";
 import Countdown from 'react-countdown';
@@ -9,6 +8,42 @@ const Quiz = () => {
   const [startTime, setStartTime] = useState(0)
   const [isLoading, setIsLoading] = useState(true);
   const [selectedAnswers, setSelectedAnswers] = useState([]);
+  const [questionTimers, setQuestionTimers] = useState({});
+  // const [isReloadAttempted, setIsReloadAttempted] = useState(false);
+
+  // Prevent page reload
+  // useEffect(() => {
+  //   const handleBeforeUnload = (event) => {
+  //     event.preventDefault();
+  //     event.returnValue = "";
+  //     setIsReloadAttempted(true);
+  //   };
+
+  //   window.addEventListener("beforeunload", handleBeforeUnload);
+
+  //   return () => {
+  //     window.removeEventListener("beforeunload", handleBeforeUnload);
+  //   };
+  // }, []);
+
+  // useEffect(() => {
+  //   const handleBeforeUnload = (event) => {
+  //     event.preventDefault();
+  //     event.returnValue = ""; // Prevents the reload
+  //     setIsReloadAttempted(true);
+
+  //     // Show an alert after 3 seconds
+  //     setTimeout(() => {
+  //       alert("You cannot reload the page!");
+  //     }, 3000);
+  //   };
+
+  //   window.addEventListener("beforeunload", handleBeforeUnload);
+
+  //   return () => {
+  //     window.removeEventListener("beforeunload", handleBeforeUnload);
+  //   };
+  // }, []);
 
   const fetchQuestions = async () => {
     setIsLoading(true);
@@ -35,9 +70,18 @@ const Quiz = () => {
       setQuestions(data);
       // localStorage.setItem('startTime', data.start_time);
       setStartTime(parseInt(data.start_time) * 1000);
-      console.log("questions:", questions);
-      console.log("question_paper:", questions?.question_paper);
-      console.log("currentQuestion:", currentQuestion);
+
+      // Initialize timers for each question
+      const initialTimers = Object.fromEntries(
+        Array.from({ length: 80 }, (_, index) => [index, 25])
+      );
+      setQuestionTimers(initialTimers);
+
+      // console.log("questions:", questions);
+      // console.log("question_paper:", questions?.question_paper);
+      // console.log("currentQuestion:", currentQuestion);
+      // console.log(questions?.question_paper[currentQuestion].image);
+
     } catch (error) {
       // alert(error);
       if (confirm(error)) {
@@ -48,6 +92,23 @@ const Quiz = () => {
     }
   };
 
+  useEffect(() => {
+    if (!questions?.question_paper?.length) return;
+
+    const timer = setInterval(() => {
+      setQuestionTimers((prevTimers) => {
+        if (prevTimers[currentQuestion] > 0) {
+          return { ...prevTimers, [currentQuestion]: prevTimers[currentQuestion] - 1 };
+        } else {
+          clearInterval(timer);
+          handleNext();
+          return prevTimers;
+        }
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [currentQuestion, questions?.question_paper]);
 
 
   const handlePrev = () => {
@@ -135,6 +196,30 @@ const Quiz = () => {
     fetchQuestions();
   }, []);
 
+  // useEffect(() => {
+  //   localStorage.setItem("questionTimers", JSON.stringify(questionTimers));
+  // }, [questionTimers]);
+
+  // Timer logic
+  // useEffect(() => {
+  //   if (questions.length === 0) return;
+
+  //   const timer = setInterval(() => {
+  //     setQuestionTimers((prevTimers) => {
+  //       if (prevTimers[currentQuestion] > 0) {
+  //         const updatedTimers = { ...prevTimers, [currentQuestion]: prevTimers[currentQuestion] - 1 };
+  //         localStorage.setItem("questionTimers", JSON.stringify(updatedTimers));
+  //         return updatedTimers;
+  //       } else {
+  //         clearInterval(timer);
+  //         return prevTimers;
+  //       }
+  //     });
+  //   }, 1000);
+
+  //   return () => clearInterval(timer);
+  // }, [currentQuestion, questions.length]);
+
   const renderer = ({ minutes, seconds }) => {
     return (
       <span>
@@ -144,25 +229,49 @@ const Quiz = () => {
   };
 
   return (
-    <div className={styles.instructions}>
+    <div
+      className={styles.instructions}
+      // style={{ overflowY: questions?.question_paper[currentQuestion].image === null ? "hidden" : "scroll" }}
+    >
       {!isLoading ? (
         <>
           <div className={styles.header}>
             <div className={styles.questionIndex}>
               Q{currentQuestion + 1} <span> / {questions.question_paper.length}</span>
             </div>
-            <div className={styles.questionIndex}>
-              <Countdown renderer={renderer} zeroPadTime={2} autoStart="true" date={startTime + 15 * 60 * 1000} onComplete={() => handleSubmit(true)}/>
+            <div className={styles.timer}>
+              <span>Time Left for Quiz : <strong><Countdown renderer={renderer} zeroPadTime={2} autoStart="true" date={startTime + 25 * 60 * 1000} onComplete={() => handleSubmit(true)} /> min</strong></span>
+            </div>
+            <div className={styles.timer}>
+              <span>Time Left for Question {[currentQuestion + 1]} : <strong>{questionTimers[currentQuestion]} sec</strong></span>
+            </div>
+            <div className={styles.mobileTimer}>
+              <span>Time Left for Quiz : <strong><Countdown renderer={renderer} zeroPadTime={2} autoStart="true" date={startTime + 25 * 60 * 1000} onComplete={() => handleSubmit(true)} /> min</strong></span>
+              <span>Time Left for Question {[currentQuestion + 1]} : <strong>{questionTimers[currentQuestion]} sec</strong></span>
             </div>
           </div>
 
           <div className={styles.problem}>
-            {questions.question_paper[currentQuestion].text}
+            <span>{questions.question_paper[currentQuestion].text}</span>
+            {questions.question_paper[currentQuestion].image && (
+              <div className={styles.problemImage}>
+                <img
+                  src={questions.question_paper[currentQuestion].image}
+                  alt="Problem"
+                />
+              </div>
+            )}
           </div>
           <form action="" className={styles.answer}>
             {questions.question_paper[currentQuestion].options.map(
               (option, index) => (
-                <div key={index} className={styles.option}>
+                <div
+                  key={index}
+                  className={styles.option}
+                  style={{
+                    cursor: questionTimers[currentQuestion] === 0 ? "not-allowed" : "pointer",
+                  }}
+                >
                   <input
                     type="radio"
                     name={`option-${currentQuestion}`}
@@ -175,8 +284,14 @@ const Quiz = () => {
                       )
                     }
                     onChange={() => handleSelect(option.id)}
+                    disabled={questionTimers[currentQuestion] === 0}
                   />
-                  <label htmlFor={`option-${currentQuestion}-${index}`}>
+                  <label
+                    htmlFor={`option-${currentQuestion}-${index}`}
+                    style={{
+                      cursor: questionTimers[currentQuestion] === 0 ? "not-allowed" : "pointer",
+                    }}
+                  >
                     {option.text}
                   </label>
                 </div>

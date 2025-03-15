@@ -69,7 +69,7 @@ const Quantaculus = () => {
           />) : ('')}
         {isLoggedIn ? (
           <div className={styles.contentBox}>
-            {typeof window !== "undefined" ? (
+            {/* {typeof window !== "undefined" ? (
               window.innerWidth > 768 ? (
                 <img src={contentBox} alt="" />
               ) : (
@@ -77,7 +77,7 @@ const Quantaculus = () => {
               )
             ) : (
               ""
-            )}
+            )} */}
             {!isQuizOpen ? (
               <Instructions
                 onQuizOpen = {handleQuizOpen}
