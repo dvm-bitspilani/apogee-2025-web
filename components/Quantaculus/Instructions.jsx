@@ -8,6 +8,11 @@ const Instructions = ({onQuizOpen}) => {
     event.preventDefault();
   }
 
+  const handleLogout = () => {
+    localStorage.removeItem("jwtToken");
+    window.location.reload();
+  };
+
   return (
     <div className={styles.instructions}>
         <h1>INSTRUCTIONS</h1>
@@ -24,7 +29,10 @@ const Instructions = ({onQuizOpen}) => {
             <li>Marks, then time taken, then accuracy is to be considered in case of tiebreaker.</li>
         </ul>
 
-        <button onClick={handleSubmit}>NEXT</button>
+        <div className={styles.instructionsButtons}> 
+          <button onClick={handleSubmit}>NEXT</button>
+          <button onClick={handleLogout} className={styles.logout}>LOGOUT</button>
+        </div>
     </div>
   )
 }

@@ -28,7 +28,10 @@ const QuantaculusSubmitted = () => {
     setIsQuizOpen(true);
   };
 
-  // console.log(isLoggedIn)
+  const handleLogout = () => {
+    localStorage.removeItem("jwtToken");
+    navigate("/quantaculus");
+  };
 
 
   return (
@@ -49,7 +52,8 @@ const QuantaculusSubmitted = () => {
           <OverlayBackBtn />
         </div>
         <div className={styles.submittedBox}>
-          <p className={styles.submitted}>Submitted Successfully!</p>
+          <p>Submitted Successfully!</p>
+          <button onClick={handleLogout} className={styles.logout}>LOGOUT</button>
         </div>
 
       </motion.div>
