@@ -77,9 +77,9 @@ const Quiz = () => {
       );
       setQuestionTimers(initialTimers);
 
-      console.log("questions:", questions);
-      console.log("question_paper:", questions?.question_paper);
-      console.log("currentQuestion:", currentQuestion);
+      // console.log("questions:", questions);
+      // console.log("question_paper:", questions?.question_paper);
+      // console.log("currentQuestion:", currentQuestion);
 
     } catch (error) {
       // alert(error);
