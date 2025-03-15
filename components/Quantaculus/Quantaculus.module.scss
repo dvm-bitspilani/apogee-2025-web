@@ -389,6 +389,12 @@ $button-hover-color: rgba(18, 10, 8, 0.5);
             }
         }
 
+        .logout {
+            color: #9c2e1f;
+            border: 2px solid #9c2e1f;
+            margin-left: auto;
+        }
+
         .header {
             width: 100%;
             display: flex;
@@ -594,6 +600,19 @@ $button-hover-color: rgba(18, 10, 8, 0.5);
 
 
         }
+
+        .instructionsButtons {
+            display: flex;
+            gap: 12rem;
+
+            @media screen and (max-width: 768px) {
+                gap: 6rem;
+            }
+
+            @media screen and (max-width: 378px) {
+                gap: 3rem;
+            }
+        }
     }
 }
 
@@ -603,20 +622,63 @@ $button-hover-color: rgba(18, 10, 8, 0.5);
     height: 300px;
     width: 70%;
     font-family: "Birmingham";
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
 
     @media screen and (max-width: 500px) {
         width: 100%;
         height: 250px;
+        gap: 1.5rem;
     }
 
     p {
         font-size: 33px;
+        text-align: center;
 
         @media screen and (max-width: 500px) {
             font-size: 26px;
             line-height: 36px;
         }
+    }
+
+    button {
+        background-color: $button-color;
+        color: $text-color;
+        padding: 0.9rem 1.8rem;
+        border: 2px solid $border-color;
+        font-family: "OldNewspaperTypes";
+        font-size: 25px;
+        font-weight: 700;
+        // text-align: center;
+        cursor: pointer;
+        border-radius: 3px;
+
+        &:hover {
+            background: $button-hover-color;
+        }
+
+        @media screen and (max-width: 800px) {
+            font-size: 21px;
+            padding: 0.7rem 1.4rem;
+            width: fit-content;
+        }
+
+        @media screen and (max-width: 500px) {
+            font-size: 18px;
+            padding: 0.4rem 1rem;
+            border: 1.5px solid $border-color;
+            width: fit-content;
+            margin-bottom: 1.6rem;
+        }
+    }
+
+    .logout {
+        color: #9c2e1f;
+        border: 2px solid #9c2e1f;
+        width: fit-content;
     }
 }
 
