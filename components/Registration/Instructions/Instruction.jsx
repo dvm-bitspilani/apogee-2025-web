@@ -11,12 +11,19 @@ import Preloader from "../Preloader/Preloader";
 import bullet from "../../../src/assets/Register/bullet.svg";
 import regBackground from "../../../src/assets/Register/regBackground.png";
 import { Helmet } from "react-helmet-async";
+import PlatformModal from "./PlatformModal";
+import { detectInstagramBrowser } from "../../../utils/Helpers/Helpers";
 
 export default function Instructions() {
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [showPreloader, setShowPreloader] = useState(true);
   const [userState, setUserState] = useState(false);
   const [userEmail, setUserEmail] = useState("");
+  const [instagramModal, setInstagramModal] = useState({
+    isInstagram: false,
+    platform: "unknown",
+  });
+
   const [cookies, setCookies, removeCookie] = useCookies([
     "user-auth",
     "Authorization",
@@ -26,6 +33,8 @@ export default function Instructions() {
   const mainContainerRef = useRef(null);
 
   useEffect(() => {
+    setInstagramModal(detectInstagramBrowser());
+
     const imageUrls = [regWrapper, wheel, regBackground];
     let loadedCount = 0;
     imageUrls.forEach((src) => {
@@ -185,6 +194,9 @@ export default function Instructions() {
         <title>Registration | APOGEE 2025</title>
         <link rel="canonical" href="https://bits-apogee.org/registration" />
       </Helmet>
+      {instagramModal.isInstagram ? (
+        <PlatformModal os={instagramModal.platform} />
+      ) : null}
       {userState && userEmail ? (
         <RegForm email={userEmail} />
       ) : (

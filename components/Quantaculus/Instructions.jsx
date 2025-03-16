@@ -8,6 +8,11 @@ const Instructions = ({onQuizOpen}) => {
     event.preventDefault();
   }
 
+  const handleLogout = () => {
+    localStorage.removeItem("jwtToken");
+    window.location.reload();
+  };
+
   return (
     <div className={styles.instructions}>
         <h1>INSTRUCTIONS</h1>
@@ -16,6 +21,7 @@ const Instructions = ({onQuizOpen}) => {
             <li>Total Time: 25 min and 25 sec per question</li>
             <li>Marking Scheme: +1 for correct answer/ -1 for wrong answer/ 0 for unattempted.</li>
             <li>The test will auto-submit after the countdown of 25 minutes runs out. Additionally, each question will auto submit after 25 seconds.</li>
+            <li>Do not reload the page, as your progress will not be saved.</li>
             <li>The test has to be attempted using only one device. Both the teammates have to attempt it together through a single device.</li>
             <li>The responses cannot be changed after a test has been submitted.</li>
             <li>Use of unfair means and taking more than the alloted time is not allowed.</li>
@@ -23,7 +29,10 @@ const Instructions = ({onQuizOpen}) => {
             <li>Marks, then time taken, then accuracy is to be considered in case of tiebreaker.</li>
         </ul>
 
-        <button onClick={handleSubmit}>NEXT</button>
+        <div className={styles.instructionsButtons}> 
+          <button onClick={handleSubmit}>NEXT</button>
+          <button onClick={handleLogout} className={styles.logout}>LOGOUT</button>
+        </div>
     </div>
   )
 }
