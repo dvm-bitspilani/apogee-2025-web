@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation } from "react-router";
+import { Route, Routes } from "react-router";
 import GlobalLayout from "../layouts/GlobalLayout.jsx";
 import Landing from "../components/Landing/Landing.jsx";
 import ShaderDev from "../components/ShaderDev/ShaderDev.jsx";
@@ -22,7 +22,10 @@ function App() {
         <Route path="/registration" element={<Instructions />} />
         <Route path="*" element={<ComingSoon />} />
         <Route path="/quantaculus" element={<Quantaculus />} />
-        <Route path="/quantaculus/submitted" element={<QuantaculusSubmitted />} />
+        <Route
+          path="/quantaculus/submitted"
+          element={<QuantaculusSubmitted />}
+        />
         <Route path="/gamblingmaths" element={<GamblingMaths />} />
       </Route>
     </Routes>
