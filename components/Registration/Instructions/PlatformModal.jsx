@@ -4,7 +4,8 @@ import regWrapper from "../../../src/assets/Register/regWrapper.png";
 
 const PlatformModal = ({ os }) => {
   const handleClick = () => {
-    window.location.href = "intent:https://bits-apogee.org#Intent;end";
+    window.location.href =
+      "intent:https://bits-apogee.org/registration#Intent;end";
   };
   return (
     <div className={styles.overlay}>
