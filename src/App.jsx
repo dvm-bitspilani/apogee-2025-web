@@ -9,10 +9,20 @@ import ContactPage from "../routes/ContactPage/ContactPage.jsx";
 import Quantaculus from "../routes/Quantaculus.jsx";
 import QuantaculusSubmitted from "../routes/QuantaculusSubmitted.jsx";
 import GamblingMaths from "../routes/GamblingMaths.jsx";
+import { useEffect } from "react";
 
 ReactGA.initialize("G-H9LEY5519K");
 
 function App() {
+  useEffect(() => {
+    if (
+      navigator.userAgent.includes("Instagram") &&
+      /android/i.test(navigator.userAgent)
+    ) {
+      console.log("Redirect");
+      window.location.href = "intent:https://bits-apogee.org#Intent;end";
+    }
+  }, []);
   return (
     <Routes>
       <Route element={<GlobalLayout />}>
@@ -22,7 +32,10 @@ function App() {
         <Route path="/registration" element={<Instructions />} />
         <Route path="*" element={<ComingSoon />} />
         <Route path="/quantaculus" element={<Quantaculus />} />
-        <Route path="/quantaculus/submitted" element={<QuantaculusSubmitted />} />
+        <Route
+          path="/quantaculus/submitted"
+          element={<QuantaculusSubmitted />}
+        />
         <Route path="/gamblingmaths" element={<GamblingMaths />} />
       </Route>
     </Routes>
