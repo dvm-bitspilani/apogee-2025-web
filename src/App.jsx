@@ -14,31 +14,40 @@ import { useEffect } from "react";
 ReactGA.initialize("G-H9LEY5519K");
 
 function App() {
-  useEffect(() => {
-    if (
-      navigator.userAgent.includes("Instagram") &&
-      /android/i.test(navigator.userAgent)
-    ) {
-      console.log("Redirect");
-      window.location.href = "intent:https://bits-apogee.org#Intent;end";
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (
+  //     navigator.userAgent.includes("Instagram") &&
+  //     /android/i.test(navigator.userAgent)
+  //   ) {
+  //     console.log("Redirect");
+  //     window.location.href = "intent:https://bits-apogee.org#Intent;end";
+  //   }
+  // }, []);
   return (
-    <Routes>
-      <Route element={<GlobalLayout />}>
-        <Route path="/" element={<Landing />} />
-        <Route path="/shader-dev" element={<ShaderDev />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/registration" element={<Instructions />} />
-        <Route path="*" element={<ComingSoon />} />
-        <Route path="/quantaculus" element={<Quantaculus />} />
-        <Route
-          path="/quantaculus/submitted"
-          element={<QuantaculusSubmitted />}
-        />
-        <Route path="/gamblingmaths" element={<GamblingMaths />} />
-      </Route>
-    </Routes>
+    <>
+      <a
+        href="https://bits-apogee.org"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Open in External Browser
+      </a>
+      <Routes>
+        <Route element={<GlobalLayout />}>
+          <Route path="/" element={<Landing />} />
+          <Route path="/shader-dev" element={<ShaderDev />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/registration" element={<Instructions />} />
+          <Route path="*" element={<ComingSoon />} />
+          <Route path="/quantaculus" element={<Quantaculus />} />
+          <Route
+            path="/quantaculus/submitted"
+            element={<QuantaculusSubmitted />}
+          />
+          <Route path="/gamblingmaths" element={<GamblingMaths />} />
+        </Route>
+      </Routes>
+    </>
   );
 }
 
