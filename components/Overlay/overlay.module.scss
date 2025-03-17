@@ -6,6 +6,7 @@
   left: 0;
   right: 0;
   transition: opacity 300ms linear;
+  overflow-y: scroll;
 
   .backBtn {
     background-color: transparent;
@@ -48,6 +49,7 @@
     height: 100lvh;
     position: fixed;
     transition: opacity 300ms linear;
+    overflow-y: scroll;
     top: 0;
     left: 0;
   }
