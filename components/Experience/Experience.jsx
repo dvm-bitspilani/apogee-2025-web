@@ -50,7 +50,8 @@ const CAMERA_TARGET_COORDS = {
   landingToContact: { x: -0.72, y: 0.12, z: -0.663 },
   // landingToEvents: { x: 0.961, y: 0.078, z: -0.653 },
   landingToEvents: { x: 0.961, y: 0.4, z: -0.89 },
-  landingToSpeakers: { x: -0.759, y: 0.58, z: 0.777 },
+  // landingToSpeakers: { x: -0.759, y: 0.58, z: 0.777 },
+  landingToSpeakers: { x: -0.879, y: 0.68, z: 0.717 },
   landingToAbout: { x: 0.9, y: 0.0599, z: 0.797 },
   default: { x: 0, y: 0, z: 0 },
 };
@@ -338,8 +339,8 @@ export default function Experience() {
     positionFinder: {
       // value: [-0.7190000000000004, 0.11800000000000008, -0.663], // contact
       // value: [0.9610000000000005, 0.07800000000000007, -0.653], // events
-      // value: [-0.7590000000000005, 0.58, 0.7770000000000005], // speakers
-      value: [0.9, 0.05999999999999972, 0.7970000000000005], // about
+      value: [-0.8790000000000006, 0.68, 0.7170000000000004], // speakers
+      // value: [0.9, 0.05999999999999972, 0.7970000000000005], // about
       step: 0.01,
     },
   });
