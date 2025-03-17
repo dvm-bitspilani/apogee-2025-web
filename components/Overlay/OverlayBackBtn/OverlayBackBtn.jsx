@@ -5,7 +5,7 @@ import { reverseAnimation } from "../../../store/experienceAnimationsSlice/exper
 import { useCallback } from "react";
 import { useNavigate } from "react-router";
 
-export default function OverlayBackBtn({ isDiffRoute = false }) {
+export default function OverlayBackBtn({ isDiffRoute = false, ...props }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ export default function OverlayBackBtn({ isDiffRoute = false }) {
   }, [dispatch, navigate, animationStage, isDiffRoute]);
 
   return (
-    <button className={styles.backBtn} onClick={handleClick}>
+    <button className={styles.backBtn} onClick={handleClick} {...props}>
       <img
         src="/images/backBtnLanding.png"
         alt="back button"
