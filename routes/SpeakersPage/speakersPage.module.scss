@@ -3,7 +3,8 @@
   height: 100%;
   display: flex;
   justify-content: space-evenly;
-  align-items: center;
+  align-content: center;
+  gap: 5px;
   flex-wrap: wrap;
 
   video {
@@ -11,6 +12,7 @@
     height: auto;
     border-radius: 10px;
     border: 2px solid #ffb94b;
+    min-width: 420px;
 
     &::-webkit-media-controls-panel {
       opacity: 0;
