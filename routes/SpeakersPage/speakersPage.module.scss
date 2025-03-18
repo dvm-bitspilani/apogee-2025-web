@@ -1,0 +1,37 @@
+.container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-content: center;
+  gap: 2.5px;
+  flex-wrap: wrap;
+
+  @media (width < 1300px) {
+    gap: 5px;
+  }
+
+  video {
+    width: 32%;
+    height: auto;
+    border-radius: 10px;
+    border: 2px solid #ffb94b;
+
+    @media (width < 1300px) {
+      width: 48%;
+    }
+
+    @media (width < 850px) {
+      width: 60%;
+    }
+
+    &::-webkit-media-controls-panel {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    &:hover::-webkit-media-controls-panel {
+      opacity: 1;
+    }
+  }
+}

@@ -7,6 +7,7 @@ import Events from "../Events/Events";
 import ComingSoon from "../ComingSoon/ComingSoon";
 import { reverseAnimation } from "../../store/experienceAnimationsSlice/experienceAnimationsSlice";
 import OverlayBackBtn from "./OverlayBackBtn/OverlayBackBtn";
+import SpeakersPage from "../../routes/SpeakersPage/SpeakersPage";
 export default function Overlay() {
   const dispatch = useDispatch();
 
@@ -16,19 +17,14 @@ export default function Overlay() {
   );
 
   return (
-    <div
-      className={styles.overlay}
-      style={
-        curState === "landing"
-          ? { opacity: 0, pointerEvents: "none" }
-          : { opacity: 1, pointerEvents: "auto" }
-      }
-    >
-      <OverlayBackBtn />
-      {/* {curState === "contact" && <Contact />}
-      {curState === "about" && <About />}
-      {curState === "events" && <ComingSoon />}
-      {curState === "speakers" && <ComingSoon />} */}
+    <>
+      <OverlayBackBtn
+        style={
+          curState === "landing"
+            ? { opacity: 0, pointerEvents: "none" }
+            : { opacity: 1, pointerEvents: "auto" }
+        }
+      />
       <div
         className={styles.overlayContainer}
         style={
@@ -60,15 +56,16 @@ export default function Overlay() {
         <Events />
       </div>
       <div
-        className={styles.overlayContainer}
+        className={`${styles.overlayContainer} ${styles.speakerContainer}`}
         style={
           curState === "speakers"
             ? { opacity: 1, pointerEvents: "auto" }
             : { opacity: 0, pointerEvents: "none" }
         }
       >
-        <ComingSoon />
+        {/* <ComingSoon /> */}
+        <SpeakersPage />
       </div>
-    </div>
+    </>
   );
 }

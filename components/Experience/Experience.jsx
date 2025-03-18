@@ -50,7 +50,8 @@ const CAMERA_TARGET_COORDS = {
   landingToContact: { x: -0.72, y: 0.12, z: -0.663 },
   // landingToEvents: { x: 0.961, y: 0.078, z: -0.653 },
   landingToEvents: { x: 0.961, y: 0.4, z: -0.89 },
-  landingToSpeakers: { x: -0.759, y: 0.58, z: 0.777 },
+  // landingToSpeakers: { x: -0.759, y: 0.58, z: 0.777 },
+  landingToSpeakers: { x: -0.879, y: 0.68, z: 0.717 },
   landingToAbout: { x: 0.9, y: 0.0599, z: 0.797 },
   default: { x: 0, y: 0, z: 0 },
 };
