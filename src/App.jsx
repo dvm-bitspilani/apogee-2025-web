@@ -26,7 +26,6 @@ function App() {
           path="/quantaculus/submitted"
           element={<QuantaculusSubmitted />}
         />
-        <Route path="/gamblingmaths" element={<GamblingMaths />} />
       </Route>
     </Routes>
   );
