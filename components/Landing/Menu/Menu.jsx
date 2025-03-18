@@ -1,11 +1,10 @@
 import { useSelector } from "react-redux";
 import styles from "./menu.module.scss";
-
 import logoBackground from "../../../src/assets/Landing/regbtnLanding.svg";
 import hamLeft from "../../../src/assets/Landing/HamMenu/hamLeft.png";
 import hamRight from "../../../src/assets/Landing/HamMenu/hamRight.png";
 import hamMenu from "../../../src/assets/Landing/HamMenu/hamMenu.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
@@ -16,12 +15,60 @@ export default function Menu() {
     (state) => state.experienceAnimations.isPointerEventsAllowed
   );
 
-  // useGSAP(
-  //   ()=>{
-  //     const timeline = gsap.timeline();
+  const animate = () => {
+    const tl = gsap.timeline();
 
-  //   }
-  // )
+    if (isMenuOpen) {
+      // Opening animation
+      tl.to(`.${styles.hamLeft}`, {
+        x: "0%",
+        duration: 0.8,
+        ease: "power2.out",
+      })
+        .to(
+          `.${styles.hamRight}`,
+          {
+            x: "0%",
+            duration: 0.8,
+            ease: "power2.out",
+          },
+          "<"
+        )
+        .to(
+          `.${styles.backBtn}, .${styles.ham}`,
+          {
+            opacity: 1,
+            duration: 0.5,
+            ease: "power2.out",
+          },
+          "-=0.3"
+        );
+    } else {
+      tl.to(`.${styles.backBtn}, .${styles.ham}`, {
+        opacity: 0,
+        duration: 0.3,
+        ease: "power2.in",
+      })
+        .to(`.${styles.hamLeft}`, {
+          x: "-100%",
+          duration: 0.8,
+          ease: "power2.in",
+        })
+        .to(
+          `.${styles.hamRight}`,
+          {
+            x: "100%",
+            duration: 0.8,
+            ease: "power2.in",
+          },
+          "<"
+        );
+    }
+  };
+
+  useEffect(() => {
+    animate();
+  }, [isMenuOpen]);
 
   return (
     <>
@@ -50,28 +97,11 @@ export default function Menu() {
       >
         <div className={styles.ham}>
           <img className={styles.main} src={hamMenu} alt="ham menu" />
-          {/* <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="31"
-            height="32"
-            viewBox="0 0 31 32"
-            fill="none"
-          >
-            <circle
-              cx="15.43"
-              cy="15.6448"
-              r="14.8076"
-              stroke="white"
-              stroke-width="1.24488"
-            />
-          </svg> */}
         </div>
         <div className={styles.hamBackground}>
           <button
             className={styles.backBtn}
-            onClick={() => {
-              setIsMenuOpen(false);
-            }}
+            onClick={() => setIsMenuOpen(false)}
           >
             <img
               src="/images/backBtnLanding.png"
@@ -79,20 +109,8 @@ export default function Menu() {
               draggable={false}
             />
           </button>
-          <img
-            className={styles.hamLeft}
-            src={hamLeft}
-            style={{
-              transform: isMenuOpen ? "translateX(0)" : "translateX(-100%)",
-            }}
-          />
-          <img
-            className={styles.hamRight}
-            src={hamRight}
-            style={{
-              transform: isMenuOpen ? "translateX(0)" : "translateX(100%)",
-            }}
-          />
+          <img className={styles.hamLeft} src={hamLeft} />
+          <img className={styles.hamRight} src={hamRight} />
         </div>
       </div>
     </>
