@@ -4,7 +4,10 @@ import styles from "./menu.module.scss";
 import logoBackground from "../../../src/assets/Landing/regbtnLanding.svg";
 import hamLeft from "../../../src/assets/Landing/HamMenu/hamLeft.png";
 import hamRight from "../../../src/assets/Landing/HamMenu/hamRight.png";
+import hamMenu from "../../../src/assets/Landing/HamMenu/hamMenu.png";
 import { useState } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 export default function Menu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,6 +15,14 @@ export default function Menu() {
   const isPointerEventsAllowed = useSelector(
     (state) => state.experienceAnimations.isPointerEventsAllowed
   );
+
+  // useGSAP(
+  //   ()=>{
+  //     const timeline = gsap.timeline();
+
+  //   }
+  // )
+
   return (
     <>
       <div
@@ -37,7 +48,24 @@ export default function Menu() {
           visibility: isMenuOpen ? "visible" : "hidden",
         }}
       >
-        <div className={styles.ham}></div>
+        <div className={styles.ham}>
+          <img className={styles.main} src={hamMenu} alt="ham menu" />
+          {/* <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="31"
+            height="32"
+            viewBox="0 0 31 32"
+            fill="none"
+          >
+            <circle
+              cx="15.43"
+              cy="15.6448"
+              r="14.8076"
+              stroke="white"
+              stroke-width="1.24488"
+            />
+          </svg> */}
+        </div>
         <div className={styles.hamBackground}>
           <button
             className={styles.backBtn}
