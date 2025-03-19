@@ -134,7 +134,7 @@ const Events = () => {
                 <h2>{allEvents[index].club}</h2>
               </div>
               <div className={styles.eventDetails}>
-                <p>{allEvents[index].description}</p>
+                <p>{allEvents[index].description || "No Description"}</p>
               </div>
               <div className={styles.eventLinkContainer}>
                 {allEvents[index].url && (

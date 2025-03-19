@@ -67,6 +67,11 @@
       width: unset;
       height: 60%;
     }
+
+    @media (max-height: 700px) and (max-width: 1000px) {
+      width: unset;
+      height: 60%;
+    }
   }
 
   .carouselContent {
@@ -132,8 +137,15 @@
       transition: all 200ms ease;
 
       @media screen and (max-width: 1000px) {
-        width: 90%;
-        height: 40%;
+        width: 103%;
+        height: 50%;
+
+        box-shadow: unset;
+        transform: translateY(-7px);
+      }
+
+      @media screen and (max-height: 900px) and (max-width: 1000px) {
+        height: 60%;
       }
 
       .eventHeader {
@@ -150,19 +162,42 @@
           }
 
           @media (max-width: 1000px) {
-            font-size: 20px;
+            font-size: 32px;
           }
 
           @media (max-width: 800px) {
-            font-size: 16px;
+            font-size: 32px;
           }
 
-          @media (max-width: 600px) {
-            font-size: 16px;
+          @media (max-height: 700px) and (max-width: 1000px) {
+            font-size: 20px;
           }
         }
         h2 {
           font-size: 16px;
+
+          @media screen and (max-width: 1400px) {
+            font-size: 14px;
+          }
+
+          @media (max-width: 1000px) {
+            font-size: 14px;
+          }
+
+          @media (max-width: 800px) {
+            font-size: 12px;
+          }
+
+          @media (max-width: 600px) {
+            font-size: 12px;
+          }
+
+          @media (max-height: 900px) {
+            font-size: 10px;
+          }
+          @media (max-height: 700px) and (max-width: 1000px) {
+            font-size: 10px;
+          }
         }
       }
 
@@ -170,6 +205,17 @@
         height: 30%;
         margin-top: 1rem;
         margin-left: 2rem;
+
+        @media screen and (max-width: 1000px) {
+          margin-top: 2rem;
+          margin-left: 0;
+          padding: 1rem;
+        }
+
+        @media (max-height: 700px) and (max-width: 1000px) {
+          margin: 0;
+          font-size: 20px;
+        }
         p {
           text-align: left;
 
@@ -239,6 +285,7 @@
   .carouselControls {
     height: 100%;
     width: 100%;
+    z-index: 100;
     .left {
       position: absolute;
       left: 5%;
@@ -248,6 +295,11 @@
       img {
         height: 60px;
         cursor: pointer;
+      }
+
+      @media screen and (max-width: 1000px) {
+        top: 80%;
+        left: 35%;
       }
 
       @media (max-width: 600px) {
@@ -268,6 +320,11 @@
       img {
         height: 60px;
         cursor: pointer;
+      }
+
+      @media screen and (max-width: 1000px) {
+        top: 80%;
+        right: 35%;
       }
 
       @media (max-width: 600px) {
