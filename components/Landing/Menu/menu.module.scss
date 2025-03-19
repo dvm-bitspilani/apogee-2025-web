@@ -41,15 +41,15 @@
     .ham {
       position: relative;
       z-index: 30;
-      // top: 50%;
-      // left: 50%;
-      width: 100%;
-      height: 100%;
+      // width: 100%;
+      // height: 100%;
+      min-width: 1234.782593px;
+      min-height: 896.521729px;
+      // width: 1234.782593px;
+      // height: 896.521729px;
       display: flex;
       justify-content: center;
       align-items: center;
-      // height: 500px;
-      // transform: translate(-50%, -50%);
       opacity: 0;
       transition: opacity 0.3s ease-out;
       transform: scale(0.8);
@@ -71,6 +71,37 @@
         position: absolute;
         top: 10%;
         left: 64%;
+      }
+      .firstGearArc {
+        position: absolute;
+        top: 10%;
+        left: 71%;
+        transform: rotateY(-30deg);
+      }
+      .secondArc {
+        position: absolute;
+        top: 26%;
+        left: 30.6%;
+      }
+      .wedge {
+        position: absolute;
+        top: 35%;
+        left: 55.5%;
+      }
+      .thirdArc {
+        position: absolute;
+        top: 1.5%;
+        left: 29%;
+      }
+      .secondGear {
+        position: absolute;
+        top: 42%;
+        left: 29%;
+      }
+      .fifthCircle {
+        position: absolute;
+        top: 41.4%;
+        left: 29.7%;
       }
       .main {
         transform: scale(0.7);
