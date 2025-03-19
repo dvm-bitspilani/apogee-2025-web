@@ -47,12 +47,13 @@
       min-height: 896.521729px;
       // width: 1234.782593px;
       // height: 896.521729px;
+      top: 57%;
       display: flex;
       justify-content: center;
       align-items: center;
       opacity: 0;
       transition: opacity 0.3s ease-out;
-      transform: scale(0.8);
+      transform: scale(0.8) translateY(-50%);
 
       .firstCircle {
         position: absolute;
@@ -74,9 +75,9 @@
       }
       .firstGearArc {
         position: absolute;
-        top: 10%;
-        left: 71%;
-        transform: rotateY(-30deg);
+        top: 9.5%;
+        left: 70.5%;
+        transform: rotateZ(-5deg);
       }
       .secondArc {
         position: absolute;
@@ -102,6 +103,52 @@
         position: absolute;
         top: 41.4%;
         left: 29.7%;
+      }
+      .gearCircle {
+        position: absolute;
+        top: 10%;
+        left: 34%;
+      }
+      .thirdGear {
+        position: absolute;
+        top: 15%;
+        left: 38%;
+      }
+      .thirdGearArc {
+        position: absolute;
+        top: 15%;
+        left: 54%;
+        transform: rotateZ(-3deg);
+      }
+      .firstArrow {
+        position: absolute;
+        top: 40%;
+        left: 71.5%;
+      }
+      .thirdCircle {
+        position: absolute;
+        top: 49.3%;
+        left: 72.4%;
+      }
+      .secondArrow {
+        position: absolute;
+        top: 40%;
+        left: 49.5%;
+      }
+      .fourthCircle {
+        position: absolute;
+        top: 64.8%;
+        left: 47.8%;
+      }
+      .thirdArrow {
+        position: absolute;
+        top: 14%;
+        left: 26.5%;
+      }
+      .sixCircle {
+        position: absolute;
+        top: 11.6%;
+        left: 24.5%;
       }
       .main {
         transform: scale(0.7);

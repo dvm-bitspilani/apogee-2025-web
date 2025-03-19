@@ -155,16 +155,16 @@ export default function Menu() {
             <img className={styles.thirdArc} src={thirdArc} alt="third arc" />
             <img className={styles.secondGear} src={secondGear} alt="second arc" />
             <img className={styles.fifthCircle} src={fifthCircle} alt="third arc" />
+            <img className={styles.gearCircle} src={gearCircle} alt="first gear" />
+            <img className={styles.thirdGear} src={thirdGear} alt="third arc" />
+            <img className={styles.thirdGearArc} src={thirdGearArc} alt="third arc" />
+            <img className={styles.firstArrow} src={firstArrow} alt="first gear" />
+            <img className={styles.thirdCircle} src={thirdCircle} alt="first gear" />
+            <img className={styles.secondArrow} src={secondArrow} alt="second arc" />
+            <img className={styles.fourthCircle} src={fourthCircle} alt="second arc" />
+            <img className={styles.thirdArrow} src={thirdArrow} alt="third arc" />
+            <img className={styles.sixCircle} src={sixCircle} alt="first gear" />
 
-            {/* <img className={styles.firstArrow} src={firstArrow} alt="first gear" /> */}
-            {/* <img className={styles.secondArrow} src={secondArrow} alt="second arc" /> */}
-            {/* <img className={styles.thirdArrow} src={thirdArrow} alt="third arc" /> */}
-            {/* <img className={styles.thirdCircle} src={thirdCircle} alt="first gear" /> */}
-            {/* <img className={styles.fourthCircle} src={fourthCircle} alt="second arc" /> */}
-            {/* <img className={styles.sixCircle} src={sixCircle} alt="first gear" /> */}
-            {/* <img className={styles.thirdGear} src={thirdGear} alt="third arc" /> */}
-            {/* <img className={styles.gearCircle} src={gearCircle} alt="first gear" /> */}
-            {/* <img className={styles.thirdGearArc} src={thirdGearArc} alt="third arc" /> */}
           </div>
         </div>
         <div className={styles.hamBackground}>
