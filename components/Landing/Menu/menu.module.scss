@@ -32,27 +32,44 @@
   left: 0;
   z-index: 20;
 
-  .ham {
-    position: relative;
-    z-index: 30;
-    top: 50%;
-    left: 50%;
-    width: fit-content;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    transition: opacity 0.3s ease-out;
+  .container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .ham {
+      position: relative;
+      z-index: 30;
+      // top: 50%;
+      // left: 50%;
+      // width: fit-content;
+      // height: 500px;
+      // transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.3s ease-out;
+      transform: scale(0.8);
 
-    .firstCircle{
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    .firstArc{
-      position: absolute;
-    }
-    .main {
-      transform: scale(0.7);
+      .firstCircle {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        // transform: scale(0.9);
+      }
+      .firstArc {
+        position: absolute;
+        left: 49.9%;
+        top: 3%;
+        // transform: scale(0.9);
+      }
+      .firstGear {
+        position: absolute;
+        top: 6%;
+      }
+      .main {
+        transform: scale(0.7);
+      }
     }
   }
 
