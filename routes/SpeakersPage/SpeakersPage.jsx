@@ -26,6 +26,7 @@ const SpeakerVideo = ({ speakerName = "akbar" }) => {
       src={`/videos/${speakerName}.mp4`}
       muted
       controls
+      loop
       className={styles.video}
     >
       Your browser does not support the video tag.

@@ -219,16 +219,6 @@ export default function Experience() {
       }
     });
 
-    const handleKeyUp = (e) => {
-      if (e.key === "z") {
-        dispatch(setNavigationStage("landingToEvents"));
-      } else if (e.key === "Escape") {
-        dispatch(reverseAnimation(animationStage));
-      }
-    };
-
-    window.addEventListener("keyup", handleKeyUp);
-
     if (isUserUnfocusAtPreloader && animationStage === "intro") {
       landingSheet.project.ready.then(() => {
         landingSheet.sequence.pause();
@@ -328,7 +318,6 @@ export default function Experience() {
     document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
-      window.removeEventListener("keyup", handleKeyUp);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
 
       clearInterval(animationTimeout);
