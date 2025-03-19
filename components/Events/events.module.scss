@@ -4,15 +4,11 @@
 
   .heading {
     text-align: center;
-    height: 180px;
-    transform: translateY(-2px);
+    height: 160px;
+    transform: translateY(-40px);
 
     img {
       height: 100%;
-    }
-
-    #second {
-      display: none;
     }
   }
 
@@ -24,13 +20,13 @@
 
   @media (max-width: 2100px) and (min-width: 1800px) {
     .heading {
-      height: 200px;
+      height: 180px;
     }
   }
 
   @media (max-width: 1000px) {
     .heading {
-      height: 160px;
+      height: 140px;
       transform: translateY(-20px);
     }
   }
@@ -46,14 +42,6 @@
         transform: translateX(-5px);
         width: 100%;
       }
-
-      #first {
-        display: none;
-      }
-
-      #second {
-        display: block;
-      }
     }
   }
 
@@ -61,28 +49,45 @@
     position: fixed;
     left: 50%;
     top: 50%;
-    width: 50%;
-    aspect-ratio: 361/192;
+    width: 70%;
+    aspect-ratio: 1461/498;
     transform: translate(-50%, -50%);
     border-radius: 11px;
-    background: rgba(0, 0, 0, 0.5);
     z-index: 2;
-    background: url("../../src/assets/Events/carouselbg.png");
     background-size: 100% 100%;
 
+    @media screen and (max-width: 1000px) {
+      aspect-ratio: 498/760;
+      width: unset;
+      height: 60%;
+    }
+
     @media screen and (max-width: 768px) {
-      width: 80%;
+      aspect-ratio: 498/760;
+      width: unset;
+      height: 60%;
+    }
+
+    @media (max-height: 700px) and (max-width: 1000px) {
+      width: unset;
+      height: 60%;
     }
   }
 
   .carouselContent {
-    padding: 1rem;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
+    height: 100%;
+
+    @media (max-width: 1000px) {
+      flex-direction: column;
+    }
+
     .carouselImage {
-      width: 70%;
+      position: relative;
+      aspect-ratio: 760/498;
       height: 100%;
       img {
         position: relative;
@@ -93,6 +98,21 @@
         z-index: 2;
       }
 
+      @media screen and (max-width: 1000px) {
+        aspect-ratio: unset;
+        height: unset;
+      }
+
+      .imgBorder {
+        position: absolute;
+        width: 109%;
+        height: 109%;
+        top: -5%;
+        left: -5%;
+        border-radius: 11px;
+        z-index: 3;
+      }
+
       @media (max-width: 600px) {
         width: 100%;
       }
@@ -100,26 +120,163 @@
     .carouselText {
       color: #d3aa67;
       font-family: "Artifika";
-      padding: 1rem;
-      height: 100px;
+      position: relative;
+
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
 
-      h1 {
-        text-align: center;
+      width: 50%;
+      height: 90%;
+      background-color: #180906;
+      border: 4px solid #f1ca93;
+      border-radius: 9px;
+      box-shadow: 0px 3.71px 18.17px 0px #000000b2 inset;
+      box-shadow: 0px 0px 6.58px 6.95px #7f5932 inset;
 
-        @media (max-width: 600px) {
+      transition: all 200ms ease;
+
+      @media screen and (max-width: 1000px) {
+        width: 103%;
+        height: 50%;
+
+        box-shadow: unset;
+        transform: translateY(-7px);
+      }
+
+      @media screen and (max-height: 900px) and (max-width: 1000px) {
+        height: 60%;
+      }
+
+      .eventHeader {
+        margin: 1rem 0.5rem;
+        text-align: center;
+        color: #fff;
+        height: 20%;
+        h1 {
+          font-family: "Chalk";
+          font-size: 40px;
+
+          @media screen and (max-width: 1400px) {
+            font-size: 24px;
+          }
+
+          @media (max-width: 1000px) {
+            font-size: 32px;
+          }
+
+          @media (max-width: 800px) {
+            font-size: 32px;
+          }
+
+          @media (max-height: 700px) and (max-width: 1000px) {
+            font-size: 20px;
+          }
+        }
+        h2 {
           font-size: 16px;
+
+          @media screen and (max-width: 1400px) {
+            font-size: 14px;
+          }
+
+          @media (max-width: 1000px) {
+            font-size: 14px;
+          }
+
+          @media (max-width: 800px) {
+            font-size: 12px;
+          }
+
+          @media (max-width: 600px) {
+            font-size: 12px;
+          }
+
+          @media (max-height: 900px) {
+            font-size: 10px;
+          }
+          @media (max-height: 700px) and (max-width: 1000px) {
+            font-size: 10px;
+          }
         }
       }
 
-      p {
-        text-align: center;
+      .eventDetails {
+        height: 30%;
+        margin-top: 1rem;
+        margin-left: 2rem;
 
-        @media (max-width: 600px) {
-          font-size: 12px;
+        @media screen and (max-width: 1000px) {
+          margin-top: 2rem;
+          margin-left: 0;
+          padding: 1rem;
+        }
+
+        @media (max-height: 700px) and (max-width: 1000px) {
+          margin: 0;
+          font-size: 20px;
+        }
+        p {
+          text-align: left;
+
+          @media screen and (max-width: 1400px) {
+            font-size: 14px;
+          }
+
+          @media (max-width: 1000px) {
+            font-size: 14px;
+          }
+
+          @media (max-width: 800px) {
+            font-size: 12px;
+          }
+
+          @media (max-width: 600px) {
+            font-size: 10px;
+          }
+        }
+      }
+
+      .eventLinkContainer {
+        position: absolute;
+        align-self: flex-end;
+        margin: 2rem;
+        width: calc(100% - 4rem);
+        display: flex;
+        justify-content: flex-end;
+        height: 10%;
+        bottom: 0;
+        .eventLink {
+          position: absolute;
+          border-radius: 5px;
+          border-width: 1.5px;
+          padding-top: 11px;
+          padding-right: 23px;
+          padding-bottom: 11px;
+          padding-left: 23px;
+          text-decoration: none;
+
+          background: #fad7be4d;
+          color: #fad7be;
+          font-size: 23px;
+          border: 1.5px solid #fad7be;
+
+          @media screen and (max-width: 1400px) {
+            font-size: 16px;
+            padding: 6px 12px;
+          }
+
+          @media (max-width: 1000px) {
+            font-size: 16px;
+          }
+
+          @media (max-width: 800px) {
+            font-size: 14px;
+          }
+
+          @media (max-width: 600px) {
+            font-size: 12px;
+          }
         }
       }
     }
@@ -128,15 +285,21 @@
   .carouselControls {
     height: 100%;
     width: 100%;
+    z-index: 100;
     .left {
       position: absolute;
-      left: 40%;
-      top: 80%;
+      left: 5%;
+      top: 50%;
       background-color: transparent;
 
       img {
         height: 60px;
         cursor: pointer;
+      }
+
+      @media screen and (max-width: 1000px) {
+        top: 80%;
+        left: 35%;
       }
 
       @media (max-width: 600px) {
@@ -150,13 +313,18 @@
 
     .right {
       position: absolute;
-      right: 40%;
-      top: 80%;
+      right: 5%;
+      top: 50%;
       background-color: transparent;
 
       img {
         height: 60px;
         cursor: pointer;
+      }
+
+      @media screen and (max-width: 1000px) {
+        top: 80%;
+        right: 35%;
       }
 
       @media (max-width: 600px) {
