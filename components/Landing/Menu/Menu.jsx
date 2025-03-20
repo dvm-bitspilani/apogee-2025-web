@@ -50,7 +50,15 @@ export default function Menu() {
     const firstArrow = document.querySelector(`.${styles.firstArrow}`);
     const secondArrow = document.querySelector(`.${styles.secondArrow}`);
 
+    const strokeLength = firstArcPath.getTotalLength();
+    // console.log(strokeLength);
+
     if (isMenuOpen) {
+      gsap.set(firstArcPath, {
+        strokeDashoffset: strokeLength,
+        strokeDasharray: strokeLength,
+      });
+
       tl.to(`.${styles.hamLeft}`, {
         x: "0%",
         duration: 0.8,
@@ -73,14 +81,26 @@ export default function Menu() {
             ease: "power2.out",
           },
           "<"
-        )
-        .to(firstArcPath, {
-          strokeDashoffset: 0,
-          duration: 3,
-          ease: "power2.out",
-          delay: 0.8,
-        });
+        );
+      // .to(firstArcPath, {
+      //   strokeDashoffset: 0,
+      //   duration: 5,
+      //   ease: "linear",
+      //   delay: 0.6,
+      // });
+
+      gsap.to(firstArcPath, {
+        strokeDashoffset: 0,
+        duration: 1.75,
+        delay: 0.5,
+        ease: "linear",
+      });
     } else {
+      gsap.to(firstArcPath, {
+        strokeDashoffset: 500,
+        duration: 1,
+        ease: "linear",
+      });
       tl.to(`.${styles.backBtn}`, {
         opacity: 0,
         duration: 0.3,
