@@ -98,24 +98,24 @@ export default function Menu() {
     } else {
       gsap.to(firstArcPath, {
         strokeDashoffset: 500,
-        duration: 1,
+        duration: 0,
         ease: "linear",
       });
       tl.to(`.${styles.backBtn}`, {
         opacity: 0,
-        duration: 0.3,
+        duration: 0,
         ease: "power2.in",
       })
         .to(`.${styles.hamLeft}`, {
           x: "-100%",
-          duration: 0.8,
+          duration: 0,
           ease: "power2.in",
         })
         .to(
           `.${styles.hamRight}`,
           {
             x: "100%",
-            duration: 0.8,
+            duration: 0,
             ease: "power2.in",
           },
           "<"
