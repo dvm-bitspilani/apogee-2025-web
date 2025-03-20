@@ -35,6 +35,21 @@ export default function Menu() {
   const animate = () => {
     const tl = gsap.timeline();
 
+    const firstCircle = document.querySelector(`.${styles.firstCircle}`);
+    const firstCirclePath = firstCircle.children[0];
+    const firstArc = document.querySelector(`.${styles.firstArc}`);
+    const firstArcPath = firstArc.children[0];
+    const firstGear = document.querySelector(`.${styles.firstGear}`);
+    const secondGear = document.querySelector(`.${styles.secondGear}`);
+    const thirdGear = document.querySelector(`.${styles.thirdGear}`);
+    const gearCircle = document.querySelector(`.${styles.gearCircle}`);
+    const firstGearArc = document.querySelector(`.${styles.firstGearArc}`);
+    const secondArc = document.querySelector(`.${styles.secondArc}`);
+    const wedge = document.querySelector(`.${styles.wedge}`);
+    const thirdArc = document.querySelector(`.${styles.thirdArc}`);
+    const firstArrow = document.querySelector(`.${styles.firstArrow}`);
+    const secondArrow = document.querySelector(`.${styles.secondArrow}`);
+
     if (isMenuOpen) {
       tl.to(`.${styles.hamLeft}`, {
         x: "0%",
@@ -51,16 +66,22 @@ export default function Menu() {
           "<"
         )
         .to(
-          `.${styles.backBtn}, .${styles.ham}`,
+          `.${styles.backBtn}`,
           {
             opacity: 1,
             duration: 0.5,
             ease: "power2.out",
           },
-          "-=0.3"
-        );
+          "<"
+        )
+        .to(firstArcPath, {
+          strokeDashoffset: 0,
+          duration: 3,
+          ease: "power2.out",
+          delay: 0.8,
+        });
     } else {
-      tl.to(`.${styles.backBtn}, .${styles.ham}`, {
+      tl.to(`.${styles.backBtn}`, {
         opacity: 0,
         duration: 0.3,
         ease: "power2.in",
@@ -142,6 +163,7 @@ export default function Menu() {
                 d="M200.105 79.9923C165.609 45.7003 122.125 21.1357 74.063 9.51362C49.9452 3.68164 25.3637 1.27533 1 2.18793"
                 stroke="white"
                 stroke-width="2.5"
+                className={styles.svgPath}
               />
             </svg>
 
