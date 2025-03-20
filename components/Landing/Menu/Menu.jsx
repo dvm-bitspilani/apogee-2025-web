@@ -51,12 +51,17 @@ export default function Menu() {
     const secondArrow = document.querySelector(`.${styles.secondArrow}`);
 
     const strokeLength = firstArcPath.getTotalLength();
+    const delay = 0.5;
     // console.log(strokeLength);
 
     if (isMenuOpen) {
       gsap.set(firstArcPath, {
         strokeDashoffset: strokeLength,
         strokeDasharray: strokeLength,
+      });
+
+      gsap.set([firstGear, firstGearArc], {
+        scale: 0,
       });
 
       tl.to(`.${styles.hamLeft}`, {
@@ -82,24 +87,38 @@ export default function Menu() {
           },
           "<"
         );
-      // .to(firstArcPath, {
-      //   strokeDashoffset: 0,
-      //   duration: 5,
-      //   ease: "linear",
-      //   delay: 0.6,
-      // });
 
       gsap.to(firstArcPath, {
         strokeDashoffset: 0,
-        duration: 1.75,
+        duration: 0.8,
         delay: 0.5,
         ease: "linear",
+      });
+
+      gsap.to([firstGear, firstGearArc], {
+        scale: 1,
+        duration: 0.4,
+        delay: delay + 0.8,
+        onComplete: function() {
+          gsap.to(firstGear, {
+            rotation: 360,
+            duration: 2,
+            ease: "linear",
+            repeat: -1,
+            transformOrigin: "center center"
+          });
+          
+        }
       });
     } else {
       gsap.to(firstArcPath, {
         strokeDashoffset: 500,
         duration: 0,
         ease: "linear",
+      });
+      gsap.to([firstGear, firstGearArc], {
+        scale: 0,
+        duration: 0,
       });
       tl.to(`.${styles.backBtn}`, {
         opacity: 0,
