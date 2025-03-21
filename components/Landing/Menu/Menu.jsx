@@ -55,8 +55,12 @@ export default function Menu() {
     const firstArrowPath = firstArrow.children[0];
     const secondArrow = document.querySelector(`.${styles.secondArrow}`);
     const secondArrowPath = secondArrow.children[0];
+    const thirdArrow = document.querySelector(`.${styles.thirdArrow}`);
+    const thirdArrowPath = thirdArrow.children[0];
     const thirdCircle = document.querySelector(`.${styles.thirdCircle}`);
     const fourthCircle = document.querySelector(`.${styles.fourthCircle}`);
+    const fifthCircle = document.querySelector(`.${styles.fifthCircle}`);
+    const sixCircle = document.querySelector(`.${styles.sixCircle}`);
     const thirdGearArc = document.querySelector(`.${styles.thirdGearArc}`);
     const gearOne = document.querySelector(`.${styles.gearOne}`);
     const gearTwo = document.querySelector(`.${styles.gearTwo}`);
@@ -72,6 +76,7 @@ export default function Menu() {
     const firstArrowLength = firstArrowPath.getTotalLength();
     const secondArrowLength = secondArrowPath.getTotalLength();
     const thirdArcLength = thirdArcPath.getTotalLength();
+    const thirdArrowLength = thirdArrowPath.getTotalLength();
     const delay = 0.5;
     // console.log(strokeLength);
     // console.log(firstGearPath);
@@ -103,6 +108,11 @@ export default function Menu() {
         strokeDasharray: thirdArcLength,
       });
 
+      gsap.set(thirdArrowPath, {
+        strokeDashoffset: thirdArrowLength,
+        strokeDasharray: thirdArrowLength,
+      });
+
       gsap.set(
         [firstGear, firstGearArc, wedge, gearOne, gearTwo, gearThree, gearFour, gearFive, gearSix, gearSeven, gearEight, gearCircle, thirdGearArc],
         {
@@ -110,7 +120,7 @@ export default function Menu() {
         }
       );
 
-      gsap.set([thirdCircle, fourthCircle], {
+      gsap.set([thirdCircle, fourthCircle, fifthCircle, sixCircle], {
         opacity: 0,
       });
 
@@ -300,6 +310,13 @@ export default function Menu() {
         },
       });
 
+      gsap.to(thirdArrowPath, {
+        strokeDashoffset: 0,
+        duration: 0.8,
+        delay: delay + 6.2,
+        ease: "linear",
+      });
+
     } else {
       gsap.to(firstArcPath, {
         strokeDashoffset: firstArcLenghth,
@@ -334,6 +351,11 @@ export default function Menu() {
       });
       gsap.to(thirdArcPath, {
         strokeDashoffset: thirdArcLength,
+        duration: 0,
+        ease: "linear",
+      });
+      gsap.to(thirdArrowPath, {
+        strokeDashoffset: thirdArrowLength,
         duration: 0,
         ease: "linear",
       });
