@@ -104,6 +104,30 @@
         top: 42%;
         left: 29%;
       }
+      .gearOne {
+        position: absolute;
+        top: 45%;
+        left: 30%;
+        z-index: 11;
+      }
+      .gearTwo {
+        position: absolute;
+        top: 44%;
+        left: 32.2%;
+        z-index: 10;
+      }
+      .gearThree {
+        position: absolute;
+        top: 53%;
+        left: 37.8%;
+        z-index: 10;
+      }
+      .gearFour{
+        position: absolute;
+        top: 49.9%;
+        left: 38.78%;
+        z-index: 10;
+      }
       .fifthCircle {
         position: absolute;
         top: 41.4%;
