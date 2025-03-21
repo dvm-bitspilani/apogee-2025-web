@@ -41,3 +41,17 @@ export const Background = () => {
     </>
   );
 };
+
+// import { Plane } from "@react-three/drei";
+// import { TextureLoader } from "three";
+// import { useLoader } from "@react-three/fiber";
+
+// export const Background = () => {
+//   const texture = useLoader(TextureLoader, "../../src/assets/Quantaculus/background.png");
+
+//   return (
+//     <Plane args={[5.4, 4]}>
+//       <meshBasicMaterial map={texture} />
+//     </Plane>
+//   );
+// };

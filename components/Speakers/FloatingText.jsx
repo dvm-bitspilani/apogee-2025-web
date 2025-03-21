@@ -81,7 +81,7 @@ export function FloatingVideo({ opacity, index, ...props }) {
   });
 
   return (
-    <group ref={groupRef} position={[0, 0, -index * 10]} {...props}>
+    <group ref={groupRef} position={[0, 0, 0]} {...props}>
       <Html center>
         <video
           ref={videoRef}
