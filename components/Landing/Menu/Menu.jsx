@@ -53,13 +53,14 @@ export default function Menu() {
     const firstArrow = document.querySelector(`.${styles.firstArrow}`);
     const firstArrowPath = firstArrow.children[0];
     const secondArrow = document.querySelector(`.${styles.secondArrow}`);
-    // const secondArrowPath = secondArrow.children[0];
+    const secondArrowPath = secondArrow.children[0];
     const thirdCircle = document.querySelector(`.${styles.thirdCircle}`);
+    const fourthCircle = document.querySelector(`.${styles.fourthCircle}`);
 
     const firstArcLenghth = firstArcPath.getTotalLength();
     const secondArcLenghth = secondArcPath.getTotalLength();
     const firstArrowLength = firstArrowPath.getTotalLength();
-    // const secondArrowLength = secondArrowPath.getTotalLength();
+    const secondArrowLength = secondArrowPath.getTotalLength();
     const delay = 0.5;
     // console.log(strokeLength);
     // console.log(firstGearPath);
@@ -81,16 +82,16 @@ export default function Menu() {
         strokeDasharray: firstArrowLength,
       });
 
-      // gsap.set(secondArrowPath, {
-      //   strokeDashoffset: secondArrowLength,
-      //   strokeDasharray: secondArrowLength,
-      // });
+      gsap.set(secondArrowPath, {
+        strokeDashoffset: secondArrowLength,
+        strokeDasharray: secondArrowLength,
+      });
 
       gsap.set([firstGear, firstGearArc, wedge], {
         scale: 0,
       });
 
-      gsap.set(thirdCircle, {
+      gsap.set([thirdCircle, fourthCircle], {
         opacity: 0,
       });
 
@@ -178,6 +179,19 @@ export default function Menu() {
         duration: 0.4,
         delay: delay + 3.2,
       });
+
+      gsap.to(secondArrowPath, {
+        strokeDashoffset: 0,
+        duration: 0.8,
+        delay: delay + 3.6,
+        ease: "linear",
+      });
+
+      gsap.to(fourthCircle, {
+        opacity: 1,
+        duration: 0.4,
+        delay: delay + 4.2,
+      });
     } else {
       gsap.to(firstArcPath, {
         strokeDashoffset: firstArcLenghth,
@@ -198,9 +212,14 @@ export default function Menu() {
         duration: 0,
         ease: "linear",
       });
-      gsap.to(thirdCircle, {
+      gsap.to([thirdCircle, fourthCircle], {
         opacity: 0,
         duration: 0,
+      });
+      gsap.to(secondArrowPath, {
+        strokeDashoffset: secondArrowLength,
+        duration: 0,
+        ease: "linear",
       });
       tl.to(`.${styles.backBtn}`, {
         opacity: 0,
@@ -732,7 +751,8 @@ export default function Menu() {
               className={styles.secondArrow}
             >
               <path
-                d="M1.65234 237.285L1.65234 63.2852L85.1523 0.785187"
+                // d="M1.65234 237.285L1.65234 63.2852L85.1523 0.785187"
+                d="M85.1523 0.785187L1.65234 63.2852L1.65234 237.285"
                 stroke="white"
                 stroke-width="1.62"
               />
