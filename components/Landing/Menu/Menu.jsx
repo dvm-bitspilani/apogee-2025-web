@@ -50,6 +50,7 @@ export default function Menu() {
     const secondArcPath = secondArc.children[0];
     const wedge = document.querySelector(`.${styles.wedge}`);
     const thirdArc = document.querySelector(`.${styles.thirdArc}`);
+    const thirdArcPath = thirdArc.children[0];
     const firstArrow = document.querySelector(`.${styles.firstArrow}`);
     const firstArrowPath = firstArrow.children[0];
     const secondArrow = document.querySelector(`.${styles.secondArrow}`);
@@ -61,6 +62,7 @@ export default function Menu() {
     const secondArcLenghth = secondArcPath.getTotalLength();
     const firstArrowLength = firstArrowPath.getTotalLength();
     const secondArrowLength = secondArrowPath.getTotalLength();
+    const thirdArcLength = thirdArcPath.getTotalLength();
     const delay = 0.5;
     // console.log(strokeLength);
     // console.log(firstGearPath);
@@ -87,7 +89,12 @@ export default function Menu() {
         strokeDasharray: secondArrowLength,
       });
 
-      gsap.set([firstGear, firstGearArc, wedge], {
+      gsap.set(thirdArcPath, {
+        strokeDashoffset: thirdArcLength,
+        strokeDasharray: thirdArcLength,
+      });
+
+      gsap.set([firstGear, firstGearArc, wedge, secondGear], {
         scale: 0,
       });
 
@@ -154,6 +161,15 @@ export default function Menu() {
         },
       });
 
+      // gsap.to(firstGear, {
+      //   rotation: 360,
+      //   duration: 2,
+      //   ease: "linear",
+      //   repeat: -1,
+      //   delay: delay + 1.2,
+      //   transformOrigin: "center center",
+      // });
+
       gsap.to(secondArcPath, {
         strokeDashoffset: 0,
         duration: 0.8,
@@ -192,13 +208,26 @@ export default function Menu() {
         duration: 0.4,
         delay: delay + 4.2,
       });
+
+      gsap.to(secondGear, {
+        scale: 1,
+        duration: 0.4,
+        delay: delay + 4.6,
+      });
+
+      gsap.to(thirdArcPath, {
+        strokeDashoffset: 0,
+        duration: 0.8,
+        delay: delay + 5,
+        ease: "linear",
+      });
     } else {
       gsap.to(firstArcPath, {
         strokeDashoffset: firstArcLenghth,
         duration: 0,
         ease: "linear",
       });
-      gsap.to([firstGear, firstGearArc, wedge], {
+      gsap.to([firstGear, firstGearArc, wedge, secondGear], {
         scale: 0,
         duration: 0,
       });
@@ -218,6 +247,11 @@ export default function Menu() {
       });
       gsap.to(secondArrowPath, {
         strokeDashoffset: secondArrowLength,
+        duration: 0,
+        ease: "linear",
+      });
+      gsap.to(thirdArcPath, {
+        strokeDashoffset: thirdArcLength,
         duration: 0,
         ease: "linear",
       });
@@ -421,7 +455,8 @@ export default function Menu() {
               className={styles.thirdArc}
             >
               <path
-                d="M260.15 2C214.676 3.70335 169.96 16.969 130.432 41.1026C69.7265 78.1663 26.2309 137.827 9.51362 206.96C-3.98295 262.775 0.86727 321.072 22.741 373.408"
+                // d="M260.15 2C214.676 3.70335 169.96 16.969 130.432 41.1026C69.7265 78.1663 26.2309 137.827 9.51362 206.96C-3.98295 262.775 0.86727 321.072 22.741 373.408"
+                d="M22.741 373.408C0.86727 321.072 -3.98295 262.775 9.51362 206.96C26.2309 137.827 69.7265 78.1663 130.432 41.1026C169.96 16.969 214.676 3.70335 260.15 2"
                 stroke="white"
                 stroke-width="2.5"
               />
