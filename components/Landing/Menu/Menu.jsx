@@ -59,6 +59,7 @@ export default function Menu() {
     const secondArrowPath = secondArrow.children[0];
     const thirdArrow = document.querySelector(`.${styles.thirdArrow}`);
     const thirdArrowPath = thirdArrow.children[0];
+    const secondCircle = document.querySelector(`.${styles.secondCircle}`);
     const thirdCircle = document.querySelector(`.${styles.thirdCircle}`);
     const fourthCircle = document.querySelector(`.${styles.fourthCircle}`);
     const fifthCircle = document.querySelector(`.${styles.fifthCircle}`);
@@ -137,7 +138,7 @@ export default function Menu() {
       );
 
       gsap.set(
-        [firstCircle, thirdCircle, fourthCircle, fifthCircle, sixCircle],
+        [firstCircle, secondCircle, thirdCircle, fourthCircle, fifthCircle, sixCircle],
         {
           opacity: 0,
         }
@@ -193,6 +194,11 @@ export default function Menu() {
             repeat: -1,
             transformOrigin: "center center",
           });
+          gsap.to(secondCircle, {
+            opacity: 1,
+            duration: 0.4,
+            delay: 0.2,
+          });    
         },
       });
 
@@ -559,6 +565,23 @@ export default function Menu() {
                 stroke="white"
                 stroke-width="3.78862"
                 stroke-linecap="round"
+              />
+            </svg>
+
+            <svg
+              width="30"
+              height="30"
+              viewBox="0 0 30 30"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className={styles.secondCircle}
+            >
+              <circle
+                cx="15.1523"
+                cy="15.2852"
+                r="13.8776"
+                stroke="white"
+                stroke-width="1.24488"
               />
             </svg>
 
