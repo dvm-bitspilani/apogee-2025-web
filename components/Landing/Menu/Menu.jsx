@@ -22,8 +22,10 @@ import firstGearArc from "../../../src/assets/Landing/HamMenu/firstGearArc.svg";
 import thirdGearArc from "../../../src/assets/Landing/HamMenu/thirdGearArc.svg";
 
 import { useState, useEffect } from "react";
-import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { MotionPathPlugin } from "gsap/all";
+
+gsap.registerPlugin(MotionPathPlugin);
 
 export default function Menu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -114,15 +116,32 @@ export default function Menu() {
       });
 
       gsap.set(
-        [firstGear, firstGearArc, wedge, gearOne, gearTwo, gearThree, gearFour, gearFive, gearSix, gearSeven, gearEight, gearCircle, thirdGearArc],
+        [
+          firstGear,
+          firstGearArc,
+          wedge,
+          gearOne,
+          gearTwo,
+          gearThree,
+          gearFour,
+          gearFive,
+          gearSix,
+          gearSeven,
+          gearEight,
+          gearCircle,
+          thirdGearArc,
+        ],
         {
           scale: 0,
         }
       );
 
-      gsap.set([firstCircle, thirdCircle, fourthCircle, fifthCircle, sixCircle], {
-        opacity: 0,
-      });
+      gsap.set(
+        [firstCircle, thirdCircle, fourthCircle, fifthCircle, sixCircle],
+        {
+          opacity: 0,
+        }
+      );
 
       tl.to(`.${styles.hamLeft}`, {
         x: "0%",
@@ -167,19 +186,16 @@ export default function Menu() {
             repeat: -1,
             transformOrigin: "center center",
           });
-          // gsap.to(firstGearArc, {
-          //   duration: 3,
-          //   rotation: 360,
-          //   ease: "linear",
-          //   repeat: -1,
-          //   motionPath: {
-          //     path: firstGearPath,
-          //     align: firstGearPath,
-          //     alignOrigin: [0, 0],
-          //     start: 1,
-          //     end: 0,
-          //   },
-          // });
+          gsap.to(firstGearArc, {
+            duration: 3,
+            ease: "linear",
+            repeat: -1,
+            motionPath: {
+              path: firstGearPath,
+              align: firstGearPath,
+              alignOrigin: [0.5, 0.5],
+            },
+          });
         },
       });
 
@@ -280,41 +296,44 @@ export default function Menu() {
         ease: "linear",
       });
 
-      gsap.to([gearFive, gearSix, gearSeven, gearEight, gearCircle, thirdGearArc], {
-        scale: 1,
-        duration: 0.4,
-        delay: delay + 6.2,
-        onComplete: function () {
-          gsap.to(gearFive, {
-            rotation: 360,
-            duration: 3.5,
-            ease: "linear",
-            repeat: -1,
-            transformOrigin: "center center",
-          });
-          gsap.to(gearSix, {
-            rotation: -360,
-            duration: 2.5,
-            ease: "linear",
-            repeat: -1,
-            transformOrigin: "center center",
-          });
-          gsap.to(gearSeven, {
-            rotation: -360,
-            duration: 4.5,
-            ease: "linear",
-            repeat: -1,
-            transformOrigin: "center center",
-          });
-          gsap.to(gearEight, {
-            rotation: 360,
-            duration: 1.5,
-            ease: "linear",
-            repeat: -1,
-            transformOrigin: "center center",
-          });
-        },
-      });
+      gsap.to(
+        [gearFive, gearSix, gearSeven, gearEight, gearCircle, thirdGearArc],
+        {
+          scale: 1,
+          duration: 0.4,
+          delay: delay + 6.2,
+          onComplete: function () {
+            gsap.to(gearFive, {
+              rotation: 360,
+              duration: 3.5,
+              ease: "linear",
+              repeat: -1,
+              transformOrigin: "center center",
+            });
+            gsap.to(gearSix, {
+              rotation: -360,
+              duration: 2.5,
+              ease: "linear",
+              repeat: -1,
+              transformOrigin: "center center",
+            });
+            gsap.to(gearSeven, {
+              rotation: -360,
+              duration: 4.5,
+              ease: "linear",
+              repeat: -1,
+              transformOrigin: "center center",
+            });
+            gsap.to(gearEight, {
+              rotation: 360,
+              duration: 1.5,
+              ease: "linear",
+              repeat: -1,
+              transformOrigin: "center center",
+            });
+          },
+        }
+      );
 
       gsap.to(thirdArrowPath, {
         strokeDashoffset: 0,
@@ -334,7 +353,6 @@ export default function Menu() {
         duration: 0.4,
         delay: delay + 7.8,
       });
-
     } else {
       gsap.to(firstArcPath, {
         strokeDashoffset: firstArcLenghth,
@@ -358,10 +376,13 @@ export default function Menu() {
         duration: 0,
         ease: "linear",
       });
-      gsap.to([firstCircle, thirdCircle, fourthCircle, fifthCircle, sixCircle], {
-        opacity: 0,
-        duration: 0,
-      });
+      gsap.to(
+        [firstCircle, thirdCircle, fourthCircle, fifthCircle, sixCircle],
+        {
+          opacity: 0,
+          duration: 0,
+        }
+      );
       gsap.to(secondArrowPath, {
         strokeDashoffset: secondArrowLength,
         duration: 0,
