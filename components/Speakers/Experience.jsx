@@ -306,7 +306,7 @@ export const Experience = () => {
         <Background />
         <PerspectiveCamera position={[0, 0, 5]} fov={30} makeDefault />
         <group ref={airplane}>
-          <Float floatIntensity={1} speed={1.5} rotationIntensity={0.5}>
+          <Float floatIntensity={1} speed={2.5} rotationIntensity={0.5}>
             {/* <Airplane
               rotation-y={Math.PI / 2}
               scale={[0.2, 0.2, 0.2]}
@@ -316,7 +316,7 @@ export const Experience = () => {
         </group>
       </group>
       {/* TEXT */}
-      <group position={[-3, 0, -100]}>
+      <group scale={0.8} position={[1, -0.5, -6]}>
         {/* <Text
           color="white"
           anchorX={"left"}
@@ -326,12 +326,12 @@ export const Experience = () => {
         >
           
         </Text> */}
-        <VideoPlayer videoSrc={manas}/>
+        <VideoPlayer videoSrc={manas} />
       </group>
 
-      <group position={[-10, 1, -200]}>
-      <VideoPlayer videoSrc={manas}/>
-        <Text
+      <group scale={1.8} position={[-5, -1, -60]}>
+        <VideoPlayer videoSrc={manas} />
+        {/* <Text
           color="white"
           anchorX={"left"}
           anchorY="top"
@@ -341,7 +341,26 @@ export const Experience = () => {
         >
           Do you want a drink?{"\n"}
           We have a wide range of beverages!
-        </Text>
+        </Text> */}
+      </group>
+
+      <group scale={2.8}  position={[-1, -1, -130]}>
+        <VideoPlayer videoSrc={manas} />
+        {/* <Text
+          color="white"
+          anchorX={"left"}
+          anchorY="top"
+          position-y={-0.66}
+          fontSize={0.22}
+          maxWidth={2.5}
+        >
+          Do you want a drink?{"\n"}
+          We have a wide range of beverages!
+        </Text> */}
+      </group>
+
+      <group scale={3.99} position={[-15, -1, -220]}>
+        <VideoPlayer videoSrc={manas} />
       </group>
 
       {/* LINE */}

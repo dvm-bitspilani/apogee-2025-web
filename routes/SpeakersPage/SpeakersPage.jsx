@@ -59,7 +59,7 @@ export default function SpeakersPage() {
     <>
       <Canvas>
         <color attach="background" args={["#ececec"]} />
-        <ScrollControls pages={100} damping={1}>
+        <ScrollControls pages={30} damping={1}>
           <Experience />
         </ScrollControls>
       </Canvas>

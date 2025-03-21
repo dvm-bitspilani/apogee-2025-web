@@ -15,6 +15,7 @@ export function VideoPlayer({ videoSrc, position = [0, 0, 0], rotation = [0, 0, 
     vid.muted = true; // For autoplay to work reliably across browsers
     vid.playsInline = true;
     vid.autoplay = true;
+    vid.controls = true;
     vid.addEventListener('loadeddata', () => {
       setLoaded(true);
       vid.play().catch(e => console.error("Autoplay failed", e));
@@ -34,6 +35,7 @@ export function VideoPlayer({ videoSrc, position = [0, 0, 0], rotation = [0, 0, 
   // Ensure video plays when the component mounts
   useEffect(() => {
     // Try to start playback
+    video.muted = true;
     const playPromise = video.play();
     
     // Catch and handle any autoplay restrictions
