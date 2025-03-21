@@ -73,16 +73,23 @@
         //   animation: 2s linear 0.75s forwards connector;
         // }
       }
-      .firstGear {
-        position: absolute;
-        top: 10%;
-        left: 64%;
-      }
+      // .firstGear {
+      //   position: absolute;
+      //   top: 10%;
+      //   left: 64%;
+      // }
       .firstGearArc {
         position: absolute;
-        top: 9.5%;
-        left: 70.5%;
-        transform: rotateZ(-5deg);
+        // top: 9.5%;
+        // left: 70.5%;
+        top: 10%;
+        left: 64%;
+        // transform: rotateZ(-5deg);
+      }
+      .firstGear{
+        position: absolute;
+        top: 13%;
+        left: 66%;
       }
       .secondArc {
         position: absolute;
