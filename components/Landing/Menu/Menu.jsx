@@ -120,7 +120,7 @@ export default function Menu() {
         }
       );
 
-      gsap.set([thirdCircle, fourthCircle, fifthCircle, sixCircle], {
+      gsap.set([firstCircle, thirdCircle, fourthCircle, fifthCircle, sixCircle], {
         opacity: 0,
       });
 
@@ -267,17 +267,23 @@ export default function Menu() {
         },
       });
 
+      gsap.to(fifthCircle, {
+        opacity: 1,
+        duration: 0.4,
+        delay: delay + 5,
+      });
+
       gsap.to(thirdArcPath, {
         strokeDashoffset: 0,
         duration: 0.8,
-        delay: delay + 5,
+        delay: delay + 5.4,
         ease: "linear",
       });
 
       gsap.to([gearFive, gearSix, gearSeven, gearEight, gearCircle, thirdGearArc], {
         scale: 1,
         duration: 0.4,
-        delay: delay + 5.8,
+        delay: delay + 6.2,
         onComplete: function () {
           gsap.to(gearFive, {
             rotation: 360,
@@ -313,8 +319,20 @@ export default function Menu() {
       gsap.to(thirdArrowPath, {
         strokeDashoffset: 0,
         duration: 0.8,
-        delay: delay + 6.2,
+        delay: delay + 6.6,
         ease: "linear",
+      });
+
+      gsap.to(sixCircle, {
+        opacity: 1,
+        duration: 0.4,
+        delay: delay + 7.4,
+      });
+
+      gsap.to(firstCircle, {
+        opacity: 1,
+        duration: 0.4,
+        delay: delay + 7.8,
       });
 
     } else {
@@ -340,7 +358,7 @@ export default function Menu() {
         duration: 0,
         ease: "linear",
       });
-      gsap.to([thirdCircle, fourthCircle], {
+      gsap.to([firstCircle, thirdCircle, fourthCircle, fifthCircle, sixCircle], {
         opacity: 0,
         duration: 0,
       });
