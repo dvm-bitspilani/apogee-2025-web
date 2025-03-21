@@ -51,17 +51,19 @@ export default function Menu() {
     const wedge = document.querySelector(`.${styles.wedge}`);
     const thirdArc = document.querySelector(`.${styles.thirdArc}`);
     const firstArrow = document.querySelector(`.${styles.firstArrow}`);
-    // const firstArrowPath = secondArrow.children[0];
+    const firstArrowPath = firstArrow.children[0];
     const secondArrow = document.querySelector(`.${styles.secondArrow}`);
     // const secondArrowPath = secondArrow.children[0];
+    const thirdCircle = document.querySelector(`.${styles.thirdCircle}`);
 
     const firstArcLenghth = firstArcPath.getTotalLength();
     const secondArcLenghth = secondArcPath.getTotalLength();
-    // const firstArrowLength = firstArrowPath.getTotalLength();
+    const firstArrowLength = firstArrowPath.getTotalLength();
     // const secondArrowLength = secondArrowPath.getTotalLength();
     const delay = 0.5;
     // console.log(strokeLength);
     // console.log(firstGearPath);
+    // console.log(firstArrow.children[0]);
 
     if (isMenuOpen) {
       gsap.set(firstArcPath, {
@@ -74,10 +76,10 @@ export default function Menu() {
         strokeDasharray: secondArcLenghth,
       });
 
-      // gsap.set(firstArrowPath, {
-      //   strokeDashoffset: firstArrowLength,
-      //   strokeDasharray: firstArrowLength,
-      // });
+      gsap.set(firstArrowPath, {
+        strokeDashoffset: firstArrowLength,
+        strokeDasharray: firstArrowLength,
+      });
 
       // gsap.set(secondArrowPath, {
       //   strokeDashoffset: secondArrowLength,
@@ -86,6 +88,10 @@ export default function Menu() {
 
       gsap.set([firstGear, firstGearArc, wedge], {
         scale: 0,
+      });
+
+      gsap.set(thirdCircle, {
+        opacity: 0,
       });
 
       tl.to(`.${styles.hamLeft}`, {
@@ -160,12 +166,18 @@ export default function Menu() {
         delay: delay + 2,
       });
 
-      // gsap.to(firstArrowPath, {
-      //   strokeDashoffset: 0,
-      //   duration: 0.8,
-      //   delay: delay + 2.4,
-      //   ease: "linear",
-      // });
+      gsap.to(firstArrowPath, {
+        strokeDashoffset: 0,
+        duration: 0.8,
+        delay: delay + 2.4,
+        ease: "linear",
+      });
+
+      gsap.to(thirdCircle, {
+        opacity: 1,
+        duration: 0.4,
+        delay: delay + 3.2,
+      });
     } else {
       gsap.to(firstArcPath, {
         strokeDashoffset: firstArcLenghth,
@@ -181,11 +193,15 @@ export default function Menu() {
         duration: 0,
         ease: "linear",
       });
-      // gsap.to(firstArrowPath, {
-      //   strokeDashoffset: firstArrowLength,
-      //   duration: 0,
-      //   ease: "linear",
-      // });
+      gsap.to(firstArrowPath, {
+        strokeDashoffset: firstArrowLength,
+        duration: 0,
+        ease: "linear",
+      });
+      gsap.to(thirdCircle, {
+        opacity: 0,
+        duration: 0,
+      });
       tl.to(`.${styles.backBtn}`, {
         opacity: 0,
         duration: 0,
