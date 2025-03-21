@@ -40,27 +40,51 @@ export default function Menu() {
     const firstArc = document.querySelector(`.${styles.firstArc}`);
     const firstArcPath = firstArc.children[0];
     const firstGear = document.querySelector(`.${styles.firstGear}`);
+    // const firstGearPath = document.querySelector(`.${styles.firstGearPath}`);
+    const firstGearPath = firstGear.children[0];
     const secondGear = document.querySelector(`.${styles.secondGear}`);
     const thirdGear = document.querySelector(`.${styles.thirdGear}`);
     const gearCircle = document.querySelector(`.${styles.gearCircle}`);
     const firstGearArc = document.querySelector(`.${styles.firstGearArc}`);
     const secondArc = document.querySelector(`.${styles.secondArc}`);
+    const secondArcPath = secondArc.children[0];
     const wedge = document.querySelector(`.${styles.wedge}`);
     const thirdArc = document.querySelector(`.${styles.thirdArc}`);
     const firstArrow = document.querySelector(`.${styles.firstArrow}`);
+    // const firstArrowPath = secondArrow.children[0];
     const secondArrow = document.querySelector(`.${styles.secondArrow}`);
+    // const secondArrowPath = secondArrow.children[0];
 
-    const strokeLength = firstArcPath.getTotalLength();
+    const firstArcLenghth = firstArcPath.getTotalLength();
+    const secondArcLenghth = secondArcPath.getTotalLength();
+    // const firstArrowLength = firstArrowPath.getTotalLength();
+    // const secondArrowLength = secondArrowPath.getTotalLength();
     const delay = 0.5;
     // console.log(strokeLength);
+    // console.log(firstGearPath);
 
     if (isMenuOpen) {
       gsap.set(firstArcPath, {
-        strokeDashoffset: strokeLength,
-        strokeDasharray: strokeLength,
+        strokeDashoffset: firstArcLenghth,
+        strokeDasharray: firstArcLenghth,
       });
 
-      gsap.set([firstGear, firstGearArc], {
+      gsap.set(secondArcPath, {
+        strokeDashoffset: secondArcLenghth,
+        strokeDasharray: secondArcLenghth,
+      });
+
+      // gsap.set(firstArrowPath, {
+      //   strokeDashoffset: firstArrowLength,
+      //   strokeDasharray: firstArrowLength,
+      // });
+
+      // gsap.set(secondArrowPath, {
+      //   strokeDashoffset: secondArrowLength,
+      //   strokeDasharray: secondArrowLength,
+      // });
+
+      gsap.set([firstGear, firstGearArc, wedge], {
         scale: 0,
       });
 
@@ -99,27 +123,69 @@ export default function Menu() {
         scale: 1,
         duration: 0.4,
         delay: delay + 0.8,
-        onComplete: function() {
+        onComplete: function () {
           gsap.to(firstGear, {
             rotation: 360,
             duration: 2,
             ease: "linear",
             repeat: -1,
-            transformOrigin: "center center"
+            transformOrigin: "center center",
           });
-          
-        }
+          // gsap.to(firstGearArc, {
+          //   duration: 3,
+          //   rotation: 360,
+          //   ease: "linear",
+          //   repeat: -1,
+          //   motionPath: {
+          //     path: firstGearPath,
+          //     align: firstGearPath,
+          //     alignOrigin: [0, 0],
+          //     start: 1,
+          //     end: 0,
+          //   },
+          // });
+        },
       });
+
+      gsap.to(secondArcPath, {
+        strokeDashoffset: 0,
+        duration: 0.8,
+        delay: delay + 1.2,
+        ease: "linear",
+      });
+
+      gsap.to(wedge, {
+        scale: 1,
+        duration: 0.4,
+        delay: delay + 2,
+      });
+
+      // gsap.to(firstArrowPath, {
+      //   strokeDashoffset: 0,
+      //   duration: 0.8,
+      //   delay: delay + 2.4,
+      //   ease: "linear",
+      // });
     } else {
       gsap.to(firstArcPath, {
-        strokeDashoffset: 500,
+        strokeDashoffset: firstArcLenghth,
         duration: 0,
         ease: "linear",
       });
-      gsap.to([firstGear, firstGearArc], {
+      gsap.to([firstGear, firstGearArc, wedge], {
         scale: 0,
         duration: 0,
       });
+      gsap.to(secondArcPath, {
+        strokeDashoffset: secondArcLenghth,
+        duration: 0,
+        ease: "linear",
+      });
+      // gsap.to(firstArrowPath, {
+      //   strokeDashoffset: firstArrowLength,
+      //   duration: 0,
+      //   ease: "linear",
+      // });
       tl.to(`.${styles.backBtn}`, {
         opacity: 0,
         duration: 0,
@@ -252,6 +318,7 @@ export default function Menu() {
                 stroke="white"
                 stroke-width="3.78862"
                 stroke-linecap="round"
+                className={styles.firstGearPath}
               />
             </svg>
 
@@ -269,7 +336,8 @@ export default function Menu() {
               className={styles.secondArc}
             >
               <path
-                d="M2 151.521C7.21976 164.01 13.4089 176.16 20.5495 187.855M20.55 187.854C57.6137 248.56 117.274 292.056 186.408 308.773C255.541 325.49 328.484 314.06 389.189 276.996C449.895 239.932 493.39 180.271 510.107 111.138C518.919 74.7005 519.91 37.2046 513.451 1"
+                // d="M2 151.521C7.21976 164.01 13.4089 176.16 20.5495 187.855M20.55 187.854C57.6137 248.56 117.274 292.056 186.408 308.773C255.541 325.49 328.484 314.06 389.189 276.996C449.895 239.932 493.39 180.271 510.107 111.138C518.919 74.7005 519.91 37.2046 513.451 1"
+                d="M513.451 1C519.91 37.2046 518.919 74.7005 510.107 111.138C493.39 180.271 449.895 239.932 389.189 276.996C328.484 314.06 255.541 325.49 186.408 308.773C117.274 292.056 57.6137 248.56 20.55 187.854M20.5495 187.855C13.4089 176.16 7.21976 164.01 2 151.521"
                 stroke="white"
                 stroke-width="2.5"
               />
