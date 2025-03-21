@@ -220,6 +220,36 @@ export default function Menu() {
         scale: 1,
         duration: 0.4,
         delay: delay + 4.6,
+        onComplete: function () {
+          gsap.to(gearOne, {
+            rotation: 360,
+            duration: 3.5,
+            ease: "linear",
+            repeat: -1,
+            transformOrigin: "center center",
+          });
+          gsap.to(gearTwo, {
+            rotation: -360,
+            duration: 2.5,
+            ease: "linear",
+            repeat: -1,
+            transformOrigin: "center center",
+          });
+          gsap.to(gearThree, {
+            rotation: -360,
+            duration: 4.5,
+            ease: "linear",
+            repeat: -1,
+            transformOrigin: "center center",
+          });
+          gsap.to(gearFour, {
+            rotation: 360,
+            duration: 1.5,
+            ease: "linear",
+            repeat: -1,
+            transformOrigin: "center center",
+          });
+        },
       });
 
       gsap.to(thirdArcPath, {
@@ -234,10 +264,13 @@ export default function Menu() {
         duration: 0,
         ease: "linear",
       });
-      gsap.to([firstGear, firstGearArc, wedge, gearOne, gearTwo, gearThree, gearFour], {
-        scale: 0,
-        duration: 0,
-      });
+      gsap.to(
+        [firstGear, firstGearArc, wedge, gearOne, gearTwo, gearThree, gearFour],
+        {
+          scale: 0,
+          duration: 0,
+        }
+      );
       gsap.to(secondArcPath, {
         strokeDashoffset: secondArcLenghth,
         duration: 0,
@@ -474,7 +507,7 @@ export default function Menu() {
               src={secondGear}
               alt="second arc"
             /> */}
-            
+
             {/* <svg
               width="198"
               height="205"
