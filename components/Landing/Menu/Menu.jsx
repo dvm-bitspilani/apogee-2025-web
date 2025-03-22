@@ -352,7 +352,7 @@ export default function Menu() {
               transformOrigin: "center center",
             });
             gsap.to(thirdGearArc, {
-              rotation: 30,
+              rotation: -30,
               duration: 0.6,
               ease: "linear",
               repeat: -1,
