@@ -47,7 +47,7 @@ import { TextureLoader } from "three";
 import { useLoader } from "@react-three/fiber";
 
 export const Background = () => {
-  const texture = useLoader(TextureLoader, "../../src/assets/Quantaculus/background.png");
+  const texture = useLoader(TextureLoader, "/images/speakersBackground.png");
 
   return (
     <Plane args={[400, 400]} position={[0, 0, -300]}>
