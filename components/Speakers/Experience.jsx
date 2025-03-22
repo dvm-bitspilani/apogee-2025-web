@@ -191,7 +191,9 @@ import { Group } from "three";
 import { Airplane } from "./Airplane";
 import { Background } from "./Background";
 import { Cloud, VideoPlayer } from "./Cloud";
-import manas from "../../public/videos/akbar.mp4";
+import akbar from "/videos/akbar.mp4";
+import elenla from "/videos/elenla.mp4";
+import shivshankar from "/videos/shivshankar.mp4";
 import { Html } from "@react-three/drei";
 
 const LINE_NB_POINTS = 1000;
@@ -326,11 +328,11 @@ export const Experience = () => {
         >
           
         </Text> */}
-        <VideoPlayer videoSrc={manas} />
+        <VideoPlayer videoSrc={akbar} />
       </group>
 
       <group scale={1.8} position={[-5, -1, -60]}>
-        <VideoPlayer videoSrc={manas} />
+        <VideoPlayer videoSrc={elenla} />
         {/* <Text
           color="white"
           anchorX={"left"}
@@ -345,7 +347,7 @@ export const Experience = () => {
       </group>
 
       <group scale={2.8}  position={[-1, -1, -130]}>
-        <VideoPlayer videoSrc={manas} />
+        <VideoPlayer videoSrc={shivshankar} />
         {/* <Text
           color="white"
           anchorX={"left"}
@@ -360,7 +362,7 @@ export const Experience = () => {
       </group>
 
       <group scale={3.99} position={[-15, -1, -220]}>
-        <VideoPlayer videoSrc={manas} />
+        <VideoPlayer videoSrc={akbar} />
       </group>
 
       {/* LINE */}
