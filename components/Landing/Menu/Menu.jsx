@@ -351,6 +351,14 @@ export default function Menu() {
               repeat: -1,
               transformOrigin: "center center",
             });
+            gsap.to(thirdGearArc, {
+              rotation: 30,
+              duration: 0.6,
+              ease: "linear",
+              repeat: -1,
+              yoyo: true,
+              transformOrigin: "center center",
+            });
           },
         }
       );
@@ -1213,7 +1221,7 @@ export default function Menu() {
               src={thirdGearArc}
               alt="third arc"
             /> */}
-            <svg
+            {/* <svg
               width="47"
               height="164"
               viewBox="0 0 47 164"
@@ -1225,6 +1233,20 @@ export default function Menu() {
                 d="M10.8369 0.895894L8.42714 7.6552C13.7027 15.9521 17.4283 20.3362 22.9314 45.8823L27.2036 47.7329C33.679 77.8958 25.5403 128.414 5.15649 154.656L11.8717 155.012C21.3069 144.844 27.7986 123.124 33.1852 109.107L38.4562 108.071C42.5377 96.912 42.6621 81.8094 42.2279 67.5576L36.3081 65.4406C34.3127 36.8069 22.1617 9.81269 10.8369 0.895894Z"
                 fill="white"
                 stroke="black"
+              />
+            </svg> */}
+
+            <svg
+              width="327"
+              height="310"
+              viewBox="0 0 327 310"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className={styles.thirdGearArc}
+            >
+              <path
+                d="M278.185 78.1107L275.775 84.87C281.05 93.1669 284.776 97.5511 290.279 123.097L294.551 124.948C301.027 155.111 292.888 205.629 272.504 231.871L279.219 232.227C288.655 222.059 295.146 200.339 300.533 186.322L305.804 185.286C309.885 174.127 310.01 159.024 309.576 144.772L303.656 142.655C301.66 114.022 289.509 87.0275 278.185 78.1107Z"
+                fill="white"
               />
             </svg>
 
