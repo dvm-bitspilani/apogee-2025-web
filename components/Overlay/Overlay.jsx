@@ -16,6 +16,10 @@ export default function Overlay() {
     (state) => state.experienceAnimations.animationStage
   );
 
+  useEffect(() => {
+    console.log(window.location);
+  }, [curState]);
+
   return (
     <>
       <OverlayBackBtn
@@ -64,7 +68,18 @@ export default function Overlay() {
         }
       >
         {/* <ComingSoon /> */}
-        <SpeakersPage />
+        {/* <SpeakersPage /> */}
+        <iframe
+          src={`${window.location.origin}/speakers`}
+          title="Speakers"
+          width="100%"
+          height="100%"
+          frameBorder="0"
+          style={{
+            border: "none",
+            pointerEvents: curState === "speakers" ? "auto" : "none",
+          }}
+        />
       </div>
     </>
   );

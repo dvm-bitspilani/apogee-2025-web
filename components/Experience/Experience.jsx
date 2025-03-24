@@ -45,6 +45,7 @@ import { EventsBoard } from "./Events/EventsBoard.jsx";
 import { Car } from "./Car/Car.jsx";
 // import { Train } from "./Train/Train.jsx";
 import Arrows from "./Arrows/Arrows.jsx";
+import { SpeakerExperience } from "../Speakers/Experience.jsx";
 
 const CAMERA_TARGET_COORDS = {
   landingToContact: { x: -0.72, y: 0.12, z: -0.663 },
@@ -364,7 +365,7 @@ export default function Experience() {
         <meshBasicMaterial color="red" />
       </mesh>
 
-      <OrbitControls enablePan={true} enableZoom={true} enableRotate={true} />
+      {/* <OrbitControls enablePan={true} enableZoom={true} enableRotate={true} /> */}
 
       <Environment
         files="/environments/sunset1by16Orange.hdr"

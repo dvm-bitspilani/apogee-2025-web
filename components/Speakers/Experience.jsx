@@ -6,7 +6,7 @@ import { Group } from "three";
 import { Airplane } from "./Airplane";
 import { Background } from "./Background";
 import { Cloud } from "./Cloud";
-import {VideoPlayer} from "./VideoPlayer";
+import { VideoPlayer } from "./VideoPlayer";
 
 import { OrbitControls } from "@react-three/drei";
 import { Html } from "@react-three/drei";
@@ -21,7 +21,7 @@ const CURVE_AHEAD_CAMERA = 0.008;
 const CURVE_AHEAD_AIRPLANE = 0.02;
 const AIRPLANE_MAX_ANGLE = 35;
 
-export const Experience = () => {
+export const SpeakerExperience = () => {
   const curve = useMemo(() => {
     return new THREE.CatmullRomCurve3(
       [
@@ -136,7 +136,7 @@ export const Experience = () => {
           </Float>
         </group>
       </group>
-      
+
       <group scale={0.8} position={[1, -0.5, -6]}>
         <VideoPlayer videoSrc={akbar} />
       </group>
@@ -145,7 +145,7 @@ export const Experience = () => {
         <VideoPlayer videoSrc={elenla} />
       </group>
 
-      <group scale={2.8}  position={[-1, -1, -130]}>
+      <group scale={2.8} position={[-1, -1, -130]}>
         <VideoPlayer videoSrc={shivshankar} />
       </group>
 
@@ -177,4 +177,3 @@ export const Experience = () => {
     </>
   );
 };
-
