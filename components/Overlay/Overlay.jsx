@@ -69,17 +69,26 @@ export default function Overlay() {
       >
         <SpeakersPage />
       </div> */}
-      {curState === "speakers" && (
-        <iframe
-          src={`${window.location.origin}/speakers`}
-          title="Speakers"
-          width="100%"
-          height="100%"
-          // style={{
-          //   border: "none",
-          // }}
-        />
-      )}
+      <div
+        className={styles.overlayContainer}
+        style={
+          curState === "speakers"
+            ? { opacity: 1, pointerEvents: "auto" }
+            : { opacity: 0, pointerEvents: "none" }
+        }
+      >
+        {curState === "speakers" && (
+          <iframe
+            src={`${window.location.origin}/speakers`}
+            title="Speakers"
+            width="100%"
+            height="100%"
+            // style={{
+            //   border: "none",
+            // }}
+          />
+        )}
+      </div>
     </>
   );
 }
