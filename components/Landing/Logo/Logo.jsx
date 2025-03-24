@@ -11,12 +11,17 @@ export default function Logo() {
   return (
     <div
       className={styles.logoContainer}
-      style={{
-        transform:
-          curStage === "landing" && isPointerEventsAllowed
-            ? "translateY(0) translateX(-50%)"
-            : "translateY(-120%) translateX(-50%)",
-      }}
+      style={
+        curStage === "landing" && isPointerEventsAllowed
+          ? {
+              transform: "translateY(0) translateX(-50%)",
+              opacity: 1,
+            }
+          : {
+              transform: "translateY(-120%) translateX(-50%)",
+              opacity: 0,
+            }
+      }
     >
       <img
         src={logoBackground}

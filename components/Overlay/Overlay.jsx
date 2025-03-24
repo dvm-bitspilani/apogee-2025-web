@@ -59,7 +59,7 @@ export default function Overlay() {
       >
         <Events />
       </div>
-      <div
+      {/* <div
         className={`${styles.overlayContainer} ${styles.speakerContainer}`}
         style={
           curState === "speakers"
@@ -67,20 +67,19 @@ export default function Overlay() {
             : { opacity: 0, pointerEvents: "none" }
         }
       >
-        {/* <ComingSoon /> */}
-        {/* <SpeakersPage /> */}
+        <SpeakersPage />
+      </div> */}
+      {curState === "speakers" && (
         <iframe
           src={`${window.location.origin}/speakers`}
           title="Speakers"
           width="100%"
           height="100%"
-          frameBorder="0"
-          style={{
-            border: "none",
-            pointerEvents: curState === "speakers" ? "auto" : "none",
-          }}
+          // style={{
+          //   border: "none",
+          // }}
         />
-      </div>
+      )}
     </>
   );
 }
