@@ -15,8 +15,8 @@ import akbar from "/videos/akbar.mp4";
 import elenla from "/videos/elenla.mp4";
 import shivshankar from "/videos/shivshankar.mp4";
 
-const LINE_NB_POINTS = 1000;
-const CURVE_DISTANCE = 250;
+const LINE_NB_POINTS = 400;
+const CURVE_DISTANCE = 50;
 const CURVE_AHEAD_CAMERA = 0.008;
 const CURVE_AHEAD_AIRPLANE = 0.02;
 const AIRPLANE_MAX_ANGLE = 35;
@@ -25,14 +25,12 @@ export const SpeakerExperience = () => {
   const curve = useMemo(() => {
     return new THREE.CatmullRomCurve3(
       [
-        new THREE.Vector3(0, 0, 0),
-        new THREE.Vector3(0, 0, -CURVE_DISTANCE),
-        new THREE.Vector3(100, 0, -2 * CURVE_DISTANCE),
-        new THREE.Vector3(-100, 0, -3 * CURVE_DISTANCE),
-        new THREE.Vector3(100, 0, -4 * CURVE_DISTANCE),
-        new THREE.Vector3(0, 0, -5 * CURVE_DISTANCE),
-        new THREE.Vector3(0, 0, -6 * CURVE_DISTANCE),
-        new THREE.Vector3(0, 0, -7 * CURVE_DISTANCE),
+        new THREE.Vector3(-100, 0, 0),  // Start from extreme left
+        new THREE.Vector3(-80, 0, -CURVE_DISTANCE),
+        new THREE.Vector3(-50, 0, -2 * CURVE_DISTANCE),
+        new THREE.Vector3(-10, 0, -3 * CURVE_DISTANCE),
+        // new THREE.Vector3(10, 0, -4 * CURVE_DISTANCE),
+        // new THREE.Vector3(40, 0, -5 * CURVE_DISTANCE), // Ends towards right
       ],
       false,
       "catmullrom",
@@ -137,24 +135,28 @@ export const SpeakerExperience = () => {
         </group>
       </group>
 
-      <group scale={0.8} position={[1, -0.5, -6]}>
-        <VideoPlayer videoSrc={akbar} />
-      </group>
-
-      <group scale={1.8} position={[-5, -1, -60]}>
-        <VideoPlayer videoSrc={elenla} />
-      </group>
-
-      <group scale={2.8} position={[-1, -1, -130]}>
+      <group scale={1.5} position={[-100, -0.6, -5]} rotation={[0, Math.PI / -10, 0]}>
         <VideoPlayer videoSrc={shivshankar} />
       </group>
 
-      <group scale={3.99} position={[-15, -1, -220]}>
+      <group scale={1.6} position={[-90, -0.6, -30]} rotation={[0, Math.PI / -10, 0]}>
         <VideoPlayer videoSrc={akbar} />
       </group>
 
+      <group scale={1.6} position={[-75, -0.6, -60]} rotation={[0, Math.PI / -6, 0]}>
+        <VideoPlayer videoSrc={elenla} />
+      </group>
+
+      <group scale={1.6} position={[-57, -0.8, -90]} rotation={[0, Math.PI / -6, 0]}>
+        <VideoPlayer videoSrc={akbar} />
+      </group>
+
+      <group scale={1.85} position={[-4, -0.8, -155]} rotation={[0, Math.PI / -5, 0]}>
+        <VideoPlayer videoSrc={elenla} />
+      </group>
+
       {/* LINE */}
-      <group position-y={-2}>
+      {/* <group position-y={-2}>
         <mesh>
           <extrudeGeometry
             args={[
@@ -173,7 +175,7 @@ export const SpeakerExperience = () => {
             envMapIntensity={2}
           />
         </mesh>
-      </group>
+      </group> */}
     </>
   );
 };
