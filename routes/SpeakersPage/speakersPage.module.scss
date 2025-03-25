@@ -41,11 +41,15 @@
     @media screen and (max-width: 900px) {
       margin-top: 0rem;
       gap: 2rem 2rem;
+      height: calc(100vh - 150px);
+      overflow-y: scroll;
     }
 
     @media screen and (max-width: 500px) {
       margin-top: 0rem;
       gap: 1rem;
+      height: calc(100vh - 120px);
+      overflow-y: scroll;
     }
 
     video {

@@ -6,9 +6,10 @@ import Navbar from "./Navbar/Navbar";
 import Overlay from "../Overlay/Overlay";
 import { useLocation } from "react-router";
 import { useSelector } from "react-redux";
-import Logo from "./Logo/Logo";
+// import Logo from "./Logo/Logo";
 import Arrow from "./Arrow/Arrow";
 import { Helmet } from "react-helmet-async";
+import Menu from "./Menu/Menu";
 
 export default function Landing() {
   const location = useLocation();
@@ -37,7 +38,7 @@ export default function Landing() {
       </Helmet> */}
       <Overlay />
       <Navbar />
-      <Logo />
+      <Menu />
       <Canvas
         id="landingExperience"
         camera={{
