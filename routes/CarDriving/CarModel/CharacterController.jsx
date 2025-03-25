@@ -102,7 +102,7 @@ export default function CharacterController(props) {
 
   return (
     <group position={[-19.6, 0, 0]} scale={2}>
-      <RigidBody colliders="hull" ref={rb}>
+      <RigidBody colliders="hull" lockRotations ref={rb}>
         <group ref={container}>
           <group ref={cameraTarget} position={[0, 0, 1.5]} />
           <group ref={cameraPosition} position={[0, 4, -4]} />
