@@ -16,7 +16,7 @@ export default function SpeakersPage() {
       </Link>
       <Canvas>
         <color attach="background" args={["#000"]} />
-        <ScrollControls pages={15} damping={1}>
+        <ScrollControls pages={15} damping={0.4}>
           <Suspense fallback={<LoadingScreen />}>
             <SpeakerExperience />
           </Suspense>
