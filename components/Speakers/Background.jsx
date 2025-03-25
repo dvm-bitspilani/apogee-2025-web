@@ -50,7 +50,7 @@ export const Background = () => {
   const texture = useLoader(TextureLoader, "/images/speakersBackground.png");
 
   return (
-    <Plane args={[400, 400]} position={[0, 0, -300]}>
+    <Plane args={[320, 300]} position={[0, 0, -300]}>
       <meshBasicMaterial map={texture} />
     </Plane>
   );
