@@ -11,6 +11,8 @@ import { VideoPlayer } from "./VideoPlayer";
 import { OrbitControls } from "@react-three/drei";
 import { Html } from "@react-three/drei";
 
+import abhay from "/videos/abhay.mp4";
+import vijender from "/videos/vijender.mp4";
 import akbar from "/videos/akbar.mp4";
 import elenla from "/videos/elenla.mp4";
 import shivshankar from "/videos/shivshankar.mp4";
@@ -136,11 +138,11 @@ export const SpeakerExperience = () => {
       </group>
 
       <group scale={1.5} position={[-100, -0.6, -5]} rotation={[0, Math.PI / -10, 0]}>
-        <VideoPlayer videoSrc={shivshankar} />
+        <VideoPlayer videoSrc={vijender} />
       </group>
 
       <group scale={1.6} position={[-90, -0.6, -30]} rotation={[0, Math.PI / -10, 0]}>
-        <VideoPlayer videoSrc={akbar} />
+        <VideoPlayer videoSrc={abhay} />
       </group>
 
       <group scale={1.6} position={[-75, -0.6, -60]} rotation={[0, Math.PI / -6, 0]}>
@@ -148,11 +150,11 @@ export const SpeakerExperience = () => {
       </group>
 
       <group scale={1.6} position={[-57, -0.8, -90]} rotation={[0, Math.PI / -6, 0]}>
-        <VideoPlayer videoSrc={akbar} />
+        <VideoPlayer videoSrc={shivshankar} />
       </group>
 
       <group scale={1.85} position={[-4, -0.8, -155]} rotation={[0, Math.PI / -5, 0]}>
-        <VideoPlayer videoSrc={elenla} />
+        <VideoPlayer videoSrc={akbar} />
       </group>
 
       {/* LINE */}
