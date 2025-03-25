@@ -47,13 +47,45 @@
       min-height: 896.521729px;
       // width: 1234.782593px;
       // height: 896.521729px;
-      top: 57%;
+      top: 14%;
       display: flex;
       justify-content: center;
       align-items: center;
       // opacity: 1;
       transition: opacity 0.3s ease-out;
-      transform: scale(0.8) translateY(-50%);
+      // transform: scale(0.8) translateY(-50%);
+      @media(width<1200px)
+      {
+        transform: scale(0.9);
+      }
+      @media(width<1075px)
+      {
+        transform: scale(0.8);
+      }
+      @media(width<950px)
+      {
+        transform: scale(0.7);
+      }
+      @media(width<830px)
+      {
+        transform: scale(0.6);
+      }
+      @media(width<710px)
+      {
+        transform: scale(0.5);
+      }
+      @media(width<590px)
+      {
+        transform: scale(0.4);
+      }
+      @media(width<475px)
+      {
+        transform: scale(0.3);
+      }
+      @media(width<360px)
+      {
+        transform: scale(0.25);
+      }
 
       .firstCircle {
         position: absolute;
