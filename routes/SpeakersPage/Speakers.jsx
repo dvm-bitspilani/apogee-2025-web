@@ -3,6 +3,8 @@ import { Canvas } from "@react-three/fiber";
 import { SpeakerExperience } from "../../components/Speakers/Experience";
 import Heading from "../../components/Speakers/Heading/Heading";
 import OverlayBackBtn from "../../components/Overlay/OverlayBackBtn/OverlayBackBtn";
+import LoadingScreen from "../../components/LoadingScreen/LoadingScreen";
+import { Suspense } from "react";
 import { Link } from "react-router";
 
 export default function SpeakersPage() {
@@ -13,9 +15,11 @@ export default function SpeakersPage() {
         <OverlayBackBtn />
       </Link>
       <Canvas>
-        <color attach="background" args={["#ececec"]} />
+        <color attach="background" args={["#000"]} />
         <ScrollControls pages={15} damping={1}>
-          <SpeakerExperience />
+          <Suspense fallback={<LoadingScreen />}>
+            <SpeakerExperience />
+          </Suspense>
         </ScrollControls>
       </Canvas>
     </>
