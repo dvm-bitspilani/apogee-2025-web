@@ -137,19 +137,19 @@ export const SpeakerExperience = () => {
         </group>
       </group>
 
-      <group scale={1.5} position={[-100, -0.6, -5]} rotation={[0, Math.PI / -10, 0]}>
+      <group scale={1.5} position={[-100, -0.6, -10]} rotation={[0, Math.PI / -10, 0]}>
         <VideoPlayer videoSrc={vijender} />
       </group>
 
-      <group scale={1.6} position={[-90, -0.6, -30]} rotation={[0, Math.PI / -10, 0]}>
-        <VideoPlayer videoSrc={abhay} />
+      <group scale={1.6} position={[-86, -0.6, -40]} rotation={[0, Math.PI / -10, 0]}>
+        <VideoPlayer videoSrc={akbar} />
       </group>
 
-      <group scale={1.6} position={[-75, -0.6, -60]} rotation={[0, Math.PI / -6, 0]}>
+      <group scale={1.6} position={[-68, -0.6, -70]} rotation={[0, Math.PI / -6, 0]}>
         <VideoPlayer videoSrc={elenla} />
       </group>
 
-      <group scale={1.6} position={[-57, -0.8, -90]} rotation={[0, Math.PI / -6, 0]}>
+      <group scale={1.6} position={[-48, -0.8, -100]} rotation={[0, Math.PI / -6, 0]}>
         <VideoPlayer videoSrc={shivshankar} />
       </group>
 
