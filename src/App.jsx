@@ -9,6 +9,7 @@ import ContactPage from "../routes/ContactPage/ContactPage.jsx";
 import Quantaculus from "../routes/Quantaculus.jsx";
 import QuantaculusSubmitted from "../routes/QuantaculusSubmitted.jsx";
 import Speakers from "../routes/SpeakersPage/Speakers.jsx";
+import CarDrivingPage from "../routes/CarDriving/CarDrivingPage.jsx";
 
 ReactGA.initialize("G-H9LEY5519K");
 
@@ -28,6 +29,7 @@ function App() {
         />
       </Route>
       <Route path="/speakers" element={<Speakers />} />
+      <Route path="/car" element={<CarDrivingPage />} />
     </Routes>
   );
 }
