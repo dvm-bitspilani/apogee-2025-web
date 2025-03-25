@@ -73,6 +73,12 @@ export default function Menu() {
     const gearSix = document.querySelector(`.${styles.gearSix}`);
     const gearSeven = document.querySelector(`.${styles.gearSeven}`);
     const gearEight = document.querySelector(`.${styles.gearEight}`);
+    const dev = document.querySelector(`.${styles.dev}`);
+    const media = document.querySelector(`.${styles.media}`);
+    const events = document.querySelector(`.${styles.events}`);
+    const archives = document.querySelector(`.${styles.archives}`);
+    const articles = document.querySelector(`.${styles.articles}`);
+    const spons = document.querySelector(`.${styles.spons}`);
 
     const firstArcLenghth = firstArcPath.getTotalLength();
     const secondArcLenghth = secondArcPath.getTotalLength();
@@ -145,6 +151,12 @@ export default function Menu() {
           fourthCircle,
           fifthCircle,
           sixCircle,
+          dev,
+          spons,
+          events,
+          media,
+          archives,
+          articles,
         ],
         {
           opacity: 0,
@@ -206,6 +218,11 @@ export default function Menu() {
             duration: 0.4,
             delay: 0.2,
           });
+          gsap.to(spons, {
+            opacity: 1,
+            duration: 0.4,
+            delay: 0.2,
+          });
         },
       });
 
@@ -248,6 +265,12 @@ export default function Menu() {
         ease: "linear",
       });
 
+      gsap.to(dev, {
+        opacity: 1,
+        duration: 0.4,
+        delay: delay + 3.2,
+      });
+
       gsap.to(thirdCircle, {
         opacity: 1,
         duration: 0.4,
@@ -259,6 +282,12 @@ export default function Menu() {
         duration: 0.8,
         delay: delay + 3.6,
         ease: "linear",
+      });
+
+      gsap.to(media, {
+        opacity: 1,
+        duration: 0.4,
+        delay: delay + 4.2,
       });
 
       gsap.to(fourthCircle, {
@@ -301,6 +330,12 @@ export default function Menu() {
             transformOrigin: "center center",
           });
         },
+      });
+
+      gsap.to(archives, {
+        opacity: 1,
+        duration: 0.4,
+        delay: delay + 5,
       });
 
       gsap.to(fifthCircle, {
@@ -370,10 +405,22 @@ export default function Menu() {
         ease: "linear",
       });
 
+      gsap.to(articles, {
+        opacity: 1,
+        duration: 0.4,
+        delay: delay + 7.4,
+      });
+
       gsap.to(sixCircle, {
         opacity: 1,
         duration: 0.4,
         delay: delay + 7.4,
+      });
+
+      gsap.to(events, {
+        opacity: 1,
+        duration: 0.4,
+        delay: delay + 7.8,
       });
 
       gsap.to(firstCircle, {
@@ -405,7 +452,19 @@ export default function Menu() {
         ease: "linear",
       });
       gsap.to(
-        [firstCircle, thirdCircle, fourthCircle, fifthCircle, sixCircle],
+        [
+          firstCircle,
+          thirdCircle,
+          fourthCircle,
+          fifthCircle,
+          sixCircle,
+          dev,
+          spons,
+          articles,
+          archives,
+          events,
+          media,
+        ],
         {
           opacity: 0,
           duration: 0,
