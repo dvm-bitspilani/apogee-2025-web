@@ -4,6 +4,7 @@ import { Physics } from "@react-three/rapier";
 import { CityModel } from "../CityModel/CityModel";
 import EnergyOrb from "../../../components/EnergyOrb/EnergyOrb";
 import { useControls } from "leva";
+import CharacterController from "../CarModel/CharacterController";
 
 export default function CarDrivingExperience() {
   const { orbPos, orbScale, carPos, carRot, carScale } = useControls({
@@ -15,7 +16,7 @@ export default function CarDrivingExperience() {
   });
   return (
     <>
-      <OrbitControls />
+      {/* <OrbitControls /> */}
       <Environment
         files="/environments/sunset1by16Orange.hdr"
         environmentIntensity={1}
@@ -28,7 +29,11 @@ export default function CarDrivingExperience() {
         <EnergyOrb color="orange" lightIntensity={3} />
       </group>
       <Physics debug>
-        <CarModel position={carPos} rotation={carRot} scale={carScale} />
+        <CharacterController
+          carPos={carPos}
+          carRot={carRot}
+          carScale={carScale}
+        />
         <CityModel />
       </Physics>
     </>
