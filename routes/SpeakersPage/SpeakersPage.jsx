@@ -42,6 +42,8 @@ export default function SpeakersPage() {
         <img src={heading} alt="Speakers" />
       </div>
       <div className={styles.Videocontainer}>
+        <SpeakerVideo speakerName="vijender" />
+        {/* <SpeakerVideo speakerName="abhay" /> */}
         <SpeakerVideo speakerName="akbar" />
         <SpeakerVideo speakerName="elenla" />
         <SpeakerVideo speakerName="shivshankar" />

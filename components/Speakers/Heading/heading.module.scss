@@ -1,0 +1,25 @@
+.heading {
+  position: fixed;
+  top: 0;
+  height: 180px;
+  transform: translateY(-50px);
+  z-index: 10000;
+  left: calc((100% - 339.08px) / 2);
+
+  @media screen and (max-width: 900px) {
+    height: 150px;
+    transform: translateY(-40px);
+    left: calc((100% - 282.56px) / 2);
+  }
+
+  @media screen and (max-width: 500px) {
+    height: 120px;
+    transform: translateY(-30px);
+    left: calc((100% - 226.05px) / 2);
+  }
+
+  img {
+    height: 100%;
+    width: auto;
+  }
+}
