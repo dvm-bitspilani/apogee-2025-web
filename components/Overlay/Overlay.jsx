@@ -33,7 +33,7 @@ export default function Overlay() {
 
 
   useEffect(() => {
-    console.log(window.location);
+    // console.log(window.location);
   }, [curState]);
 
   return (
