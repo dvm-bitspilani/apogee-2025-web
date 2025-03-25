@@ -1,4 +1,4 @@
-import { Environment, Float } from "@react-three/drei";
+import { Environment, Float, OrbitControls } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import * as THREE from "three";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -45,11 +45,13 @@ import { EventsBoard } from "./Events/EventsBoard.jsx";
 import { Car } from "./Car/Car.jsx";
 // import { Train } from "./Train/Train.jsx";
 import Arrows from "./Arrows/Arrows.jsx";
+import { SpeakerExperience } from "../Speakers/Experience.jsx";
 
 const CAMERA_TARGET_COORDS = {
   landingToContact: { x: -0.72, y: 0.12, z: -0.663 },
+  landingToEvents: { x: 1.121, y: 0.06, z: -0.703 },
   // landingToEvents: { x: 0.961, y: 0.078, z: -0.653 },
-  landingToEvents: { x: 0.961, y: 0.4, z: -0.89 },
+  // landingToEvents: { x: 0.961, y: 0.4, z: -0.89 },
   // landingToSpeakers: { x: -0.759, y: 0.58, z: 0.777 },
   landingToSpeakers: { x: -0.879, y: 0.68, z: 0.717 },
   landingToAbout: { x: 0.9, y: 0.0599, z: 0.797 },
@@ -328,7 +330,8 @@ export default function Experience() {
     positionFinder: {
       // value: [-0.7190000000000004, 0.11800000000000008, -0.663], // contact
       // value: [0.9610000000000005, 0.07800000000000007, -0.653], // events
-      value: [-0.8790000000000006, 0.68, 0.7170000000000004], // speakers
+      value: [1.121, 0.068, -0.703], // events 2
+      // value: [-0.8790000000000006, 0.68, 0.7170000000000004], // speakers
       // value: [0.9, 0.05999999999999972, 0.7970000000000005], // about
       step: 0.01,
     },

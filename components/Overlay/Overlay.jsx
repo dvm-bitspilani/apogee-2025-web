@@ -7,6 +7,7 @@ import Events from "../Events/Events";
 import ComingSoon from "../ComingSoon/ComingSoon";
 import { reverseAnimation } from "../../store/experienceAnimationsSlice/experienceAnimationsSlice";
 import OverlayBackBtn from "./OverlayBackBtn/OverlayBackBtn";
+import { Navigate } from "react-router";
 import SpeakersPage from "../../routes/SpeakersPage/SpeakersPage";
 export default function Overlay() {
   const dispatch = useDispatch();
@@ -15,6 +16,10 @@ export default function Overlay() {
   const animationStage = useSelector(
     (state) => state.experienceAnimations.animationStage
   );
+
+  useEffect(() => {
+    console.log(window.location);
+  }, [curState]);
 
   return (
     <>
@@ -55,7 +60,8 @@ export default function Overlay() {
       >
         <Events />
       </div>
-      <div
+      {curState === "speakers" && <Navigate to="/speakers" />}
+      {/* <div
         className={`${styles.overlayContainer} ${styles.speakerContainer}`}
         style={
           curState === "speakers"
@@ -63,9 +69,19 @@ export default function Overlay() {
             : { opacity: 0, pointerEvents: "none" }
         }
       >
-        {/* <ComingSoon /> */}
         <SpeakersPage />
-      </div>
+      </div> */}
+      {/* {curState === "speakers" && (
+        <iframe
+          src={`${window.location.origin}/speakers`}
+          title="Speakers"
+          width="100%"
+          height="100%"
+          // style={{
+          //   border: "none",
+          // }}
+        />
+      )} */}
     </>
   );
 }

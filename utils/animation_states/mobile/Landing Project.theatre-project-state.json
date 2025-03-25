@@ -106,9 +106,17 @@
                     "id": "bX7A8kUAav",
                     "position": 10,
                     "connectedRight": true,
-                    "handles": [0.5, 1, 0.5, 0],
+                    "handles": [0.5052536643993222, 0.6434873165593247, 0.5, 0],
                     "type": "bezier",
-                    "value": 0.9040760646819543
+                    "value": 0.9640760646819544
+                  },
+                  {
+                    "id": "_GxBPhpXxH",
+                    "position": 10.533,
+                    "connectedRight": true,
+                    "handles": [0.4878246443846681, 0.7998575319959099, 0.5, 0],
+                    "type": "bezier",
+                    "value": 1.076781664842125
                   },
                   {
                     "id": "1g9xWSXLPT",
@@ -116,7 +124,7 @@
                     "connectedRight": true,
                     "handles": [0.5, 1, 0.5, 0],
                     "type": "bezier",
-                    "value": 0.9099910339620831
+                    "value": 1.121
                   },
                   {
                     "id": "DaSsiCcN_t",
@@ -212,7 +220,7 @@
                       0.0051737290386133505, -0.05558993357313269, 0.5, 0
                     ],
                     "type": "bezier",
-                    "value": 0.3500000000000001
+                    "value": 0.06
                   },
                   {
                     "id": "lgBAcCl1AJ",
@@ -309,12 +317,20 @@
                     "value": 2.4520800000000054
                   },
                   {
+                    "id": "pXU6MQvZdf",
+                    "position": 10.533,
+                    "connectedRight": true,
+                    "handles": [0.5, 1, 0.5, 0],
+                    "type": "bezier",
+                    "value": -0.7979725481290987
+                  },
+                  {
                     "id": "LVEUT0UETm",
                     "position": 11,
                     "connectedRight": true,
                     "handles": [0.5, 1, 0.5, 0],
                     "type": "bezier",
-                    "value": -0.6129435786921715
+                    "value": -0.7928839676487602
                   },
                   {
                     "id": "cu7Awtf65w",
@@ -392,6 +408,7 @@
   },
   "definitionVersion": "0.4.0",
   "revisionHistory": [
+    "4zdtKEwpMbbs7PCg",
     "fgAYeYrs4n44y1Uc",
     "M2MTo7m67EPmMySS",
     "RBCbMXKNnbstiLf_",

@@ -6,7 +6,7 @@ import robowar from "../../src/assets/Events/robowar.png";
 import stockmarket from "../../src/assets/Events/stockmarket.png";
 import armaggedon from "../../src/assets/Events/armaggedon.png";
 import coding from "../../src/assets/Events/coding.png";
-import sharktank from "../../src/assets/Events/sharktank.png";
+// import sharktank from "../../src/assets/Events/sharktank.png";
 import innovation from "../../src/assets/Events/innovation.png";
 import mobileHeading from "../../src/assets/Events/mobileheader.png";
 import imgBorder from "../../src/assets/Events/imgborder.png";
@@ -41,13 +41,6 @@ const Events = () => {
       description:
         "Gamers battle out on the virtual battlefield, showing skills and determination reigns supreme",
       club: "Gaming Club",
-    },
-    {
-      name: "SHARK TANK CONCLAVE",
-      image: sharktank,
-      description:
-        "The Shark Tank Conclave is a platform for entrepreneurs to pitch ideas to investors, fostering innovation and funding opportunities.",
-      club: "N/A",
     },
     {
       name: "INTERNATIONAL CODING LEAGUE",
