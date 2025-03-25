@@ -1,53 +1,35 @@
-.overlay {
+.btnWrapper {
+  transition: opacity 300ms linear;
+}
+
+.overlayContainer {
   z-index: 9;
   width: 100vw;
-  height: 100vh;
+  height: 100lvh;
   position: fixed;
-  left: 0;
-  right: 0;
   transition: opacity 300ms linear;
+  top: 0;
+  left: 0;
 
-  .backBtn {
-    background-color: transparent;
-    border: none;
-    position: fixed;
-    z-index: 12;
-    top: 1rem;
-    left: 1rem;
-    height: 90px;
-    cursor: pointer;
-
-    img {
-      height: 100%;
-    }
-
-    @media (width < 660px) {
-      // top: 0.5rem;
-      left: 0.5rem;
-      height: 80px;
-    }
-
-    @media (width < 600px) {
-      top: 1.25rem;
-      left: 0.5rem;
-      height: 60px;
-    }
-
-    @media (width < 430px) {
-      left: 0.25rem;
-    }
-
-    @media (width < 400px) {
-      height: 50px;
-      top: 1.25rem;
-    }
-  }
-
-  .overlayContainer {
-    width: 100vw;
-    height: 100lvh;
-    position: fixed;
-    top: 0;
-    left: 0;
+  &.speakerContainer {
+    overflow: scroll;
+    display: flex;
+    align-items: center;
   }
 }
+
+.speakerContainer::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.speakerContainer {
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.speakerContainer::-webkit-scrollbar-thumb {
+  display: none;
+}
+
+

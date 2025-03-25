@@ -22,6 +22,7 @@
     "formik": "^2.4.6",
     "framer-motion": "^12.4.11",
     "gsap": "^3.12.7",
+    "lamina": "^1.1.23",
     "leva": "^0.9.35",
     "postprocessing": "^6.36.6",
     "r3f-perf": "^7.2.3",
