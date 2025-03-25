@@ -1,15 +1,12 @@
-import { Float, PerspectiveCamera, Text, useScroll } from "@react-three/drei";
+import { Float, PerspectiveCamera, useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
-// import { Group } from "three";
-// import { Airplane } from "./Airplane";
 import { Background } from "./Background";
-// import { Cloud } from "./Cloud";
 import { VideoPlayer } from "./VideoPlayer";
 
-import { OrbitControls } from "@react-three/drei";
-import { Html } from "@react-three/drei";
+// import { OrbitControls } from "@react-three/drei";
+// import { Html } from "@react-three/drei";
 
 import abhay from "/videos/abhay.mp4";
 import vijender from "/videos/vijender.mp4";
@@ -17,11 +14,8 @@ import akbar from "/videos/akbar.mp4";
 import elenla from "/videos/elenla.mp4";
 import shivshankar from "/videos/shivshankar.mp4";
 
-// const LINE_NB_POINTS = 400;
 const CURVE_DISTANCE = 50;
 const CURVE_AHEAD_CAMERA = 0.008;
-// const CURVE_AHEAD_AIRPLANE = 0.02;
-// const AIRPLANE_MAX_ANGLE = 35;
 
 export const SpeakerExperience = () => {
   const curve = useMemo(() => {
@@ -76,48 +70,8 @@ export const SpeakerExperience = () => {
     cameraGroup.current.lookAt(
       cameraGroup.current.position.clone().add(lookAt)
     );
-
-    // Airplane rotation
-
-    //   const tangent = curve.getTangent(scrollOffset + CURVE_AHEAD_AIRPLANE);
-
-    //   const nonLerpLookAt = new Group();
-    //   nonLerpLookAt.position.copy(curPoint);
-    //   nonLerpLookAt.lookAt(nonLerpLookAt.position.clone().add(targetLookAt));
-
-    //   tangent.applyAxisAngle(
-    //     new THREE.Vector3(0, 1, 0),
-    //     -nonLerpLookAt.rotation.y
-    //   );
-
-    //   let angle = Math.atan2(-tangent.z, tangent.x);
-    //   angle = -Math.PI / 2 + angle;
-
-    //   let angleDegrees = (angle * 180) / Math.PI;
-    //   angleDegrees *= 2.4; // stronger angle
-
-    //   // LIMIT PLANE ANGLE
-    //   if (angleDegrees < 0) {
-    //     angleDegrees = Math.max(angleDegrees, -AIRPLANE_MAX_ANGLE);
-    //   }
-    //   if (angleDegrees > 0) {
-    //     angleDegrees = Math.min(angleDegrees, AIRPLANE_MAX_ANGLE);
-    //   }
-
-    //   // SET BACK ANGLE
-    //   angle = (angleDegrees * Math.PI) / 180;
-
-    //   const targetAirplaneQuaternion = new THREE.Quaternion().setFromEuler(
-    //     new THREE.Euler(
-    //       airplane.current.rotation.x,
-    //       airplane.current.rotation.y,
-    //       angle
-    //     )
-    //   );
-    //   airplane.current.quaternion.slerp(targetAirplaneQuaternion, delta * 2);
   });
 
-  // const airplane = useRef();
 
   return (
     <>
