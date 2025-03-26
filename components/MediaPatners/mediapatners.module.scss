@@ -16,7 +16,7 @@
       display: flex;
       justify-content: center;
       position: fixed;
-      right: 3rem;
+      right: 1.5rem;
       cursor: -webkit-grab;
     }
   
@@ -108,7 +108,7 @@
       flex-direction: column;
       height: calc(100% - 200px);
       width: 1500px;
-      max-width: 100%;
+      max-width: 85%;
       align-items: center;
       justify-items: center;
       gap: 50px;
@@ -130,6 +130,9 @@
 
       @media screen and (max-width: 768px) {
         height: calc(100% - 140px);
+        max-width: 100%;
+
+
       }
       @media screen and (max-width: 450px) {
         height: calc(100% - 115px);
