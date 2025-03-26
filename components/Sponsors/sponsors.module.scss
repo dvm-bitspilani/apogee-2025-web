@@ -8,6 +8,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    a{
+      text-decoration: none;
+    }
   
     .backgroundImage {
       position: fixed;
@@ -60,7 +63,7 @@
       bottom: 0;
       display: flex;
       flex-direction: column;
-      height: calc(100% - 180px);
+      height: calc(100% - 200px);
       width: 1500px;
       max-width: 100%;
       align-items: center;
@@ -75,6 +78,13 @@
       &::-webkit-scrollbar {
         display: none; 
       }
+
+      @media screen and (max-width: 768px) {
+        height: calc(100% - 140px);
+      }
+      @media screen and (max-width: 450px) {
+        height: calc(100% - 115px);
+      }
       .titleSponsor{
         display: flex;
         flex-direction: column;
@@ -88,7 +98,7 @@
           font-size: 28px;
         }
         .head{ 
-          font-size: 24px;
+          font-size: 32px;
         }
         @media (max-width: 650px) {
           img{
@@ -98,26 +108,7 @@
             font-size: 24px;
           }
           .head{
-            font-size: 24px;
-          }
-        }
-      }
-      .associateSponsorsDiv{
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        .associateSponsors{
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          img{
-            width: 400px;
-          }
-          .sponsName{
-            font-size: 24px;
-          }
-          .head{
-            font-size: 24px;
+            font-size: 28px;
           }
         }
       }
@@ -147,11 +138,11 @@
           font-size: 24px;
         }
         .head{
-          font-size: 24px;
-          height: 48px;
+          font-size: 26px;
+          height: 64px;
         }
         @media (max-width: 650px) {
-          width: 100%;
+          width: 100svw;
           img{
             height: 80px;
             max-width: 90%;
@@ -162,7 +153,8 @@
             font-size: 20px;
           }
           .head{
-            font-size: 20px;
+            height: 50px;
+            font-size: 24px;
           }
           
         }
@@ -184,12 +176,7 @@
         text-align: center;
       }
   
-      @media screen and (max-width: 768px) {
-        height: calc(100vh - 130px);
-      }
-      @media screen and (max-width: 768px) {
-        height: calc(100vh - 110px);
-      }
+      
     }
   }
   
