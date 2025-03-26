@@ -311,9 +311,8 @@ const Sponsors = () => {
           {sponsors.otherSponsers.map((sponsor, index) => (
             <a href={sponsor.link} target="_blank" rel="noreferrer">
               <div key={index} className={styles.otherSponsor}>
-                {sponsor.head != "" && (
-                  <div className={styles.head}>{sponsor.head}</div>
-                )}
+                <div className={styles.head}>{sponsor.head}</div>
+
                 <div
                   className={`${styles.otherSponsImage} ${styles.sponsImage}`}
                 >
