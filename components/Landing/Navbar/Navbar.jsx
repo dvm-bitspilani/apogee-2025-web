@@ -89,7 +89,17 @@ export default function Navbar() {
           ></img>
         </Link>
       </div>
-      <div className={styles.logoContainer}>
+      <div
+        className={styles.logoContainer}
+        style={
+          curStage === "landing" && isPointerEventsAllowed
+            ? {
+                opacity: 1,
+                pointerEvents: "auto",
+              }
+            : { opacity: 0, pointerEvents: "none" }
+        }
+      >
         <Logo />
       </div>
       <div
