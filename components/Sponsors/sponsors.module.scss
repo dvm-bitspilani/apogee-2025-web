@@ -39,6 +39,12 @@
       box-shadow: 0px 0px 12px 0px #AF947866;
     }
 
+    @media screen and (max-width: 768px) {
+      .scrollBarContainer {
+        display: none;
+      }
+    }
+
     a{
       text-decoration: none;
     }

@@ -237,7 +237,7 @@ const MediaPatners = () => {
   };
 
   return (
-    <div className={styles.Wrapper} ref={mainContainerRef}>
+    <div className={styles.Wrapper}>
       {/* <div className={styles.buttonWrapper}>
         <BackButton />
       </div> */}
@@ -247,7 +247,7 @@ const MediaPatners = () => {
         <img src={background} alt="background image" />
       </div>
 
-      {/* <div className={styles.scrollBarContainer} onClick={handleTrackSnap}>
+      <div className={styles.scrollBarContainer} onClick={handleTrackSnap}>
         <div className={styles.scrollBar}></div>
         <img
           draggable={false}
@@ -258,11 +258,11 @@ const MediaPatners = () => {
           alt="wheel"
           ref={wheelRef}
         />
-      </div> */}
+      </div>
       <div className={styles.heading}>
         <img src={heading} alt="heading" />
       </div>
-      <div className={styles.mediaPatners}>
+      <div className={styles.mediaPatners} ref={mainContainerRef}>
         <div className={styles.otherMediaPatners}>
           {mediaPatners.map((mediaPatner, index) => (
             <a href={mediaPatner.link} target="_blank" rel="noreferrer">

@@ -272,7 +272,7 @@ const Sponsors = () => {
   };
 
   return (
-    <div className={styles.Wrapper} ref={mainContainerRef}>
+    <div className={styles.Wrapper}>
       {/* <div className={styles.buttonWrapper}>
         <BackButton />
       </div> */}
@@ -282,7 +282,7 @@ const Sponsors = () => {
         <img src={background} alt="background image" />
       </div>
 
-      {/* <div className={styles.scrollBarContainer} onClick={handleTrackSnap}>
+      <div className={styles.scrollBarContainer} onClick={handleTrackSnap}>
         <div className={styles.scrollBar}></div>
         <img
           draggable={false}
@@ -293,12 +293,12 @@ const Sponsors = () => {
           alt="wheel"
           ref={wheelRef}
         />
-      </div> */}
+      </div>
 
       <div className={styles.heading}>
         <img src={heading} alt="heading" />
       </div>
-      <div className={styles.sponsors}>
+      <div className={styles.sponsors} ref={mainContainerRef}>
         <a href={sponsors.title.link} target="_blank" rel="noreferrer">
           <div className={styles.titleSponsor}>
             <div className={styles.head}>{sponsors.title.head}</div>
