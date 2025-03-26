@@ -104,10 +104,10 @@ export const SpeakerExperience = () => {
         position={[-84, -0.6, -40]}
         rotation={[0, Math.PI / -10, 0]}
       >
-        <VideoPlayer videoSrc={akbar} />
+        <VideoPlayer videoSrc={abhay} />
       </group>
 
-      <group
+      {/* <group
         scale={1.6}
         position={[-64.5, -0.6, -70]}
         rotation={[0, Math.PI / -6, 0]}
@@ -129,7 +129,7 @@ export const SpeakerExperience = () => {
         rotation={[0, Math.PI / -5, 0]}
       >
         <VideoPlayer videoSrc={akbar} />
-      </group>
+      </group> */}
 
       {/* LINE */}
       {/* <group position-y={-2}>
