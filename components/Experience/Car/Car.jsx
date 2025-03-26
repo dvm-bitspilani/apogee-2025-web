@@ -10,6 +10,7 @@ import React, { useRef } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { useNavigate } from "react-router";
 
 const POSITIONS = [
   { x: -0.615, z: 0.413 },
@@ -138,8 +139,17 @@ export function Car(props) {
     { dependencies: [group] }
   );
 
+  const navigate = useNavigate();
+
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group
+      ref={group}
+      {...props}
+      dispose={null}
+      onClick={() => {
+        navigate("/car");
+      }}
+    >
       <group name="Sketchfab_Scene">
         <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
           <group name="root">
