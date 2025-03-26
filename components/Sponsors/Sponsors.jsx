@@ -32,6 +32,7 @@ import regWrapper from "../../src/assets/Register/regWrapper.png";
 import wheel from "../../src/assets/Register/wheel.svg";
 
 import regBackground from "../../src/assets/Register/regBackground.png";
+import Preloader from "./Preloader/Preloader";
 
 const sponsors = {
   title: {
@@ -271,30 +272,33 @@ const Sponsors = () => {
   };
 
   return (
-    <div className={styles.Wrapper} ref={mainContainerRef}>
+    <div className={styles.Wrapper}>
       {/* <div className={styles.buttonWrapper}>
         <BackButton />
       </div> */}
+      {showPreloader && <Preloader />}
+
       <div className={styles.backgroundImage}>
         <img src={background} alt="background image" />
+      </div>
+
+      <div className={styles.scrollBarContainer} onClick={handleTrackSnap}>
+        <div className={styles.scrollBar}></div>
+        <img
+          draggable={false}
+          onMouseDown={handlewheelMouseDown}
+          onTouchStart={handlewheelMouseDown}
+          id="wheel"
+          src={wheel}
+          alt="wheel"
+          ref={wheelRef}
+        />
       </div>
 
       <div className={styles.heading}>
         <img src={heading} alt="heading" />
       </div>
-      <div className={styles.sponsors}>
-        {/* <div className={styles.scrollBarContainer} onClick={handleTrackSnap}>
-          <div className={styles.scrollBar}></div>
-          <img
-            draggable={false}
-            onMouseDown={handlewheelMouseDown}
-            onTouchStart={handlewheelMouseDown}
-            id="wheel"
-            src={wheel}
-            alt="wheel"
-            ref={wheelRef}
-          />
-        </div> */}
+      <div className={styles.sponsors} ref={mainContainerRef}>
         <a href={sponsors.title.link} target="_blank" rel="noreferrer">
           <div className={styles.titleSponsor}>
             <div className={styles.head}>{sponsors.title.head}</div>
