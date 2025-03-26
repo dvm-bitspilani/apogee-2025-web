@@ -309,9 +309,17 @@ const Sponsors = () => {
 
         <div className={styles.otherSponsors}>
           {sponsors.otherSponsers.map((sponsor, index) => (
-            <a href={sponsor.link} target="_blank" rel="noreferrer">
-              <div key={index} className={styles.otherSponsor}>
-                <div className={styles.head}>{sponsor.head}</div>
+            <a href={sponsor.link} target="_blank" rel="noreferrer" key={index}>
+              <div className={styles.otherSponsor}>
+                <div
+                  className={
+                    sponsor.head
+                      ? styles.head
+                      : `${styles.head} ${styles.other}`
+                  }
+                >
+                  {sponsor.head}
+                </div>
 
                 <div
                   className={`${styles.otherSponsImage} ${styles.sponsImage}`}
