@@ -267,6 +267,10 @@
         position: absolute;
         top: 7%;
         left: 77%;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
       .articles {
         position: absolute;
@@ -287,6 +291,10 @@
         position: absolute;
         top: 71%;
         left: 35%;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
       // .main {
       //   transform: scale(0.7);

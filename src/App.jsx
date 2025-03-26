@@ -31,7 +31,7 @@ function App() {
       </Route>
       <Route path="/speakers" element={<Speakers />} />
       <Route path="/sponsors" element={<Sponsors />} />
-      <Route path="/mediapatners" element={<MediaPatners />} />
+      <Route path="/media" element={<MediaPatners />} />
     </Routes>
   );
 }
