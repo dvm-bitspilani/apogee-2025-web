@@ -10,9 +10,9 @@ import { VideoPlayer } from "./VideoPlayer";
 
 import abhay from "/videos/abhay.mp4";
 import vijender from "/videos/vijender.mp4";
-import akbar from "/videos/akbar.mp4";
-import elenla from "/videos/elenla.mp4";
-import shivshankar from "/videos/shivshankar.mp4";
+import anantha from "/videos/anantha.mp4";
+import patnaik from "/videos/patnaik.mp4";
+// import shivshankar from "/videos/shivshankar.mp4";
 
 const CURVE_DISTANCE = 50;
 const CURVE_AHEAD_CAMERA = 0.008;
@@ -107,12 +107,12 @@ export const SpeakerExperience = () => {
         <VideoPlayer videoSrc={abhay} />
       </group>
 
-      {/* <group
+      <group
         scale={1.6}
         position={[-64.5, -0.6, -70]}
         rotation={[0, Math.PI / -6, 0]}
       >
-        <VideoPlayer videoSrc={elenla} />
+        <VideoPlayer videoSrc={patnaik} />
       </group>
 
       <group
@@ -120,15 +120,15 @@ export const SpeakerExperience = () => {
         position={[-43, -0.8, -100]}
         rotation={[0, Math.PI / -6, 0]}
       >
-        <VideoPlayer videoSrc={shivshankar} />
+        <VideoPlayer videoSrc={anantha} />
       </group>
 
-      <group
+      {/* <group
         scale={1.85}
         position={[-4, -0.8, -155]}
         rotation={[0, Math.PI / -5, 0]}
       >
-        <VideoPlayer videoSrc={akbar} />
+        <VideoPlayer videoSrc={anantha} />
       </group> */}
 
       {/* LINE */}
