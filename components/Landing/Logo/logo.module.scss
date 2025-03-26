@@ -1,0 +1,13 @@
+.logoContainer {
+    height: 80px;
+    width: auto;
+
+    @media screen and (max-width: 1000px) {
+        height: 60px;
+    }
+
+    img {
+        height: 100%;
+        width: 100%;
+    }
+}

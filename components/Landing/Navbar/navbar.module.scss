@@ -159,6 +159,21 @@
   }
 }
 
+.logoContainer {
+  position: fixed;
+  z-index: 2;
+  top: 1.3rem;
+  left: 2rem;
+
+  @media screen and (max-width: 1000px) {
+    top: 2.2rem;
+}
+
+  @media screen and (max-width: 840px) {
+    display: none;
+  }
+}
+
 .countdownContainer {
   position: fixed;
   z-index: 2;
