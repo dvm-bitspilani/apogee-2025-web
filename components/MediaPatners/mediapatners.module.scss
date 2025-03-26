@@ -54,7 +54,7 @@
       }
     } 
   
-    .MediaPatners {
+    .mediaPatners {
       align-self: center;
       box-sizing: border-box;
       position: fixed;
@@ -63,7 +63,7 @@
       bottom: 0;
       display: flex;
       flex-direction: column;
-      height: calc(100% - 180px);
+      height: calc(100% - 200px);
       width: 1500px;
       max-width: 100%;
       align-items: center;
@@ -78,7 +78,19 @@
       &::-webkit-scrollbar {
         display: none; 
       }
-      .
+
+      @media screen and (max-width: 925px) {
+        .other{
+          display: none;
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        height: calc(100% - 140px);
+      }
+      @media screen and (max-width: 450px) {
+        height: calc(100% - 115px);
+      }
 
       .otherMediaPatners{
         display: flex;
@@ -88,7 +100,7 @@
         gap: 45px;
         box-sizing: border-box;
         
-        .otherSponsor{
+        .mediaPatner{
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -96,38 +108,43 @@
          gap: 15px;
          box-sizing: border-box;
          padding: 10px;
+         .mediaPatner{
+          display: flex;
+          justify-content: center;
+         }
         img{  
           height: 100px;
           max-width: 100%;
             object-fit: contain;
             object-position: center;
         }
-        .sponsName{
+        .patnersName{
           font-size: 24px;
         }
         .head{
-          font-size: 24px;
-          height: 48px;
+          font-size: 26px;
+          height: 64px;
         }
         @media (max-width: 650px) {
-          width: 100%;
+          width: 300px;
+          max-width: 100%;
           img{
             height: 80px;
             max-width: 90%;
             object-fit: contain;
             object-position: center;
           }
-          .sponsName{
+          .patnersName{
             font-size: 20px;
           }
           .head{
-            font-size: 20px;
+            font-size: 24px;
           }
           
         }
       }
       }
-      .sponsName{
+      .patnersName{
         color: white;
         font-family: "Artifika";
         font-weight: 400;
@@ -142,13 +159,7 @@
         font-weight:600;
         text-align: center;
       }
-  
-      @media screen and (max-width: 768px) {
-        height: calc(100vh - 130px);
-      }
-      @media screen and (max-width: 768px) {
-        height: calc(100vh - 110px);
-      }
+
     }
   }
   
