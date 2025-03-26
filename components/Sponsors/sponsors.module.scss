@@ -11,6 +11,34 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    .scrollBarContainer {
+      height: 80vh;
+      width: 10%;
+      margin: 10vh 0;
+      display: flex;
+      justify-content: center;
+      position: fixed;
+      right: 3rem;
+      cursor: -webkit-grab;
+    }
+  
+    .scrollBarContainer img {
+      position: absolute;
+      transform: translateY(-50%);
+      height: 110px;
+    }
+  
+    .scrollBar {
+      background: #E6C189;
+      width: 4px;
+      stroke-width: 7px;
+      stroke: #7B6A69;
+      border-radius: 5px;
+      filter: drop-shadow(0px 0px 8px rgba(175, 148, 120, 0.40));
+      box-shadow: 0px 0px 12px 0px #AF947866;
+    }
+
     a{
       text-decoration: none;
     }
@@ -131,6 +159,10 @@
          gap: 15px;
          box-sizing: border-box;
          padding: 10px;
+         .sponsImage{
+          display: flex;
+          justify-content: center;
+         }
         img{  
           height: 100px;
           max-width: 100%;
