@@ -1,5 +1,8 @@
 @use "../../src/global.scss" as *;
 
+*{
+  box-sizing: border-box;
+}
 .Wrapper {
     height: 100%;
     width: 100%;
@@ -142,7 +145,8 @@
           height: 64px;
         }
         @media (max-width: 650px) {
-          width: 100svw;
+          width: 300px;
+          max-width: 100%;
           img{
             height: 80px;
             max-width: 90%;
