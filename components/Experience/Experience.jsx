@@ -326,16 +326,16 @@ export default function Experience() {
     };
   }, [animationStage, isUserUnfocusAtPreloader]);
 
-  const { positionFinder } = useControls({
-    positionFinder: {
-      // value: [-0.7190000000000004, 0.11800000000000008, -0.663], // contact
-      // value: [0.9610000000000005, 0.07800000000000007, -0.653], // events
-      // value: [1.121, 0.068, -0.703], // events 2
-      // value: [-0.8790000000000006, 0.68, 0.7170000000000004], // speakers
-      // value: [0.9, 0.05999999999999972, 0.7970000000000005], // about
-      step: 0.01,
-    },
-  });
+  // const { positionFinder } = useControls({
+  //   positionFinder: {
+  //     // value: [-0.7190000000000004, 0.11800000000000008, -0.663], // contact
+  //     // value: [0.9610000000000005, 0.07800000000000007, -0.653], // events
+  //     value: [1.121, 0.068, -0.703], // events 2
+  //     // value: [-0.8790000000000006, 0.68, 0.7170000000000004], // speakers
+  //     // value: [0.9, 0.05999999999999972, 0.7970000000000005], // about
+  //     step: 0.01,
+  //   },
+  // });
 
   // const { trainPos, trainScale, trainRot } = useControls({
   //   trainPos: [-0.02099999999999999, -0.06700000000000003, 1.3379999999999956],
