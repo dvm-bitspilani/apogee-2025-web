@@ -9,6 +9,7 @@ import linkedin from "../../../src/assets/Landing/linkedin.png";
 import twitter from "../../../src/assets/Landing/xicon.png";
 import countdownBg from "../../../src/assets/Landing/countdownBg.png";
 import Countdown from "../Countdown/Countdown";
+import Logo from "../Logo/Logo";
 
 export default function Navbar() {
   const curStage = useSelector((state) => state.experienceAnimations.curStage);
@@ -87,6 +88,19 @@ export default function Navbar() {
             src={regbtnLanding}
           ></img>
         </Link>
+      </div>
+      <div
+        className={styles.logoContainer}
+        style={
+          curStage === "landing" && isPointerEventsAllowed
+            ? {
+                opacity: 1,
+                pointerEvents: "auto",
+              }
+            : { opacity: 0, pointerEvents: "none" }
+        }
+      >
+        <Logo />
       </div>
       <div
         className={styles.countdownContainer}

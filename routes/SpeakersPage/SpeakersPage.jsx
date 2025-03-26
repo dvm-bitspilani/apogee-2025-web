@@ -42,9 +42,11 @@ export default function SpeakersPage() {
         <img src={heading} alt="Speakers" />
       </div>
       <div className={styles.Videocontainer}>
-        <SpeakerVideo speakerName="akbar" />
-        <SpeakerVideo speakerName="elenla" />
-        <SpeakerVideo speakerName="shivshankar" />
+        <SpeakerVideo speakerName="vijender" />
+        <SpeakerVideo speakerName="abhay" />
+        <SpeakerVideo speakerName="patnaik" />
+        <SpeakerVideo speakerName="anantha" />
+        {/* <SpeakerVideo speakerName="shivshankar" /> */}
       </div>
     </div>
   );

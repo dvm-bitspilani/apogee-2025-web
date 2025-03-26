@@ -114,7 +114,7 @@ export default function Experience() {
   useGSAP(
     () => {
       const timeline = gsap.timeline();
-      console.log(orb.current);
+      // console.log(orb.current);
 
       timeline
         .fromTo(
