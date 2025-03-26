@@ -17,7 +17,7 @@ import eclipseMedia from "../../src/assets/MediaPatners/PatnersLogo/eclipemedia.
 import amarUjala from "../../src/assets/MediaPatners/PatnersLogo/amarujala.png";
 import globalHues from "../../src/assets/MediaPatners/PatnersLogo/globalhues.png";
 import fluxusIITIndore from "../../src/assets/MediaPatners/PatnersLogo/fluxusiitindore.png";
-// import BackButton from "./BackButton/BackButton";
+import BackButton from "./BackButton/BackButton";
 
 import { useRef, useEffect, useState } from "react";
 import regWrapper from "../../src/assets/Register/regWrapper.png";
@@ -238,9 +238,9 @@ const MediaPatners = () => {
 
   return (
     <div className={styles.Wrapper}>
-      {/* <div className={styles.buttonWrapper}>
+      <div className={styles.buttonWrapper}>
         <BackButton />
-      </div> */}
+      </div>
       {showPreloader && <Preloader />}
 
       <div className={styles.backgroundImage}>

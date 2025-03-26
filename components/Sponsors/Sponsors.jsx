@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./sponsors.module.scss";
 import background from "../../src/assets/Sponsors/sponz.png";
 import heading from "../../src/assets/Sponsors/heading.png";
-// import BackButton from "./BackButton/BackButton";
+import BackButton from "./BackButton/BackButton";
 
 import micronSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/micron.png";
 import arcesiumSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/arcesium.jpg";
@@ -273,9 +273,9 @@ const Sponsors = () => {
 
   return (
     <div className={styles.Wrapper}>
-      {/* <div className={styles.buttonWrapper}>
+      <div className={styles.buttonWrapper}>
         <BackButton />
-      </div> */}
+      </div>
       {showPreloader && <Preloader />}
 
       <div className={styles.backgroundImage}>

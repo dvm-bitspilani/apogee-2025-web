@@ -38,6 +38,12 @@
       filter: drop-shadow(0px 0px 8px rgba(175, 148, 120, 0.40));
       box-shadow: 0px 0px 12px 0px #AF947866;
     }
+    .buttonWrapper {
+      position: fixed;
+      z-index: 3;
+      top: 1.2rem;
+      left: 1.2rem;
+    }
 
     @media screen and (max-width: 768px) {
       .scrollBarContainer {
@@ -77,7 +83,7 @@
       align-items: center;
       width: 100%;
       img{
-        height: 180px;
+        height: 150px;
       }
       @media screen and (max-width: 768px) {
         img{
@@ -100,7 +106,7 @@
       bottom: 0;
       display: flex;
       flex-direction: column;
-      height: calc(100% - 200px);
+      height: calc(100% - 170px);
       width: 1500px;
       max-width: 100%;
       align-items: center;
