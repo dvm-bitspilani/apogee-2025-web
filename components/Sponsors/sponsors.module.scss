@@ -190,11 +190,13 @@
             object-position: center;
         }
         .sponsName{
-          font-size: 24px;
+          font-size: 22px;
         }
         .head{
           font-size: 26px;
           height: 64px;
+          color: #EDBE6B;
+          cursor: default;
         }
         @media (max-width: 650px) {
           width: 300px;
@@ -225,10 +227,10 @@
         text-align: center;
       }
       .head{
-        color: white;
+        color: #EDBE6B;
         font-family: "Artifika";
         font-family: "OldNewspaperTypes";
-        font-weight:600;
+        font-weight:700;
         text-align: center;
       }
   
