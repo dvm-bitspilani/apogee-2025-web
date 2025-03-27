@@ -42,6 +42,12 @@
       filter: drop-shadow(0px 0px 8px rgba(175, 148, 120, 0.40));
       box-shadow: 0px 0px 12px 0px #AF947866;
     }
+    .buttonWrapper {
+      position: fixed;
+      z-index: 3;
+      top: 1.2rem;
+      left: 1.2rem;
+    }
 
     @media screen and (max-width: 768px) {
       .scrollBarContainer {
@@ -87,13 +93,13 @@
       
       @media screen and (max-width: 900px) {
         img{
-          height: 120px;
+          height: 100px;
           transform: translateY( -5px);
         }
       }
       @media screen and (max-width: 500px) {
         img{
-          height: 105px;
+          height: 90px;
           transform: translateY( -2px);
         }
       }
@@ -110,7 +116,7 @@
       flex-direction: column;
       height: calc(100% - 170px);
       width: 1500px;
-      max-width: 100%;
+      max-width: 90%;
       align-items: center;
       justify-items: center;
       gap: 50px;
@@ -124,6 +130,10 @@
         display: none; 
       }
 
+      @media screen and (max-width: 768px) {
+        max-width: 100%;
+      }
+
       @media screen and (max-width: 925px) {
         .other{
           display: none;
@@ -131,10 +141,10 @@
       }
 
       @media screen and (max-width: 900px) {
-        height: calc(100% - 140px);
+        height: calc(100% - 120px);
       }
       @media screen and (max-width: 450px) {
-        height: calc(100% - 115px);
+        height: calc(100% - 100px);
       }
       .titleSponsor{
         display: flex;

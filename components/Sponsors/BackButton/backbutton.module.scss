@@ -1,0 +1,49 @@
+.backBtn {
+    height: 84px;
+    width: 84px;
+    cursor: pointer;
+    // display: none;
+
+    img {
+        height: 100%;
+    }
+}
+
+.mobilebackBtn {
+    display: none;
+}
+
+@media (max-width: 980px) {
+    .backBtn {
+        height: 64px;
+        width: 64px;
+    }
+
+    .mobilebackBtn {
+        display: none;
+        height: 30px;
+        cursor: pointer;
+
+        img {
+
+            height: 100%;
+        }
+    }
+}
+
+@media (max-width: 460px) {
+    .backBtn {
+        display: none;
+    }
+
+    .mobilebackBtn {
+        display: block;
+        height: 30px;
+        width: 30px;
+        border-radius: 100px;
+        background-color: white;
+        img{
+            width: 30px;
+        }
+    }
+}

@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./sponsors.module.scss";
 import background from "../../src/assets/Sponsors/sponz.png";
 import heading from "../../src/assets/Sponsors/heading.png";
-// import BackButton from "./BackButton/BackButton";
+import BackButton from "./BackButton/BackButton";
 
 import micronSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/micron.png";
 import arcesiumSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/arcesium.jpg";
@@ -161,7 +161,7 @@ const Sponsors = () => {
   const mainContainerRef = useRef(null);
 
   useEffect(() => {
-    const imageUrls = [regWrapper, wheel, regBackground];
+    const imageUrls = [regWrapper, wheel, regBackground, background, heading, ...sponsors.otherSponsers.map(sponsor => sponsor.img), sponsors.title.img];
     let loadedCount = 0;
     imageUrls.forEach((src) => {
       const img = new Image();
@@ -272,11 +272,18 @@ const Sponsors = () => {
   };
 
   return (
-    <div className={styles.Wrapper}>
-      {/* <div className={styles.buttonWrapper}>
-        <BackButton />
-      </div> */}
+    <>
       {showPreloader && <Preloader />}
+      <div
+        className={styles.Wrapper}
+        style={{
+          opacity: showPreloader ? 0 : 1,
+          transition: "opacity 0.8s ease-in-out",
+        }}
+      >
+      <div className={styles.buttonWrapper}>
+        <BackButton />
+      </div>
 
       <div className={styles.backgroundImage}>
         <img src={background} alt="background image" />
@@ -353,7 +360,8 @@ const Sponsors = () => {
           ))}
         </div>
       </div>
-    </div>
+      </div>
+      </>
   );
 };
 
