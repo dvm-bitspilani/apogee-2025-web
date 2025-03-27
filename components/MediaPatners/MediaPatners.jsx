@@ -260,18 +260,27 @@ const MediaPatners = () => {
         />
       </div>
       <div className={styles.heading}>
-        <img src={heading} alt="heading" draggable={false}/>
+        <img src={heading} alt="heading" draggable={false} />
       </div>
       <div className={styles.mediaPatners} ref={mainContainerRef}>
         <div className={styles.otherMediaPatners}>
           {mediaPatners.map((mediaPatner, index) => (
-            <a href={mediaPatner.link} target="_blank" rel="noreferrer" draggable={false}>
+            <a
+              href={mediaPatner.link}
+              target="_blank"
+              rel="noreferrer"
+              draggable={false}
+            >
               <div key={index} className={styles.mediaPatner}>
                 {mediaPatner.head != "" && (
                   <div className={styles.head}>{mediaPatner.head}</div>
                 )}
                 <div className={styles.patnersImage}>
-                  <img src={mediaPatner.img} alt={mediaPatner.name} draggable={false}/>
+                  <img
+                    src={mediaPatner.img}
+                    alt={mediaPatner.name}
+                    draggable={false}
+                  />
                 </div>
                 <div className={styles.patnersName}>{mediaPatner.name}</div>
               </div>
