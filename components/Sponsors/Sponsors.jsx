@@ -1,8 +1,9 @@
 import React from "react";
 import styles from "./sponsors.module.scss";
-import background from "../../src/assets/Sponsors/sponz.png";
+import background from "../../src/assets/MediaPatners/background.png";
 import heading from "../../src/assets/Sponsors/heading.png";
-import BackButton from "./BackButton/BackButton";
+import OverlayBackBtn from "../Overlay/OverlayBackBtn/OverlayBackBtn";
+import { Link } from "react-router";
 
 import micronSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/micron.png";
 import arcesiumSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/arcesium.svg";
@@ -32,7 +33,7 @@ import regWrapper from "../../src/assets/Register/regWrapper.png";
 import wheel from "../../src/assets/Register/wheel.svg";
 
 import regBackground from "../../src/assets/Register/regBackground.png";
-import Preloader from "./Preloader/Preloader";
+import Preloader from "../Registration/Preloader/Preloader";
 
 const sponsors = {
   title: {
@@ -290,11 +291,13 @@ const Sponsors = () => {
         }}
       >
         <div className={styles.buttonWrapper}>
-          <BackButton />
+          <Link to={"/"}>
+            <OverlayBackBtn />
+          </Link>
         </div>
 
         <div className={styles.backgroundImage}>
-          <img src={background} alt="background image" />
+          <img src={background} alt="background image" draggable={false} />
         </div>
 
         <div className={styles.scrollBarContainer} onClick={handleTrackSnap}>
