@@ -19,6 +19,12 @@ import globalHues from "../../src/assets/MediaPatners/PatnersLogo/globalhues.png
 import fluxusIITIndore from "../../src/assets/MediaPatners/PatnersLogo/fluxusiitindore.png";
 // import BackButton from "./BackButton/BackButton";
 
+import { useRef, useEffect, useState } from "react";
+import regWrapper from "../../src/assets/Register/regWrapper.png";
+import wheel from "../../src/assets/Register/wheel.svg";
+import regBackground from "../../src/assets/Register/regBackground.png";
+import Preloader from "./Preloader/Preloader";
+
 let mediaPatners = [
   {
     head: "Official Media Partner",
@@ -113,27 +119,168 @@ let mediaPatners = [
 ];
 
 const MediaPatners = () => {
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [showPreloader, setShowPreloader] = useState(true);
+
+  const wheelRef = useRef(null);
+  const mainContainerRef = useRef(null);
+
+  useEffect(() => {
+    const imageUrls = [regWrapper, wheel, regBackground];
+    let loadedCount = 0;
+    imageUrls.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+      img.onload = () => {
+        loadedCount++;
+        if (loadedCount === imageUrls.length) {
+          setTimeout(() => {
+            setImagesLoaded(true);
+            setTimeout(() => {
+              setShowPreloader(false);
+            }, 0);
+          }, 0);
+        }
+      };
+      img.onerror = () => {
+        loadedCount++;
+        if (loadedCount === imageUrls.length) {
+          setImagesLoaded(true);
+        }
+      };
+    });
+  }, []);
+
+  function handleScroll(inp) {
+    // const maxScrollTopValue = mainContainerRef.current.scrollTopMax;
+    const maxScrollTopValue =
+      mainContainerRef.current.scrollHeight -
+      mainContainerRef.current.clientHeight;
+    // const percentage = (mainContainerRef.current.scrollTop / maxScrollTopValue )*100;
+    const percentage =
+      (mainContainerRef.current.scrollTop / maxScrollTopValue) * 100;
+    percentage > 100
+      ? (wheelRef.current.style.top = "100%")
+      : (wheelRef.current.style.top = `${percentage}%`);
+    // console.log(percentage);
+    // wheelRef.current.style.top = `${percentage}%`;
+    // wheelElem.style.top = `${percentage}%`;
+  }
+
+  useEffect(() => {
+    if (imagesLoaded) {
+      mainContainerRef.current.addEventListener("scroll", handleScroll);
+
+      return () => {
+        document.removeEventListener("scroll", handleScroll);
+      };
+    }
+  }, [imagesLoaded]);
+
+  const handlewheelMouseDown = (e) => {
+    e.preventDefault();
+
+    document.addEventListener("mousemove", handlewheelDragMove);
+    document.addEventListener("touchmove", handlewheelDragMove);
+
+    document.addEventListener("mouseup", handlewheelDragEnd);
+    document.addEventListener("touchend", handlewheelDragEnd);
+  };
+
+  const handlewheelDragMove = (e) => {
+    const mainWrapperElement = mainContainerRef.current;
+    const scrollBarContainer = document.querySelector(
+      `.${styles.scrollBarContainer}`
+    );
+
+    const maxScrollTopValue =
+      mainWrapperElement.scrollHeight - mainWrapperElement.clientHeight;
+
+    const clientY = e.clientY || e.touches[0].clientY;
+
+    const percentage =
+      ((clientY - scrollBarContainer.offsetTop) /
+        scrollBarContainer.clientHeight) *
+      100;
+
+    mainWrapperElement.scrollTop = (percentage / 100) * maxScrollTopValue;
+  };
+
+  const handlewheelDragEnd = (e) => {
+    document.removeEventListener("mousemove", handlewheelDragMove);
+    document.removeEventListener("mouseup", handlewheelDragEnd);
+    document.removeEventListener("touchmove", handlewheelDragMove);
+    document.removeEventListener("touchend", handlewheelDragEnd);
+  };
+
+  const handleTrackSnap = (e) => {
+    const mainWrapperElement = mainContainerRef.current;
+    const scrollBarContainer = document.querySelector(
+      `.${styles.scrollBarContainer}`
+    );
+    const percentage =
+      ((e.clientY - scrollBarContainer.offsetTop) /
+        scrollBarContainer.clientHeight) *
+      100;
+    const maxScrollTopValue =
+      mainWrapperElement.scrollHeight - mainWrapperElement.clientHeight;
+
+    mainWrapperElement.scrollTo({
+      // Smooth scroll to the percentage of the max scroll value
+      top: (percentage / 100) * maxScrollTopValue,
+      behavior: "smooth",
+    });
+  };
+
+  const handleLoginError = () => {
+    console.log("Login Failed");
+  };
+
   return (
     <div className={styles.Wrapper}>
       {/* <div className={styles.buttonWrapper}>
         <BackButton />
       </div> */}
+      {showPreloader && <Preloader />}
+
       <div className={styles.backgroundImage}>
         <img src={background} alt="background image" />
       </div>
-      <div className={styles.heading}>
-        <img src={heading} alt="heading" />
+
+      <div className={styles.scrollBarContainer} onClick={handleTrackSnap}>
+        <div className={styles.scrollBar}></div>
+        <img
+          draggable={false}
+          onMouseDown={handlewheelMouseDown}
+          onTouchStart={handlewheelMouseDown}
+          id="wheel"
+          src={wheel}
+          alt="wheel"
+          ref={wheelRef}
+        />
       </div>
-      <div className={styles.mediaPatners}>
+      <div className={styles.heading}>
+        <img src={heading} alt="heading" draggable={false} />
+      </div>
+      <div className={styles.mediaPatners} ref={mainContainerRef}>
         <div className={styles.otherMediaPatners}>
           {mediaPatners.map((mediaPatner, index) => (
-            <a href={mediaPatner.link} target="_blank" rel="noreferrer">
+            <a
+              href={mediaPatner.link}
+              target="_blank"
+              rel="noreferrer"
+              draggable={false}
+            >
               <div key={index} className={styles.mediaPatner}>
                 {mediaPatner.head != "" && (
                   <div className={styles.head}>{mediaPatner.head}</div>
                 )}
                 <div className={styles.patnersImage}>
-                  <img src={mediaPatner.img} alt={mediaPatner.name} />
+                  <img
+                    src={mediaPatner.img}
+                    alt={mediaPatner.name}
+                    draggable={false}
+                  />
                 </div>
                 <div className={styles.patnersName}>{mediaPatner.name}</div>
               </div>
