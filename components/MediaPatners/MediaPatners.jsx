@@ -17,13 +17,14 @@ import eclipseMedia from "../../src/assets/MediaPatners/PatnersLogo/eclipemedia.
 import amarUjala from "../../src/assets/MediaPatners/PatnersLogo/amarujala.png";
 import globalHues from "../../src/assets/MediaPatners/PatnersLogo/globalhues.png";
 import fluxusIITIndore from "../../src/assets/MediaPatners/PatnersLogo/fluxusiitindore.png";
-// import BackButton from "./BackButton/BackButton";
+import OverlayBackBtn from "../Overlay/OverlayBackBtn/OverlayBackBtn";
+import { Link } from "react-router";
 
 import { useRef, useEffect, useState } from "react";
 import regWrapper from "../../src/assets/Register/regWrapper.png";
 import wheel from "../../src/assets/Register/wheel.svg";
 import regBackground from "../../src/assets/Register/regBackground.png";
-import Preloader from "./Preloader/Preloader";
+import Preloader from "../Registration/Preloader/Preloader";
 
 let mediaPatners = [
   {
@@ -126,7 +127,14 @@ const MediaPatners = () => {
   const mainContainerRef = useRef(null);
 
   useEffect(() => {
-    const imageUrls = [regWrapper, wheel, regBackground];
+    const imageUrls = [
+      regWrapper,
+      wheel,
+      regBackground,
+      ...mediaPatners.map((sponsor) => sponsor.img),
+      background,
+      heading,
+    ];
     let loadedCount = 0;
     imageUrls.forEach((src) => {
       const img = new Image();
@@ -237,58 +245,68 @@ const MediaPatners = () => {
   };
 
   return (
-    <div className={styles.Wrapper}>
-      {/* <div className={styles.buttonWrapper}>
-        <BackButton />
-      </div> */}
+    <>
       {showPreloader && <Preloader />}
+      <div
+        className={styles.Wrapper}
+        style={{
+          opacity: showPreloader ? 0 : 1,
+          transition: "opacity 0.8s ease-in-out",
+        }}
+      >
+        <div className={styles.buttonWrapper}>
+          <Link to={"/"}>
+            <OverlayBackBtn />
+          </Link>
+        </div>
 
-      <div className={styles.backgroundImage}>
-        <img src={background} alt="background image" />
-      </div>
+        <div className={styles.backgroundImage}>
+          <img src={background} alt="background image" draggable={false} />
+        </div>
 
-      <div className={styles.scrollBarContainer} onClick={handleTrackSnap}>
-        <div className={styles.scrollBar}></div>
-        <img
-          draggable={false}
-          onMouseDown={handlewheelMouseDown}
-          onTouchStart={handlewheelMouseDown}
-          id="wheel"
-          src={wheel}
-          alt="wheel"
-          ref={wheelRef}
-        />
-      </div>
-      <div className={styles.heading}>
-        <img src={heading} alt="heading" draggable={false} />
-      </div>
-      <div className={styles.mediaPatners} ref={mainContainerRef}>
-        <div className={styles.otherMediaPatners}>
-          {mediaPatners.map((mediaPatner, index) => (
-            <a
-              href={mediaPatner.link}
-              target="_blank"
-              rel="noreferrer"
-              draggable={false}
-            >
-              <div key={index} className={styles.mediaPatner}>
-                {mediaPatner.head != "" && (
-                  <div className={styles.head}>{mediaPatner.head}</div>
-                )}
-                <div className={styles.patnersImage}>
-                  <img
-                    src={mediaPatner.img}
-                    alt={mediaPatner.name}
-                    draggable={false}
-                  />
+        <div className={styles.scrollBarContainer} onClick={handleTrackSnap}>
+          <div className={styles.scrollBar}></div>
+          <img
+            draggable={false}
+            onMouseDown={handlewheelMouseDown}
+            onTouchStart={handlewheelMouseDown}
+            id="wheel"
+            src={wheel}
+            alt="wheel"
+            ref={wheelRef}
+          />
+        </div>
+        <div className={styles.heading}>
+          <img src={heading} alt="heading" draggable={false} />
+        </div>
+        <div className={styles.mediaPatners} ref={mainContainerRef}>
+          <div className={styles.otherMediaPatners}>
+            {mediaPatners.map((mediaPatner, index) => (
+              <a
+                href={mediaPatner.link}
+                target="_blank"
+                rel="noreferrer"
+                draggable={false}
+              >
+                <div key={index} className={styles.mediaPatner}>
+                  {mediaPatner.head != "" && (
+                    <div className={styles.head}>{mediaPatner.head}</div>
+                  )}
+                  <div className={styles.patnersImage}>
+                    <img
+                      src={mediaPatner.img}
+                      alt={mediaPatner.name}
+                      draggable={false}
+                    />
+                  </div>
+                  <div className={styles.patnersName}>{mediaPatner.name}</div>
                 </div>
-                <div className={styles.patnersName}>{mediaPatner.name}</div>
-              </div>
-            </a>
-          ))}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

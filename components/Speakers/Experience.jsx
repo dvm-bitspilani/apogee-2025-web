@@ -12,7 +12,8 @@ import abhay from "/videos/abhay.mp4";
 import vijender from "/videos/vijender.mp4";
 import anantha from "/videos/anantha.mp4";
 import patnaik from "/videos/patnaik.mp4";
-// import shivshankar from "/videos/shivshankar.mp4";
+import nidhi from "/videos/nidhi.mp4";
+import dilip from "/videos/dilip.mp4";
 
 const CURVE_DISTANCE = 50;
 const CURVE_AHEAD_CAMERA = 0.008;
@@ -22,9 +23,9 @@ export const SpeakerExperience = () => {
     return new THREE.CatmullRomCurve3(
       [
         new THREE.Vector3(-100, 0, 0), // Start from extreme left
-        new THREE.Vector3(-80, 0, -CURVE_DISTANCE),
-        new THREE.Vector3(-50, 0, -2 * CURVE_DISTANCE),
-        new THREE.Vector3(-10, 0, -3 * CURVE_DISTANCE),
+        new THREE.Vector3(-80, 1, -CURVE_DISTANCE),
+        new THREE.Vector3(-50, 1, -2 * CURVE_DISTANCE),
+        new THREE.Vector3(-10, 1, -3 * CURVE_DISTANCE),
         // new THREE.Vector3(10, 0, -4 * CURVE_DISTANCE),
         // new THREE.Vector3(40, 0, -5 * CURVE_DISTANCE), // Ends towards right
       ],
@@ -112,7 +113,7 @@ export const SpeakerExperience = () => {
         position={[-64.5, -0.6, -70]}
         rotation={[0, Math.PI / -6, 0]}
       >
-        <VideoPlayer videoSrc={patnaik} />
+        <VideoPlayer videoSrc={nidhi} />
       </group>
 
       <group
@@ -120,16 +121,24 @@ export const SpeakerExperience = () => {
         position={[-43, -0.8, -100]}
         rotation={[0, Math.PI / -6, 0]}
       >
-        <VideoPlayer videoSrc={anantha} />
+        <VideoPlayer videoSrc={dilip} />
       </group>
 
-      {/* <group
+      <group
         scale={1.85}
-        position={[-4, -0.8, -155]}
+        position={[-19, -0.8, -130]}
+        rotation={[0, Math.PI / -5, 0]}
+      >
+        <VideoPlayer videoSrc={patnaik} />
+      </group>
+
+      <group
+        scale={2}
+        position={[ +4, -0.8, -160]}
         rotation={[0, Math.PI / -5, 0]}
       >
         <VideoPlayer videoSrc={anantha} />
-      </group> */}
+      </group>
 
       {/* LINE */}
       {/* <group position-y={-2}>

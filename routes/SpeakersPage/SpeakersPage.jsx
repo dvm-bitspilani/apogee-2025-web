@@ -44,9 +44,10 @@ export default function SpeakersPage() {
       <div className={styles.Videocontainer}>
         <SpeakerVideo speakerName="vijender" />
         <SpeakerVideo speakerName="abhay" />
+        <SpeakerVideo speakerName="nidhi" />
+        <SpeakerVideo speakerName="dilip" />
         <SpeakerVideo speakerName="patnaik" />
         <SpeakerVideo speakerName="anantha" />
-        {/* <SpeakerVideo speakerName="shivshankar" /> */}
       </div>
     </div>
   );
