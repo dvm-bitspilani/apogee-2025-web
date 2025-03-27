@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styles from "./comingsoon.module.scss";
-import BackButton from "./BackButton/BackButton";
+import BackButton from "../Overlay/OverlayBackBtn/OverlayBackBtn";
 import clouds from "../../src/assets/ComingSoon/background.png";
 import logo from "../../src/assets/ComingSoon/apogeelogo.png";
 import text from "../../src/assets/ComingSoon/text.png";
@@ -17,9 +17,7 @@ const ComingSoon = () => {
 
   return (
     <div className={styles.Wrapper}>
-      {/* <div className={styles.buttonWrapper}>
-        <BackButton />
-      </div> */}
+      <BackButton />
       <div className={styles.backgroundImage}>
         <img src={clouds} alt="background image" />
       </div>
