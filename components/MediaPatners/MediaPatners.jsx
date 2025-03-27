@@ -17,13 +17,14 @@ import eclipseMedia from "../../src/assets/MediaPatners/PatnersLogo/eclipemedia.
 import amarUjala from "../../src/assets/MediaPatners/PatnersLogo/amarujala.png";
 import globalHues from "../../src/assets/MediaPatners/PatnersLogo/globalhues.png";
 import fluxusIITIndore from "../../src/assets/MediaPatners/PatnersLogo/fluxusiitindore.png";
-import BackButton from "./BackButton/BackButton";
+import OverlayBackBtn from "../Overlay/OverlayBackBtn/OverlayBackBtn";
+import { Link } from "react-router";
 
 import { useRef, useEffect, useState } from "react";
 import regWrapper from "../../src/assets/Register/regWrapper.png";
 import wheel from "../../src/assets/Register/wheel.svg";
 import regBackground from "../../src/assets/Register/regBackground.png";
-import Preloader from "./Preloader/Preloader";
+import Preloader from "../Registration/Preloader/Preloader";
 
 let mediaPatners = [
   {
@@ -254,11 +255,13 @@ const MediaPatners = () => {
         }}
       >
         <div className={styles.buttonWrapper}>
-          <BackButton />
+          <Link to={"/"}>
+            <OverlayBackBtn />
+          </Link>
         </div>
 
         <div className={styles.backgroundImage}>
-          <img src={background} alt="background image" />
+          <img src={background} alt="background image" draggable={false} />
         </div>
 
         <div className={styles.scrollBarContainer} onClick={handleTrackSnap}>
