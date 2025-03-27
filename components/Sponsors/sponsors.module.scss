@@ -81,16 +81,20 @@
       align-items: center;
       width: 100%;
       img{
-        height: 180px;
+        height: 140px;
+        transform: translateY(-10px);
       }
-      @media screen and (max-width: 768px) {
+      
+      @media screen and (max-width: 900px) {
         img{
           height: 120px;
+          transform: translateY( -5px);
         }
       }
-      @media screen and (max-width: 450px) {
+      @media screen and (max-width: 500px) {
         img{
-          height: 100px;
+          height: 105px;
+          transform: translateY( -2px);
         }
       }
     } 
