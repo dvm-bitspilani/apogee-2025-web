@@ -16,8 +16,12 @@
       display: flex;
       justify-content: center;
       position: fixed;
-      right: 3rem;
+      right: -1.5rem;
       cursor: -webkit-grab;
+
+      @media screen and (max-width: 1366px) {
+        right: 1rem;
+      }
     }
   
     .scrollBarContainer img {
