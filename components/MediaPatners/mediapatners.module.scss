@@ -16,8 +16,16 @@
       display: flex;
       justify-content: center;
       position: fixed;
+<<<<<<< HEAD
       right: 1.5rem;
+=======
+      right: -1.5rem;
+>>>>>>> 75c055ee17f017900adfa75f0754b92233fb5aec
       cursor: -webkit-grab;
+
+      @media screen and (max-width: 1366px) {
+        right: 1rem;
+      }
     }
   
     .scrollBarContainer img {
@@ -84,15 +92,19 @@
       width: 100%;
       img{
         height: 180px;
+        transform: translateY(-50px);
       }
-      @media screen and (max-width: 768px) {
+      
+      @media screen and (max-width: 900px) {
         img{
-          height: 120px;
+          height: 150px;
+          transform: translateY(-40px);
         }
       }
-      @media screen and (max-width: 450px) {
+      @media screen and (max-width: 500px) {
         img{
-          height: 100px;
+          height: 120px;
+          transform: translateY(-30px);
         }
       }
     } 
@@ -106,9 +118,13 @@
       bottom: 0;
       display: flex;
       flex-direction: column;
-      height: calc(100% - 200px);
+      height: calc(100% - 170px);
       width: 1500px;
+<<<<<<< HEAD
       max-width: 85%;
+=======
+      max-width: 90%;
+>>>>>>> 75c055ee17f017900adfa75f0754b92233fb5aec
       align-items: center;
       justify-items: center;
       gap: 50px;
@@ -122,13 +138,18 @@
         display: none; 
       }
 
+      @media screen and (max-width: 768px) {
+        max-width: 100%;
+      }
+
+
       @media screen and (max-width: 925px) {
         .other{
           display: none;
         }
       }
 
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: 900px) {
         height: calc(100% - 140px);
         max-width: 100%;
 
@@ -165,11 +186,13 @@
             object-position: center;
         }
         .patnersName{
-          font-size: 24px;
+          font-size: 22px;
         }
         .head{
           font-size: 26px;
           height: 64px;
+          color: #EDBE6B;
+          cursor: default;
         }
         @media (max-width: 650px) {
           width: 300px;

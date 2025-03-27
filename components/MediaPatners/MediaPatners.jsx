@@ -126,7 +126,14 @@ const MediaPatners = () => {
   const mainContainerRef = useRef(null);
 
   useEffect(() => {
-    const imageUrls = [regWrapper, wheel, regBackground];
+    const imageUrls = [
+      regWrapper,
+      wheel,
+      regBackground,
+      ...mediaPatners.map((sponsor) => sponsor.img),
+      background,
+      heading,
+    ];
     let loadedCount = 0;
     imageUrls.forEach((src) => {
       const img = new Image();
@@ -238,48 +245,68 @@ const MediaPatners = () => {
 
   return (
     <div className={styles.Wrapper}>
-      <div className={styles.buttonWrapper}>
+      {/* <div className={styles.buttonWrapper}>
         <BackButton />
-      </div>
+      </div> */}
       {showPreloader && <Preloader />}
+      <div
+        className={styles.Wrapper}
+        style={{
+          opacity: showPreloader ? 0 : 1,
+          transition: "opacity 0.8s ease-in-out",
+        }}
+      >
+        <div className={styles.buttonWrapper}>
+          <BackButton />
+        </div>
 
-      <div className={styles.backgroundImage}>
-        <img src={background} alt="background image" />
-      </div>
+        <div className={styles.backgroundImage}>
+          <img src={background} alt="background image" />
+        </div>
 
-      <div className={styles.scrollBarContainer} onClick={handleTrackSnap}>
-        <div className={styles.scrollBar}></div>
-        <img
-          draggable={false}
-          onMouseDown={handlewheelMouseDown}
-          onTouchStart={handlewheelMouseDown}
-          id="wheel"
-          src={wheel}
-          alt="wheel"
-          ref={wheelRef}
-        />
-      </div>
-      <div className={styles.heading}>
-        <img src={heading} alt="heading" />
-      </div>
-      <div className={styles.mediaPatners} ref={mainContainerRef}>
-        <div className={styles.otherMediaPatners}>
-          {mediaPatners.map((mediaPatner, index) => (
-            <a href={mediaPatner.link} target="_blank" rel="noreferrer">
-              <div key={index} className={styles.mediaPatner}>
-                {mediaPatner.head != "" && (
-                  <div className={styles.head}>{mediaPatner.head}</div>
-                )}
-                <div className={styles.patnersImage}>
-                  <img src={mediaPatner.img} alt={mediaPatner.name} />
+        <div className={styles.scrollBarContainer} onClick={handleTrackSnap}>
+          <div className={styles.scrollBar}></div>
+          <img
+            draggable={false}
+            onMouseDown={handlewheelMouseDown}
+            onTouchStart={handlewheelMouseDown}
+            id="wheel"
+            src={wheel}
+            alt="wheel"
+            ref={wheelRef}
+          />
+        </div>
+        <div className={styles.heading}>
+          <img src={heading} alt="heading" draggable={false} />
+        </div>
+        <div className={styles.mediaPatners} ref={mainContainerRef}>
+          <div className={styles.otherMediaPatners}>
+            {mediaPatners.map((mediaPatner, index) => (
+              <a
+                href={mediaPatner.link}
+                target="_blank"
+                rel="noreferrer"
+                draggable={false}
+              >
+                <div key={index} className={styles.mediaPatner}>
+                  {mediaPatner.head != "" && (
+                    <div className={styles.head}>{mediaPatner.head}</div>
+                  )}
+                  <div className={styles.patnersImage}>
+                    <img
+                      src={mediaPatner.img}
+                      alt={mediaPatner.name}
+                      draggable={false}
+                    />
+                  </div>
+                  <div className={styles.patnersName}>{mediaPatner.name}</div>
                 </div>
-                <div className={styles.patnersName}>{mediaPatner.name}</div>
-              </div>
-            </a>
-          ))}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

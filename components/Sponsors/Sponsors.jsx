@@ -161,7 +161,7 @@ const Sponsors = () => {
   const mainContainerRef = useRef(null);
 
   useEffect(() => {
-    const imageUrls = [regWrapper, wheel, regBackground];
+    const imageUrls = [regWrapper, wheel, regBackground, background, heading, ...sponsors.otherSponsers.map(sponsor => sponsor.img), sponsors.title.img];
     let loadedCount = 0;
     imageUrls.forEach((src) => {
       const img = new Image();
@@ -272,11 +272,25 @@ const Sponsors = () => {
   };
 
   return (
+<<<<<<< HEAD
     <div className={styles.Wrapper}>
       <div className={styles.buttonWrapper}>
         <BackButton />
       </div>
+=======
+    <>
+>>>>>>> 75c055ee17f017900adfa75f0754b92233fb5aec
       {showPreloader && <Preloader />}
+      <div
+        className={styles.Wrapper}
+        style={{
+          opacity: showPreloader ? 0 : 1,
+          transition: "opacity 0.8s ease-in-out",
+        }}
+      >
+      <div className={styles.buttonWrapper}>
+        <BackButton />
+      </div>
 
       <div className={styles.backgroundImage}>
         <img src={background} alt="background image" />
@@ -296,14 +310,23 @@ const Sponsors = () => {
       </div>
 
       <div className={styles.heading}>
-        <img src={heading} alt="heading" />
+        <img src={heading} alt="heading" draggable={false} />
       </div>
       <div className={styles.sponsors} ref={mainContainerRef}>
-        <a href={sponsors.title.link} target="_blank" rel="noreferrer">
+        <a
+          href={sponsors.title.link}
+          target="_blank"
+          rel="noreferrer"
+          draggable={false}
+        >
           <div className={styles.titleSponsor}>
             <div className={styles.head}>{sponsors.title.head}</div>
             <div className={styles.titleSponsImage}>
-              <img src={sponsors.title.img} alt={sponsors.title.name} />
+              <img
+                src={sponsors.title.img}
+                alt={sponsors.title.name}
+                draggable={false}
+              />
             </div>
             <div className={`${styles.titleSponsName} ${styles.sponsName}`}>
               {sponsors.title.name}
@@ -313,7 +336,13 @@ const Sponsors = () => {
 
         <div className={styles.otherSponsors}>
           {sponsors.otherSponsers.map((sponsor, index) => (
-            <a href={sponsor.link} target="_blank" rel="noreferrer" key={index}>
+            <a
+              href={sponsor.link}
+              target="_blank"
+              rel="noreferrer"
+              key={index}
+              draggable={false}
+            >
               <div className={styles.otherSponsor}>
                 <div
                   className={
@@ -328,7 +357,7 @@ const Sponsors = () => {
                 <div
                   className={`${styles.otherSponsImage} ${styles.sponsImage}`}
                 >
-                  <img src={sponsor.img} alt={sponsor.name} />
+                  <img src={sponsor.img} alt={sponsor.name} draggable={false} />
                 </div>
                 <div className={`${styles.otherSponsName} ${styles.sponsName}`}>
                   {sponsor.name}
@@ -338,7 +367,8 @@ const Sponsors = () => {
           ))}
         </div>
       </div>
-    </div>
+      </div>
+      </>
   );
 };
 

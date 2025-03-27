@@ -19,8 +19,12 @@
       display: flex;
       justify-content: center;
       position: fixed;
-      right: 3rem;
+      right: -1.5rem;
       cursor: -webkit-grab;
+
+      @media screen and (max-width: 1366px) {
+        right: 1rem;
+      }
     }
   
     .scrollBarContainer img {
@@ -85,14 +89,17 @@
       img{
         height: 150px;
       }
-      @media screen and (max-width: 768px) {
-        img{
-          height: 120px;
-        }
-      }
-      @media screen and (max-width: 450px) {
+      
+      @media screen and (max-width: 900px) {
         img{
           height: 100px;
+          transform: translateY( -5px);
+        }
+      }
+      @media screen and (max-width: 500px) {
+        img{
+          height: 90px;
+          transform: translateY( -2px);
         }
       }
     } 
@@ -123,6 +130,10 @@
         display: none; 
       }
 
+      @media screen and (max-width: 768px) {
+        max-width: 100%;
+      }
+
       @media screen and (max-width: 925px) {
         .other{
           display: none;
@@ -135,7 +146,7 @@
 
       }
       @media screen and (max-width: 450px) {
-        height: calc(100% - 115px);
+        height: calc(100% - 100px);
       }
       .titleSponsor{
         display: flex;
@@ -191,11 +202,13 @@
             object-position: center;
         }
         .sponsName{
-          font-size: 24px;
+          font-size: 22px;
         }
         .head{
           font-size: 26px;
           height: 64px;
+          color: #EDBE6B;
+          cursor: default;
         }
         @media (max-width: 650px) {
           width: 300px;
@@ -226,10 +239,10 @@
         text-align: center;
       }
       .head{
-        color: white;
+        color: #EDBE6B;
         font-family: "Artifika";
         font-family: "OldNewspaperTypes";
-        font-weight:600;
+        font-weight:700;
         text-align: center;
       }
   
