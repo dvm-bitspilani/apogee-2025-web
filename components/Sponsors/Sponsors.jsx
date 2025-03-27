@@ -296,14 +296,18 @@ const Sponsors = () => {
       </div>
 
       <div className={styles.heading}>
-        <img src={heading} alt="heading" />
+        <img src={heading} alt="heading" draggable={false} />
       </div>
       <div className={styles.sponsors} ref={mainContainerRef}>
-        <a href={sponsors.title.link} target="_blank" rel="noreferrer">
+        <a href={sponsors.title.link} target="_blank" rel="noreferrer" draggable={false}>
           <div className={styles.titleSponsor}>
             <div className={styles.head}>{sponsors.title.head}</div>
             <div className={styles.titleSponsImage}>
-              <img src={sponsors.title.img} alt={sponsors.title.name} />
+              <img
+                src={sponsors.title.img}
+                alt={sponsors.title.name}
+                draggable={false}
+              />
             </div>
             <div className={`${styles.titleSponsName} ${styles.sponsName}`}>
               {sponsors.title.name}
@@ -313,7 +317,7 @@ const Sponsors = () => {
 
         <div className={styles.otherSponsors}>
           {sponsors.otherSponsers.map((sponsor, index) => (
-            <a href={sponsor.link} target="_blank" rel="noreferrer" key={index}>
+            <a href={sponsor.link} target="_blank" rel="noreferrer" key={index} draggable={false}>
               <div className={styles.otherSponsor}>
                 <div
                   className={
@@ -328,7 +332,7 @@ const Sponsors = () => {
                 <div
                   className={`${styles.otherSponsImage} ${styles.sponsImage}`}
                 >
-                  <img src={sponsor.img} alt={sponsor.name} />
+                  <img src={sponsor.img} alt={sponsor.name} draggable={false} />
                 </div>
                 <div className={`${styles.otherSponsName} ${styles.sponsName}`}>
                   {sponsor.name}
