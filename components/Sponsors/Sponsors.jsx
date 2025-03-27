@@ -5,9 +5,9 @@ import heading from "../../src/assets/Sponsors/heading.png";
 import BackButton from "./BackButton/BackButton";
 
 import micronSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/micron.png";
-import arcesiumSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/arcesium.jpg";
+import arcesiumSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/arcesium.svg";
 import qswSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/qsw.png";
-import plumSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/plum.jpg";
+import plumSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/plum.png";
 import jioSaavnSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/jiosaavn.png";
 import etashaSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/etasha.png";
 import unicornIndiaSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/unicornindia.png";
@@ -21,7 +21,7 @@ import landtSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/landt.png"
 import grabOnSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/grabon.png";
 import languifySponsorImage from "../../src/assets/Sponsors/SponsorsLogo/languify.jpeg";
 // import icfdrSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/icfdr.png";
-import unstopSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/unstop.jpg";
+import unstopSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/unstop.png";
 import stockgroSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/stockgro.png";
 import { img } from "framer-motion/client";
 
@@ -73,24 +73,6 @@ const sponsors = {
       link: "https://www.jiosaavn.com/",
     },
     {
-      head: "Official Assessment Partner",
-      img: languifySponsorImage,
-      name: "Languify",
-      link: "https://www.languify.in/",
-    },
-    {
-      head: "Campus Ambassador Partner",
-      img: etashaSponsorImage,
-      name: "Etasha",
-      link: "https://www.etashasociety.org/",
-    },
-    {
-      head: "Official Savings Partner",
-      img: grabOnSponsorImage,
-      name: "GrabOn",
-      link: "https://www.grabon.in/",
-    },
-    {
       head: "",
       img: unicornIndiaSponsorImage,
       name: "Unicorn India",
@@ -126,12 +108,12 @@ const sponsors = {
       name: "EaseMyTrip",
       link: "https://www.easemytrip.com/flights.html?msclkid=4e959a8a43391623fe37fd68f1fdb553&utm_source=bing&utm_medium=cpc&utm_campaign=Bing_Search_AllAudience_%20Brand%20(EaseMyTrip.Com)&utm_term=easemytrip&utm_content=EaseMyTrip%20Exact",
     },
-    {
-      head: "",
-      img: yanaSponsorImage,
-      name: "Yana",
-      link: "https://yana.travel/tabs/hosted-trips",
-    },
+    // {
+    //   head: "",
+    //   img: yanaSponsorImage,
+    //   name: "Yana",
+    //   link: "https://yana.travel/tabs/hosted-trips",
+    // },
     {
       head: "",
       img: umeedSponsorImage,
@@ -150,6 +132,24 @@ const sponsors = {
       name: "StockGro",
       link: "https://www.stockgro.club/",
     },
+    {
+      head: "Official Assessment Partner",
+      img: languifySponsorImage,
+      name: "Languify",
+      link: "https://www.languify.in/",
+    },
+    {
+      head: "Campus Ambassador Partner",
+      img: etashaSponsorImage,
+      name: "Etasha",
+      link: "https://www.etashasociety.org/",
+    },
+    {
+      head: "Official Savings Partner",
+      img: grabOnSponsorImage,
+      name: "GrabOn",
+      link: "https://www.grabon.in/",
+    },
   ],
 };
 
@@ -161,7 +161,15 @@ const Sponsors = () => {
   const mainContainerRef = useRef(null);
 
   useEffect(() => {
-    const imageUrls = [regWrapper, wheel, regBackground, background, heading, ...sponsors.otherSponsers.map(sponsor => sponsor.img), sponsors.title.img];
+    const imageUrls = [
+      regWrapper,
+      wheel,
+      regBackground,
+      background,
+      heading,
+      ...sponsors.otherSponsers.map((sponsor) => sponsor.img),
+      sponsors.title.img,
+    ];
     let loadedCount = 0;
     imageUrls.forEach((src) => {
       const img = new Image();
@@ -281,87 +289,93 @@ const Sponsors = () => {
           transition: "opacity 0.8s ease-in-out",
         }}
       >
-      <div className={styles.buttonWrapper}>
-        <BackButton />
-      </div>
+        <div className={styles.buttonWrapper}>
+          <BackButton />
+        </div>
 
-      <div className={styles.backgroundImage}>
-        <img src={background} alt="background image" />
-      </div>
+        <div className={styles.backgroundImage}>
+          <img src={background} alt="background image" />
+        </div>
 
-      <div className={styles.scrollBarContainer} onClick={handleTrackSnap}>
-        <div className={styles.scrollBar}></div>
-        <img
-          draggable={false}
-          onMouseDown={handlewheelMouseDown}
-          onTouchStart={handlewheelMouseDown}
-          id="wheel"
-          src={wheel}
-          alt="wheel"
-          ref={wheelRef}
-        />
-      </div>
+        <div className={styles.scrollBarContainer} onClick={handleTrackSnap}>
+          <div className={styles.scrollBar}></div>
+          <img
+            draggable={false}
+            onMouseDown={handlewheelMouseDown}
+            onTouchStart={handlewheelMouseDown}
+            id="wheel"
+            src={wheel}
+            alt="wheel"
+            ref={wheelRef}
+          />
+        </div>
 
-      <div className={styles.heading}>
-        <img src={heading} alt="heading" draggable={false} />
-      </div>
-      <div className={styles.sponsors} ref={mainContainerRef}>
-        <a
-          href={sponsors.title.link}
-          target="_blank"
-          rel="noreferrer"
-          draggable={false}
-        >
-          <div className={styles.titleSponsor}>
-            <div className={styles.head}>{sponsors.title.head}</div>
-            <div className={styles.titleSponsImage}>
-              <img
-                src={sponsors.title.img}
-                alt={sponsors.title.name}
-                draggable={false}
-              />
-            </div>
-            <div className={`${styles.titleSponsName} ${styles.sponsName}`}>
-              {sponsors.title.name}
-            </div>
-          </div>
-        </a>
-
-        <div className={styles.otherSponsors}>
-          {sponsors.otherSponsers.map((sponsor, index) => (
-            <a
-              href={sponsor.link}
-              target="_blank"
-              rel="noreferrer"
-              key={index}
-              draggable={false}
-            >
-              <div className={styles.otherSponsor}>
-                <div
-                  className={
-                    sponsor.head
-                      ? styles.head
-                      : `${styles.head} ${styles.other}`
-                  }
-                >
-                  {sponsor.head}
-                </div>
-
-                <div
-                  className={`${styles.otherSponsImage} ${styles.sponsImage}`}
-                >
-                  <img src={sponsor.img} alt={sponsor.name} draggable={false} />
-                </div>
-                <div className={`${styles.otherSponsName} ${styles.sponsName}`}>
-                  {sponsor.name}
-                </div>
+        <div className={styles.heading}>
+          <img src={heading} alt="heading" draggable={false} />
+        </div>
+        <div className={styles.sponsors} ref={mainContainerRef}>
+          <a
+            href={sponsors.title.link}
+            target="_blank"
+            rel="noreferrer"
+            draggable={false}
+          >
+            <div className={styles.titleSponsor}>
+              <div className={styles.head}>{sponsors.title.head}</div>
+              <div className={styles.titleSponsImage}>
+                <img
+                  src={sponsors.title.img}
+                  alt={sponsors.title.name}
+                  draggable={false}
+                />
               </div>
-            </a>
-          ))}
+              <div className={`${styles.titleSponsName} ${styles.sponsName}`}>
+                {sponsors.title.name}
+              </div>
+            </div>
+          </a>
+
+          <div className={styles.otherSponsors}>
+            {sponsors.otherSponsers.map((sponsor, index) => (
+              <a
+                href={sponsor.link}
+                target="_blank"
+                rel="noreferrer"
+                key={index}
+                draggable={false}
+              >
+                <div className={styles.otherSponsor}>
+                  <div
+                    className={
+                      sponsor.head
+                        ? styles.head
+                        : `${styles.head} ${styles.other}`
+                    }
+                  >
+                    {sponsor.head}
+                  </div>
+
+                  <div
+                    className={`${styles.otherSponsImage} ${styles.sponsImage}`}
+                  >
+                    <img
+                      src={sponsor.img}
+                      alt={sponsor.name}
+                      draggable={false}
+                    />
+                  </div>
+                  <div
+                    className={`${styles.otherSponsName} ${styles.sponsName}`}
+                  >
+                    {sponsor.name}
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
         </div>
       </div>
-      </div>
-      </>
+    </>
   );
 };
 
