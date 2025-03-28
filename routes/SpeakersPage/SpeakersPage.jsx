@@ -24,9 +24,9 @@ const SpeakerVideo = ({ speakerName = "akbar" }) => {
   return (
     <video
       ref={videoRef}
-      src={`/videos/${speakerName}.mp4`}
+      src={`/videos/${speakerName}.mov`}
       muted
-      controls
+      // controls
       loop
       className={styles.video}
     >
@@ -48,6 +48,7 @@ export default function SpeakersPage() {
         <SpeakerVideo speakerName="dilip" />
         <SpeakerVideo speakerName="patnaik" />
         <SpeakerVideo speakerName="anantha" />
+        <SpeakerVideo speakerName="anil" />
       </div>
     </div>
   );
