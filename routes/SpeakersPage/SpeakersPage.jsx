@@ -24,7 +24,7 @@ const SpeakerVideo = ({ speakerName = "akbar" }) => {
   return (
     <video
       ref={videoRef}
-      src={`/videos/${speakerName}.mp4`}
+      src={`/videos/${speakerName}.mov`}
       muted
       controls
       loop
