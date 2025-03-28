@@ -48,6 +48,7 @@ export default function SpeakersPage() {
         <SpeakerVideo speakerName="dilip" />
         <SpeakerVideo speakerName="patnaik" />
         <SpeakerVideo speakerName="anantha" />
+        <SpeakerVideo speakerName="anil" />
       </div>
     </div>
   );
