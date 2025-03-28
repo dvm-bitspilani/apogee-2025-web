@@ -26,7 +26,7 @@ const SpeakerVideo = ({ speakerName = "akbar" }) => {
       ref={videoRef}
       src={`/videos/${speakerName}.mov`}
       muted
-      controls
+      // controls
       loop
       className={styles.video}
     >
