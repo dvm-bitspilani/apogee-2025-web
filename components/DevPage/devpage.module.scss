@@ -14,6 +14,7 @@
     filter: brightness(110%);
     z-index: -1;
   }
+
   .banner1 {
     position: absolute;
     top: 13vw;
@@ -85,5 +86,15 @@
         transform: translateY(0);
       }
     }
+  }
+
+  .banners {
+    transition: translate 0.4s ease-in-out;
+    transition-delay: 0.01s;
+  }
+
+  .banners:hover {
+    animation-play-state: paused;
+    translate: 0 -100px;
   }
 }

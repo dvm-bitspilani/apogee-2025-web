@@ -19,8 +19,8 @@ import sitaram from "../../src/assets/Devs/DevMembers/sitaram.png";
 import surya from "../../src/assets/Devs/DevMembers/surya.png";
 
 import styles from "./devpage.module.scss";
-import clouds from "../../src/assets/ComingSoon/background.png";
 import FloatIcon from "./UI/FloatIcon";
+import OverlayBackBtn from "../Overlay/OverlayBackBtn/OverlayBackBtn";
 
 import frontend from "../../src/assets/Verticals/frontend.svg";
 import backend from "../../src/assets/Verticals/backend.svg";
@@ -222,34 +222,29 @@ const teamMembers = {
   ],
 };
 
+const banners = [
+  { name: "FRONTEND", img: frontend, className: styles.banner1 },
+  { name: "UI/UX", img: design, className: styles.banner2 },
+  { name: "VIDEO", img: video, className: styles.banner3 },
+  { name: "BACKEND", img: backend, className: styles.banner4 },
+];
 const DevPage = () => {
+  [isVerticalOpen, setIsVerticalOpen] = useState(false);
   return (
     <div className={styles.container}>
+      <OverlayBackBtn />
       <div className={styles.background}></div>
-      <FloatIcon className={styles.banner1}>
-        <div>
-          <img src={frontend} alt="frontend" />
-        </div>
-        <p>FRONTEND</p>
-      </FloatIcon>
-      <FloatIcon className={styles.banner2}>
-        <div>
-          <img src={design} alt="design" />
-        </div>
-        <p>UI/UX</p>
-      </FloatIcon>
-      <FloatIcon className={styles.banner3}>
-        <div>
-          <img src={video} alt="video" />
-        </div>
-        <p>VIDEO</p>
-      </FloatIcon>
-      <FloatIcon className={styles.banner4}>
-        <div>
-          <img src={backend} alt="backend" />
-        </div>
-        <p>BACKEND</p>
-      </FloatIcon>
+      {banners.map((banner, index) => (
+        <FloatIcon
+          key={index}
+          className={`${banner.className} ${styles.banners}`}
+        >
+          <div>
+            <img src={banner.img} alt={banner.name} />
+          </div>
+          <p>{banner.name}</p>
+        </FloatIcon>
+      ))}
     </div>
   );
 };
