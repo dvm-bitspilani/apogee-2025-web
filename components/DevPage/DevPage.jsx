@@ -20,6 +20,12 @@ import surya from "../../src/assets/Devs/DevMembers/surya.png";
 
 import styles from "./devpage.module.scss";
 import clouds from "../../src/assets/ComingSoon/background.png";
+import FloatIcon from "./UI/FloatIcon";
+
+import frontend from "../../src/assets/Verticals/frontend.svg";
+import backend from "../../src/assets/Verticals/backend.svg";
+import design from "../../src/assets/Verticals/ui-ux.svg";
+import video from "../../src/assets/Verticals/video.svg";
 
 const teamMembers = {
   front: [
@@ -124,7 +130,7 @@ const teamMembers = {
     {
       name: "Priyanshu Narayan",
       image: priyanshu,
-      group: "backend",
+      group: "video",
       insta: "",
       behance: "",
       github: "",
@@ -134,7 +140,7 @@ const teamMembers = {
     {
       name: "Raza Hasnain",
       image: raza,
-      group: "backend",
+      group: "video",
       insta:
         "https://www.instagram.com/praja_pat3293?igsh=MTIxaDlrMGd0OWFtbQ==",
       behance: "",
@@ -144,7 +150,7 @@ const teamMembers = {
     {
       name: "Sai Surya Vujuri",
       image: surya,
-      group: "backend",
+      group: "video",
       insta:
         "https://www.instagram.com/surya_ijk/profilecard/?igsh=Zm1ybTV0ZW9sdmlw",
       behance: "",
@@ -155,7 +161,7 @@ const teamMembers = {
     {
       name: "Siddharth Kakar",
       image: siddharth,
-      group: "backend",
+      group: "video",
       insta:
         "https://www.instagram.com/siddharthkakar?igsh=MXRpNzBudDA4bnM3cQ==",
       behance: "",
@@ -165,7 +171,7 @@ const teamMembers = {
     {
       name: "Sitaram prajapat",
       image: sitaram,
-      group: "backend",
+      group: "video",
       insta:
         "https://www.instagram.com/praja_pat3293?igsh=MTIxaDlrMGd0OWFtbQ==",
       behance: "",
@@ -218,10 +224,32 @@ const teamMembers = {
 
 const DevPage = () => {
   return (
-    <div className={styles.Container}>
-      <div className={styles.backgroundImage}>
-        <img src={clouds} alt="background image" />
-      </div>
+    <div className={styles.container}>
+      <div className={styles.background}></div>
+      <FloatIcon className={styles.banner1}>
+        <div>
+          <img src={frontend} alt="frontend" />
+        </div>
+        <p>FRONTEND</p>
+      </FloatIcon>
+      <FloatIcon className={styles.banner2}>
+        <div>
+          <img src={design} alt="design" />
+        </div>
+        <p>UI/UX</p>
+      </FloatIcon>
+      <FloatIcon className={styles.banner3}>
+        <div>
+          <img src={video} alt="video" />
+        </div>
+        <p>VIDEO</p>
+      </FloatIcon>
+      <FloatIcon className={styles.banner4}>
+        <div>
+          <img src={backend} alt="backend" />
+        </div>
+        <p>BACKEND</p>
+      </FloatIcon>
     </div>
   );
 };
