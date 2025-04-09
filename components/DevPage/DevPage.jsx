@@ -18,7 +18,7 @@ import siddharth from "../../src/assets/Devs/DevMembers/siddharth.png";
 import sitaram from "../../src/assets/Devs/DevMembers/sitaram.png";
 import surya from "../../src/assets/Devs/DevMembers/surya.png";
 
-import { useState } from "react";
+import { useState,useRef } from "react";
 
 import styles from "./devpage.module.scss";
 import FloatIcon from "./UI/FloatIcon";
