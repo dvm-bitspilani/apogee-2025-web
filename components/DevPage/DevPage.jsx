@@ -18,7 +18,7 @@ import siddharth from "../../src/assets/Devs/DevMembers/siddharth.png";
 import sitaram from "../../src/assets/Devs/DevMembers/sitaram.png";
 import surya from "../../src/assets/Devs/DevMembers/surya.png";
 
-import { useState,useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import styles from "./devpage.module.scss";
 import FloatIcon from "./UI/FloatIcon";
@@ -28,6 +28,8 @@ import frontend from "../../src/assets/Verticals/frontend.svg";
 import backend from "../../src/assets/Verticals/backend.svg";
 import design from "../../src/assets/Verticals/ui-ux.svg";
 import video from "../../src/assets/Verticals/video.svg";
+import { useGSAP } from "@gsap/react";
+import { gsap } from "gsap";
 
 const teamMembers = {
   front: [
@@ -234,7 +236,31 @@ const DevPage = () => {
   const [isVerticalOpen, setIsVerticalOpen] = useState(false);
   const [indx, setIndx] = useState(0);
   const grpRef = useRef([]);
-  
+
+  useEffect(() => {
+    if (isVerticalOpen) {
+      grpRef.current.forEach((el, index) => {
+        if (index != indx) {
+          gsap.to(el, {
+            duration: 0.5,
+            opacity: 0,
+            scale: 0,
+            ease: "power2.out",
+          });
+        } else {
+          gsap.set(el, {
+            clear: "all"
+          });
+          gsap.to(el, {
+            duration: 0.5,
+            x: 100,
+            y: 0,
+            ease: "power2.out",
+          });
+        }
+      });
+    }
+  }, [isVerticalOpen]);
 
   return (
     <div className={styles.container}>
