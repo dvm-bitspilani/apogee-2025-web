@@ -14,7 +14,6 @@ import priyanshu from "../../src/assets/Devs/DevMembers/priyanshu.png";
 import raza from "../../src/assets/Devs/DevMembers/raza.png";
 import samyak from "../../src/assets/Devs/DevMembers/samyak.png";
 import satyasheel from "../../src/assets/Devs/DevMembers/satyasheel.png";
-import siddharth from "../../src/assets/Devs/DevMembers/siddharth.png";
 import sitaram from "../../src/assets/Devs/DevMembers/sitaram.png";
 import surya from "../../src/assets/Devs/DevMembers/surya.png";
 
@@ -22,7 +21,7 @@ import { useState, useRef, useEffect } from "react";
 
 import styles from "./devpage.module.scss";
 import FloatIcon from "./UI/FloatIcon";
-import OverlayBackBtn from "../Overlay/OverlayBackBtn/OverlayBackBtn";
+import OverlayBackBtn from "./OverlayBackBtn/OverlayBackBtn";
 
 import frontend from "../../src/assets/Verticals/frontend.svg";
 import backend from "../../src/assets/Verticals/backend.svg";
@@ -30,6 +29,10 @@ import design from "../../src/assets/Verticals/ui-ux.svg";
 import video from "../../src/assets/Verticals/video.svg";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
+
+import { useCallback } from "react";
+import { useNavigate } from "react-router";
+import { div } from "framer-motion/client";
 
 const teamMembers = {
   front: [
@@ -163,16 +166,6 @@ const teamMembers = {
         "https://www.linkedin.com/in/sai-surya-vujuri-826a452b1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     },
     {
-      name: "Siddharth Kakar",
-      image: siddharth,
-      group: "video",
-      insta:
-        "https://www.instagram.com/siddharthkakar?igsh=MXRpNzBudDA4bnM3cQ==",
-      behance: "",
-      github: "",
-      linkedin: "https://www.linkedin.com/in/siddharth-kakar-a62881",
-    },
-    {
       name: "Sitaram prajapat",
       image: sitaram,
       group: "video",
@@ -236,36 +229,101 @@ const DevPage = () => {
   const [isVerticalOpen, setIsVerticalOpen] = useState(false);
   const [indx, setIndx] = useState(0);
   const grpRef = useRef([]);
+  const backgroundRef = useRef([]);
+
+  const navigate = useNavigate();
+
+  const handleClick = useCallback(() => {
+    if (!isVerticalOpen) {
+      navigate("/");
+    } else {
+      setIsVerticalOpen(false);
+    }
+  }, [navigate, isVerticalOpen]);
 
   useEffect(() => {
     if (isVerticalOpen) {
       grpRef.current.forEach((el, index) => {
         if (index != indx) {
+          gsap.set(el, { clearProps: "scale" });
           gsap.to(el, {
-            duration: 0.5,
+            duration: 1,
             opacity: 0,
             scale: 0,
+            pointerEvents: "none",
             ease: "power2.out",
           });
         } else {
           gsap.set(el, {
-            clear: "all"
+            clear: "all",
           });
           gsap.to(el, {
-            duration: 0.5,
-            x: 100,
-            y: 0,
+            duration: 1.5,
+            top: "30%",
+            left: "0%",
+            pointerEvents: "none",
             ease: "power2.out",
           });
         }
       });
+    } else {
+      grpRef.current.forEach((el, index) => {
+        let top = index === 0 || index == 3 ? "13vw" : "17.8vw";
+        let left = index === 0 ? "1vw" : index == 1 ? "24vw" : "auto";
+        let right = index === 2 ? "24vw" : index == 3 ? "1vw" : "auto";
+
+        gsap.to(el, {
+          duration: 1.5,
+          opacity: 1,
+          scale: 1,
+          top: top,
+          left: left,
+          right: right,
+          pointerEvents: "auto",
+          ease: "power2.out",
+        });
+      });
     }
+  }, [isVerticalOpen]);
+
+  useEffect(() => {
+    grpRef.current.forEach((el, index) => {
+      gsap.to(el, {
+        y: -15,
+        duration: 1 + Math.pow(-1, index) * 0.2 + 0.2 * index,
+        yoyo: true,
+        repeat: -1,
+        ease: "sine.inOut",
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    backgroundRef.current.forEach((el, index) => {
+      gsap.to(el, {
+        duration: 1,
+        opacity: 1,
+        ease: "power2.out",
+      });
+    });
   }, [isVerticalOpen]);
 
   return (
     <div className={styles.container}>
-      <OverlayBackBtn />
+      <OverlayBackBtn handleClick={handleClick} />
       <div className={styles.background}></div>
+      {isVerticalOpen && (
+        <div
+          className={styles.background2}
+          ref={(el) => (backgroundRef.current[0] = el)}
+        ></div>
+      )}
+      {isVerticalOpen && (
+        <div
+          className={styles.sidebackground}
+          ref={(el) => (backgroundRef.current[1] = el)}
+        ></div>
+      )}
       {banners.map((banner, index) => (
         <FloatIcon
           key={index}
