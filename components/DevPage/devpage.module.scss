@@ -19,7 +19,7 @@
     position: absolute;
     top: 13vw;
     left: 1vw;
-    animation: float 3.1s ease-in-out infinite;
+    animation: float 2.9s ease-in-out infinite;
 
     @keyframes float {
       0% {
@@ -37,7 +37,7 @@
     position: absolute;
     top: 17.8vw;
     left: 24vw;
-    animation: float 2.9s ease-in-out 0.4s infinite;
+    animation: float 3.1s ease-in-out 0.4s infinite;
 
     @keyframes float {
       0% {
@@ -95,6 +95,8 @@
 
   .banners:hover {
     animation-play-state: paused;
-    translate: 0 -100px;
+    translate: 0 -50px;
+    filter: brightness(120%);
+    cursor: pointer;
   }
 }

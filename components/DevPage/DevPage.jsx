@@ -18,6 +18,8 @@ import siddharth from "../../src/assets/Devs/DevMembers/siddharth.png";
 import sitaram from "../../src/assets/Devs/DevMembers/sitaram.png";
 import surya from "../../src/assets/Devs/DevMembers/surya.png";
 
+import { useState } from "react";
+
 import styles from "./devpage.module.scss";
 import FloatIcon from "./UI/FloatIcon";
 import OverlayBackBtn from "../Overlay/OverlayBackBtn/OverlayBackBtn";
@@ -229,7 +231,11 @@ const banners = [
   { name: "BACKEND", img: backend, className: styles.banner4 },
 ];
 const DevPage = () => {
-  [isVerticalOpen, setIsVerticalOpen] = useState(false);
+  const [isVerticalOpen, setIsVerticalOpen] = useState(false);
+  const [indx, setIndx] = useState(0);
+  const grpRef = useRef([]);
+  
+
   return (
     <div className={styles.container}>
       <OverlayBackBtn />
@@ -237,7 +243,12 @@ const DevPage = () => {
       {banners.map((banner, index) => (
         <FloatIcon
           key={index}
+          ref={(el) => (grpRef.current[index] = el)}
           className={`${banner.className} ${styles.banners}`}
+          onClick={() => {
+            setIsVerticalOpen(true);
+            setIndx(index);
+          }}
         >
           <div>
             <img src={banner.img} alt={banner.name} />

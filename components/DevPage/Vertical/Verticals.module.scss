@@ -1,0 +1,13 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  background: center / cover no-repeat
+    url("/src/assets/ComingSoon/skyBgDark.svg");
+  position: relative;
+  img {
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
