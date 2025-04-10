@@ -12,6 +12,8 @@ import backend from "../../src/assets/Verticals/backend.svg";
 import design from "../../src/assets/Verticals/ui-ux.svg";
 import video from "../../src/assets/Verticals/video.svg";
 import heading from "../../src/assets/Devs/developers.svg";
+import bannerImg from "../../src/assets/Devs/banner.svg";
+import bannerImg2 from "../../src/assets/Devs/banner2.svg";
 
 import { gsap } from "gsap";
 import { useState, useRef, useEffect } from "react";
@@ -106,8 +108,8 @@ const DevPage = () => {
       grpRef.current.forEach((el, index) => {
         el.style.animationPlayState = "running";
         let top = index === 0 || index == 3 ? "13vw" : "17.8vw";
-        let left = index === 0 ? "1vw" : index == 1 ? "24vw" : "auto";
-        let right = index === 2 ? "24vw" : index == 3 ? "1vw" : "auto";
+        let left = index === 0 ? "1vw" : index == 1 ? "25vw" : "auto";
+        let right = index === 2 ? "25vw" : index == 3 ? "1vw" : "auto";
 
         gsap.to(el, {
           duration: 1.5,
@@ -193,6 +195,7 @@ const DevPage = () => {
           <FloatIcon
             key={index}
             ref={(el) => (grpRef.current[index] = el)}
+            banner={isVerticalOpen ? bannerImg2 : bannerImg}
             className={`${banner.className} ${styles.banners}`}
             onClick={() => {
               setIsVerticalOpen(true);
