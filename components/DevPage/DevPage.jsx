@@ -22,17 +22,20 @@ import { useState, useRef, useEffect } from "react";
 import styles from "./devpage.module.scss";
 import FloatIcon from "./UI/FloatIcon";
 import OverlayBackBtn from "./OverlayBackBtn/OverlayBackBtn";
+import clouds from "../../src/assets/ComingSoon/background.png";
+import bg2 from "../../src/assets/Devs/bg2.svg";
+import blendOverlay from "../../src/assets/Devs/back.png";
 
 import frontend from "../../src/assets/Verticals/frontend.svg";
 import backend from "../../src/assets/Verticals/backend.svg";
 import design from "../../src/assets/Verticals/ui-ux.svg";
 import video from "../../src/assets/Verticals/video.svg";
-import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 
 import { useCallback } from "react";
 import { useNavigate } from "react-router";
-import { div } from "framer-motion/client";
+
+import Preloader from "../Registration/Preloader/Preloader";
 
 const teamMembers = {
   front: [
@@ -233,6 +236,46 @@ const DevPage = () => {
 
   const navigate = useNavigate();
 
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [showPreloader, setShowPreloader] = useState(true);
+
+  useEffect(() => {
+    const imageUrls = [
+      frontend,
+      design,
+      video,
+      backend,
+      ...Object.values(teamMembers)
+        .flat()
+        .map((member) => member.image),
+      clouds,
+      bg2,
+      blendOverlay,
+    ];
+    let loadedCount = 0;
+    imageUrls.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+      img.onload = () => {
+        loadedCount++;
+        if (loadedCount === imageUrls.length) {
+          setTimeout(() => {
+            setImagesLoaded(true);
+            setTimeout(() => {
+              setShowPreloader(false);
+            }, 0);
+          }, 0);
+        }
+      };
+      img.onerror = () => {
+        loadedCount++;
+        if (loadedCount === imageUrls.length) {
+          setImagesLoaded(true);
+        }
+      };
+    });
+  }, []);
+
   const handleClick = useCallback(() => {
     if (!isVerticalOpen) {
       navigate("/");
@@ -244,6 +287,7 @@ const DevPage = () => {
   useEffect(() => {
     if (isVerticalOpen) {
       grpRef.current.forEach((el, index) => {
+        el.style.animationPlayState = "paused";
         if (index != indx) {
           gsap.set(el, { clearProps: "scale" });
           gsap.to(el, {
@@ -268,6 +312,7 @@ const DevPage = () => {
       });
     } else {
       grpRef.current.forEach((el, index) => {
+        el.style.animationPlayState = "running";
         let top = index === 0 || index == 3 ? "13vw" : "17.8vw";
         let left = index === 0 ? "1vw" : index == 1 ? "24vw" : "auto";
         let right = index === 2 ? "24vw" : index == 3 ? "1vw" : "auto";
@@ -309,38 +354,50 @@ const DevPage = () => {
   }, [isVerticalOpen]);
 
   return (
-    <div className={styles.container}>
-      <OverlayBackBtn handleClick={handleClick} />
-      <div className={styles.background}></div>
-      {isVerticalOpen && (
-        <div
-          className={styles.background2}
-          ref={(el) => (backgroundRef.current[0] = el)}
-        ></div>
-      )}
-      {isVerticalOpen && (
-        <div
-          className={styles.sidebackground}
-          ref={(el) => (backgroundRef.current[1] = el)}
-        ></div>
-      )}
-      {banners.map((banner, index) => (
-        <FloatIcon
-          key={index}
-          ref={(el) => (grpRef.current[index] = el)}
-          className={`${banner.className} ${styles.banners}`}
-          onClick={() => {
-            setIsVerticalOpen(true);
-            setIndx(index);
-          }}
-        >
-          <div>
-            <img src={banner.img} alt={banner.name} />
+    <>
+      {showPreloader && <Preloader />}
+      <div className={styles.container}>
+        <OverlayBackBtn handleClick={handleClick} />
+        <div className={styles.background}>
+          <img src={clouds} alt="background image" />
+        </div>
+        {isVerticalOpen && (
+          <div
+            className={styles.background2}
+            ref={(el) => (backgroundRef.current[0] = el)}
+          >
+            <img src={bg2} alt="background image" />
+            <img
+              className={styles.blendOverlay}
+              src={blendOverlay}
+              alt="background image"
+            />
           </div>
-          <p>{banner.name}</p>
-        </FloatIcon>
-      ))}
-    </div>
+        )}
+        {isVerticalOpen && (
+          <div
+            className={styles.sidebackground}
+            ref={(el) => (backgroundRef.current[1] = el)}
+          ></div>
+        )}
+        {banners.map((banner, index) => (
+          <FloatIcon
+            key={index}
+            ref={(el) => (grpRef.current[index] = el)}
+            className={`${banner.className} ${styles.banners}`}
+            onClick={() => {
+              setIsVerticalOpen(true);
+              setIndx(index);
+            }}
+          >
+            <div>
+              <img src={banner.img} alt={banner.name} />
+            </div>
+            <p>{banner.name}</p>
+          </FloatIcon>
+        ))}
+      </div>
+    </>
   );
 };
 
