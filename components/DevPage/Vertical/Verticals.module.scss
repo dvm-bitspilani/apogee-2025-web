@@ -14,9 +14,6 @@
     grid-template-columns: repeat(2, 1fr);
     padding: 3.5vw;
     row-gap: 2rem;
-    overflow: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
 
     .box {
       display: flex;

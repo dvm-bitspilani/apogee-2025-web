@@ -20,6 +20,8 @@ import { useState, useRef, useEffect } from "react";
 import { useCallback } from "react";
 import { useNavigate } from "react-router";
 
+import wheel from "../../src/assets/Register/wheel.svg";
+
 import teamMembers from "./teamMembers.js";
 
 const banners = [
@@ -34,6 +36,10 @@ const DevPage = () => {
   const [indx, setIndx] = useState(0);
   const [showPreloader, setShowPreloader] = useState(true);
   const [team, setteam] = useState([]);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+
+  const wheelRef = useRef(null);
+  const mainContainerRef = useRef(null);
 
   const grpRef = useRef([]);
   const backgroundRef = useRef([]);
@@ -67,10 +73,92 @@ const DevPage = () => {
           setTimeout(() => {
             setShowPreloader(false);
           }, 0);
+          setImagesLoaded(true);
         }
       };
     });
   }, []);
+
+  function handleScroll() {
+    // const maxScrollTopValue = mainContainerRef.current.scrollTopMax;
+    const maxScrollTopValue =
+      mainContainerRef.current.scrollHeight -
+      mainContainerRef.current.clientHeight;
+    // const percentage = (mainContainerRef.current.scrollTop / maxScrollTopValue )*100;
+    const percentage =
+      (mainContainerRef.current.scrollTop / maxScrollTopValue) * 100;
+    percentage > 100
+      ? (wheelRef.current.style.top = "100%")
+      : (wheelRef.current.style.top = `${percentage}%`);
+    // console.log(percentage);
+    // // wheelRef.current.style.top = `${percentage}%`;
+    // wheelElem.style.top = `${percentage}%`;
+  }
+
+  useEffect(() => {
+    if (imagesLoaded && mainContainerRef.current) {
+      mainContainerRef.current.addEventListener("scroll", handleScroll);
+
+      return () => {
+        mainContainerRef.current.removeEventListener("scroll", handleScroll);
+      };
+    }
+  }, [imagesLoaded]);
+
+  const handlewheelMouseDown = (e) => {
+    e.preventDefault();
+
+    document.addEventListener("mousemove", handlewheelDragMove);
+    document.addEventListener("touchmove", handlewheelDragMove);
+
+    document.addEventListener("mouseup", handlewheelDragEnd);
+    document.addEventListener("touchend", handlewheelDragEnd);
+  };
+
+  const handlewheelDragMove = (e) => {
+    const mainWrapperElement = mainContainerRef.current;
+    const scrollBarContainer = document.querySelector(
+      `.${styles.scrollBarContainer}`
+    );
+
+    const maxScrollTopValue =
+      mainWrapperElement.scrollHeight - mainWrapperElement.clientHeight;
+
+    const clientY = e.clientY || e.touches[0].clientY;
+
+    const percentage =
+      ((clientY - scrollBarContainer.offsetTop) /
+        scrollBarContainer.clientHeight) *
+      100;
+
+    mainWrapperElement.scrollTop = (percentage / 100) * maxScrollTopValue;
+  };
+
+  const handlewheelDragEnd = () => {
+    document.removeEventListener("mousemove", handlewheelDragMove);
+    document.removeEventListener("mouseup", handlewheelDragEnd);
+    document.removeEventListener("touchmove", handlewheelDragMove);
+    document.removeEventListener("touchend", handlewheelDragEnd);
+  };
+
+  const handleTrackSnap = (e) => {
+    const mainWrapperElement = mainContainerRef.current;
+    const scrollBarContainer = document.querySelector(
+      `.${styles.scrollBarContainer}`
+    );
+    const percentage =
+      ((e.clientY - scrollBarContainer.offsetTop) /
+        scrollBarContainer.clientHeight) *
+      100;
+    const maxScrollTopValue =
+      mainWrapperElement.scrollHeight - mainWrapperElement.clientHeight;
+
+    mainWrapperElement.scrollTo({
+      // Smooth scroll to the percentage of the max scroll value
+      top: (percentage / 100) * maxScrollTopValue,
+      behavior: "smooth",
+    });
+  };
 
   const handleClick = useCallback(() => {
     if (!isVerticalOpen) {
@@ -129,7 +217,7 @@ const DevPage = () => {
   }, [isVerticalOpen]);
 
   useEffect(() => {
-    backgroundRef.current.map((el, ind) => {
+    backgroundRef.current.map((el) => {
       gsap.to(el, {
         duration: 1.5,
         opacity: 1,
@@ -172,28 +260,49 @@ const DevPage = () => {
           <img src={clouds} alt="background image" />
         </div>
         {isVerticalOpen && (
-          <>
-            <div
-              className={styles.background2}
-              ref={(el) => {
-                backgroundRef.current[0] = el;
-              }}
-            >
-              <img src={bg2} alt="background image" />
-              <img
-                className={styles.blendOverlay}
-                src={blendOverlay}
-                alt="background image"
-              />
-            </div>
-            <Verticals
-              team={team}
-              ref={(el) => {
-                backgroundRef.current[1] = el;
-              }}
+          <div
+            className={styles.background2}
+            ref={(el) => {
+              backgroundRef.current[0] = el;
+            }}
+          >
+            <img src={bg2} alt="background image" />
+            <img
+              className={styles.blendOverlay}
+              src={blendOverlay}
+              alt="background image"
             />
-          </>
+          </div>
         )}
+        <div className={styles.verticals} ref={mainContainerRef}>
+          {isVerticalOpen && (
+            <>
+              
+              <div
+                className={styles.scrollBarContainer}
+                onClick={handleTrackSnap}
+              >
+                <div className={styles.scrollBar}></div>
+                <img
+                  draggable={false}
+                  onMouseDown={handlewheelMouseDown}
+                  onTouchStart={handlewheelMouseDown}
+                  id="wheel"
+                  src={wheel}
+                  alt="wheel"
+                  ref={wheelRef}
+                />
+              </div>
+              <Verticals
+                team={team}
+                ref={(el) => {
+                  backgroundRef.current[1] = el;
+                }}
+              />
+            </>
+          )}
+        </div>
+
         {banners.map((banner, index) => (
           <FloatIcon
             key={index}
