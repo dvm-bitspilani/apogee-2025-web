@@ -1,4 +1,4 @@
-import styles from "./Devpage.module.scss";
+import styles from "./devpage.module.scss";
 import Preloader from "../Registration/Preloader/Preloader";
 import FloatIcon from "./UI/FloatIcon";
 import OverlayBackBtn from "./OverlayBackBtn/OverlayBackBtn";
@@ -53,6 +53,9 @@ const DevPage = () => {
       clouds,
       bg2,
       blendOverlay,
+      heading,
+      bannerImg,
+      bannerImg2,
     ];
     let loadedCount = 0;
     imageUrls.forEach((src) => {
