@@ -1,226 +1,24 @@
-import askshaya from "../../src/assets/Devs/DevMembers/akshaya.png";
-import animesh from "../../src/assets/Devs/DevMembers/animesh.png";
-import anurag from "../../src/assets/Devs/DevMembers/anurag.png";
-import ashutosh from "../../src/assets/Devs/DevMembers/ashutosh.png";
-import atharv from "../../src/assets/Devs/DevMembers/atharv.png";
-import avi_image from "../../src/assets/Devs/DevMembers/avi_image.png";
-import ayush from "../../src/assets/Devs/DevMembers/ayush.png";
-import bhavesh from "../../src/assets/Devs/DevMembers/bhavesh.png";
-import daksh from "../../src/assets/Devs/DevMembers/daksh.png";
-import madhur from "../../src/assets/Devs/DevMembers/madhur.png";
-import manas from "../../src/assets/Devs/DevMembers/manas.png";
-import prathmesh from "../../src/assets/Devs/DevMembers/prathmesh.png";
-import priyanshu from "../../src/assets/Devs/DevMembers/priyanshu.png";
-import raza from "../../src/assets/Devs/DevMembers/raza.png";
-import samyak from "../../src/assets/Devs/DevMembers/samyak.png";
-import satyasheel from "../../src/assets/Devs/DevMembers/satyasheel.png";
-import sitaram from "../../src/assets/Devs/DevMembers/sitaram.png";
-import surya from "../../src/assets/Devs/DevMembers/surya.png";
-
-import { useState, useRef, useEffect } from "react";
-
-import styles from "./devpage.module.scss";
+import styles from "./Devpage.module.scss";
+import Preloader from "../Registration/Preloader/Preloader";
 import FloatIcon from "./UI/FloatIcon";
 import OverlayBackBtn from "./OverlayBackBtn/OverlayBackBtn";
+import Verticals from "./Vertical/Verticals.jsx";
+
 import clouds from "../../src/assets/ComingSoon/background.png";
 import bg2 from "../../src/assets/Devs/bg2.svg";
 import blendOverlay from "../../src/assets/Devs/back.png";
-
 import frontend from "../../src/assets/Verticals/frontend.svg";
 import backend from "../../src/assets/Verticals/backend.svg";
 import design from "../../src/assets/Verticals/ui-ux.svg";
 import video from "../../src/assets/Verticals/video.svg";
-import { gsap } from "gsap";
+import heading from "../../src/assets/Devs/developers.svg";
 
+import { gsap } from "gsap";
+import { useState, useRef, useEffect } from "react";
 import { useCallback } from "react";
 import { useNavigate } from "react-router";
 
-import Preloader from "../Registration/Preloader/Preloader";
-
-const teamMembers = {
-  front: [
-    {
-      name: "Samyak Jain",
-      image: samyak,
-      group: "frontend",
-      insta: "https://www.instagram.com/jain_samyak_12/",
-      behance: "",
-      github: "https://github.com/samyak-jain-12",
-      linkedin: "https://www.linkedin.com/in/samyak-jain-bab61730b/",
-    },
-    {
-      name: "Animesh Datta Jaiswal",
-      image: animesh,
-      group: "frontend",
-      insta: "https://www.instagram.com/animeshani1/",
-      behance: "",
-      github: "https://github.com/Animeshdj",
-      linkedin: "https://www.linkedin.com/in/animesh-datta-jaiswal-a3b15729a/",
-    },
-    {
-      name: "Atharv Agarwal",
-      image: atharv,
-      group: "frontend",
-      insta: "https://www.instagram.com/abe_par_tu_hai_kaun/",
-      behance: "",
-      github: "https://github.com/AtharvAgarwal20",
-      linkedin: "https://www.linkedin.com/in/atharv-amit-agarwal/",
-    },
-    {
-      name: "Manas Choudhary",
-      image: manas,
-      group: "backend",
-      insta: "https://www.instagram.com/manaschoudhary_?igsh=YTQwZjQ0NmI0OA==",
-      behance: "",
-      github: "https://github.com/ManasChoudhary-01",
-      linkedin: "https://www.linkedin.com/in/manas-choudhary-56374028b",
-    },
-  ],
-  design: [
-    {
-      name: "Bhavesh Jangir",
-      image: bhavesh,
-      group: "design",
-      insta: "",
-      behance: "",
-      github: "",
-      linkedin: "https://www.linkedin.com/in/madhur-jain-a03260211?",
-    },
-    {
-      name: "Madhur Jain",
-      image: madhur,
-      group: "design",
-      insta: "",
-      behance: "",
-      github: "",
-      linkedin: "https://www.linkedin.com/in/madhur-jain-a03260211?",
-    },
-    {
-      name: "Satyasheel Singh",
-      image: satyasheel,
-      group: "backend",
-      insta: "",
-      behance: "",
-      github: "",
-      linkedin: "www.linkedin.com/in/satyasheel-singh-a82106290",
-    },
-  ],
-  video: [
-    {
-      name: "Akshaya Shubh Agarwal",
-      image: askshaya,
-      group: "video",
-      insta: "https://www.instagram.com/akshaya.kyu/",
-      behance: "",
-      github: "https://github.com/Akshaya1501",
-      linkedin:
-        "https://www.linkedin.com/in/akshaya-shubh-2b6a44288?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    },
-    {
-      name: "Anurag",
-      image: anurag,
-      group: "video",
-      insta:
-        "https://www.instagram.com/_anurag.malhotra_?igsh=MWltNWJveWxnaXAwbQ==",
-      behance: "",
-      github: "",
-      linkedin:
-        "https://www.linkedin.com/in/anurag-malhotra-772969287?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    },
-    {
-      name: "Prathmesh Chandra",
-      image: prathmesh,
-      group: "video",
-      insta: "https://www.instagram.com/_prathmesh_chandra",
-      behance: "",
-      github: "",
-      linkedin: "https://www.linkedin.com/in/prathmesh-chandra-b6b38a2b5/",
-    },
-
-    {
-      name: "Priyanshu Narayan",
-      image: priyanshu,
-      group: "video",
-      insta: "",
-      behance: "",
-      github: "",
-      linkedin:
-        "https://www.linkedin.com/in/priyanshu-narayan-559412275?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    },
-    {
-      name: "Raza Hasnain",
-      image: raza,
-      group: "video",
-      insta:
-        "https://www.instagram.com/praja_pat3293?igsh=MTIxaDlrMGd0OWFtbQ==",
-      behance: "",
-      github: "",
-      linkedin: "https://www.linkedin.com/in/razahasnain22/",
-    },
-    {
-      name: "Sai Surya Vujuri",
-      image: surya,
-      group: "video",
-      insta:
-        "https://www.instagram.com/surya_ijk/profilecard/?igsh=Zm1ybTV0ZW9sdmlw",
-      behance: "",
-      github: "",
-      linkedin:
-        "https://www.linkedin.com/in/sai-surya-vujuri-826a452b1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    },
-    {
-      name: "Sitaram prajapat",
-      image: sitaram,
-      group: "video",
-      insta:
-        "https://www.instagram.com/praja_pat3293?igsh=MTIxaDlrMGd0OWFtbQ==",
-      behance: "",
-      github: "",
-      linkedin:
-        "https://www.linkedin.com/in/sitaram-prajapat-208147294?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    },
-  ],
-  back: [
-    {
-      name: "Ashutosh Desai",
-      image: ashutosh,
-      group: "backend",
-      insta: "https://www.instagram.com/ashutosh____1910?igsh=czNya244Mnp2MzVv",
-      behance: "",
-      github: "https://github.com/Ashutosh1910/",
-      linkedin:
-        "https://www.linkedin.com/in/ashutosh-desai-676820278?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    },
-    {
-      name: "Avyakt Verma",
-      image: avi_image,
-      group: "backend",
-      insta: "https://www.instagram.com/avyakt_1729?igsh=NnNocWd1Nmh5cmU1",
-      behance: "",
-      github: "https://github.com/Avyakt-ai",
-      linkedin:
-        "https://www.linkedin.com/in/avyakt-verma-89264727b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    },
-    {
-      name: "Ayush Gupta",
-      image: ayush,
-      group: "backend",
-      insta: "https://www.instagram.com/madme.ig/",
-      behance: "",
-      github: "https://github.com/Ayush-gupta-dev",
-      linkedin: "https://www.linkedin.com/in/ayush-gupta-dev/",
-    },
-    {
-      name: "Daksh Jain",
-      image: daksh,
-      group: "backend",
-      insta: "https://www.instagram.com/daksh__jain08/",
-      behance: "",
-      github: "https://github.com/Daksh-Jain08/",
-      linkedin: "https://www.linkedin.com/in/daksh-jain-996b541b4/",
-    },
-  ],
-};
+import teamMembers from "./teamMembers.js";
 
 const banners = [
   { name: "FRONTEND", img: frontend, className: styles.banner1 },
@@ -228,16 +26,18 @@ const banners = [
   { name: "VIDEO", img: video, className: styles.banner3 },
   { name: "BACKEND", img: backend, className: styles.banner4 },
 ];
+
 const DevPage = () => {
   const [isVerticalOpen, setIsVerticalOpen] = useState(false);
   const [indx, setIndx] = useState(0);
+  const [showPreloader, setShowPreloader] = useState(true);
+  const [team, setteam] = useState([]);
+
   const grpRef = useRef([]);
   const backgroundRef = useRef([]);
+  const floatAnim = useRef([]);
 
   const navigate = useNavigate();
-
-  const [imagesLoaded, setImagesLoaded] = useState(false);
-  const [showPreloader, setShowPreloader] = useState(true);
 
   useEffect(() => {
     const imageUrls = [
@@ -260,17 +60,8 @@ const DevPage = () => {
         loadedCount++;
         if (loadedCount === imageUrls.length) {
           setTimeout(() => {
-            setImagesLoaded(true);
-            setTimeout(() => {
-              setShowPreloader(false);
-            }, 0);
+            setShowPreloader(false);
           }, 0);
-        }
-      };
-      img.onerror = () => {
-        loadedCount++;
-        if (loadedCount === imageUrls.length) {
-          setImagesLoaded(true);
         }
       };
     });
@@ -302,9 +93,10 @@ const DevPage = () => {
             clear: "all",
           });
           gsap.to(el, {
-            duration: 1.5,
+            duration: 1,
             top: "30%",
-            left: "0%",
+            left: "2vw",
+            scale: 1.3,
             pointerEvents: "none",
             ease: "power2.out",
           });
@@ -332,53 +124,70 @@ const DevPage = () => {
   }, [isVerticalOpen]);
 
   useEffect(() => {
-    grpRef.current.forEach((el, index) => {
+    backgroundRef.current.map((el, ind) => {
       gsap.to(el, {
-        y: -15,
-        duration: 1 + Math.pow(-1, index) * 0.2 + 0.2 * index,
-        yoyo: true,
-        repeat: -1,
-        ease: "sine.inOut",
-      });
-    });
-  }, []);
-
-  useEffect(() => {
-    backgroundRef.current.forEach((el, index) => {
-      gsap.to(el, {
-        duration: 1,
+        duration: 1.5,
         opacity: 1,
         ease: "power2.out",
       });
     });
+
+    if (!isVerticalOpen) {
+      if (floatAnim.current.length === 0) {
+        floatAnim.current = grpRef.current.map((el, index) =>
+          gsap.to(el, {
+            y: -15,
+            duration: 1 + Math.pow(-1, index) * 0.2 + 0.2 * index,
+            yoyo: true,
+            repeat: -1,
+            ease: "sine.inOut",
+          })
+        );
+      } else {
+        floatAnim.current.forEach((tween) => tween.resume());
+      }
+    } else {
+      floatAnim.current.forEach((tween) => tween.pause());
+    }
   }, [isVerticalOpen]);
+
+  useEffect(() => {
+    setteam(teamMembers[banners[indx].name]);
+  }, [indx]);
 
   return (
     <>
       {showPreloader && <Preloader />}
       <div className={styles.container}>
         <OverlayBackBtn handleClick={handleClick} />
+        {!isVerticalOpen && (
+          <img src={heading} alt="heading" className={styles.heading} />
+        )}
         <div className={styles.background}>
           <img src={clouds} alt="background image" />
         </div>
         {isVerticalOpen && (
-          <div
-            className={styles.background2}
-            ref={(el) => (backgroundRef.current[0] = el)}
-          >
-            <img src={bg2} alt="background image" />
-            <img
-              className={styles.blendOverlay}
-              src={blendOverlay}
-              alt="background image"
+          <>
+            <div
+              className={styles.background2}
+              ref={(el) => {
+                backgroundRef.current[0] = el;
+              }}
+            >
+              <img src={bg2} alt="background image" />
+              <img
+                className={styles.blendOverlay}
+                src={blendOverlay}
+                alt="background image"
+              />
+            </div>
+            <Verticals
+              team={team}
+              ref={(el) => {
+                backgroundRef.current[1] = el;
+              }}
             />
-          </div>
-        )}
-        {isVerticalOpen && (
-          <div
-            className={styles.sidebackground}
-            ref={(el) => (backgroundRef.current[1] = el)}
-          ></div>
+          </>
         )}
         {banners.map((banner, index) => (
           <FloatIcon

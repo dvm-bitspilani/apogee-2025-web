@@ -1,12 +1,3 @@
-@keyframes fadein {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
 * {
   padding: 0px;
   margin: 0px;
@@ -20,6 +11,13 @@
   transform-style: preserve-3d;
   overflow: hidden;
 
+  .heading {
+    position: fixed;
+    top: 0;
+    left: 50vw;
+    scale: 1.3;
+    translate: -50% 0;
+  }
   .background {
     position: fixed;
     top: 0;
@@ -37,7 +35,6 @@
     }
   }
 
-  // overflow: hidden;
   .background2 {
     position: fixed;
     top: 0;
@@ -91,7 +88,7 @@
   }
 
   .banners:hover {
-    animation-play-state: paused;
+    animation-play-state: paused !important;
     translate: 0 -50px !important;
     filter: brightness(120%);
     cursor: pointer;
