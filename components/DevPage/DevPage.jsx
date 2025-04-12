@@ -9,27 +9,26 @@ import bg2 from "../../src/assets/Devs/bg2.svg";
 import blendOverlay from "../../src/assets/Devs/back.png";
 import frontend from "../../src/assets/Verticals/frontend.svg";
 import backend from "../../src/assets/Verticals/backend.svg";
-import design from "../../src/assets/Verticals/ui-ux.svg";
+import design from "../../src/assets/Verticals/figma.png";
 import video from "../../src/assets/Verticals/video.svg";
 import heading from "../../src/assets/Devs/developers.svg";
 import bannerImg from "../../src/assets/Devs/banner.svg";
 import bannerImg2 from "../../src/assets/Devs/banner2.svg";
 
+import frontend2 from "../../src/assets/Verticals/frontend2.png";
+import backend2 from "../../src/assets/Verticals/back2.png";
+import design2 from "../../src/assets/Verticals/figma2.png";
+import video2 from "../../src/assets/Verticals/video2.png";
+
 import { gsap } from "gsap";
 import { useState, useRef, useEffect } from "react";
 import { useCallback } from "react";
 import { useNavigate } from "react-router";
+import { useGSAP } from "@gsap/react";
 
 import wheel from "../../src/assets/Register/wheel.svg";
 
 import teamMembers from "./teamMembers.js";
-
-const banners = [
-  { name: "FRONTEND", img: frontend, className: styles.banner1 },
-  { name: "UI/UX", img: design, className: styles.banner2 },
-  { name: "VIDEO", img: video, className: styles.banner3 },
-  { name: "BACKEND", img: backend, className: styles.banner4 },
-];
 
 const DevPage = () => {
   const [isVerticalOpen, setIsVerticalOpen] = useState(false);
@@ -37,6 +36,7 @@ const DevPage = () => {
   const [showPreloader, setShowPreloader] = useState(true);
   const [team, setteam] = useState([]);
   const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [showScrollBar, setShowScrollBar] = useState(false);
 
   const wheelRef = useRef(null);
   const mainContainerRef = useRef(null);
@@ -46,6 +46,29 @@ const DevPage = () => {
   const floatAnim = useRef([]);
 
   const navigate = useNavigate();
+
+  const banners = [
+    {
+      name: "FRONTEND",
+      img: isVerticalOpen ? frontend2 : frontend,
+      className: styles.banner1,
+    },
+    {
+      name: "UI/UX",
+      img: isVerticalOpen ? design2 : design,
+      className: styles.banner2,
+    },
+    {
+      name: "VIDEO",
+      img: isVerticalOpen ? video2 : video,
+      className: styles.banner3,
+    },
+    {
+      name: "BACKEND",
+      img: isVerticalOpen ? backend2 : backend,
+      className: styles.banner4,
+    },
+  ];
 
   useEffect(() => {
     const imageUrls = [
@@ -168,7 +191,7 @@ const DevPage = () => {
     }
   }, [navigate, isVerticalOpen]);
 
-  useEffect(() => {
+  useGSAP(() => {
     if (isVerticalOpen) {
       grpRef.current.forEach((el, index) => {
         el.style.animationPlayState = "paused";
@@ -240,13 +263,28 @@ const DevPage = () => {
         floatAnim.current.forEach((tween) => tween.resume());
       }
     } else {
-      floatAnim.current.forEach((tween) => tween.pause());
     }
   }, [isVerticalOpen]);
 
   useEffect(() => {
     setteam(teamMembers[banners[indx].name]);
+    if (
+      mainContainerRef.current &&
+      mainContainerRef.current.scrollHeight >
+        mainContainerRef.current.clientHeight
+    ) {
+      setShowScrollBar(false);
+    } else {
+      setShowScrollBar(true);
+    }
   }, [indx]);
+
+  const handleVerticalClick = (index) => {
+    floatAnim.current.forEach((tween) => tween.pause());
+
+    setIsVerticalOpen(true);
+    setIndx(index);
+  };
 
   return (
     <>
@@ -277,22 +315,23 @@ const DevPage = () => {
         <div className={styles.verticals} ref={mainContainerRef}>
           {isVerticalOpen && (
             <>
-              
-              <div
-                className={styles.scrollBarContainer}
-                onClick={handleTrackSnap}
-              >
-                <div className={styles.scrollBar}></div>
-                <img
-                  draggable={false}
-                  onMouseDown={handlewheelMouseDown}
-                  onTouchStart={handlewheelMouseDown}
-                  id="wheel"
-                  src={wheel}
-                  alt="wheel"
-                  ref={wheelRef}
-                />
-              </div>
+              {showScrollBar && (
+                <div
+                  className={styles.scrollBarContainer}
+                  onClick={handleTrackSnap}
+                >
+                  <div className={styles.scrollBar}></div>
+                  <img
+                    draggable={false}
+                    onMouseDown={handlewheelMouseDown}
+                    onTouchStart={handlewheelMouseDown}
+                    id="wheel"
+                    src={wheel}
+                    alt="wheel"
+                    ref={wheelRef}
+                  />
+                </div>
+              )}
               <Verticals
                 team={team}
                 ref={(el) => {
@@ -310,8 +349,7 @@ const DevPage = () => {
             banner={isVerticalOpen ? bannerImg2 : bannerImg}
             className={`${banner.className} ${styles.banners}`}
             onClick={() => {
-              setIsVerticalOpen(true);
-              setIndx(index);
+              handleVerticalClick(index);
             }}
           >
             <div>
