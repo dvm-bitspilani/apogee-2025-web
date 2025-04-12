@@ -96,16 +96,7 @@ const teamMembers = {
       github: "",
       linkedin: "https://www.linkedin.com/in/razahasnain22/",
     },
-    {
-      name: "Raza Hasnain",
-      image: raza,
-      group: "video",
-      insta:
-        "https://www.instagram.com/praja_pat3293?igsh=MTIxaDlrMGd0OWFtbQ==",
-      behance: "",
-      github: "",
-      linkedin: "https://www.linkedin.com/in/razahasnain22/",
-    },
+
     {
       name: "Akshaya Shubh Agarwal",
       image: askshaya,
@@ -147,16 +138,7 @@ const teamMembers = {
       linkedin:
         "https://www.linkedin.com/in/priyanshu-narayan-559412275?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     },
-    {
-      name: "Raza Hasnain",
-      image: raza,
-      group: "video",
-      insta:
-        "https://www.instagram.com/praja_pat3293?igsh=MTIxaDlrMGd0OWFtbQ==",
-      behance: "",
-      github: "",
-      linkedin: "https://www.linkedin.com/in/razahasnain22/",
-    },
+
     {
       name: "Sai Surya Vujuri",
       image: surya,
