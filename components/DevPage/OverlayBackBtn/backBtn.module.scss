@@ -19,10 +19,13 @@
     height: 80px;
   }
 
-  @media (width < 600px) {
-    top: 1.25rem;
+  @media (width < 601px) {
+    top: 5vw;
     left: 0.5rem;
     height: 60px;
+    img{
+      height: 10vw;
+    }
   }
 
   // @media (width > 1100px) and (height < 680px) {

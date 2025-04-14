@@ -90,12 +90,12 @@
       }
     }
   }
-}
-
-.three {
-  grid-template-columns: 30% 70%;
   .threesub {
     grid-template-columns: repeat(3, 1fr);
     padding-right: 2rem;
   }
+}
+
+.three {
+  grid-template-columns: 30% 70%;
 }

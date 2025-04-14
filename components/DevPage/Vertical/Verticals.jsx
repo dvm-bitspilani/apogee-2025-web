@@ -11,8 +11,6 @@ import { forwardRef, useState, useEffect } from "react";
 
 const Verticals = forwardRef(({ team }, ref) => {
   const [showPreloader, setShowPreloader] = useState(true);
-  const [imagesLoaded, setImagesLoaded] = useState(false);
-
   useEffect(() => {
     const imageUrls = [
       frame,
@@ -31,7 +29,6 @@ const Verticals = forwardRef(({ team }, ref) => {
           setTimeout(() => {
             setShowPreloader(false);
           }, 0);
-          setImagesLoaded(true);
         }
       };
     });

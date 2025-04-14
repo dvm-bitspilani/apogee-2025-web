@@ -7,6 +7,7 @@ import Verticals from "./Vertical/Verticals.jsx";
 import clouds from "../../src/assets/ComingSoon/background.png";
 import bg2 from "../../src/assets/Devs/bg2.svg";
 import blendOverlay from "../../src/assets/Devs/back.png";
+import blendOverlay2 from "../../src/assets/Devs/back2.png";
 import frontend from "../../src/assets/Verticals/frontend.svg";
 import backend from "../../src/assets/Verticals/backend.svg";
 import design from "../../src/assets/Verticals/figma.png";
@@ -37,6 +38,7 @@ const DevPage = () => {
   const [team, setteam] = useState([]);
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [showScrollBar, setShowScrollBar] = useState(false);
+  const [imageSrc, setImageSrc] = useState("");
 
   const wheelRef = useRef(null);
   const mainContainerRef = useRef(null);
@@ -69,6 +71,17 @@ const DevPage = () => {
       className: styles.banner4,
     },
   ];
+
+  useEffect(() => {
+    const updateImage = () => {
+      const width = window.innerWidth;
+      setImageSrc(width < 601 ? blendOverlay2 : blendOverlay);
+    };
+
+    updateImage();
+    window.addEventListener("resize", updateImage);
+    return () => window.removeEventListener("resize", updateImage);
+  }, []);
 
   useEffect(() => {
     const imageUrls = [
@@ -192,51 +205,106 @@ const DevPage = () => {
   }, [navigate, isVerticalOpen]);
 
   useGSAP(() => {
-    if (isVerticalOpen) {
-      grpRef.current.forEach((el, index) => {
-        el.style.animationPlayState = "paused";
-        if (index != indx) {
-          gsap.set(el, { clearProps: "scale" });
-          gsap.to(el, {
-            duration: 1,
-            opacity: 0,
-            scale: 0,
-            pointerEvents: "none",
-            ease: "power2.out",
-          });
-        } else {
-          gsap.set(el, {
-            clear: "all",
-          });
-          gsap.to(el, {
-            duration: 1,
-            top: "30%",
-            left: "2vw",
-            scale: 1.3,
-            pointerEvents: "none",
-            ease: "power2.out",
-          });
-        }
-      });
-    } else {
-      grpRef.current.forEach((el, index) => {
-        el.style.animationPlayState = "running";
-        let top = index === 0 || index == 3 ? "13vw" : "17.8vw";
-        let left = index === 0 ? "1vw" : index == 1 ? "25vw" : "auto";
-        let right = index === 2 ? "25vw" : index == 3 ? "1vw" : "auto";
+    const mm = gsap.matchMedia();
 
-        gsap.to(el, {
-          duration: 1.5,
-          opacity: 1,
-          scale: 1,
-          top: top,
-          left: left,
-          right: right,
-          pointerEvents: "auto",
-          ease: "power2.out",
+    mm.add("(min-width: 601px)", () => {
+      if (isVerticalOpen) {
+        grpRef.current.forEach((el, index) => {
+          el.style.animationPlayState = "paused";
+          if (index != indx) {
+            gsap.set(el, { clearProps: "scale" });
+            gsap.to(el, {
+              duration: 1,
+              opacity: 0,
+              scale: 0,
+              pointerEvents: "none",
+              ease: "power2.out",
+            });
+          } else {
+            gsap.set(el, {
+              clear: "all",
+            });
+            gsap.to(el, {
+              duration: 1,
+              top: "30%",
+              left: "2vw",
+              scale: 1.3,
+              pointerEvents: "none",
+              ease: "power2.out",
+            });
+          }
         });
-      });
-    }
+      } else {
+        grpRef.current.forEach((el, index) => {
+          el.style.animationPlayState = "running";
+          let top = index === 0 || index == 3 ? "13vw" : "17.8vw";
+          let left = index === 0 ? "1vw" : index == 1 ? "25vw" : "auto";
+          let right = index === 2 ? "25vw" : index == 3 ? "1vw" : "auto";
+
+          gsap.to(el, {
+            duration: 1.5,
+            opacity: 1,
+            scale: 1,
+            top: top,
+            left: left,
+            right: right,
+            pointerEvents: "auto",
+            ease: "power2.out",
+          });
+        });
+      }
+    });
+
+    mm.add("(max-width: 600px)", () => {
+      if (isVerticalOpen) {
+        grpRef.current.forEach((el, index) => {
+          el.style.animationPlayState = "paused";
+          if (index != indx) {
+            gsap.set(el, { clearProps: "scale" });
+            gsap.to(el, {
+              duration: 1,
+              opacity: 0,
+              scale: 0,
+              pointerEvents: "none",
+              ease: "power2.out",
+            });
+          } else {
+            gsap.set(el, {
+              clear: "all",
+            });
+            gsap.to(el, {
+              duration: 1,
+              top: "auto",
+              bottom: "8vw",
+              left: "2vw",
+              // scale: 1.3,
+              pointerEvents: "none",
+              ease: "power2.out",
+            });
+          }
+        });
+      } else {
+        grpRef.current.forEach((el, index) => {
+          el.style.animationPlayState = "running";
+          // const { top, left, right, bottom } = el.getBoundingClientRect();
+
+          let top = index === 0 || index == 1 ? "25vw" : "80vw";
+          let left = index === 0 || index == 2 ? "1vw" : "auto";
+          let right = index === 1 || index == 3 ? "1vw" : "auto";
+
+          gsap.to(el, {
+            duration: 1.5,
+            opacity: 1,
+            scale: 1,
+            top: top,
+            left: left,
+            right: right,
+            pointerEvents: "auto",
+            ease: "power2.out",
+          });
+        });
+      }
+    });
   }, [isVerticalOpen]);
 
   useEffect(() => {
@@ -307,7 +375,7 @@ const DevPage = () => {
             <img src={bg2} alt="background image" />
             <img
               className={styles.blendOverlay}
-              src={blendOverlay}
+              src={imageSrc}
               alt="background image"
             />
           </div>

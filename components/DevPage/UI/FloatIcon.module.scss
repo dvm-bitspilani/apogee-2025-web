@@ -33,3 +33,12 @@
     }
   }
 }
+@media screen and (max-width: 600px) {
+  .banner {
+    width: 55vw;
+    height: 53vw;
+    p{
+      font-size: 6.7vw;
+    }
+  }
+}
