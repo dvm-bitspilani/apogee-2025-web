@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: Alegreya SC;
+  src: url("/public/fonts/AlegreyaSC-Regular.ttf");
+}
+
 .container {
   width: 100vw;
   height: 100vh;
@@ -70,8 +75,8 @@
 
       p {
         font-size: 1.7rem;
-        font-weight: 600;
         color: #f3bc79;
+        font-family: Alegreya SC;
       }
       .socials {
         display: flex;
