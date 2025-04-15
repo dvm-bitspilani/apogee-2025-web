@@ -98,10 +98,13 @@
       object-position: center;
       z-index: -2;
     }
-
     .blendOverlay {
       z-index: -1;
       mix-blend-mode: multiply;
+    }
+    .rightArrow,
+    .leftArrow {
+      display: none;
     }
   }
 
@@ -141,6 +144,8 @@
 
 @media screen and (max-width: 600px) {
   .container {
+    // overflow: auto;
+    position: relative;
     .background2 {
       .blendOverlay {
         top: auto;
@@ -149,6 +154,21 @@
         height: 62%;
         mix-blend-mode: normal;
       }
+      .rightArrow,
+      .leftArrow {
+        display: block;
+        position: absolute;
+        top: auto;
+        left: 23vw;
+        bottom: 15vh;
+        width: 5.5vh;
+        height: 5.5vh;
+        z-index: 5;
+      }
+      .rightArrow {
+        left: auto;
+        right: 23vw;
+      }
     }
 
     .heading {
@@ -156,22 +176,27 @@
     }
 
     .banner1 {
-      top: 25vw;
+      top: 15vh;
       left: 1vw;
     }
     .banner2 {
-      top: 25vw;
+      top: 15vh;
       left: auto;
       right: 1vw;
     }
     .banner3 {
-      top: 80vw;
+      top: 53vh;
       right: auto;
       left: 1vw;
     }
     .banner4 {
-      top: 80vw;
+      top: 53vh;
       right: 1vw;
+    }
+    .banners:hover {
+      animation-play-state: paused !important;
+      translate: 0 0 !important;
+      filter: brightness(100%);
     }
   }
 }

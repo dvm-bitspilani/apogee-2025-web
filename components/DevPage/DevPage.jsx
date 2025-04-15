@@ -15,6 +15,8 @@ import video from "../../src/assets/Verticals/video.svg";
 import heading from "../../src/assets/Devs/developers.svg";
 import bannerImg from "../../src/assets/Devs/banner.svg";
 import bannerImg2 from "../../src/assets/Devs/banner2.svg";
+import rightArrow from "../../src/assets/Devs/rightArrow.png";
+import leftArrow from "../../src/assets/Devs/leftArrow.png";
 
 import frontend2 from "../../src/assets/Verticals/frontend2.png";
 import backend2 from "../../src/assets/Verticals/back2.png";
@@ -42,12 +44,14 @@ const DevPage = () => {
 
   const wheelRef = useRef(null);
   const mainContainerRef = useRef(null);
-
   const grpRef = useRef([]);
   const backgroundRef = useRef([]);
   const floatAnim = useRef([]);
 
+  const { contextSafe } = useGSAP();
+
   const navigate = useNavigate();
+  const switcher = (num) => (num < 0 ? num + 4 : num > 3 ? num - 4 : num);
 
   const banners = [
     {
@@ -259,28 +263,70 @@ const DevPage = () => {
       if (isVerticalOpen) {
         grpRef.current.forEach((el, index) => {
           el.style.animationPlayState = "paused";
-          if (index != indx) {
-            gsap.set(el, { clearProps: "scale" });
-            gsap.to(el, {
-              duration: 1,
-              opacity: 0,
-              scale: 0,
-              pointerEvents: "none",
-              ease: "power2.out",
-            });
-          } else {
-            gsap.set(el, {
-              clear: "all",
-            });
-            gsap.to(el, {
-              duration: 1,
-              top: "auto",
-              bottom: "8vw",
-              left: "2vw",
-              // scale: 1.3,
-              pointerEvents: "none",
-              ease: "power2.out",
-            });
+          switch (index) {
+            case switcher(indx - 1):
+              gsap.set(el, {
+                clear: "all",
+              });
+              gsap.to(el, {
+                duration: 1,
+                opacity: 0.6,
+                scale: 0.9,
+                top: "67vh",
+                right: "auto",
+                left: "-1vw",
+                x: "-45%",
+                y: "0%",
+                pointerEvents: "none",
+                ease: "power2.out",
+              });
+              break;
+
+            case indx:
+              gsap.set(el, {
+                clear: "all",
+              });
+              gsap.to(el, {
+                duration: 1,
+                top: "72vh",
+                left: "50vw",
+                x: "-50%",
+                pointerEvents: "none",
+                ease: "power2.out",
+              });
+              break;
+
+            case switcher(indx + 1):
+              gsap.set(el, {
+                clear: "all",
+              });
+              gsap.to(el, {
+                duration: 1,
+                opacity: 0.6,
+                scale: 0.9,
+                x: "45%",
+                top: "67vh",
+                // right: "auto",
+                left: "46.5vw",
+                y: "0%",
+                pointerEvents: "none",
+                ease: "power2.out",
+              });
+              break;
+
+            default:
+              gsap.set(el, { clearProps: "scale" });
+              gsap.to(el, {
+                duration: 1,
+                opacity: 0,
+                scale: 0.6,
+                x: "45%",
+                top: "60vh",
+                // right: "auto",
+                left: "-50vw",
+                y: "0%",
+                ease: "power2.out",
+              });
           }
         });
       } else {
@@ -288,7 +334,7 @@ const DevPage = () => {
           el.style.animationPlayState = "running";
           // const { top, left, right, bottom } = el.getBoundingClientRect();
 
-          let top = index === 0 || index == 1 ? "25vw" : "80vw";
+          let top = index === 0 || index == 1 ? "15vh" : "53vh";
           let left = index === 0 || index == 2 ? "1vw" : "auto";
           let right = index === 1 || index == 3 ? "1vw" : "auto";
 
@@ -299,6 +345,8 @@ const DevPage = () => {
             top: top,
             left: left,
             right: right,
+            x: "0%",
+            bottom: "auto",
             pointerEvents: "auto",
             ease: "power2.out",
           });
@@ -354,6 +402,97 @@ const DevPage = () => {
     setIndx(index);
   };
 
+  const carouselMover = (increment) => {
+    contextSafe(() => {
+      grpRef.current.forEach((el, index) => {
+        switch (switcher(index + increment)) {
+          case switcher(indx - 2):
+            gsap.set(el, {
+              clear: "all",
+            });
+            gsap.to(el, {
+              duration: 1,
+              opacity: 0.6,
+              scale: 0.9,
+              top: "67vh",
+              right: "auto",
+              left: "-1vw",
+              x: "-45%",
+              y: "0%",
+              pointerEvents: "none",
+              ease: "power2.out",
+            });
+            break;
+
+          case switcher(indx - 1):
+            gsap.set(el, {
+              clear: "all",
+            });
+            gsap.to(el, {
+              duration: 1,
+              top: "72vh",
+              left: "50vw",
+              x: "-50%",
+              pointerEvents: "none",
+              ease: "power2.out",
+            });
+            break;
+
+          case switcher(indx):
+            gsap.set(el, {
+              clear: "all",
+            });
+            gsap.to(el, {
+              duration: 1,
+              opacity: 0.6,
+              scale: 0.9,
+              x: "45%",
+              top: "67vh",
+              // right: "auto",
+              left: "46.5vw",
+              y: "0%",
+              pointerEvents: "none",
+              ease: "power2.out",
+            });
+            break;
+
+          case switcher(indx + 1):
+            gsap.set(el, {
+              clear: "all",
+            });
+            gsap.to(el, {
+              duration: 1,
+              opacity: 0,
+              scale: 0.6,
+              x: "45%",
+              top: "60vh",
+              // right: "auto",
+              left: "80vw",
+              y: "0%",
+              ease: "power2.out",
+            });
+            break;
+        }
+      });
+    })();
+  };
+  const rightArrowClick = () => {
+    setIndx((prevIndex) => {
+      prevIndex--;
+      if (prevIndex < 0) prevIndex = 3;
+      return prevIndex;
+    });
+    carouselMover(0);
+  };
+  const leftArrowClick = () => {
+    setIndx((prevIndex) => {
+      prevIndex++;
+      if (prevIndex > 3) prevIndex = 0;
+      return prevIndex;
+    });
+    carouselMover(-2);
+  };
+
   return (
     <>
       {showPreloader && <Preloader />}
@@ -377,6 +516,18 @@ const DevPage = () => {
               className={styles.blendOverlay}
               src={imageSrc}
               alt="background image"
+            />
+            <img
+              src={rightArrow}
+              alt="rightArrow"
+              className={styles.rightArrow}
+              onClick={rightArrowClick}
+            />
+            <img
+              src={leftArrow}
+              alt="leftArrow"
+              className={styles.leftArrow}
+              onClick={leftArrowClick}
             />
           </div>
         )}
