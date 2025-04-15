@@ -5,7 +5,7 @@ import ashutosh from "../../src/assets/Devs/DevMembers/ashutosh.png";
 import atharv from "../../src/assets/Devs/DevMembers/atharv.png";
 import avi_image from "../../src/assets/Devs/DevMembers/avi_image.png";
 import ayush from "../../src/assets/Devs/DevMembers/ayush.png";
-import bhavesh from "../../src/assets/Devs/DevMembers/bhavesh.png";
+import bhavesh from "../../src/assets/Devs/DevMembers/bhavesh.jpeg";
 import daksh from "../../src/assets/Devs/DevMembers/daksh.png";
 import madhur from "../../src/assets/Devs/DevMembers/madhur.png";
 import manas from "../../src/assets/Devs/DevMembers/manas.png";

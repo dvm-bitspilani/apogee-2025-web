@@ -211,7 +211,7 @@ const DevPage = () => {
   useGSAP(() => {
     const mm = gsap.matchMedia();
 
-    mm.add("(min-width: 601px)", () => {
+    mm.add("(min-width: 1301px)", () => {
       if (isVerticalOpen) {
         grpRef.current.forEach((el, index) => {
           el.style.animationPlayState = "paused";
@@ -232,6 +232,54 @@ const DevPage = () => {
               duration: 1,
               top: "30%",
               left: "2vw",
+              scale: 1.3,
+              pointerEvents: "none",
+              ease: "power2.out",
+            });
+          }
+        });
+      } else {
+        grpRef.current.forEach((el, index) => {
+          el.style.animationPlayState = "running";
+          let top = index === 0 || index == 3 ? "13vw" : "17.8vw";
+          let left = index === 0 ? "1vw" : index == 1 ? "25vw" : "auto";
+          let right = index === 2 ? "25vw" : index == 3 ? "1vw" : "auto";
+
+          gsap.to(el, {
+            duration: 1.5,
+            opacity: 1,
+            scale: 1,
+            top: top,
+            left: left,
+            right: right,
+            pointerEvents: "auto",
+            ease: "power2.out",
+          });
+        });
+      }
+    });
+
+    mm.add("(max-width: 1300px)", () => {
+      if (isVerticalOpen) {
+        grpRef.current.forEach((el, index) => {
+          el.style.animationPlayState = "paused";
+          if (index != indx) {
+            gsap.set(el, { clearProps: "scale" });
+            gsap.to(el, {
+              duration: 1,
+              opacity: 0,
+              scale: 0,
+              pointerEvents: "none",
+              ease: "power2.out",
+            });
+          } else {
+            gsap.set(el, {
+              clear: "all",
+            });
+            gsap.to(el, {
+              duration: 1,
+              top: "42%",
+              left: "1.5vw",
               scale: 1.3,
               pointerEvents: "none",
               ease: "power2.out",
