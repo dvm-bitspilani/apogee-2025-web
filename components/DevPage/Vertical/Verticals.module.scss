@@ -99,3 +99,76 @@
 .three {
   grid-template-columns: 30% 70%;
 }
+
+@media screen and (max-width: 1200px) {
+  .container {
+    .threesub {
+      grid-template-columns: repeat(2, 1fr);
+      padding-right: 2rem;
+      justify-content: center;
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .container {
+    .subContainer {
+      .box {
+        p {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1200px) {
+  .container {
+    align-items: center;
+
+    .subContainer {
+      height: 80vh;
+      padding: 3vw;
+
+      .box {
+        .framing {
+          height: 17vw;
+
+          .frame {
+            height: 19vw !important;
+          }
+          .person {
+            height: 17vw;
+          }
+        }
+
+        p {
+          font-size: 1.2rem;
+        }
+        .socials {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 1rem;
+          img {
+            width: 2vw;
+            height: 2vw;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .container {
+    grid-template-columns: 40% 60%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    .subContainer {
+      margin-bottom: 20px;
+    }
+  }
+}

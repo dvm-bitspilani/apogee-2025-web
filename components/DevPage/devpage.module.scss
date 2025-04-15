@@ -50,26 +50,26 @@
       position: fixed;
       right: -1.5rem;
       cursor: -webkit-grab;
-      z-index: 1;
 
       @media screen and (max-width: 1366px) {
         right: 1rem;
       }
+    }
 
-      .scrollBar {
-        background: #e6c189;
-        width: 4px;
-        stroke-width: 7px;
-        stroke: #7b6a69;
-        border-radius: 5px;
-        filter: drop-shadow(0px 0px 8px rgba(175, 148, 120, 0.4));
-        box-shadow: 0px 0px 12px 0px #af947866;
-        img {
-          position: absolute;
-          transform: translateY(-50%);
-          height: 110px;
-        }
-      }
+    .scrollBarContainer img {
+      position: absolute;
+      transform: translateY(-50%);
+      height: 110px;
+    }
+
+    .scrollBar {
+      background: #e6c189;
+      width: 4px;
+      stroke-width: 7px;
+      stroke: #7b6a69;
+      border-radius: 5px;
+      filter: drop-shadow(0px 0px 8px rgba(175, 148, 120, 0.4));
+      box-shadow: 0px 0px 12px 0px #af947866;
     }
 
     @media screen and (max-width: 768px) {
@@ -139,6 +139,35 @@
   }
 }
 
+@media screen and (max-width: 1400px) {
+  .container {
+    .background2 {
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media screen and (min-height: 500px) {
+  .container {
+    .background2 {
+      img {
+        width: 105%;
+      }
+    }
+  }
+}
+
+@media screen and (min-height: 670px) {
+  .container {
+    .background2 {
+      img {
+        width: 115%;
+      }
+    }
+  }
+}
 @media screen and (max-width: 600px) {
   .container {
     .background2 {
