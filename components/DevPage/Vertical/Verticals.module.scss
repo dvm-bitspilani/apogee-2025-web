@@ -191,32 +191,32 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    height: 66vh;
+    height: 65vh;
     .subContainer {
       margin-top: 10vw;
       padding: 5vw;
       row-gap: 1rem;
       overflow-y: scroll;
-      .box:nth-child(-n + 2) {
-        p {
-          height: 5rem;
-        }
-      }
+      // .box:nth-child(-n + 2) {
+      //   p {
+      //     height: 5rem;
+      //   }
+      // }
       .box {
         .framing {
           height: 32vw;
           .frame {
-            height: 33vw !important;
+            height: 35vw !important;
           }
           .person {
             height: 31vw;
           }
         }
         p {
-          font-size: 5vw;
+          font-size: 3.5vw;
           color: #ffd8a9;
-          width: 50%;
-          height: 3.7rem;
+          width: 100%;
+          height: fit-content;
         }
         .socials {
           gap: 4vw;
