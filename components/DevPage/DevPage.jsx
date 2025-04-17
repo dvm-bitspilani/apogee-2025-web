@@ -338,6 +338,8 @@ const DevPage = () => {
                 duration: 1,
                 top: "72vh",
                 left: "50vw",
+                opacity: 1,
+                scale: 1.1,
                 x: "-50%",
                 pointerEvents: "none",
                 ease: "power2.out",
@@ -383,8 +385,8 @@ const DevPage = () => {
           // const { top, left, right, bottom } = el.getBoundingClientRect();
 
           let top = index === 0 || index == 1 ? "15vh" : "53vh";
-          let left = index === 0 || index == 2 ? "1vw" : "auto";
-          let right = index === 1 || index == 3 ? "1vw" : "auto";
+          let left = index === 0 || index == 2 ? "1vw" : "44vw";
+          // let right = index === 1 || index == 3 ? "1vw" : "auto";
 
           gsap.to(el, {
             duration: 1.5,
@@ -392,7 +394,7 @@ const DevPage = () => {
             scale: 1,
             top: top,
             left: left,
-            right: right,
+            right: "auto",
             x: "0%",
             bottom: "auto",
             pointerEvents: "auto",
@@ -481,6 +483,8 @@ const DevPage = () => {
               top: "72vh",
               left: "50vw",
               x: "-50%",
+              opacity: 1,
+              scale: 1.1,
               pointerEvents: "none",
               ease: "power2.out",
             });

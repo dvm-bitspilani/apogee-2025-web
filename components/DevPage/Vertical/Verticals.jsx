@@ -67,27 +67,42 @@ const Verticals = forwardRef(({ team }, ref) => {
               </div>
               <p>{member.name}</p>
               <div className={styles.socials}>
-                <a
-                  href={member.insta}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img src={instagram} alt="instagram" />
-                </a>
-                <a
-                  href={member.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img src={github} alt="github" />
-                </a>
-                <a
-                  href={member.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img src={linkedin} alt="linkedin" />
-                </a>
+                {member.behance && (
+                  <a
+                    href={member.behance}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img src={behance} alt="behance" />
+                  </a>
+                )}
+                {member.insta && (
+                  <a
+                    href={member.insta}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img src={instagram} alt="instagram" />
+                  </a>
+                )}
+                {member.github && (
+                  <a
+                    href={member.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img src={github} alt="github" />
+                  </a>
+                )}
+                {member.linkedin && (
+                  <a
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img src={linkedin} alt="linkedin" />
+                  </a>
+                )}
               </div>
             </div>
           ))}

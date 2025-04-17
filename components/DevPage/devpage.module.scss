@@ -173,7 +173,6 @@
 }
 @media screen and (max-width: 600px) {
   .container {
-    // overflow: auto;
     position: relative;
     .background2 {
       .blendOverlay {
@@ -207,11 +206,12 @@
     .banner1 {
       top: 15vh;
       left: 1vw;
+      right: auto;
     }
     .banner2 {
       top: 15vh;
-      left: auto;
-      right: 1vw;
+      left: 44vw;
+      right: auto;
     }
     .banner3 {
       top: 53vh;
@@ -220,7 +220,8 @@
     }
     .banner4 {
       top: 53vh;
-      right: 1vw;
+      left: 44vw;
+      right: auto;
     }
     .banners:hover {
       animation-play-state: paused !important;

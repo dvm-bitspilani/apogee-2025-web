@@ -197,11 +197,6 @@
       padding: 5vw;
       row-gap: 1rem;
       overflow-y: scroll;
-      // .box:nth-child(-n + 2) {
-      //   p {
-      //     height: 5rem;
-      //   }
-      // }
       .box {
         .framing {
           height: 32vw;
@@ -216,7 +211,7 @@
           font-size: 3.5vw;
           color: #ffd8a9;
           width: 100%;
-          height: fit-content;
+          // height: fit-content;
         }
         .socials {
           gap: 4vw;
@@ -230,11 +225,11 @@
     .threesub {
       grid-template-columns: repeat(2, 1fr);
       padding: 5vw;
-      .box:nth-child(-n + 2) {
-        p {
-          height: 3.7rem;
-        }
-      }
+      // .box:nth-child(-n + 2) {
+      //   p {
+      // height: 1rem;
+      //   }
+      // }
       .box:last-child {
         grid-column: span 2;
         p {
