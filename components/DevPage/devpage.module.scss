@@ -158,7 +158,7 @@
   }
 }
 
-@media screen and (min-height: 500px) {
+@media screen and (min-height: 500px) and (max-width: 1025px) {
   .container {
     .background2 {
       img {
@@ -168,7 +168,7 @@
   }
 }
 
-@media screen and (min-height: 670px) {
+@media screen and (min-height: 670px) and (max-width: 1025px) {
   .container {
     .background2 {
       img {
