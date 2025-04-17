@@ -64,7 +64,7 @@ const teamMembers = {
       insta: "",
       behance: "",
       github: "",
-      linkedin: "https://www.linkedin.com/in/madhur-jain-a03260211?",
+      linkedin: "https://www.linkedin.com/in/bhaveshoop/",
     },
     {
       name: "Madhur Jain",
