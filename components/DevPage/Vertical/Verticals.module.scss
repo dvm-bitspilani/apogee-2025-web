@@ -90,6 +90,9 @@
         }
       }
     }
+    .boxCenter:last-child {
+      grid-column: span 2;
+    }
   }
   .threesub {
     grid-template-columns: repeat(3, 1fr);
@@ -241,5 +244,13 @@
   .three {
     display: flex;
     flex-direction: column;
+  }
+}
+
+@media screen and (max-height: 680px) {
+  .container {
+    .subContainer {
+      row-gap: 0.2rem;
+    }
   }
 }

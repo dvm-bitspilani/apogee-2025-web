@@ -56,7 +56,12 @@ const Verticals = forwardRef(({ team }, ref) => {
           }
         >
           {team.map((member, index) => (
-            <div key={index} className={styles.box}>
+            <div
+              key={index}
+              className={
+                styles.box + " " + (team.length > 4 ? styles.boxCenter : "")
+              }
+            >
               <div className={styles.framing}>
                 <img src={frame} alt="frame" className={styles.frame} />
                 <img
