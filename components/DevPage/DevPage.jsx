@@ -2,34 +2,37 @@ import styles from "./devpage.module.scss";
 import Preloader from "../Registration/Preloader/Preloader";
 import FloatIcon from "./UI/FloatIcon";
 import OverlayBackBtn from "./OverlayBackBtn/OverlayBackBtn";
-import Verticals from "./Vertical/Verticals.jsx";
+import Verticals from "./Vertical/Verticals";
 
 import clouds from "../../src/assets/ComingSoon/background.png";
+
 import bg2 from "../../src/assets/Devs/bg2.svg";
 import blendOverlay from "../../src/assets/Devs/back.png";
-import frontend from "../../src/assets/Verticals/frontend.svg";
-import backend from "../../src/assets/Verticals/backend.svg";
-import design from "../../src/assets/Verticals/ui-ux.svg";
-import video from "../../src/assets/Verticals/video.svg";
+import blendOverlay2 from "../../src/assets/Devs/back2.png";
 import heading from "../../src/assets/Devs/developers.svg";
 import bannerImg from "../../src/assets/Devs/banner.svg";
 import bannerImg2 from "../../src/assets/Devs/banner2.svg";
+import rightArrow from "../../src/assets/Devs/rightArrow.png";
+import leftArrow from "../../src/assets/Devs/leftArrow.png";
+
+import frontend from "../../src/assets/Verticals/frontend.svg";
+import backend from "../../src/assets/Verticals/backend.svg";
+import design from "../../src/assets/Verticals/figma.png";
+import video from "../../src/assets/Verticals/video.svg";
+import frontend2 from "../../src/assets/Verticals/frontend2.png";
+import backend2 from "../../src/assets/Verticals/back2.png";
+import design2 from "../../src/assets/Verticals/figma2.png";
+import video2 from "../../src/assets/Verticals/video2.png";
 
 import { gsap } from "gsap";
 import { useState, useRef, useEffect } from "react";
 import { useCallback } from "react";
 import { useNavigate } from "react-router";
+import { useGSAP } from "@gsap/react";
 
 import wheel from "../../src/assets/Register/wheel.svg";
 
 import teamMembers from "./teamMembers.js";
-
-const banners = [
-  { name: "FRONTEND", img: frontend, className: styles.banner1 },
-  { name: "UI/UX", img: design, className: styles.banner2 },
-  { name: "VIDEO", img: video, className: styles.banner3 },
-  { name: "BACKEND", img: backend, className: styles.banner4 },
-];
 
 const DevPage = () => {
   const [isVerticalOpen, setIsVerticalOpen] = useState(false);
@@ -37,15 +40,53 @@ const DevPage = () => {
   const [showPreloader, setShowPreloader] = useState(true);
   const [team, setteam] = useState([]);
   const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [showScrollBar, setShowScrollBar] = useState(false);
+  const [imageSrc, setImageSrc] = useState("");
 
   const wheelRef = useRef(null);
   const mainContainerRef = useRef(null);
-
   const grpRef = useRef([]);
   const backgroundRef = useRef([]);
   const floatAnim = useRef([]);
 
+  const { contextSafe } = useGSAP();
+
   const navigate = useNavigate();
+  const switcher = (num) => (num < 0 ? num + 4 : num > 3 ? num - 4 : num);
+
+  const banners = [
+    {
+      name: "FRONTEND",
+      img: isVerticalOpen ? frontend2 : frontend,
+      className: styles.banner1,
+    },
+    {
+      name: "UI/UX",
+      img: isVerticalOpen ? design2 : design,
+      className: styles.banner2,
+    },
+    {
+      name: "VIDEO",
+      img: isVerticalOpen ? video2 : video,
+      className: styles.banner3,
+    },
+    {
+      name: "BACKEND",
+      img: isVerticalOpen ? backend2 : backend,
+      className: styles.banner4,
+    },
+  ];
+
+  useEffect(() => {
+    const updateImage = () => {
+      const width = window.innerWidth;
+      setImageSrc(width < 601 ? blendOverlay2 : blendOverlay);
+    };
+
+    updateImage();
+    window.addEventListener("resize", updateImage);
+    return () => window.removeEventListener("resize", updateImage);
+  }, []);
 
   useEffect(() => {
     const imageUrls = [
@@ -168,52 +209,201 @@ const DevPage = () => {
     }
   }, [navigate, isVerticalOpen]);
 
-  useEffect(() => {
-    if (isVerticalOpen) {
-      grpRef.current.forEach((el, index) => {
-        el.style.animationPlayState = "paused";
-        if (index != indx) {
-          gsap.set(el, { clearProps: "scale" });
-          gsap.to(el, {
-            duration: 1,
-            opacity: 0,
-            scale: 0,
-            pointerEvents: "none",
-            ease: "power2.out",
-          });
-        } else {
-          gsap.set(el, {
-            clear: "all",
-          });
-          gsap.to(el, {
-            duration: 1,
-            top: "30%",
-            left: "2vw",
-            scale: 1.3,
-            pointerEvents: "none",
-            ease: "power2.out",
-          });
-        }
-      });
-    } else {
-      grpRef.current.forEach((el, index) => {
-        el.style.animationPlayState = "running";
-        let top = index === 0 || index == 3 ? "13vw" : "17.8vw";
-        let left = index === 0 ? "1vw" : index == 1 ? "25vw" : "auto";
-        let right = index === 2 ? "25vw" : index == 3 ? "1vw" : "auto";
+  useGSAP(() => {
+    const mm = gsap.matchMedia();
 
-        gsap.to(el, {
-          duration: 1.5,
-          opacity: 1,
-          scale: 1,
-          top: top,
-          left: left,
-          right: right,
-          pointerEvents: "auto",
-          ease: "power2.out",
+    mm.add("(min-width: 1301px)", () => {
+      if (isVerticalOpen) {
+        grpRef.current.forEach((el, index) => {
+          el.style.animationPlayState = "paused";
+          if (index != indx) {
+            gsap.set(el, { clearProps: "scale" });
+            gsap.to(el, {
+              duration: 1,
+              opacity: 0,
+              scale: 0,
+              pointerEvents: "none",
+              ease: "power2.out",
+            });
+          } else {
+            gsap.set(el, {
+              clear: "all",
+            });
+            gsap.to(el, {
+              duration: 1,
+              top: "30%",
+              left: "2vw",
+              scale: 1.3,
+              pointerEvents: "none",
+              ease: "power2.out",
+            });
+          }
         });
-      });
-    }
+      } else {
+        grpRef.current.forEach((el, index) => {
+          el.style.animationPlayState = "running";
+          let top = index === 0 || index == 3 ? "13vw" : "17.8vw";
+          let left = index === 0 ? "1vw" : index == 1 ? "26vw" : "auto";
+          let right = index === 2 ? "26vw" : index == 3 ? "1vw" : "auto";
+
+          gsap.to(el, {
+            duration: 1.5,
+            opacity: 1,
+            scale: 1,
+            top: top,
+            left: left,
+            right: right,
+            pointerEvents: "auto",
+            ease: "power2.out",
+          });
+        });
+      }
+    });
+
+    mm.add("(max-width: 1300px)", () => {
+      if (isVerticalOpen) {
+        grpRef.current.forEach((el, index) => {
+          el.style.animationPlayState = "paused";
+          if (index != indx) {
+            gsap.set(el, { clearProps: "scale" });
+            gsap.to(el, {
+              duration: 1,
+              opacity: 0,
+              scale: 0,
+              pointerEvents: "none",
+              ease: "power2.out",
+            });
+          } else {
+            gsap.set(el, {
+              clear: "all",
+            });
+            gsap.to(el, {
+              duration: 1,
+              top: "42%",
+              left: "1.5vw",
+              scale: 1.3,
+              pointerEvents: "none",
+              ease: "power2.out",
+            });
+          }
+        });
+      } else {
+        grpRef.current.forEach((el, index) => {
+          el.style.animationPlayState = "running";
+          let top = index === 0 || index == 3 ? "13vw" : "17.8vw";
+          let left = index === 0 ? "1vw" : index == 1 ? "26vw" : "auto";
+          let right = index === 2 ? "26vw" : index == 3 ? "1vw" : "auto";
+
+          gsap.to(el, {
+            duration: 1.5,
+            opacity: 1,
+            scale: 1,
+            top: top,
+            left: left,
+            right: right,
+            pointerEvents: "auto",
+            ease: "power2.out",
+          });
+        });
+      }
+    });
+
+    mm.add("(max-width: 600px)", () => {
+      if (isVerticalOpen) {
+        grpRef.current.forEach((el, index) => {
+          el.style.animationPlayState = "paused";
+          switch (index) {
+            case switcher(indx - 1):
+              gsap.set(el, {
+                clear: "all",
+              });
+              gsap.to(el, {
+                duration: 1,
+                opacity: 0.6,
+                scale: 0.9,
+                top: "67vh",
+                right: "auto",
+                left: "-1vw",
+                x: "-45%",
+                y: "0%",
+                pointerEvents: "none",
+                ease: "power2.out",
+              });
+              break;
+
+            case indx:
+              gsap.set(el, {
+                clear: "all",
+              });
+              gsap.to(el, {
+                duration: 1,
+                top: "72vh",
+                left: "50vw",
+                opacity: 1,
+                scale: 1.1,
+                x: "-50%",
+                pointerEvents: "none",
+                ease: "power2.out",
+              });
+              break;
+
+            case switcher(indx + 1):
+              gsap.set(el, {
+                clear: "all",
+              });
+              gsap.to(el, {
+                duration: 1,
+                opacity: 0.6,
+                scale: 0.9,
+                x: "45%",
+                top: "67vh",
+                // right: "auto",
+                left: "46.5vw",
+                y: "0%",
+                pointerEvents: "none",
+                ease: "power2.out",
+              });
+              break;
+
+            default:
+              gsap.set(el, { clearProps: "scale" });
+              gsap.to(el, {
+                duration: 1,
+                opacity: 0,
+                scale: 0.6,
+                x: "45%",
+                top: "60vh",
+                // right: "auto",
+                left: "-50vw",
+                y: "0%",
+                ease: "power2.out",
+              });
+          }
+        });
+      } else {
+        grpRef.current.forEach((el, index) => {
+          el.style.animationPlayState = "running";
+          // const { top, left, right, bottom } = el.getBoundingClientRect();
+
+          let top = index === 0 || index == 1 ? "15vh" : "53vh";
+          let left = index === 0 || index == 2 ? "1vw" : "44vw";
+          // let right = index === 1 || index == 3 ? "1vw" : "auto";
+
+          gsap.to(el, {
+            duration: 1.5,
+            opacity: 1,
+            scale: 1,
+            top: top,
+            left: left,
+            right: "auto",
+            x: "0%",
+            bottom: "auto",
+            pointerEvents: "auto",
+            ease: "power2.out",
+          });
+        });
+      }
+    });
   }, [isVerticalOpen]);
 
   useEffect(() => {
@@ -240,13 +430,113 @@ const DevPage = () => {
         floatAnim.current.forEach((tween) => tween.resume());
       }
     } else {
-      floatAnim.current.forEach((tween) => tween.pause());
     }
   }, [isVerticalOpen]);
 
   useEffect(() => {
     setteam(teamMembers[banners[indx].name]);
+    setShowScrollBar(indx === 2 ? true : false);
   }, [indx]);
+
+  const handleVerticalClick = (index) => {
+    floatAnim.current.forEach((tween) => tween.pause());
+
+    setIsVerticalOpen(true);
+    setIndx(index);
+  };
+
+  const carouselMover = (increment) => {
+    contextSafe(() => {
+      grpRef.current.forEach((el, index) => {
+        switch (switcher(index + increment)) {
+          case switcher(indx - 2):
+            gsap.set(el, {
+              clear: "all",
+            });
+            gsap.to(el, {
+              duration: 1,
+              opacity: 0.6,
+              scale: 0.9,
+              top: "67vh",
+              right: "auto",
+              left: "-1vw",
+              x: "-45%",
+              y: "0%",
+              pointerEvents: "none",
+              ease: "power2.out",
+            });
+            break;
+
+          case switcher(indx - 1):
+            gsap.set(el, {
+              clear: "all",
+            });
+            gsap.to(el, {
+              duration: 1,
+              top: "72vh",
+              left: "50vw",
+              x: "-50%",
+              opacity: 1,
+              scale: 1.1,
+              pointerEvents: "none",
+              ease: "power2.out",
+            });
+            break;
+
+          case switcher(indx):
+            gsap.set(el, {
+              clear: "all",
+            });
+            gsap.to(el, {
+              duration: 1,
+              opacity: 0.6,
+              scale: 0.9,
+              x: "45%",
+              top: "67vh",
+              // right: "auto",
+              left: "46.5vw",
+              y: "0%",
+              pointerEvents: "none",
+              ease: "power2.out",
+            });
+            break;
+
+          case switcher(indx + 1):
+            gsap.set(el, {
+              clear: "all",
+            });
+            gsap.to(el, {
+              duration: 1,
+              opacity: 0,
+              scale: 0.6,
+              x: "45%",
+              top: "60vh",
+              // right: "auto",
+              left: "80vw",
+              y: "0%",
+              ease: "power2.out",
+            });
+            break;
+        }
+      });
+    })();
+  };
+  const rightArrowClick = () => {
+    setIndx((prevIndex) => {
+      prevIndex--;
+      if (prevIndex < 0) prevIndex = 3;
+      return prevIndex;
+    });
+    carouselMover(0);
+  };
+  const leftArrowClick = () => {
+    setIndx((prevIndex) => {
+      prevIndex++;
+      if (prevIndex > 3) prevIndex = 0;
+      return prevIndex;
+    });
+    carouselMover(-2);
+  };
 
   return (
     <>
@@ -269,30 +559,43 @@ const DevPage = () => {
             <img src={bg2} alt="background image" />
             <img
               className={styles.blendOverlay}
-              src={blendOverlay}
+              src={imageSrc}
               alt="background image"
+            />
+            <img
+              src={rightArrow}
+              alt="rightArrow"
+              className={styles.rightArrow}
+              onClick={rightArrowClick}
+            />
+            <img
+              src={leftArrow}
+              alt="leftArrow"
+              className={styles.leftArrow}
+              onClick={leftArrowClick}
             />
           </div>
         )}
         <div className={styles.verticals} ref={mainContainerRef}>
           {isVerticalOpen && (
             <>
-              
-              <div
-                className={styles.scrollBarContainer}
-                onClick={handleTrackSnap}
-              >
-                <div className={styles.scrollBar}></div>
-                <img
-                  draggable={false}
-                  onMouseDown={handlewheelMouseDown}
-                  onTouchStart={handlewheelMouseDown}
-                  id="wheel"
-                  src={wheel}
-                  alt="wheel"
-                  ref={wheelRef}
-                />
-              </div>
+              {showScrollBar && (
+                <div
+                  className={styles.scrollBarContainer}
+                  onClick={handleTrackSnap}
+                >
+                  <div className={styles.scrollBar}></div>
+                  <img
+                    draggable={false}
+                    onMouseDown={handlewheelMouseDown}
+                    onTouchStart={handlewheelMouseDown}
+                    id="wheel"
+                    src={wheel}
+                    alt="wheel"
+                    ref={wheelRef}
+                  />
+                </div>
+              )}
               <Verticals
                 team={team}
                 ref={(el) => {
@@ -310,8 +613,7 @@ const DevPage = () => {
             banner={isVerticalOpen ? bannerImg2 : bannerImg}
             className={`${banner.className} ${styles.banners}`}
             onClick={() => {
-              setIsVerticalOpen(true);
-              setIndx(index);
+              handleVerticalClick(index);
             }}
           >
             <div>

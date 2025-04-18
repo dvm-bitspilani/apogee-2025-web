@@ -5,7 +5,7 @@ import ashutosh from "../../src/assets/Devs/DevMembers/ashutosh.png";
 import atharv from "../../src/assets/Devs/DevMembers/atharv.png";
 import avi_image from "../../src/assets/Devs/DevMembers/avi_image.png";
 import ayush from "../../src/assets/Devs/DevMembers/ayush.png";
-import bhavesh from "../../src/assets/Devs/DevMembers/bhavesh.png";
+import bhavesh from "../../src/assets/Devs/DevMembers/bhavesh.jpeg";
 import daksh from "../../src/assets/Devs/DevMembers/daksh.png";
 import madhur from "../../src/assets/Devs/DevMembers/madhur.png";
 import manas from "../../src/assets/Devs/DevMembers/manas.png";
@@ -62,16 +62,16 @@ const teamMembers = {
       image: bhavesh,
       group: "design",
       insta: "",
-      behance: "",
+      behance: "https://www.behance.net/bhaveshjangir1#",
       github: "",
-      linkedin: "https://www.linkedin.com/in/madhur-jain-a03260211?",
+      linkedin: "https://www.linkedin.com/in/bhaveshoop/",
     },
     {
       name: "Madhur Jain",
       image: madhur,
       group: "design",
-      insta: "",
-      behance: "",
+      insta: "https://www.instagram.com/madhurpokarna/",
+      behance: "https://www.behance.net/madhurjain10#",
       github: "",
       linkedin: "https://www.linkedin.com/in/madhur-jain-a03260211?",
     },
@@ -79,10 +79,10 @@ const teamMembers = {
       name: "Satyasheel Singh",
       image: satyasheel,
       group: "backend",
-      insta: "",
+      insta: "https://www.instagram.com/satyxsing/",
       behance: "",
       github: "",
-      linkedin: "www.linkedin.com/in/satyasheel-singh-a82106290",
+      linkedin: "https://www.linkedin.com/in/satyasheel-singh-a82106290/",
     },
   ],
   VIDEO: [
@@ -96,6 +96,7 @@ const teamMembers = {
       github: "",
       linkedin: "https://www.linkedin.com/in/razahasnain22/",
     },
+
     {
       name: "Akshaya Shubh Agarwal",
       image: askshaya,
@@ -137,6 +138,7 @@ const teamMembers = {
       linkedin:
         "https://www.linkedin.com/in/priyanshu-narayan-559412275?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     },
+
     {
       name: "Sai Surya Vujuri",
       image: surya,

@@ -1,3 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: Alegreya SC;
+  src: url("/public/fonts/AlegreyaSC-Regular.ttf");
+}
+
 .container {
   width: 100vw;
   height: 100vh;
@@ -5,25 +16,33 @@
   grid-template-columns: 43% 57%;
   opacity: 0;
 
-  .subContainer {
+  .preloader {
     grid-column: 2;
+    width: 57vw;
+  }
+
+  .subContainer {
+    box-sizing: border-box;
+    grid-column: 2;
+    min-height: fit-content;
     height: 100%;
     width: 100%;
     display: grid;
-    grid-template-rows: repeat(2, 1fr);
+    // grid-template-rows: repeat(2, 1fr);
     grid-template-columns: repeat(2, 1fr);
-    padding: 3.5vw;
+    padding: 3vw;
     row-gap: 2rem;
-
+    align-items: center;
     .box {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      height: fit-content;
       gap: 0.7rem;
 
       .framing {
-        height: 17vw;
+        height: 16vw;
         aspect-ratio: 1/1;
         display: grid;
         grid-template-columns: auto;
@@ -36,28 +55,29 @@
           height: 17vw !important;
           grid-row: 1/2;
           grid-column: 1/2;
+          z-index: -1;
         }
         .person {
-          height: 15.3vw !important;
+          height: 15vw;
+          width: auto;
           grid-row: 1/2;
           grid-column: 1/2;
           z-index: -1;
-          clip-path: polygon(
-            50.2% 0%,
-            88% 15%,
-            88% 85%,
-            51% 105%,
-            10% 85%,
-            10% 15%
-          );
-          transform: translateY(-0.5px);
+
+          mask: url("/src/assets/Devs/mask.svg") no-repeat;
+          mask-size: contain;
+          mask-position: center;
+
+          transform: translateX(-1px);
         }
       }
 
       p {
         font-size: 1.7rem;
-        font-weight: 600;
         color: #f3bc79;
+        font-family: Alegreya SC;
+        font-weight: 400;
+        text-align: center;
       }
       .socials {
         display: flex;
@@ -70,5 +90,156 @@
         }
       }
     }
+  }
+  .threesub {
+    grid-template-columns: repeat(3, 1fr);
+    padding-right: 2rem;
+  }
+}
+
+.three {
+  grid-template-columns: 30% 70%;
+}
+
+@media screen and (max-width: 1200px) {
+  .container {
+    .threesub {
+      grid-template-columns: repeat(2, 1fr);
+      padding-right: 2rem;
+      justify-content: center;
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .container {
+    .subContainer {
+      .box {
+        p {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1200px) {
+  .container {
+    align-items: center;
+
+    .subContainer {
+      height: 80vh;
+      padding: 3vw;
+
+      .box {
+        .framing {
+          height: 17vw;
+
+          .frame {
+            height: 19vw !important;
+          }
+          .person {
+            height: 17vw;
+          }
+        }
+
+        p {
+          font-size: 1.2rem;
+        }
+        .socials {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 1rem;
+          img {
+            width: 2vw;
+            height: 2vw;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .container {
+    grid-template-columns: 30% 70%;
+    .subContainer {
+      padding-left: 14vw;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .container {
+    grid-template-columns: 40% 60%;
+    .subContainer {
+      padding-left: 4vw;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    .subContainer {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 65vh;
+    .subContainer {
+      margin-top: 10vw;
+      padding: 5vw;
+      row-gap: 1rem;
+      overflow-y: scroll;
+      .box {
+        .framing {
+          height: 32vw;
+          .frame {
+            height: 35vw !important;
+          }
+          .person {
+            height: 31vw;
+          }
+        }
+        p {
+          font-size: 3.5vw;
+          color: #ffd8a9;
+          width: 100%;
+          // height: fit-content;
+        }
+        .socials {
+          gap: 4vw;
+          img {
+            width: 4vw;
+            height: 4vw;
+          }
+        }
+      }
+    }
+    .threesub {
+      grid-template-columns: repeat(2, 1fr);
+      padding: 5vw;
+      // .box:nth-child(-n + 2) {
+      //   p {
+      // height: 1rem;
+      //   }
+      // }
+      .box:last-child {
+        grid-column: span 2;
+        p {
+          width: 40%;
+        }
+      }
+    }
+  }
+  .three {
+    display: flex;
+    flex-direction: column;
   }
 }
