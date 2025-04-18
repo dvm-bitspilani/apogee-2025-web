@@ -243,8 +243,8 @@ const DevPage = () => {
         grpRef.current.forEach((el, index) => {
           el.style.animationPlayState = "running";
           let top = index === 0 || index == 3 ? "13vw" : "17.8vw";
-          let left = index === 0 ? "1vw" : index == 1 ? "25vw" : "auto";
-          let right = index === 2 ? "25vw" : index == 3 ? "1vw" : "auto";
+          let left = index === 0 ? "1vw" : index == 1 ? "26vw" : "auto";
+          let right = index === 2 ? "26vw" : index == 3 ? "1vw" : "auto";
 
           gsap.to(el, {
             duration: 1.5,
@@ -291,8 +291,8 @@ const DevPage = () => {
         grpRef.current.forEach((el, index) => {
           el.style.animationPlayState = "running";
           let top = index === 0 || index == 3 ? "13vw" : "17.8vw";
-          let left = index === 0 ? "1vw" : index == 1 ? "25vw" : "auto";
-          let right = index === 2 ? "25vw" : index == 3 ? "1vw" : "auto";
+          let left = index === 0 ? "1vw" : index == 1 ? "26vw" : "auto";
+          let right = index === 2 ? "26vw" : index == 3 ? "1vw" : "auto";
 
           gsap.to(el, {
             duration: 1.5,

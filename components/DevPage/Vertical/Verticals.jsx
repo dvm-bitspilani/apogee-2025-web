@@ -1,5 +1,4 @@
 import styles from "./Verticals.module.scss";
-import behance from "../../../src/assets/Devs/verticalBox/behance.png";
 import frame from "../../../src/assets/Devs/verticalBox/frame1.svg";
 import github from "../../../src/assets/Devs/verticalBox/github.svg";
 import linkedin from "../../../src/assets/Devs/verticalBox/linkedin.svg";

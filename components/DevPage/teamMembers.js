@@ -61,10 +61,10 @@ const teamMembers = {
       name: "Bhavesh Jangir",
       image: bhavesh,
       group: "design",
-      insta: "ibhavass",
-      behance: "bhaveshjangir1",
+      insta: "",
+      behance: "https://www.behance.net/bhaveshjangir1#",
       github: "",
-      linkedin: "bhavesh-j-911854271",
+      linkedin: "https://www.linkedin.com/in/bhaveshoop/",
     },
     {
       name: "Madhur Jain",
@@ -73,7 +73,7 @@ const teamMembers = {
       insta: "https://www.instagram.com/madhurpokarna/",
       behance: "https://www.behance.net/madhurjain10#",
       github: "",
-      linkedin: "madhurjain07",
+      linkedin: "https://www.linkedin.com/in/madhur-jain-a03260211?",
     },
     {
       name: "Satyasheel Singh",
@@ -82,7 +82,7 @@ const teamMembers = {
       insta: "https://www.instagram.com/satyxsing/",
       behance: "",
       github: "",
-      linkedin: "satyasheel",
+      linkedin: "https://www.linkedin.com/in/satyasheel-singh-a82106290/",
     },
   ],
   VIDEO: [
