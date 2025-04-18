@@ -11,6 +11,7 @@ import QuantaculusSubmitted from "../routes/QuantaculusSubmitted.jsx";
 import Speakers from "../routes/SpeakersPage/Speakers.jsx";
 import Sponsors from "../components/Sponsors/Sponsors.jsx";
 import MediaPatners from "../components/MediaPatners/MediaPatners.jsx";
+import DevPage from "../components/DevPage/DevPage.jsx";
 
 ReactGA.initialize("G-H9LEY5519K");
 
@@ -32,6 +33,7 @@ function App() {
       <Route path="/speakers" element={<Speakers />} />
       <Route path="/sponsors" element={<Sponsors />} />
       <Route path="/media" element={<MediaPatners />} />
+      <Route path="/developers" element={<DevPage />} />
     </Routes>
   );
 }

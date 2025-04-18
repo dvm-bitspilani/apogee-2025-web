@@ -1,0 +1,293 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  min-height: fit-content;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  overflow: hidden;
+
+  .heading {
+    position: fixed;
+    top: 0;
+    left: 50vw;
+    width: 20vw;
+    translate: -50% 0;
+  }
+  .background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: brightness(110%);
+    }
+  }
+
+  .verticals {
+    overflow: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    .scrollBarContainer {
+      height: 80vh;
+      width: 10%;
+      margin: 10vh 0;
+      display: flex;
+      justify-content: center;
+      position: fixed;
+      right: -1.5rem;
+      cursor: -webkit-grab;
+
+      @media screen and (max-width: 1366px) {
+        right: -1rem;
+      }
+      @media screen and (max-width: 900px) {
+        display: none;
+      }
+      @media screen and (min-height: 800px) and (max-width: 1500px) {
+        display: none;
+      }
+    }
+
+    .scrollBarContainer img {
+      position: absolute;
+      transform: translateY(-50%);
+      height: 110px;
+    }
+
+    .scrollBar {
+      background: #e6c189;
+      width: 4px;
+      stroke-width: 7px;
+      stroke: #7b6a69;
+      border-radius: 5px;
+      filter: drop-shadow(0px 0px 8px rgba(175, 148, 120, 0.4));
+      box-shadow: 0px 0px 12px 0px #af947866;
+    }
+  }
+
+  .background2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: -2;
+
+    img {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: -2;
+    }
+    .blendOverlay {
+      z-index: -1;
+      mix-blend-mode: multiply;
+    }
+    .rightArrow,
+    .leftArrow {
+      display: none;
+    }
+  }
+
+  .banner1 {
+    position: absolute;
+    top: 13vw;
+    left: 1vw;
+  }
+  .banner2 {
+    position: absolute;
+    top: 17.8vw;
+    left: 26vw;
+  }
+  .banner3 {
+    position: absolute;
+    top: 17.8vw;
+    right: 26vw;
+  }
+  .banner4 {
+    position: absolute;
+    top: 13vw;
+    right: 1vw;
+  }
+
+  .banners {
+    transition: translate 0.4s ease-in-out;
+    transition-delay: 0.01s;
+  }
+
+  .banners:hover {
+    animation-play-state: paused !important;
+    translate: 0 -50px !important;
+    filter: brightness(120%);
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .container {
+    .background2 {
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media screen and (min-height: 500px) and (max-width: 1025px) {
+  .container {
+    .background2 {
+      img {
+        width: 105%;
+      }
+    }
+  }
+}
+
+@media screen and (min-height: 670px) and (max-width: 1025px) {
+  .container {
+    .background2 {
+      img {
+        width: 108%;
+      }
+    }
+  }
+}
+
+@media screen and (min-height: 700px) and (max-width: 1025px) {
+  .container {
+    .background2 {
+      img {
+        width: 120%;
+      }
+    }
+  }
+}
+
+@media screen and (min-height: 800px) and (max-width: 1000px) {
+  .container {
+    .background2 {
+      img {
+        width: 130%;
+      }
+    }
+  }
+}
+
+@media screen and (min-height: 900px) and (max-width: 1000px) {
+  .container {
+    .background2 {
+      img {
+        width: 140%;
+      }
+    }
+  }
+}
+
+@media screen and (min-height: 1000px) and (max-width: 1000px) {
+  .container {
+    .background2 {
+      img {
+        width: 150%;
+      }
+    }
+  }
+}
+
+@media screen and (min-height: 1020px) and (max-width: 900px) {
+  .container {
+    .background2 {
+      img {
+        width: 155%;
+      }
+    }
+  }
+}
+
+@media screen and (min-height: 1100px) and (max-width: 900px) {
+  .container {
+    .background2 {
+      img {
+        width: 165%;
+      }
+    }
+  }
+}
+@media screen and (max-width: 600px) {
+  .container {
+    position: relative;
+    .background2 {
+      .blendOverlay {
+        top: auto;
+        bottom: 0;
+        width: 100%;
+        height: 62%;
+        mix-blend-mode: normal;
+      }
+      .rightArrow,
+      .leftArrow {
+        display: block;
+        position: absolute;
+        top: auto;
+        left: 23vw;
+        bottom: 15vh;
+        width: 5.5vh;
+        height: 5.5vh;
+        z-index: 5;
+      }
+      .rightArrow {
+        left: auto;
+        right: 23vw;
+      }
+    }
+
+    .heading {
+      width: 50vw;
+      transform: translateY(-10%);
+    }
+
+    .banner1 {
+      top: 15vh;
+      left: 1vw;
+      right: auto;
+    }
+    .banner2 {
+      top: 15vh;
+      left: 44vw;
+      right: auto;
+    }
+    .banner3 {
+      top: 53vh;
+      right: auto;
+      left: 1vw;
+    }
+    .banner4 {
+      top: 53vh;
+      left: 44vw;
+      right: auto;
+    }
+    .banners:hover {
+      animation-play-state: paused !important;
+      translate: 0 0 !important;
+      filter: brightness(100%);
+    }
+  }
+}

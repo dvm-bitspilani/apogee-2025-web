@@ -1,0 +1,79 @@
+@font-face {
+  font-family: steamPunk;
+  src: url("/fonts/SteamPunk.otf");
+}
+
+.banner {
+  width: 25vw;
+  height: 27vw;
+  background: center center / contain no-repeat
+    url("/src/assets/Devs/banner.svg");
+  display: flex;
+  justify-content: center;
+  position: relative;
+
+  p {
+    position: absolute;
+    top: 60%;
+    font-family: "steamPunk";
+    color: #a88851;
+    font-size: 3.5vw;
+  }
+  div {
+    width: 36%;
+    height: 36%;
+    border-radius: 50%;
+    transform: translate(-1.7%, 5%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 70%;
+      height: 70%;
+    }
+  }
+}
+
+@media screen and (max-height: 1000px) {
+  .banner {
+    height: 24vw;
+    width: calc(calc(25vw / 27vw) * 24vw);
+    p {
+      font-size: 3rem;
+    }
+  }
+}
+
+@media (max-width: 1550px) {
+  .banner {
+    p {
+      font-size: 2.5rem;
+    }
+  }
+}
+
+@media (max-width: 1300px) {
+  .banner {
+    p {
+      font-size: 1.8rem;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .banner {
+    p {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .banner {
+    width: 55vw;
+    height: 53vw;
+    p {
+      font-size: 6.7vw;
+    }
+  }
+}
