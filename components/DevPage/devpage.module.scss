@@ -52,7 +52,10 @@
       cursor: -webkit-grab;
 
       @media screen and (max-width: 1366px) {
-        right: 1rem;
+        right: -1rem;
+      }
+      @media screen and (max-width: 900px) {
+        display: none;
       }
     }
 
@@ -70,12 +73,6 @@
       border-radius: 5px;
       filter: drop-shadow(0px 0px 8px rgba(175, 148, 120, 0.4));
       box-shadow: 0px 0px 12px 0px #af947866;
-    }
-
-    @media screen and (max-width: 900px) {
-      .scrollBarContainer {
-        display: none;
-      }
     }
   }
 
@@ -200,7 +197,8 @@
     }
 
     .heading {
-      width: 40vw;
+      width: 50vw;
+      transform: translateY(-10%);
     }
 
     .banner1 {

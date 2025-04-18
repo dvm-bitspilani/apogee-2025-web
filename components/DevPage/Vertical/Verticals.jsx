@@ -4,6 +4,7 @@ import frame from "../../../src/assets/Devs/verticalBox/frame1.svg";
 import github from "../../../src/assets/Devs/verticalBox/github.svg";
 import linkedin from "../../../src/assets/Devs/verticalBox/linkedin.svg";
 import instagram from "../../../src/assets/Devs/verticalBox/instagram.svg";
+import behance from "../../../src/assets/Devs/verticalBox/behance.svg";
 
 import Preloader from "../Preloader/Preloader";
 

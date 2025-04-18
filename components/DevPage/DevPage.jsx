@@ -2,22 +2,23 @@ import styles from "./devpage.module.scss";
 import Preloader from "../Registration/Preloader/Preloader";
 import FloatIcon from "./UI/FloatIcon";
 import OverlayBackBtn from "./OverlayBackBtn/OverlayBackBtn";
-import Verticals from "./Vertical/Verticals.jsx";
+import Verticals from "./Vertical/Verticals";
 
 import clouds from "../../src/assets/ComingSoon/background.png";
+
 import bg2 from "../../src/assets/Devs/bg2.svg";
 import blendOverlay from "../../src/assets/Devs/back.png";
 import blendOverlay2 from "../../src/assets/Devs/back2.png";
-import frontend from "../../src/assets/Verticals/frontend.svg";
-import backend from "../../src/assets/Verticals/backend.svg";
-import design from "../../src/assets/Verticals/figma.png";
-import video from "../../src/assets/Verticals/video.svg";
 import heading from "../../src/assets/Devs/developers.svg";
 import bannerImg from "../../src/assets/Devs/banner.svg";
 import bannerImg2 from "../../src/assets/Devs/banner2.svg";
 import rightArrow from "../../src/assets/Devs/rightArrow.png";
 import leftArrow from "../../src/assets/Devs/leftArrow.png";
 
+import frontend from "../../src/assets/Verticals/frontend.svg";
+import backend from "../../src/assets/Verticals/backend.svg";
+import design from "../../src/assets/Verticals/figma.png";
+import video from "../../src/assets/Verticals/video.svg";
 import frontend2 from "../../src/assets/Verticals/frontend2.png";
 import backend2 from "../../src/assets/Verticals/back2.png";
 import design2 from "../../src/assets/Verticals/figma2.png";
@@ -434,15 +435,7 @@ const DevPage = () => {
 
   useEffect(() => {
     setteam(teamMembers[banners[indx].name]);
-    if (
-      mainContainerRef.current &&
-      mainContainerRef.current.scrollHeight >
-        mainContainerRef.current.clientHeight
-    ) {
-      setShowScrollBar(false);
-    } else {
-      setShowScrollBar(true);
-    }
+    setShowScrollBar(indx === 2 ? true : false);
   }, [indx]);
 
   const handleVerticalClick = (index) => {
