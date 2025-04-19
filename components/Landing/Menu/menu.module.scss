@@ -281,13 +281,13 @@
       .articles {
         position: absolute;
         top: 7%;
-        left: 6%;
+        left: 7.5%;
         cursor: pointer;
       }
       .archives {
         position: absolute;
         top: 45%;
-        left: 12%;
+        left: 3%;
         cursor: pointer;
       }
       .events {
@@ -396,7 +396,7 @@
     }
   }
 
-  @media(max-width : 600px) {
+  @media (max-width: 600px) {
     .madeWith {
       font-size: 1.2rem;
       bottom: 20px;
