@@ -1,3 +1,8 @@
+@font-face {
+  font-family: steamPunk;
+  src: url("/fonts/SteamPunk.otf");
+}
+
 .logoContainer {
   width: 20%;
   max-width: 280px;
@@ -47,7 +52,7 @@
       min-height: 896.521729px;
       // width: 1234.782593px;
       // height: 896.521729px;
-      top: 14%;
+      top: 8%;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -72,7 +77,7 @@
       }
       @media (width<475px) {
         transform: scale(0.3);
-        top: 8%;
+        top: 4%;
       }
       @media (width<360px) {
         transform: scale(0.25);
@@ -276,13 +281,13 @@
       .articles {
         position: absolute;
         top: 7%;
-        left: 6%;
+        left: 7.5%;
         cursor: pointer;
       }
       .archives {
         position: absolute;
         top: 45%;
-        left: 12%;
+        left: 3%;
         cursor: pointer;
       }
       .events {
@@ -369,6 +374,42 @@
   @keyframes connector {
     100% {
       stroke-dashoffset: unset;
+    }
+  }
+
+  .madeWith {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 2rem;
+    font-weight: 500;
+    z-index: 1000;
+    a {
+      color: white;
+      text-decoration: none;
+      font-family: "steamPunk", sans-serif;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    .madeWith {
+      font-size: 1.2rem;
+      bottom: 20px;
+      width: 100vw;
+      text-align: center;
+    }
+  }
+
+  @media (height < 600px) {
+    .madeWith {
+      bottom: 10px;
+      left: 2%;
+      transform: translateX(0%);
     }
   }
 }
