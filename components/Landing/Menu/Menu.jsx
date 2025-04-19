@@ -1591,6 +1591,11 @@ export default function Menu() {
           <img className={styles.hamLeft} src={hamLeft} />
           <img className={styles.hamRight} src={hamRight} />
         </div>
+        <div className={styles.madeWith}>
+          <a href="https://bits-dvm.org" target="_main">
+            Made with <span> ❤️ </span>by DVM
+          </a>
+        </div>
       </div>
     </>
   );

@@ -141,7 +141,9 @@ const DevPage = () => {
       mainContainerRef.current.addEventListener("scroll", handleScroll);
 
       return () => {
-        mainContainerRef.current.removeEventListener("scroll", handleScroll);
+        if (mainContainerRef.current) {
+          mainContainerRef.current.removeEventListener("scroll", handleScroll);
+        }
       };
     }
   }, [imagesLoaded]);
@@ -202,12 +204,13 @@ const DevPage = () => {
   };
 
   const handleClick = useCallback(() => {
-    if (!isVerticalOpen) {
-      navigate("/");
-    } else {
+    if (isVerticalOpen) {
       setIsVerticalOpen(false);
+      setIndx(0);
+    } else {
+      navigate("/");
     }
-  }, [navigate, isVerticalOpen]);
+  }, [isVerticalOpen, navigate]);
 
   useGSAP(() => {
     const mm = gsap.matchMedia();

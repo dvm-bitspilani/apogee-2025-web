@@ -1,3 +1,8 @@
+@font-face {
+  font-family: steamPunk;
+  src: url("/fonts/SteamPunk.otf");
+}
+
 .logoContainer {
   width: 20%;
   max-width: 280px;
@@ -369,6 +374,34 @@
   @keyframes connector {
     100% {
       stroke-dashoffset: unset;
+    }
+  }
+
+  .madeWith {
+    position: absolute;
+    bottom: 0.5%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 2rem;
+    font-weight: 500;
+    z-index: 1000;
+    a {
+      color: white;
+      text-decoration: none;
+      font-family: "steamPunk", sans-serif;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  @media (height < 600px) {
+    .madeWith {
+      font-size: 1.5rem;
+      bottom: 0;
+      left: 2%;
+      transform: translateX(0%);
     }
   }
 }
