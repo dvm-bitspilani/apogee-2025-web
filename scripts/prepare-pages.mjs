@@ -3,7 +3,7 @@ import { join } from 'node:path';
 // Keep source archives intact; omit abandoned iterations from the deployed artifact.
 await cp('node_modules/three/examples/jsm/libs/draco/gltf','dist/draco',{recursive:true});
 await rm('dist/draco/draco_encoder.js',{force:true});
-const retainedModels = new Set(['CityOptimised.glb','EventsBoard.glb','AirshipFinal.glb','SpeakersBoard.glb','carOptimised.glb','AboutUsBoard.glb']);
+const retainedModels = new Set(['CityOptimised.glb','EventsBoard.glb','AirshipFinal.glb','SpeakersBoard.glb','carOptimised.glb','AboutUsBoard.glb','ContactUsBoard.glb','train.glb']);
 for (const file of await readdir('dist/models')) if(!retainedModels.has(file)) await rm(join('dist/models',file));
 await rm('dist/environments/sunset1QuarterResOrange.hdr',{force:true});
 await rm('dist/textures',{recursive:true,force:true});
