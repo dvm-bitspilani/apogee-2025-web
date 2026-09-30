@@ -1,39 +1,13 @@
-import { ScrollControls } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-import { SpeakerExperience } from "../../components/Speakers/Experience";
-import Heading from "../../components/Speakers/Heading/Heading";
-import OverlayBackBtn from "../../components/Overlay/OverlayBackBtn/OverlayBackBtn";
-import { useState, useEffect } from "react";
+import { lazy, Suspense, useState } from "react";
 import { Link } from "react-router";
-import Preloader from "../../components/Registration/Preloader/Preloader";
-
-export default function SpeakersPage() {
-  const [showPreloader, setShowPreloader] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setShowPreloader(false);
-    }, 4000);
-  }, []);
-
-  return (
-    <>
-      {showPreloader && <Preloader />}
-      <Heading />
-      <Link to="/">
-        <OverlayBackBtn />
-      </Link>
-      <Canvas
-        style={{
-          opacity: showPreloader ? 0 : 1,
-          transition: "opacity 0.8s ease-in-out",
-        }}
-      >
-        <color attach="background" args={["#000"]} />
-        <ScrollControls pages={15} damping={0.4}>
-          <SpeakerExperience />
-        </ScrollControls>
-      </Canvas>
-    </>
-  );
+import ErrorBoundary from "../../src/portfolio/ErrorBoundary";
+import SpeakerStrip from "./SpeakersPage";
+const DesktopSpeakers = lazy(() => import("./DesktopSpeakers"));
+function supportsWebGL() {
+  try { const canvas=document.createElement('canvas');const context=canvas.getContext('webgl2')||canvas.getContext('webgl');if(!context)return false;context.getExtension('WEBGL_lose_context')?.loseContext();return true; } catch { return false; }
+}
+export default function Speakers() {
+  const [use3D] = useState(() => window.innerWidth >= 850 && !window.matchMedia('(prefers-reduced-motion:reduce)').matches && supportsWebGL());
+  const fallback = <><Link className="demo-home" to="/">← City</Link><SpeakerStrip /></>;
+  return use3D ? <ErrorBoundary fallback={fallback}><Suspense fallback={fallback}><DesktopSpeakers /></Suspense></ErrorBoundary> : fallback;
 }

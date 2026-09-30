@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./contact.module.scss";
-import heading from "../../src/assets/contact.png";
+import heading from "../../src/assets/contact.webp";
 import ContactCard from "./ContactCard/ContactCard";
 import { CoStAAnData } from "../../utils/data/data";
 
@@ -17,7 +17,7 @@ const Contact = () => {
             return (
               <ContactCard
                 key={costaa.name}
-                personImg={`/images/contact/${costaa.personImg}.png`}
+                personImg={`/images/contact/${costaa.personImg}.webp`}
                 name={costaa.name}
                 dept1={costaa.dept1}
                 dept2={costaa.dept2}

@@ -1,64 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import { readQuizResult, clearQuizResult } from "../src/portfolio/demo.js";
+import { Link } from "react-router";
 import styles from "../components/Quantaculus/Quantaculus.module.scss";
-import { useNavigate } from "react-router";
-import { motion } from "framer-motion";
-import OverlayBackBtn from "../components/Overlay/OverlayBackBtn/OverlayBackBtn";
-
-const QuantaculusSubmitted = () => {
-  const navigate = useNavigate();
-  const handleHomeClick = () => {
-    navigate("/");
-  };
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const [errorMessage, setErrorMessage] = useState('');
-  const [isQuizOpen, setIsQuizOpen] = useState(false)
-
-  const handleLoginSuccess = () => {
-    setIsLoggedIn(true);
-    // setErrorMessage('');
-  };
-
-  const handleLoginError = (error) => {
-    setIsLoggedIn(false);
-    // setErrorMessage(error);
-  };
-
-  const handleQuizOpen = () => {
-    setIsQuizOpen(true);
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem("jwtToken");
-    navigate("/quantaculus");
-  };
-
-
-  return (
-    <>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 1, ease: "easeInOut", delay: 0 }}
-        className={styles.pageContainer}
-      >
-        {/* <div className={styles.pageWrapper}>
-          <div className={styles.homeBtn} onClick={handleHomeClick}>
-            <span>Home</span>
-          </div>
-        </div> */}
-        <div className={styles.backBtn} onClick={handleHomeClick}>
-          <OverlayBackBtn />
-        </div>
-        <div className={styles.submittedBox}>
-          <p>Submitted Successfully!</p>
-          <button onClick={handleLogout} className={styles.logout}>LOGOUT</button>
-        </div>
-
-      </motion.div>
-    </>
-  );
-};
-
-export default QuantaculusSubmitted;
+export default function QuantaculusSubmitted() {
+  const state = readQuizResult();
+  return <div className={styles.pageContainer}><Link className="demo-home" to="/">← City</Link><div className={styles.submittedBox}>
+    <p>Demo complete!</p>{state ? <p>{state.correct} / {state.total} correct · {state.attempted} attempted · Score: {state.score}</p> : <p>Play the sample quiz to see your score.</p>}
+    <p className="demo-note">No competition entry was submitted. Refreshing clears this result.</p>
+    <Link to="/quantaculus" onClick={clearQuizResult} className={styles.logout}>PLAY AGAIN</Link>
+  </div></div>;
+}

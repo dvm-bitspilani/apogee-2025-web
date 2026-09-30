@@ -10,29 +10,7 @@ import Preloader from "../Preloader/Preloader";
 import { forwardRef, useState, useEffect } from "react";
 
 const Verticals = forwardRef(({ team }, ref) => {
-  const [showPreloader, setShowPreloader] = useState(true);
-  useEffect(() => {
-    const imageUrls = [
-      frame,
-      github,
-      linkedin,
-      instagram,
-      ...team.map((member) => member.image),
-    ];
-    let loadedCount = 0;
-    imageUrls.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-      img.onload = () => {
-        loadedCount++;
-        if (loadedCount === imageUrls.length) {
-          setTimeout(() => {
-            setShowPreloader(false);
-          }, 0);
-        }
-      };
-    });
-  }, []);
+  const [showPreloader, setShowPreloader] = useState(false);
 
   return (
     <div
@@ -65,7 +43,7 @@ const Verticals = forwardRef(({ team }, ref) => {
               <div className={styles.framing}>
                 <img src={frame} alt="frame" className={styles.frame} />
                 <img
-                  src={member.image}
+                  loading="lazy" decoding="async" src={member.image}
                   alt="memberImage"
                   className={styles.person}
                 />

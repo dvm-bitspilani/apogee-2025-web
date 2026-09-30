@@ -1,5 +1,4 @@
 import {createSlice} from "@reduxjs/toolkit";
-import axios from "axios";
 
 const counterSlice = createSlice({
     name: "counter",
@@ -18,25 +17,6 @@ const counterSlice = createSlice({
         }
     }
 })
-
-// ASYNC ACTIONS
-
-export const sendCount = (count) => {
-    return async (dispatch) => {
-        console.log("pending")
-
-        axios.post('https://foo.com', {curCount: count})
-            .then(res => {
-                console.log(res)
-                console.log("success")
-            })
-            .catch(err => {
-                console.log(err)
-                console.log("failed")
-                dispatch(counterActions.incrementByAmount(-100))
-            })
-    }
-}
 
 export const counterActions = counterSlice.actions;
 

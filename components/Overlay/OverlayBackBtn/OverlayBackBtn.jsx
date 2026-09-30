@@ -24,7 +24,7 @@ export default function OverlayBackBtn({ isDiffRoute = false, ...props }) {
   return (
     <button className={styles.backBtn} onClick={handleClick} {...props}>
       <img
-        src="/images/backBtnLanding.png"
+        src="/images/backBtnLanding.webp"
         alt="back button"
         draggable={false}
       />

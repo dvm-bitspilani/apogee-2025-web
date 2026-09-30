@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
 import styles from "./menu.module.scss";
 import logoBackground from "../../../src/assets/Landing/regbtnLanding.svg";
-import hamLeft from "../../../src/assets/Landing/HamMenu/hamLeft.png";
-import hamRight from "../../../src/assets/Landing/HamMenu/hamRight.png";
-import hamMenu from "../../../src/assets/Landing/HamMenu/hamMenu.png";
+import hamLeft from "../../../src/assets/Landing/HamMenu/hamLeft.webp";
+import hamRight from "../../../src/assets/Landing/HamMenu/hamRight.webp";
+import hamMenu from "../../../src/assets/Landing/HamMenu/hamMenu.webp";
 import firstGear from "../../../src/assets/Landing/HamMenu/firstGear.svg";
 import secondArc from "../../../src/assets/Landing/HamMenu/secondArc.svg";
 import wedge from "../../../src/assets/Landing/HamMenu/wedge.svg";
@@ -639,8 +639,7 @@ export default function Menu() {
               xmlns="http://www.w3.org/2000/svg"
               className={styles.archives}
               onClick={() =>
-                (window.location.href =
-                  "https://bits-apogee.org/campusambassador2025")
+                navigate("/registration")
               }
             >
               <path
@@ -1616,7 +1615,7 @@ export default function Menu() {
             onClick={() => setIsMenuOpen(false)}
           >
             <img
-              src="/images/backBtnLanding.png"
+              src="/images/backBtnLanding.webp"
               alt="back button"
               draggable={false}
             />

@@ -1,0 +1,14 @@
+{
+  "baseline_sha": "bb896ef28963af8646b1fb0483086616da612ad2",
+  "baseline_output_bytes": 148571771,
+  "baseline_javascript_bytes": 2838170,
+  "baseline_javascript_gzip": 872321,
+  "restored_output_bytes": 24220708,
+  "restored_files": 213,
+  "restored_javascript_bytes": 2268711,
+  "restored_javascript_gzip": 697402,
+  "entry_javascript_bytes": 226166,
+  "entry_javascript_gzip": 76080,
+  "max_file": "dist/assets/developers-C-Hfy49O.svg",
+  "max_file_bytes": 3535140
+}

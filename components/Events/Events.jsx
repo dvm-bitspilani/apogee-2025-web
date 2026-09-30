@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import styles from "./events.module.scss";
-import left from "../../src/assets/About/left.png";
-import right from "../../src/assets/About/right.png";
-import robowar from "../../src/assets/Events/robowar.png";
-import stockmarket from "../../src/assets/Events/stockmarket.png";
-import armaggedon from "../../src/assets/Events/armaggedon.png";
-import coding from "../../src/assets/Events/coding.png";
-// import sharktank from "../../src/assets/Events/sharktank.png";
-import innovation from "../../src/assets/Events/innovation.png";
-import mobileHeading from "../../src/assets/Events/mobileheader.png";
-import imgBorder from "../../src/assets/Events/imgborder.png";
+import left from "../../src/assets/About/left.webp";
+import right from "../../src/assets/About/right.webp";
+import robowar from "../../src/assets/Events/robowar.webp";
+import stockmarket from "../../src/assets/Events/stockmarket.webp";
+import armaggedon from "../../src/assets/Events/armaggedon.webp";
+import coding from "../../src/assets/Events/coding.webp";
+// import sharktank from "../../src/assets/Events/sharktank.webp";
+import innovation from "../../src/assets/Events/innovation.webp";
+import mobileHeading from "../../src/assets/Events/mobileheader.webp";
+import imgBorder from "../../src/assets/Events/imgborder.webp";
 import events from "./events.json";
-import defaultevent from "../../src/assets/Events/defaultevent.png";
+import defaultevent from "../../src/assets/Events/defaultevent.webp";
 
 const Events = () => {
   const [index, setIndex] = useState(0);
@@ -68,6 +68,7 @@ const Events = () => {
             const img = new Image();
             img.src = event.image;
             img.onload = resolve;
+            img.onerror = resolve;
           });
         })
       );
@@ -137,7 +138,7 @@ const Events = () => {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    REGISTER
+                    HISTORICAL EVENT
                   </a>
                 )}
               </div>

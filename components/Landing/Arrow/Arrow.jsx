@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { Image } from "@react-three/drei";
 import gsap from "gsap";
-import down from "../../../src/assets/Landing/down.png";
+import down from "../../../src/assets/Landing/down.webp";
 import { useGSAP } from "@gsap/react";
 import { DoubleSide } from "three";
 

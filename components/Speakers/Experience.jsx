@@ -8,12 +8,12 @@ import { VideoPlayer } from "./VideoPlayer";
 // import { OrbitControls } from "@react-three/drei";
 // import { Html } from "@react-three/drei";
 
-import abhay from "/videos/abhay.mov";
-import vijender from "/videos/vijender.mov";
-import anantha from "/videos/anantha.mov";
-import patnaik from "/videos/patnaik.mov";
-import nidhi from "/videos/nidhi.mov";
-import dilip from "/videos/dilip.mov";
+import abhay from "/videos/abhay.mp4";
+import vijender from "/videos/vijender.mp4";
+import anantha from "/videos/anantha.mp4";
+import patnaik from "/videos/patnaik.mp4";
+import nidhi from "/videos/nidhi.mp4";
+import dilip from "/videos/dilip.mp4";
 
 const CURVE_DISTANCE = 50;
 const CURVE_AHEAD_CAMERA = 0.008;
@@ -37,7 +37,7 @@ export const SpeakerExperience = () => {
 
   const shape = useMemo(() => {
     const shape = new THREE.Shape();
-    shape.moveTo(0, -0.08);
+    shape.mp4eTo(0, -0.08);
     shape.lineTo(0, 0.08);
 
     return shape;

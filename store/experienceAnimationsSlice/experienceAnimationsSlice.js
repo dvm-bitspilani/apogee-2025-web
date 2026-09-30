@@ -15,7 +15,7 @@ const experienceAnimationsSlice = createSlice({
     },
     setCurStage: (state, action) => {
       if (action.payload === "landing") {
-        state.curStage === action.payload;
+        state.curStage = action.payload;
       } else {
         state.curStage = action.payload.split("To")[1].toLowerCase();
       }
@@ -43,14 +43,14 @@ export const experienceAnimationsActions = experienceAnimationsSlice.actions;
 // ASYNC ACTIONS
 
 export const curStageUpdate = (stage, dur1 = 0, animationDur = 2000) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
     if (stage.split("To")[1].toLowerCase() === "landing") {
       setTimeout(() => {
-        dispatch(experienceAnimationsActions.setCurStage(stage));
+        if (getState().experienceAnimations.animationStage === stage) dispatch(experienceAnimationsActions.setCurStage(stage));
       }, dur1);
     } else {
       setTimeout(() => {
-        dispatch(experienceAnimationsActions.setCurStage(stage));
+        if (getState().experienceAnimations.animationStage === stage) dispatch(experienceAnimationsActions.setCurStage(stage));
       }, animationDur);
     }
   };

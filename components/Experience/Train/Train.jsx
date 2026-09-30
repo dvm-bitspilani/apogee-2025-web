@@ -10,7 +10,6 @@ import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useControls } from "leva";
 
 export function Train(props) {
   const train = useRef();
@@ -42,10 +41,7 @@ export function Train(props) {
     { dependencies: [train, trainRotRef] }
   );
 
-  const { rot } = useControls({
-    // rot: [1.358796326794899, 0, 0],
-    rot: [Math.PI / 2, 0, 0],
-  });
+
   return (
     <group ref={train} {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]} scale={2.222}>

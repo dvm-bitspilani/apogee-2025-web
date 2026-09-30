@@ -1,0 +1,66 @@
+{
+  "original_fonts": [
+    {
+      "path": "public/fonts/The 27 Club.otf",
+      "bytes": 20268,
+      "sha256": "1759d835cb04cf715bd728d597efa96e65a78048fc886235ec056e3e5823e6cf",
+      "matches_original": true
+    },
+    {
+      "path": "public/fonts/OldNewspaperTypes.ttf",
+      "bytes": 85804,
+      "sha256": "9beb6ad54292e646c61cfeccfcebdf2d11a2d23e68133aa39eefb9f4e671e82c",
+      "matches_original": true
+    },
+    {
+      "path": "public/fonts/SteamPunk.otf",
+      "bytes": 246460,
+      "sha256": "5518b9921c5bf06fbe6eb06726bc36bb01ae686e83d5166ab1aae4b91aaf39d8",
+      "matches_original": true
+    },
+    {
+      "path": "public/fonts/Chalk-Regular.ttf",
+      "bytes": 66228,
+      "sha256": "7f4cfa63a36659764dfcdfe47ecef8b614d25d0106a34f32178f053414534b64",
+      "matches_original": true
+    },
+    {
+      "path": "public/fonts/Redzein Vintage.ttf",
+      "bytes": 48784,
+      "sha256": "0d7cf0d9a6731a4369147954e668303c8056408ee160932896c332d616e87b58",
+      "matches_original": true
+    },
+    {
+      "path": "public/fonts/AlegreyaSC-Regular.ttf",
+      "bytes": 345056,
+      "sha256": "4b93934f4cf51aedc23bbadc4028811b6fd16d97cd7425c902015ae77bfe55ab",
+      "matches_original": true
+    },
+    {
+      "path": "public/fonts/Birmingham.ttf",
+      "bytes": 44300,
+      "sha256": "691a0ebb52a312b825aeca1d5cd9adb006382eeba02e344359e273c186983395",
+      "matches_original": true
+    }
+  ],
+  "playfair_weight_range": [
+    400,
+    900
+  ],
+  "playfair_styles": [
+    "normal",
+    "italic"
+  ],
+  "playfair_subsets": [
+    "latin",
+    "latin-ext",
+    "cyrillic",
+    "vietnamese"
+  ],
+  "local_fontsource_families": [
+    "Playfair Display",
+    "Artifika",
+    "Inter",
+    "Josefin Sans"
+  ]
+}

@@ -1,40 +1,39 @@
 import React, { useState } from "react";
 import styles from "./about.module.scss";
-import heading from "../../src/assets/About/heading.png";
-import mobileHeading from "../../src/assets/About/mobileHeading.png";
+import heading from "../../src/assets/About/heading.webp";
+import mobileHeading from "../../src/assets/About/mobileHeading.webp";
 import videoframeBackground from "../../src/assets/About/videoframeBackground.svg";
-import left from "../../src/assets/About/left.png";
-import right from "../../src/assets/About/right.png";
+import left from "../../src/assets/About/left.webp";
+import right from "../../src/assets/About/right.webp";
 import mobileLeft from "../../src/assets/About/mobileLeft.svg";
 import mobileRight from "../../src/assets/About/mobileRight.svg";
 
-import yticon from "../../src/assets/Landing/yticon.png";
-import igicon from "../../src/assets/Landing/igicon.png";
-import linkedin from "../../src/assets/Landing/linkedin.png";
-import twitter from "../../src/assets/Landing/xicon.png";
-import { useSelector } from "react-redux";
+import yticon from "../../src/assets/Landing/yticon.webp";
+import igicon from "../../src/assets/Landing/igicon.webp";
+import linkedin from "../../src/assets/Landing/linkedin.webp";
+import twitter from "../../src/assets/Landing/xicon.webp";
 
 export default function About() {
   const [index, setIndex] = useState(0);
+  const [play, setPlay] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const curState = useSelector((state) => state.experienceAnimations.curStage);
 
   const videoLinks = [
     {
       id: 0,
-      videoSrc: "https://www.youtube.com/embed/TY7h1Wnqb_A",
+      videoSrc: "https://www.youtube-nocookie.com/embed/TY7h1Wnqb_A",
       videoTitle: "APOGEE '24 | A Celestial Epiphany",
     },
     {
       id: 1,
-      videoSrc: "https://www.youtube.com/embed/vEhXhoynQLc?si=azysTYvJ9YcPaFPN",
+      videoSrc: "https://www.youtube-nocookie.com/embed/vEhXhoynQLc?si=azysTYvJ9YcPaFPN",
       videoTitle: "APOGEE '23 | Official Aftermovie",
     },
     {
       id: 2,
       videoSrc:
-        "https://www.youtube.com/embed/Mdhw5tI7HgE?si=Z2WNrhu5q8iyGREw&amp;controls=0",
+        "https://www.youtube-nocookie.com/embed/Mdhw5tI7HgE?si=Z2WNrhu5q8iyGREw&amp;controls=0",
       videoTitle: "APOGEE '22 | The Encrypted Dimension",
     },
   ];
@@ -102,10 +101,10 @@ export default function About() {
                 </button>
               </div>
               <div className={styles.video}>
-                {curState === "about" && (
+                {play ? (
                   <iframe
                     src={videoLinks[index].videoSrc}
-                    title="YouTube video player"
+                    title={videoLinks[index].videoTitle} loading="lazy"
                     // title={videoTitle}
                     referrerPolicy="strict-origin-when-cross-origin"
                     preload="metadata"
@@ -116,7 +115,7 @@ export default function About() {
                     style={{ height: "100%", width: "100%" }}
                     id="video"
                   />
-                )}
+                ) : <button type="button" onClick={() => setPlay(true)} className="archive-video-play">Play historical aftermovie</button>}
               </div>
             </div>
           </div>
@@ -135,7 +134,7 @@ export default function About() {
             </p>
           </div>
           <div className={styles.socialIconsContainer}>
-            <a href="https://www.youtube.com/@APOGEEBITS" target="_blank">
+            <a href="https://www.youtube.com/@APOGEEBITS" target="_blank" rel="noopener noreferrer">
               <img
                 className={styles.youtube}
                 alt="YouTube Link icon"
@@ -143,7 +142,7 @@ export default function About() {
                 draggable={false}
               />
             </a>
-            <a href="https://www.instagram.com/bitsapogee/" target="_blank">
+            <a href="https://www.instagram.com/bitsapogee/" target="_blank" rel="noopener noreferrer">
               <img
                 className={styles.instagram}
                 alt="instagram link icon"
@@ -154,7 +153,7 @@ export default function About() {
             <a
               href="https://www.linkedin.com/company/apogee-bits-pilani/"
               target="_blank"
-            >
+             rel="noopener noreferrer">
               <img
                 className={styles.linkedin}
                 alt="linkedin icon"
@@ -162,7 +161,7 @@ export default function About() {
                 draggable={false}
               />
             </a>
-            <a href="https://x.com/BITSApogee" target="_blank">
+            <a href="https://x.com/BITSApogee" target="_blank" rel="noopener noreferrer">
               <img
                 className={styles.twitter}
                 alt="twitter or X icon"

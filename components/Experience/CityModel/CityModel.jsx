@@ -7,7 +7,6 @@ import { useGLTF, useAnimations, Image } from "@react-three/drei";
 import { useDispatch, useSelector } from "react-redux";
 import { setNavigationStage } from "../../../store/experienceAnimationsSlice/experienceAnimationsSlice";
 // import { Contactus } from "../ContactUs/ContactUs";
-import { useControls } from "leva";
 import { ContactBoard } from "../ContactBoard/ContactBoard";
 
 export function CityModel({ scale = 1, ...props }) {

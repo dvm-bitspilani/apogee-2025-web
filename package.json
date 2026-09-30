@@ -5,32 +5,32 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/prepare-pages.mjs",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "preview:pages": "wrangler pages dev dist",
+    "deploy": "npm run build && CLOUDFLARE_ACCOUNT_ID=e6ad8a6f22a88b57a02e176325692373 wrangler pages deploy dist --project-name dvm-portfolio-apogee-2025",
+    "test": "node --test tests/*.test.mjs",
+    "check": "npm run test && npm run build"
   },
   "dependencies": {
+    "@fontsource-variable/playfair-display": "5.3.0",
+    "@fontsource/artifika": "5.3.0",
+    "@fontsource/inter": "5.3.0",
+    "@fontsource/josefin-sans": "5.3.0",
     "@gsap/react": "^2.1.2",
-    "@react-oauth/google": "^0.12.1",
     "@react-three/drei": "^9.120.5",
     "@react-three/fiber": "^8.17.10",
     "@react-three/postprocessing": "^2.16.6",
     "@reduxjs/toolkit": "^2.5.0",
     "@theatre/core": "^0.7.2",
     "@theatre/r3f": "^0.7.2",
-    "axios": "^1.7.9",
     "formik": "^2.4.6",
     "framer-motion": "^12.4.11",
     "gsap": "^3.12.7",
-    "lamina": "^1.1.23",
-    "leva": "^0.9.35",
     "postprocessing": "^6.36.6",
-    "r3f-perf": "^7.2.3",
     "react": "^18.3.1",
-    "react-cookie": "^7.2.2",
-    "react-countdown": "^2.3.6",
     "react-dom": "^18.3.1",
-    "react-ga4": "^2.1.0",
     "react-helmet-async": "^2.0.5",
     "react-redux": "^9.2.0",
     "react-router": "^7.0.2",
@@ -40,16 +40,19 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
-    "@theatre/studio": "^0.7.2",
     "@types/react": "^18.3.17",
     "@types/react-dom": "^18.3.5",
-    "@vitejs/plugin-react": "^4.3.4",
+    "@vitejs/plugin-react": "5.2.0",
     "eslint": "^9.17.0",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.13.0",
     "sass": "^1.83.0",
-    "vite": "^6.0.3"
+    "vite": "7.3.6",
+    "wrangler": "4.145.0"
+  },
+  "engines": {
+    "node": ">=22.12.0"
   }
 }

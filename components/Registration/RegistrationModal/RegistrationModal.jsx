@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styles from "./modal.module.scss";
-import regWrapper from "../../../src/assets/Register/regWrapper.png";
-import modalButton from "../../../src/assets/Register/modalButton.png";
+import regWrapper from "../../../src/assets/Register/regWrapper.webp";
+import modalButton from "../../../src/assets/Register/modalButton.webp";
 
 const RegistrationModal = ({ message, isOpen, onClose, type, handleClick }) => {
   useEffect(() => {
@@ -19,24 +19,24 @@ const RegistrationModal = ({ message, isOpen, onClose, type, handleClick }) => {
 
   return (
     <div className={styles.overlay}>
-      <div className={styles.modal}>
+      <div className={styles.modal} role="dialog" aria-modal="true" aria-label="Demo registration result">
         <p className={styles.message}>
           {type === "Success"
-            ? "Registration Succesful"
+            ? "Demo Complete"
             : `Registration Failed`}
         </p>
-        {type === "Success" ? "" : <p className={styles.reason}>{message}</p>}
-        <div
+        <p className={styles.reason}>{message}</p>
+        <button type="button"
           className={styles.dashboardButton}
           onClick={type === "Success" ? () => handleClick() : onClose}
         >
-          {type === "Success" ? "DASHBOARD" : "OK"}
+          {type === "Success" ? "BACK TO DEMO" : "OK"}
           <img
             className={styles.buttonBg}
             src={modalButton}
             alt="modal button background"
           />
-        </div>
+        </button>
         <img
           className={styles.modalBg}
           src={regWrapper}

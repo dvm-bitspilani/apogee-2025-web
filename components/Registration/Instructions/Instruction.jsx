@@ -1,64 +1,23 @@
+import { sampleVisitor } from "../../../src/portfolio/demo.js";
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./instructions.module.scss";
-import { useGoogleLogin } from "@react-oauth/google";
-import regWrapper from "../../../src/assets/Register/regWrapper.png";
+import regWrapper from "../../../src/assets/Register/regWrapper.webp";
 import RegForm from "../Form/RegForm";
-import axios from "axios";
-import { useCookies } from "react-cookie";
 import BackButton from "../BackButton/BackButton";
 import wheel from "../../../src/assets/Register/wheel.svg";
 import Preloader from "../Preloader/Preloader";
 import bullet from "../../../src/assets/Register/bullet.svg";
-import regBackground from "../../../src/assets/Register/regBackground.png";
+import regBackground from "../../../src/assets/Register/regBackground.webp";
 import { Helmet } from "react-helmet-async";
-import PlatformModal from "./PlatformModal";
-import { detectInstagramBrowser } from "../../../utils/Helpers/Helpers";
 
 export default function Instructions() {
-  const [imagesLoaded, setImagesLoaded] = useState(false);
-  const [showPreloader, setShowPreloader] = useState(true);
+  const [imagesLoaded] = useState(true);
+  const [showPreloader] = useState(false);
   const [userState, setUserState] = useState(false);
   const [userEmail, setUserEmail] = useState("");
-  const [instagramModal, setInstagramModal] = useState({
-    isInstagram: false,
-    platform: "unknown",
-  });
-
-  const [cookies, setCookies, removeCookie] = useCookies([
-    "user-auth",
-    "Authorization",
-    "Access_token",
-  ]);
   const wheelRef = useRef(null);
   const mainContainerRef = useRef(null);
 
-  useEffect(() => {
-    setInstagramModal(detectInstagramBrowser());
-
-    const imageUrls = [regWrapper, wheel, regBackground];
-    let loadedCount = 0;
-    imageUrls.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-      img.onload = () => {
-        loadedCount++;
-        if (loadedCount === imageUrls.length) {
-          setTimeout(() => {
-            setImagesLoaded(true);
-            setTimeout(() => {
-              setShowPreloader(false);
-            }, 0);
-          }, 0);
-        }
-      };
-      img.onerror = () => {
-        loadedCount++;
-        if (loadedCount === imageUrls.length) {
-          setImagesLoaded(true);
-        }
-      };
-    });
-  }, []);
 
   function handleScroll(inp) {
     // const maxScrollTopValue = mainContainerRef.current.scrollTopMax;
@@ -67,7 +26,7 @@ export default function Instructions() {
       mainContainerRef.current.clientHeight;
     // const percentage = (mainContainerRef.current.scrollTop / maxScrollTopValue )*100;
     const percentage =
-      (mainContainerRef.current.scrollTop / maxScrollTopValue) * 100;
+      (mainContainerRef.current.scrollTop / Math.max(1, maxScrollTopValue)) * 100;
     percentage > 100
       ? (wheelRef.current.style.top = "100%")
       : (wheelRef.current.style.top = `${percentage}%`);
@@ -78,10 +37,11 @@ export default function Instructions() {
 
   useEffect(() => {
     if (imagesLoaded) {
-      mainContainerRef.current.addEventListener("scroll", handleScroll);
+      const scrollContainer = mainContainerRef.current;
+      scrollContainer.addEventListener("scroll", handleScroll);
 
       return () => {
-        document.removeEventListener("scroll", handleScroll);
+        scrollContainer.removeEventListener("scroll", handleScroll);
       };
     }
   }, [imagesLoaded]);
@@ -141,62 +101,14 @@ export default function Instructions() {
     });
   };
 
-  const handleLoginError = () => {
-    console.log("Login Failed");
-  };
-
-  const loginButton = useGoogleLogin({
-    onSuccess: (response) => {
-      // console.log("dklasjldkwjd1");
-      // console.log(response);
-      axios
-        .post(
-          "https://merge.bits-apogee.org/2025/main/registrations/google-reg/",
-          {
-            access_token: response.access_token,
-          }
-        )
-        .then((res) => {
-          // console.log("dlakjdalkdj2");
-          setCookies("Access_token", response.access_token);
-          if (res.data.exists) {
-            setCookies("user-auth", res.data);
-            setCookies("Authorization", res.data.tokens.access);
-            window.location.href = `https://merge.bits-apogee.org/2025/main/registrations?token=${res.data.tokens.access}`;
-
-            // setUserState({
-            //   ...res.data,
-            //   access_token: response.access_token,
-            // });
-            setUserEmail(res.data.email);
-            // console.log("user aleready exists");
-          } else {
-            setCookies("user-auth", res.data);
-            setUserState({
-              ...res.data,
-              access_token: response.access_token,
-            });
-            setUserEmail(res.data.email);
-            // console.log(res.data);
-            // console.log("no route");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-    onFailure: handleLoginError,
-  });
+  const loginButton = () => { setUserState(true); setUserEmail(sampleVisitor.email); };
 
   return (
     <>
       <Helmet>
         <title>Registration | APOGEE 2025</title>
-        <link rel="canonical" href="https://bits-apogee.org/registration" />
+        <link rel="canonical" href="https://apogee2025.bits-apogee.org/registration" />
       </Helmet>
-      {instagramModal.isInstagram ? (
-        <PlatformModal os={instagramModal.platform} />
-      ) : null}
       {userState && userEmail ? (
         <RegForm email={userEmail} />
       ) : (
@@ -313,79 +225,46 @@ export default function Instructions() {
                 <div className={styles.content}>
                   <img src={bullet} alt="bullet" />
                   <p>
-                    Sign in with your Google account to securely access the
-                    registration page and begin the setup process.
+                    Explore the original registration design with a sample visitor.
                   </p>
                 </div>
 
                 <div className={styles.content}>
                   <img src={bullet} alt="bullet" />
                   <p>
-                    Provide your college information along with other required
-                    details to complete your registration.
+                    Sample details are filled in. You can change them locally to try the form.
                   </p>
                 </div>
 
                 <div className={styles.content}>
                   <img src={bullet} alt="bullet" />
                   <p>
-                    Submit the registration form with all necessary details. You
-                    will be able to log in using your registered email ID when
-                    required.
+                    Choose sample interests, events and college details.
                   </p>
                 </div>
 
                 <div className={styles.content}>
                   <img src={bullet} alt="bullet" />
                   <p>
-                    After verification, an approval email will be sent from the
-                    Department of Publication and Correspondence.
+                    This is a historical portfolio demo. No registration or email is sent.
                   </p>
                 </div>
 
                 <div className={styles.content}>
                   <img src={bullet} alt="bullet" />
                   <p>
-                    Make the required payment as per the given instructions.
+                    No payment is required or processed.
                   </p>
                 </div>
 
                 <div className={styles.content}>
                   <img src={bullet} alt="bullet" />
                   <p>
-                    Upon successful payment, a confirmation email will be sent
-                    to your registered email ID.
+                    The demo resets when you reload or leave this page.
                   </p>
                 </div>
 
-                <div className={styles.glogin} onClick={() => loginButton()}>
-                  <svg
-                    width="44"
-                    height="44"
-                    viewBox="0 0 44 44"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M41.36 22.4584C41.36 21.0284 41.2317 19.6534 40.9933 18.3334H22V26.1342H32.8533C32.3858 28.655 30.965 30.7909 28.8292 32.2209V37.2809H35.3467C39.16 33.77 41.36 28.6 41.36 22.4584Z"
-                      fill="#4285F4"
-                    />
-                    <path
-                      d="M22.0002 42.1667C27.4452 42.1667 32.0102 40.3608 35.3468 37.2808L28.8293 32.2208C27.0235 33.4308 24.7135 34.1458 22.0002 34.1458C16.7477 34.1458 12.3018 30.5983 10.716 25.8317H3.97852V31.0567C7.29685 37.6475 14.1168 42.1667 22.0002 42.1667Z"
-                      fill="#34A853"
-                    />
-                    <path
-                      d="M10.7155 25.8317C10.3122 24.6217 10.083 23.3292 10.083 22C10.083 20.6709 10.3122 19.3784 10.7155 18.1684V12.9434H3.97801C2.56634 15.7536 1.83176 18.8551 1.83301 22C1.83301 25.2542 2.61218 28.3342 3.97801 31.0567L10.7155 25.8317Z"
-                      fill="#FBBC05"
-                    />
-                    <path
-                      d="M22.0002 9.85421C24.961 9.85421 27.6193 10.8717 29.7093 12.87L35.4935 7.08587C32.001 3.83171 27.436 1.83337 22.0002 1.83337C14.1168 1.83337 7.29685 6.35254 3.97852 12.9434L10.716 18.1684C12.3018 13.4017 16.7477 9.85421 22.0002 9.85421Z"
-                      fill="#EA4335"
-                    />
-                  </svg>
-
-                  <p>SIGN IN WITH GOOGLE</p>
-                </div>
+                <button type="button" className={styles.glogin} onClick={loginButton}><p>CONTINUE AS SAMPLE VISITOR</p></button>
               </div>
             </div>
           </div>

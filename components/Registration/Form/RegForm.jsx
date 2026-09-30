@@ -1,32 +1,27 @@
+import { sampleVisitor, categories, events, colleges, previewRegistration } from "../../../src/portfolio/demo.js";
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./form.module.scss";
-import regWrapper from "../../../src/assets/Register/regWrapper.png";
-import regButton from "../../../src/assets/Register/regButton.png";
+import regWrapper from "../../../src/assets/Register/regWrapper.webp";
+import regButton from "../../../src/assets/Register/regButton.webp";
 import RegistrationModal from "../RegistrationModal/RegistrationModal";
 import BackButton from "../BackButton/BackButton";
 import wheel from "../../../src/assets/Register/wheel.svg";
-import regBackground from "../../../src/assets/Register/regBackground.png";
+import regBackground from "../../../src/assets/Register/regBackground.webp";
 
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Select from "react-select";
-import axios from "axios";
 import statesData from "./states.json";
 import citiesData from "./states.json";
-import { useCookies } from "react-cookie";
 
 export default function RegForm({ email }) {
-  const [interestOptions, setInterestOptions] = useState([""]);
-  const [eventsOptions, setEventsOptions] = useState([""]);
-  const [collegeOptions, setCollegeOptions] = useState([""]);
+  const [interestOptions] = useState(categories);
+  const [eventsOptions] = useState(events);
+  const [collegeOptions] = useState(colleges);
   const [stateOptions, setStateOptions] = useState([]);
-  const [selectedState, setSelectedState] = useState("");
+  const [selectedState, setSelectedState] = useState("Rajasthan");
   const [cityOptions, setCityOptions] = useState([]);
   const [waitingResponse, setWaitingResponse] = useState(false);
-
-  const [access_token, setAccess_token] = useState("");
-
-  const [cookies, setCookie] = useCookies(["Access_Token", "user-auth"]);
 
   const wheelRef = useRef(null);
   const mainContainerRef = useRef(null);
@@ -38,16 +33,16 @@ export default function RegForm({ email }) {
   });
 
   const initialValues = {
-    name: "",
+    name: sampleVisitor.name,
     email_id: email,
-    phone: "",
-    gender: "",
+    phone: sampleVisitor.phone,
+    gender: "O",
     interests: [],
     events: [],
-    college_id: "",
-    year: "",
-    city: "",
-    state: "",
+    college_id: "1",
+    year: "2",
+    city: "Pilani",
+    state: "Rajasthan",
     referral_code: "",
   };
 
@@ -72,74 +67,6 @@ export default function RegForm({ email }) {
     inputValue = inputValue.replace(/[^0-9]/g, "");
     event.target.value = inputValue;
   }
-
-  // const interestOptions = {
-  //   data: [
-  //     { id: 1, name: "Sports" },
-  //     { id: 2, name: "Music" },
-  //     { id: 3, name: "Art" },
-  //     { id: 4, name: "Technology" },
-  //     { id: 5, name: "Literature" },
-  //   ],
-  // };
-
-  // const eventsOptions = {
-  //   data: [
-  //     { id: "workshop", name: "Workshop" },
-  //     { id: "seminar", name: "Seminar" },
-  //     { id: "concert", name: "Concert" },
-  //     { id: "competition", name: "Competition" },
-  //     { id: "webinar", name: "Webinar" },
-  //   ],
-  // };
-
-  // const collegeOptions = {
-  //   data: [
-  //     { id: "college1", name: "College 1" },
-  //     { id: "college2", name: "College 2" },
-  //   ],
-  // };
-
-  // useEffect(() => {
-  //   axios
-  //   .get("https://bits-oasis.org/2024/main/registrations/get_college/")
-  //   .then((response) => {
-  //     setInterestOptions(response.data);
-  //   })
-  //   .catch((error) => console.error("Error fetching events:", error));
-  // }, []);
-
-  useEffect(() => {
-    axios
-      .get("https://merge.bits-apogee.org/2025/main/registrations/categories/")
-      .then((response) => {
-        // console.log("categories:",response.data.data);
-        setInterestOptions(response.data.data);
-      })
-      .catch((error) => console.error("Error fetching events:", error));
-  }, []);
-
-  useEffect(() => {
-    axios
-      .get(
-        "https://merge.bits-apogee.org/2025/main/registrations/events_details/"
-      )
-      .then((response) => {
-        // console.log(response.data);
-        setEventsOptions(response.data);
-      })
-      .catch((error) => console.error("Error fetching events:", error));
-  }, []);
-
-  useEffect(() => {
-    axios
-      .get("https://merge.bits-apogee.org/2025/main/registrations/get_college/")
-      .then((response) => {
-        // console.log(response.data);
-        setCollegeOptions(response.data);
-      })
-      .catch((error) => console.error("Error fetching events:", error));
-  }, []);
 
   const genderOptions = [
     { value: "M", label: "MALE", label1: "Male" },
@@ -181,7 +108,7 @@ export default function RegForm({ email }) {
       mainContainerRef.current.clientHeight;
     // const percentage = (mainContainerRef.current.scrollTop / maxScrollTopValue )*100;
     const percentage =
-      (mainContainerRef.current.scrollTop / maxScrollTopValue) * 100;
+      (mainContainerRef.current.scrollTop / Math.max(1, maxScrollTopValue)) * 100;
     percentage > 100
       ? (wheelRef.current.style.top = "100%")
       : (wheelRef.current.style.top = `${percentage}%`);
@@ -191,10 +118,11 @@ export default function RegForm({ email }) {
   }
 
   useEffect(() => {
-    mainContainerRef.current.addEventListener("scroll", handleScroll);
+    const scrollContainer = mainContainerRef.current;
+      scrollContainer.addEventListener("scroll", handleScroll);
 
     return () => {
-      document.removeEventListener("scroll", handleScroll);
+      scrollContainer.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -504,62 +432,18 @@ export default function RegForm({ email }) {
         <div className={styles.mobilebackContainer}>
           <BackButton />
         </div>
-        <h2>REGISTRATION</h2>
+        <h2>REGISTRATION</h2><p className="demo-note">Sample visitor · local demo. No details are sent or saved.</p>
 
         <div className={styles.formContainer}>
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={(values, { setSubmitting }) => {
-              const reqData = {
-                ...values,
-                access_token: cookies["Access_token"],
-              };
-              // console.log("Form data", reqData);
+            onSubmit={async (_values, { setSubmitting }) => {
               setWaitingResponse(true);
-              axios
-                .post(
-                  "https://merge.bits-apogee.org/2025/main/registrations/register/",
-                  reqData
-                )
-                .then((response) => {
-                  setWaitingResponse(false);
-                  // console.log("Response", response);
-                  if (response.data.message === "User has been registered") {
-                    // alert("Registration successful!");
-                    // console.log(response.data.tokens.access);
-                    setAccess_token(response.data.tokens.access);
-                    setNotification({
-                      isOpen: true,
-                      message: "Registration Successful.",
-                      type: "Success",
-                    });
-                    // window.location.href =
-                    //   "https://merge.bits-apogee.org/2025/main/registrations/";
-                  } else {
-                    setNotification({
-                      isOpen: true,
-                      message: response.data.message || response.data.error,
-                      type: "error",
-                    });
-                  }
-                })
-                .catch((error) => {
-                  setWaitingResponse(false);
-                  console.error("Error registering:", error);
-                  setNotification({
-                    isOpen: true,
-                    message:
-                      error.response.data.message ||
-                      error.response.data.error ||
-                      "Registration Failed.",
-                    type: "error",
-                  });
-                })
-                .finally(() => {
-                  setSubmitting(false);
-                  setWaitingResponse(false);
-                });
+              const result = await previewRegistration();
+              setNotification({ isOpen:true, message:result.message, type:"Success" });
+              setWaitingResponse(false);
+              setSubmitting(false);
             }}
           >
             {({ values, setFieldValue, isSubmitting }) => (
@@ -736,10 +620,7 @@ export default function RegForm({ email }) {
                       value: item.id,
                       label: item.name,
                     }))}
-                    value={(Array.isArray(collegeOptions)
-                      ? collegeOptions
-                      : []
-                    ).find((option) => option.value === values.college)}
+                    value={collegeOptions.data.map(item => ({ value:item.id, label:item.name })).find(option => String(option.value) === String(values.college_id))}
                     onChange={(selectedOption) => {
                       setFieldValue(
                         "college_id",
@@ -881,9 +762,7 @@ export default function RegForm({ email }) {
         isOpen={notification.isOpen}
         onClose={() => setNotification({ ...notification, isOpen: false })}
         type={notification.type}
-        handleClick={() => {
-          window.location.href = `https://merge.bits-apogee.org/2025/main/registrations?token=${access_token}`;
-        }}
+        handleClick={() => setNotification({ ...notification, isOpen:false })}
       />
     </div>
   );

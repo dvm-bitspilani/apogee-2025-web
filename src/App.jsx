@@ -1,41 +1,34 @@
+import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router";
-import GlobalLayout from "../layouts/GlobalLayout.jsx";
-import Landing from "../components/Landing/Landing.jsx";
-import ShaderDev from "../components/ShaderDev/ShaderDev.jsx";
-import ComingSoon from "../components/ComingSoon/ComingSoon.jsx";
-import ReactGA from "react-ga4";
-import Instructions from "../components/Registration/Instructions/Instruction.jsx";
-import ContactPage from "../routes/ContactPage/ContactPage.jsx";
-import Quantaculus from "../routes/Quantaculus.jsx";
-import QuantaculusSubmitted from "../routes/QuantaculusSubmitted.jsx";
-import Speakers from "../routes/SpeakersPage/Speakers.jsx";
-import Sponsors from "../components/Sponsors/Sponsors.jsx";
-import MediaPatners from "../components/MediaPatners/MediaPatners.jsx";
-import DevPage from "../components/DevPage/DevPage.jsx";
-
-ReactGA.initialize("G-H9LEY5519K");
-
-function App() {
-  return (
+import ArchiveBar from "./portfolio/ArchiveBar.jsx";
+import ErrorBoundary from "./portfolio/ErrorBoundary.jsx";
+const Landing = lazy(() => import("../components/Landing/Landing.jsx"));
+const Registration = lazy(() => import("../components/Registration/Instructions/Instruction.jsx"));
+const Contact = lazy(() => import("../routes/ContactPage/ContactPage.jsx"));
+const Quantaculus = lazy(() => import("../routes/Quantaculus.jsx"));
+const Submitted = lazy(() => import("../routes/QuantaculusSubmitted.jsx"));
+const Speakers = lazy(() => import("../routes/SpeakersPage/Speakers.jsx"));
+const Sponsors = lazy(() => import("../components/Sponsors/Sponsors.jsx"));
+const Media = lazy(() => import("../components/MediaPatners/MediaPatners.jsx"));
+const Developers = lazy(() => import("../components/DevPage/DevPage.jsx"));
+const Events = lazy(() => import("../components/Events/Events.jsx"));
+const About = lazy(() => import("../components/About/About.jsx"));
+const ComingSoon = lazy(() => import("../components/ComingSoon/ComingSoon.jsx"));
+export default function App() {
+  return <><ArchiveBar /><ErrorBoundary><Suspense fallback={<p className="archive-loading" role="status">Opening the archive…</p>}>
     <Routes>
-      <Route element={<GlobalLayout />}>
-        <Route path="/" element={<Landing />} />
-        <Route path="/shader-dev" element={<ShaderDev />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/registration" element={<Instructions />} />
-        <Route path="*" element={<ComingSoon />} />
-        <Route path="/quantaculus" element={<Quantaculus />} />
-        <Route
-          path="/quantaculus/submitted"
-          element={<QuantaculusSubmitted />}
-        />
-      </Route>
+      <Route path="/" element={<Landing />} />
+      <Route path="/registration" element={<Registration />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/quantaculus" element={<Quantaculus />} />
+      <Route path="/quantaculus/submitted" element={<Submitted />} />
       <Route path="/speakers" element={<Speakers />} />
       <Route path="/sponsors" element={<Sponsors />} />
-      <Route path="/media" element={<MediaPatners />} />
-      <Route path="/developers" element={<DevPage />} />
+      <Route path="/media" element={<Media />} />
+      <Route path="/developers" element={<Developers />} />
+      <Route path="/events" element={<Events />} />
+      <Route path="/about" element={<About />} />
+      <Route path="*" element={<ComingSoon />} />
     </Routes>
-  );
+  </Suspense></ErrorBoundary></>;
 }
-
-export default App;

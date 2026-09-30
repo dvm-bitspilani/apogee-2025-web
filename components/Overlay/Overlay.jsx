@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./overlay.module.scss";
-import { useEffect, useState } from "react";
-import Contact from "../Contact/Contact";
-import About from "../About/About";
-import Events from "../Events/Events";
+import { lazy, Suspense, useEffect, useState } from "react";
+const Contact = lazy(() => import("../Contact/Contact"));
+const About = lazy(() => import("../About/About"));
+const Events = lazy(() => import("../Events/Events"));
 // import ComingSoon from "../ComingSoon/ComingSoon";
 import { reverseAnimation } from "../../store/experienceAnimationsSlice/experienceAnimationsSlice";
 import OverlayBackBtn from "./OverlayBackBtn/OverlayBackBtn";
 import { Navigate } from "react-router";
-import SpeakersPage from "../../routes/SpeakersPage/SpeakersPage";
+const SpeakersPage = lazy(() => import("../../routes/SpeakersPage/SpeakersPage"));
 export default function Overlay() {
   const dispatch = useDispatch();
 
@@ -53,7 +53,7 @@ export default function Overlay() {
             : { opacity: 0, pointerEvents: "none" }
         }
       >
-        <Contact />
+        {curState === "contact" && <Suspense fallback={null}><Contact /></Suspense>}
       </div>
       <div
         className={styles.overlayContainer}
@@ -63,7 +63,7 @@ export default function Overlay() {
             : { opacity: 0, pointerEvents: "none" }
         }
       >
-        <About />
+        {curState === "about" && <Suspense fallback={null}><About /></Suspense>}
       </div>
       <div
         className={styles.overlayContainer}
@@ -73,7 +73,7 @@ export default function Overlay() {
             : { opacity: 0, pointerEvents: "none" }
         }
       >
-        <Events />
+        {curState === "events" && <Suspense fallback={null}><Events /></Suspense>}
       </div>
 
       {!isMobile && curState === "speakers" && <Navigate to="/speakers" />}
@@ -86,7 +86,7 @@ export default function Overlay() {
               : { opacity: 0, pointerEvents: "none" }
           }
         >
-          <SpeakersPage />
+          <Suspense fallback={null}><SpeakersPage /></Suspense>
         </div>
       )}
       {/* {curState === "speakers" && (

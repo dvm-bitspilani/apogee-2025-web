@@ -1,8 +1,6 @@
 import { Environment, Float, OrbitControls } from "@react-three/drei";
-import { Perf } from "r3f-perf";
 import * as THREE from "three";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Leva, useControls } from "leva";
 import EnergyOrb from "../EnergyOrb/EnergyOrb.jsx";
 import { CityModel } from "./CityModel/CityModel.jsx";
 import { Blimp } from "./Blimp/Blimp.jsx";
@@ -17,10 +15,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
-// import studio from "@theatre/studio";
-// import extension from "@theatre/r3f/dist/extension";
-// studio.initialize();
-// studio.extend(extension);
 
 import {
   aboutToLanding,
@@ -45,7 +39,7 @@ import { EventsBoard } from "./Events/EventsBoard.jsx";
 import { Car } from "./Car/Car.jsx";
 // import { Train } from "./Train/Train.jsx";
 import Arrows from "./Arrows/Arrows.jsx";
-import { SpeakerExperience } from "../Speakers/Experience.jsx";
+
 
 const CAMERA_TARGET_COORDS = {
   landingToContact: { x: -0.72, y: 0.12, z: -0.663 },
@@ -160,9 +154,11 @@ export default function Experience() {
   );
 
   useEffect(() => {
+    let cancelled = false;
     let stopIntro, startIntro;
 
     landingSheet.project.ready.then(() => {
+      if (cancelled) return;
       startIntro = setTimeout(() => {
         landingSheet.sequence.play({ iterationCount: 1 });
       }, 1000);
@@ -173,6 +169,7 @@ export default function Experience() {
     });
 
     return () => {
+      cancelled = true;
       clearTimeout(stopIntro);
       clearTimeout(startIntro);
       landingSheet.project.ready.then(() => {
@@ -184,6 +181,7 @@ export default function Experience() {
   }, []);
 
   useEffect(() => {
+    let cancelled = false;
     let animationTimeout;
     let pointerEventsTimeout;
 
@@ -194,6 +192,7 @@ export default function Experience() {
     };
 
     landingSheet.project.ready.then(() => {
+        if (cancelled) return;
       if (animationStage === "landingToContact") {
         animationTimeout = landingToContact();
         pointerEventsTimeout = pointerEventsToggleHelper(0);
@@ -223,6 +222,7 @@ export default function Experience() {
 
     if (isUserUnfocusAtPreloader && animationStage === "intro") {
       landingSheet.project.ready.then(() => {
+        if (cancelled) return;
         landingSheet.sequence.pause();
         landingSheet.sequence.position = 5.5;
       });
@@ -235,6 +235,7 @@ export default function Experience() {
 
     const handleVisibilityChange = () => {
       landingSheet.project.ready.then(() => {
+        if (cancelled) return;
         if (document.hidden && !isUserUnfocusAtPreloader) {
           landingSheet.sequence.pause();
           switch (animationStage) {
@@ -320,51 +321,23 @@ export default function Experience() {
     document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
+      cancelled = true;
       document.removeEventListener("visibilitychange", handleVisibilityChange);
 
-      clearInterval(animationTimeout);
+      clearTimeout(animationTimeout);
+      clearTimeout(pointerEventsTimeout);
     };
   }, [animationStage, isUserUnfocusAtPreloader]);
-
-  const { positionFinder } = useControls({
-    positionFinder: {
-      // value: [-0.7190000000000004, 0.11800000000000008, -0.663], // contact
-      // value: [0.9610000000000005, 0.07800000000000007, -0.653], // events
-      value: [1.121, 0.068, -0.703], // events 2
-      // value: [-0.8790000000000006, 0.68, 0.7170000000000004], // speakers
-      // value: [0.9, 0.05999999999999972, 0.7970000000000005], // about
-      step: 0.01,
-    },
-  });
-
-  const { trainPos, trainScale, trainRot } = useControls({
-    trainPos: [-0.02099999999999999, -0.06700000000000003, 1.3379999999999956],
-    trainScale: {
-      value: 0.019999999999999407,
-      step: 0.001,
-    },
-    trainRot: [0, -Math.PI / 2, 0],
-  });
 
   const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
     document.body.style.cursor = hovered ? "pointer" : "auto";
+    return () => { document.body.style.cursor = "auto"; };
   }, [hovered]);
 
   return (
     <>
-      {window.innerWidth < 850 ? (
-        <Leva hidden={window.innerWidth < 850} />
-      ) : (
-        <Perf position="bottom-left" />
-      )}
-
-      <mesh position={positionFinder}>
-        <sphereGeometry args={[0.01, 16, 16]} />
-        <meshBasicMaterial color="red" />
-      </mesh>
-
       {/* <OrbitControls enablePan={true} enableZoom={true} enableRotate={true} /> */}
 
       <Environment

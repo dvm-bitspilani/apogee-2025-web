@@ -1,0 +1,12 @@
+Local Wrangler Pages preview, 2026-10-01. HTTP resource checks only; browser review is separate.
+/: 200 text/html; charset=utf-8
+/registration: 200 text/html; charset=utf-8
+/quantaculus: 200 text/html; charset=utf-8
+/quantaculus/submitted: 200 text/html; charset=utf-8
+/events: 200 text/html; charset=utf-8
+/developers: 200 text/html; charset=utf-8
+/draco/draco_wasm_wrapper.js: 200 application/javascript
+/draco/draco_decoder.wasm: 200 application/wasm
+/models/CityOptimised.glb: 200 model/gltf-binary
+/images/contact/tarun.webp: 200 image/webp
+/fonts/The%2027%20Club.otf: 200 font/otf

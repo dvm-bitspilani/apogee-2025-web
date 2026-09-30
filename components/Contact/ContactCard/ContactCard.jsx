@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./contactcard.module.scss";
-import poster from "../../../src/assets/contact-poster.png";
+import poster from "../../../src/assets/contact-poster.webp";
 
 const ContactCard = ({
   name,
@@ -54,7 +54,7 @@ const ContactCard = ({
             }
             href={`mailto:${email}`}
             target="_blank"
-          >
+           rel="noopener noreferrer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="32"
@@ -92,7 +92,7 @@ const ContactCard = ({
             }
             href={`tel:${phone}`}
             target="_blank"
-          >
+           rel="noopener noreferrer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="34"

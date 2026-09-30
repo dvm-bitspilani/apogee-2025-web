@@ -1,8 +1,8 @@
 import styles from "./preloader.module.scss";
-import loader1 from "../../../src/assets/Register/preloaderimg1.png";
-import loader2 from "../../../src/assets/Register/preloaderimg2.png";
-import loader3 from "../../../src/assets/Register/preloaderimg3.png";
-// import loader4 from "../../../src/assets/Register/preloaderimg4.png";
+import loader1 from "../../../src/assets/Register/preloaderimg1.webp";
+import loader2 from "../../../src/assets/Register/preloaderimg2.webp";
+import loader3 from "../../../src/assets/Register/preloaderimg3.webp";
+// import loader4 from "../../../src/assets/Register/preloaderimg4.webp";
 
 const Preloader = () => {
   return (

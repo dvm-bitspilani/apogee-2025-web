@@ -1,38 +1,38 @@
 import React from "react";
 import styles from "./sponsors.module.scss";
-import background from "../../src/assets/MediaPatners/background.png";
-import heading from "../../src/assets/Sponsors/heading.png";
+import background from "../../src/assets/MediaPatners/background.webp";
+import heading from "../../src/assets/Sponsors/heading.webp";
 import OverlayBackBtn from "../Overlay/OverlayBackBtn/OverlayBackBtn";
 import { Link } from "react-router";
 
-import micronSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/micron.png";
+import micronSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/micron.webp";
 import arcesiumSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/arcesium.svg";
-import qswSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/qsw.png";
-import plumSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/plum.png";
-import jioSaavnSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/jiosaavn.png";
-import etashaSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/etasha.png";
-import unicornIndiaSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/unicornindia.png";
-import iicSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/iic.png";
-import xtcySponsorImage from "../../src/assets/Sponsors/SponsorsLogo/xtcy.png";
-import iciciBankSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/icicibank.png";
-import easeMyTripSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/easemytrip.png";
-import yanaSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/yana.png";
-import umeedSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/umeed.png";
-import landtSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/landt.png";
-import grabOnSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/grabon.png";
-import languifySponsorImage from "../../src/assets/Sponsors/SponsorsLogo/languify.jpeg";
+import qswSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/qsw.webp";
+import plumSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/plum.webp";
+import jioSaavnSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/jiosaavn.webp";
+import etashaSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/etasha.webp";
+import unicornIndiaSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/unicornindia.webp";
+import iicSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/iic.webp";
+import xtcySponsorImage from "../../src/assets/Sponsors/SponsorsLogo/xtcy.webp";
+import iciciBankSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/icicibank.webp";
+import easeMyTripSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/easemytrip.webp";
+import yanaSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/yana.webp";
+import umeedSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/umeed.webp";
+import landtSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/landt.webp";
+import grabOnSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/grabon.webp";
+import languifySponsorImage from "../../src/assets/Sponsors/SponsorsLogo/languify.webp";
 // import icfdrSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/icfdr.png";
-import unstopSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/unstop.png";
-import stockgroSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/stockgro.png";
+import unstopSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/unstop.webp";
+import stockgroSponsorImage from "../../src/assets/Sponsors/SponsorsLogo/stockgro.webp";
 import { img } from "framer-motion/client";
 
 import { useRef, useEffect, useState } from "react";
 
-import regWrapper from "../../src/assets/Register/regWrapper.png";
+import regWrapper from "../../src/assets/Register/regWrapper.webp";
 
 import wheel from "../../src/assets/Register/wheel.svg";
 
-import regBackground from "../../src/assets/Register/regBackground.png";
+import regBackground from "../../src/assets/Register/regBackground.webp";
 import Preloader from "../Registration/Preloader/Preloader";
 
 const sponsors = {

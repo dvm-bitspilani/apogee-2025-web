@@ -7,20 +7,20 @@ $button-hover-color: rgba(18, 10, 8, 0.5);
 .pageContainer {
     width: 100%;
     height: 100dvh;
-    background-image: url(../../src/assets/Quantaculus/background.png);
+    background-image: url(../../src/assets/Quantaculus/background.webp);
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
 
     @media screen and (max-width: 800px) {
-        background-image: url(../../src/assets/Quantaculus/background-tab.png);
+        background-image: url(../../src/assets/Quantaculus/background-tab.webp);
 
     }
 
     @media screen and (max-width: 568px) {
         overflow-y: scroll;
-        background-image: url(../../src/assets/Quantaculus/background-mobile.png);
+        background-image: url(../../src/assets/Quantaculus/background-mobile.webp);
     }
 
     .pageWrapper {

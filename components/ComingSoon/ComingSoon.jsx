@@ -1,20 +1,16 @@
 import React, { useEffect } from "react";
 import styles from "./comingsoon.module.scss";
 import BackButton from "../Overlay/OverlayBackBtn/OverlayBackBtn";
-import clouds from "../../src/assets/ComingSoon/background.png";
-import logo from "../../src/assets/ComingSoon/apogeelogo.png";
-import text from "../../src/assets/ComingSoon/text.png";
+import clouds from "../../src/assets/ComingSoon/background.webp";
+import logo from "../../src/assets/ComingSoon/apogeelogo.webp";
+import text from "../../src/assets/ComingSoon/text.webp";
 import { useLocation } from "react-router";
 import { Link } from "react-router";
 
 const ComingSoon = () => {
   const { pathname } = useLocation();
 
-  useEffect(() => {
-    if (pathname === "/car") {
-      window.location.href = "https://kekde.vercel.app/";
-    }
-  }, []);
+
 
   return (
     <div className={styles.Wrapper}>
@@ -27,7 +23,7 @@ const ComingSoon = () => {
       <div>
         <img src={logo} className={styles.logo} alt="apogee logo" />
       </div>
-      <div className={styles.content}>
+      <div className={styles.content}><p className="demo-note">This historical page was never released. Explore the finished designs from the archive menu.</p>
         <img src={text} className={styles.text} alt="coming soon text" />
       </div>
     </div>

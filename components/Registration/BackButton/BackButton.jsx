@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router";
 import styles from "./backbutton.module.scss";
-import backbtn from "../../../src/assets/Register/backbtn.png";
-import mobilebackbtn from "../../../src/assets/Register/mobilebackbtn.png";
+import backbtn from "../../../src/assets/Register/backbtn.webp";
+import mobilebackbtn from "../../../src/assets/Register/mobilebackbtn.webp";
 
 export default function BackButton() {
   return (

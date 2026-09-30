@@ -4,25 +4,25 @@ import FloatIcon from "./UI/FloatIcon";
 import OverlayBackBtn from "./OverlayBackBtn/OverlayBackBtn";
 import Verticals from "./Vertical/Verticals";
 
-import clouds from "../../src/assets/ComingSoon/background.png";
+import clouds from "../../src/assets/ComingSoon/background.webp";
 
 import bg2 from "../../src/assets/Devs/bg2.svg";
-import blendOverlay from "../../src/assets/Devs/back.png";
-import blendOverlay2 from "../../src/assets/Devs/back2.png";
+import blendOverlay from "../../src/assets/Devs/back.webp";
+import blendOverlay2 from "../../src/assets/Devs/back2.webp";
 import heading from "../../src/assets/Devs/developers.svg";
 import bannerImg from "../../src/assets/Devs/banner.svg";
 import bannerImg2 from "../../src/assets/Devs/banner2.svg";
-import rightArrow from "../../src/assets/Devs/rightArrow.png";
-import leftArrow from "../../src/assets/Devs/leftArrow.png";
+import rightArrow from "../../src/assets/Devs/rightArrow.webp";
+import leftArrow from "../../src/assets/Devs/leftArrow.webp";
 
 import frontend from "../../src/assets/Verticals/frontend.svg";
 import backend from "../../src/assets/Verticals/backend.svg";
-import design from "../../src/assets/Verticals/figma.png";
+import design from "../../src/assets/Verticals/figma.webp";
 import video from "../../src/assets/Verticals/video.svg";
-import frontend2 from "../../src/assets/Verticals/frontend2.png";
-import backend2 from "../../src/assets/Verticals/back2.png";
-import design2 from "../../src/assets/Verticals/figma2.png";
-import video2 from "../../src/assets/Verticals/video2.png";
+import frontend2 from "../../src/assets/Verticals/frontend2.webp";
+import backend2 from "../../src/assets/Verticals/back2.webp";
+import design2 from "../../src/assets/Verticals/figma2.webp";
+import video2 from "../../src/assets/Verticals/video2.webp";
 
 import { gsap } from "gsap";
 import { useState, useRef, useEffect } from "react";
@@ -37,7 +37,7 @@ import teamMembers from "./teamMembers.js";
 const DevPage = () => {
   const [isVerticalOpen, setIsVerticalOpen] = useState(false);
   const [indx, setIndx] = useState(0);
-  const [showPreloader, setShowPreloader] = useState(true);
+  const [showPreloader, setShowPreloader] = useState(false);
   const [team, setteam] = useState([]);
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [showScrollBar, setShowScrollBar] = useState(false);
@@ -88,37 +88,7 @@ const DevPage = () => {
     return () => window.removeEventListener("resize", updateImage);
   }, []);
 
-  useEffect(() => {
-    const imageUrls = [
-      frontend,
-      design,
-      video,
-      backend,
-      ...Object.values(teamMembers)
-        .flat()
-        .map((member) => member.image),
-      clouds,
-      bg2,
-      blendOverlay,
-      heading,
-      bannerImg,
-      bannerImg2,
-    ];
-    let loadedCount = 0;
-    imageUrls.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-      img.onload = () => {
-        loadedCount++;
-        if (loadedCount === imageUrls.length) {
-          setTimeout(() => {
-            setShowPreloader(false);
-          }, 0);
-          setImagesLoaded(true);
-        }
-      };
-    });
-  }, []);
+  useEffect(() => { setImagesLoaded(true); }, []);
 
   function handleScroll() {
     // const maxScrollTopValue = mainContainerRef.current.scrollTopMax;
@@ -127,7 +97,7 @@ const DevPage = () => {
       mainContainerRef.current.clientHeight;
     // const percentage = (mainContainerRef.current.scrollTop / maxScrollTopValue )*100;
     const percentage =
-      (mainContainerRef.current.scrollTop / maxScrollTopValue) * 100;
+      (mainContainerRef.current.scrollTop / Math.max(1, maxScrollTopValue)) * 100;
     percentage > 100
       ? (wheelRef.current.style.top = "100%")
       : (wheelRef.current.style.top = `${percentage}%`);

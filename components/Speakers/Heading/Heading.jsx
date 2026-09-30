@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./heading.module.scss";
-import heading from "../../../src/assets/Speakers/heading.png";
+import heading from "../../../src/assets/Speakers/heading.webp";
 
 export default function Heading() {
   return (
