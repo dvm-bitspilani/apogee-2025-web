@@ -25,7 +25,6 @@
     "@reduxjs/toolkit": "^2.5.0",
     "@theatre/core": "^0.7.2",
     "@theatre/r3f": "^0.7.2",
-    "formik": "^2.4.6",
     "framer-motion": "^12.4.11",
     "gsap": "^3.12.7",
     "postprocessing": "^6.36.6",
@@ -34,9 +33,7 @@
     "react-helmet-async": "^2.0.5",
     "react-redux": "^9.2.0",
     "react-router": "^7.0.2",
-    "react-select": "^5.9.0",
-    "three": "^0.172.0",
-    "yup": "^1.6.1"
+    "three": "^0.172.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

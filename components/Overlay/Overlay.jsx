@@ -8,6 +8,7 @@ const Events = lazy(() => import("../Events/Events"));
 import { reverseAnimation } from "../../store/experienceAnimationsSlice/experienceAnimationsSlice";
 import OverlayBackBtn from "./OverlayBackBtn/OverlayBackBtn";
 import { Navigate } from "react-router";
+import PageLoader from "../../src/ui/PageLoader";
 const SpeakersPage = lazy(() => import("../../routes/SpeakersPage/SpeakersPage"));
 export default function Overlay() {
   const dispatch = useDispatch();
@@ -53,7 +54,7 @@ export default function Overlay() {
             : { opacity: 0, pointerEvents: "none" }
         }
       >
-        {curState === "contact" && <Suspense fallback={null}><Contact /></Suspense>}
+        {curState === "contact" && <Suspense fallback={<PageLoader />}><Contact /></Suspense>}
       </div>
       <div
         className={styles.overlayContainer}
@@ -63,7 +64,7 @@ export default function Overlay() {
             : { opacity: 0, pointerEvents: "none" }
         }
       >
-        {curState === "about" && <Suspense fallback={null}><About /></Suspense>}
+        {curState === "about" && <Suspense fallback={<PageLoader />}><About /></Suspense>}
       </div>
       <div
         className={styles.overlayContainer}
@@ -73,7 +74,7 @@ export default function Overlay() {
             : { opacity: 0, pointerEvents: "none" }
         }
       >
-        {curState === "events" && <Suspense fallback={null}><Events /></Suspense>}
+        {curState === "events" && <Suspense fallback={<PageLoader />}><Events /></Suspense>}
       </div>
 
       {!isMobile && curState === "speakers" && <Navigate to="/speakers" />}
@@ -86,7 +87,7 @@ export default function Overlay() {
               : { opacity: 0, pointerEvents: "none" }
           }
         >
-          <Suspense fallback={null}><SpeakersPage /></Suspense>
+          <Suspense fallback={<PageLoader />}><SpeakersPage /></Suspense>
         </div>
       )}
       {/* {curState === "speakers" && (

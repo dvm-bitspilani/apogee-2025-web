@@ -23,7 +23,7 @@ const ComingSoon = () => {
       <div>
         <img src={logo} className={styles.logo} alt="apogee logo" />
       </div>
-      <div className={styles.content}><p className="demo-note">This historical page was never released. Explore the finished designs from the archive menu.</p>
+      <div className={styles.content}>
         <img src={text} className={styles.text} alt="coming soon text" />
       </div>
     </div>

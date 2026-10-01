@@ -1,0 +1,31 @@
+{
+  "before": {
+    "sha": "4af6250",
+    "files": 215,
+    "outputBytes": 25574264,
+    "jsBytes": 2268711,
+    "jsGzip": 701974,
+    "entryBytes": 226166,
+    "entryGzip": 76201
+  },
+  "after": {
+    "files": 211,
+    "outputBytes": 24886804,
+    "jsBytes": 1723301,
+    "jsGzip": 554505,
+    "entryBytes": 227162,
+    "entryGzip": 76509,
+    "maxFile": [
+      "dist/assets/developers-C-Hfy49O.svg",
+      3535140
+    ]
+  },
+  "audit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  }
+}

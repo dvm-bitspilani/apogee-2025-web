@@ -28,11 +28,9 @@ import { img } from "framer-motion/client";
 
 import { useRef, useEffect, useState } from "react";
 
-import regWrapper from "../../src/assets/Register/regWrapper.webp";
 
 import wheel from "../../src/assets/Register/wheel.svg";
 
-import regBackground from "../../src/assets/Register/regBackground.webp";
 import Preloader from "../Registration/Preloader/Preloader";
 
 const sponsors = {
@@ -155,45 +153,10 @@ const sponsors = {
 };
 
 const Sponsors = () => {
-  const [imagesLoaded, setImagesLoaded] = useState(false);
-  const [showPreloader, setShowPreloader] = useState(true);
+  const showPreloader = false;
 
   const wheelRef = useRef(null);
   const mainContainerRef = useRef(null);
-
-  useEffect(() => {
-    const imageUrls = [
-      regWrapper,
-      wheel,
-      regBackground,
-      background,
-      heading,
-      ...sponsors.otherSponsers.map((sponsor) => sponsor.img),
-      sponsors.title.img,
-    ];
-    let loadedCount = 0;
-    imageUrls.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-      img.onload = () => {
-        loadedCount++;
-        if (loadedCount === imageUrls.length) {
-          setTimeout(() => {
-            setImagesLoaded(true);
-            setTimeout(() => {
-              setShowPreloader(false);
-            }, 0);
-          }, 0);
-        }
-      };
-      img.onerror = () => {
-        loadedCount++;
-        if (loadedCount === imageUrls.length) {
-          setImagesLoaded(true);
-        }
-      };
-    });
-  }, []);
 
   function handleScroll(inp) {
     // const maxScrollTopValue = mainContainerRef.current.scrollTopMax;
@@ -212,14 +175,13 @@ const Sponsors = () => {
   }
 
   useEffect(() => {
-    if (imagesLoaded) {
-      mainContainerRef.current.addEventListener("scroll", handleScroll);
-
-      return () => {
-        document.removeEventListener("scroll", handleScroll);
-      };
-    }
-  }, [imagesLoaded]);
+    const container = mainContainerRef.current;
+    container.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      container.removeEventListener("scroll", handleScroll);
+      handlewheelDragEnd();
+    };
+  }, []);
 
   const handlewheelMouseDown = (e) => {
     e.preventDefault();
@@ -362,6 +324,8 @@ const Sponsors = () => {
                     className={`${styles.otherSponsImage} ${styles.sponsImage}`}
                   >
                     <img
+                      loading="lazy"
+                      decoding="async"
                       src={sponsor.img}
                       alt={sponsor.name}
                       draggable={false}

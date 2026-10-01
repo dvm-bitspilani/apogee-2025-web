@@ -115,7 +115,7 @@ export default function About() {
                     style={{ height: "100%", width: "100%" }}
                     id="video"
                   />
-                ) : <button type="button" onClick={() => setPlay(true)} className="archive-video-play">Play historical aftermovie</button>}
+                ) : <button type="button" onClick={() => setPlay(true)} className="video-play">Play aftermovie</button>}
               </div>
             </div>
           </div>

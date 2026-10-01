@@ -5,6 +5,7 @@ await cp('node_modules/three/examples/jsm/libs/draco/gltf','dist/draco',{recursi
 await rm('dist/draco/draco_encoder.js',{force:true});
 const retainedModels = new Set(['CityOptimised.glb','EventsBoard.glb','AirshipFinal.glb','SpeakersBoard.glb','carOptimised.glb','AboutUsBoard.glb','ContactUsBoard.glb','train.glb']);
 for (const file of await readdir('dist/models')) if(!retainedModels.has(file)) await rm(join('dist/models',file));
+for (const model of retainedModels) await stat(join('dist/models',model));
 await rm('dist/environments/sunset1QuarterResOrange.hdr',{force:true});
 await rm('dist/textures',{recursive:true,force:true});
 async function walk(dir) { const files=[]; for(const name of await readdir(dir)){const path=join(dir,name);const info=await stat(path);if(info.isDirectory())files.push(...await walk(path));else files.push([path,info.size]);}return files; }

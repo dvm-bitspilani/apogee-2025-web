@@ -66,24 +66,21 @@ input:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
 }
 
-.archive-bar { position:fixed; inset:0 0 auto; z-index:100000; display:flex; justify-content:space-between; align-items:center; gap:12px; padding:7px 12px; background:rgba(14,10,7,.9); color:#edbe6b; font:12px/1.4 system-ui,sans-serif; border-bottom:1px solid #6b502c; }
-.archive-bar summary { cursor:pointer; }
-.archive-bar nav { position:absolute; right:8px; top:38px; max-width:min(340px,90vw); padding:18px; background:#17100b; border:1px solid #ad854b; box-shadow:0 8px 30px #0008; }
-.archive-bar nav p { margin-bottom:12px; }
-.archive-bar a { display:block; color:#edbe6b; padding:7px 0; }
-.archive-loading { color:#edbe6b; background:#17100b; padding:100px 24px; font:18px/1.6 system-ui,sans-serif; }
-.archive-loading a { color:#edbe6b; }
-.demo-note { font:14px/1.5 system-ui,sans-serif; text-align:center; padding:12px; max-width:60ch; margin:0 auto; }
-.demo-home { position:absolute; top:48px; left:14px; z-index:20; color:#edbe6b; font:16px system-ui,sans-serif; }
-.city-fallback { box-sizing:border-box; min-height:100dvh; padding:100px 24px; background:#17100b url('/images/brickWall.webp') center/cover; color:#edbe6b; text-align:center; font:18px/1.6 system-ui,sans-serif; }
-.city-fallback img { width:min(340px,80vw); max-height:160px; }
-.city-fallback h1 { font-family:Birmingham,serif; margin:20px 0; }
-.city-fallback p { max-width:50ch; margin:15px auto; }
-.city-fallback nav { display:flex; justify-content:center; flex-wrap:wrap; gap:16px; margin:24px 0; }
-.city-fallback a,.city-fallback button,.city-slow button { color:#edbe6b; background:#17100b; border:1px solid #ad854b; padding:10px 16px; cursor:pointer; }
-.city-slow { position:fixed; z-index:99999; bottom:20px; left:20px; right:20px; padding:12px; color:#edbe6b; background:#17100b; font:14px system-ui,sans-serif; }
+ .registration-trigger { background: transparent; cursor: pointer; }
+.page-loader { position: fixed; inset: 0; display: grid; place-items: center; z-index: 100; background: #17100b; }
+.page-error { min-height: 100dvh; display: grid; place-content: center; gap: 20px; color: #edbe6b; background: #17100b; font-family: OldNewspaperTypes, serif; }
+.page-error a, .page-home { color: #edbe6b; }
+.page-home { position: absolute; top: 24px; left: 20px; z-index: 20; font: 20px OldNewspaperTypes, serif; }
+.landing-artwork { position: relative; isolation: isolate; min-height: 100dvh; overflow: hidden; background: #402812; }
+.landing-artwork-sky { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; }
+.landing-artwork-links { position: absolute; top: 43%; left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px 28px; width: min(480px, 88vw); }
+.landing-artwork-links a { display: grid; place-items: center; min-height: 52px; padding: 8px; background: #251407e8 url('../src/assets/Register/regButton.webp') center / 100% 100%; color: #edbe6b; font: clamp(22px, 4vw, 30px) OldNewspaperTypes, serif; text-decoration: none; }
+.registration-closed { box-sizing: border-box; position: fixed; inset: 0; margin: auto; width: min(390px, calc(100vw - 40px)); padding: 30px 26px 24px; border: 2px solid #483312; color: #34230e; background: #bf995d url('../src/assets/Register/regWrapper.webp') center / cover; text-align: center; }
+.registration-closed::backdrop { background: #100906b3; }
+.registration-closed h2 { font: 28px/1.2 OldNewspaperTypes, serif; }
+.registration-closed button { min-height: 44px; margin-top: 22px; padding: 10px 28px; background: #483312; color: #edbe6b; font: 18px OldNewspaperTypes, serif; cursor: pointer; }
 .visually-hidden { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
 :focus-visible { outline:2px solid #edbe6b; outline-offset:4px; }
 @media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; scroll-behavior:auto!important; } }
 
-.archive-video-play { width:100%; height:100%; color:#edbe6b; background:#17100b; cursor:pointer; font:18px/1.5 system-ui,sans-serif; }
+.video-play { width:100%; height:100%; color:#edbe6b; background:#17100b; cursor:pointer; font:20px/1.5 OldNewspaperTypes,serif; }

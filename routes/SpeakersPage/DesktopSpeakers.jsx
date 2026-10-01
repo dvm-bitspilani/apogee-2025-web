@@ -6,8 +6,10 @@ import OverlayBackBtn from "../../components/Overlay/OverlayBackBtn/OverlayBackB
 import { Suspense, useState, useEffect } from "react";
 import { Link } from "react-router";
 import Preloader from "../../components/Registration/Preloader/Preloader";
+import useDocumentVisible from "../../src/ui/useDocumentVisible";
 
 export default function SpeakersPage() {
+  const visible = useDocumentVisible();
   const [showPreloader] = useState(false);
 
 
@@ -18,7 +20,7 @@ export default function SpeakersPage() {
       <Link to="/">
         <OverlayBackBtn />
       </Link>
-      <Canvas dpr={[1,1.25]}
+      <Canvas dpr={[1,1.25]} frameloop={visible ? "always" : "never"}
         style={{
           opacity: showPreloader ? 0 : 1,
           transition: "opacity 0.8s ease-in-out",

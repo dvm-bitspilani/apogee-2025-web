@@ -25,10 +25,13 @@ import { useState, useEffect } from "react";
 import gsap from "gsap";
 import { MotionPathPlugin } from "gsap/all";
 import { useNavigate } from "react-router";
+import { useRegistrationClosed } from "../../../src/ui/RegistrationClosed";
+import { prefetchRoute } from "../../../src/routeLoaders";
 
 gsap.registerPlugin(MotionPathPlugin);
 
-export default function Menu() {
+export default function Menu({ alwaysAvailable = false }) {
+  const openRegistration = useRegistrationClosed();
   const navigate = useNavigate();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -511,7 +514,8 @@ export default function Menu() {
   };
 
   useEffect(() => {
-    animate();
+    const context = gsap.context(animate);
+    return () => context.revert();
   }, [isMenuOpen]);
 
   return (
@@ -520,10 +524,15 @@ export default function Menu() {
         className={styles.logoContainer}
         style={{
           transform:
-            curStage === "landing" && isPointerEventsAllowed
+            alwaysAvailable || (curStage === "landing" && isPointerEventsAllowed)
               ? "translateY(0) translateX(-50%)"
               : "translateY(-120%) translateX(-50%)",
         }}
+        role="button"
+        tabIndex={0}
+        aria-label="Open menu"
+        aria-expanded={isMenuOpen}
+        onKeyDown={event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); setIsMenuOpen(!isMenuOpen); } }}
         onClick={() => setIsMenuOpen(!isMenuOpen)}
       >
         <img
@@ -548,6 +557,12 @@ export default function Menu() {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               className={styles.dev}
+              role="link"
+              tabIndex={0}
+              aria-label="Developers"
+              onPointerEnter={() => prefetchRoute("/developers")}
+              onFocus={() => prefetchRoute("/developers")}
+              onKeyDown={event => { if (event.key === "Enter") navigate("/developers"); }}
               onClick={() => navigate("/developers")}
             >
               <path
@@ -563,6 +578,12 @@ export default function Menu() {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               className={styles.spons}
+              role="link"
+              tabIndex={0}
+              aria-label="Sponsors"
+              onPointerEnter={() => prefetchRoute("/sponsors")}
+              onFocus={() => prefetchRoute("/sponsors")}
+              onKeyDown={event => { if (event.key === "Enter") navigate("/sponsors"); }}
               onClick={() => navigate("/sponsors")}
             >
               <path
@@ -578,6 +599,12 @@ export default function Menu() {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               className={styles.articles}
+              role="link"
+              tabIndex={0}
+              aria-label="Archives"
+              onPointerEnter={() => prefetchRoute("/archives")}
+              onFocus={() => prefetchRoute("/archives")}
+              onKeyDown={event => { if (event.key === "Enter") navigate("/archives"); }}
               onClick={() => navigate("/archives")}
             >
               <path
@@ -593,6 +620,12 @@ export default function Menu() {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               className={styles.articles}
+              role="link"
+              tabIndex={0}
+              aria-label="/contact"
+              onPointerEnter={() => prefetchRoute("/contact")}
+              onFocus={() => prefetchRoute("/contact")}
+              onKeyDown={event => { if (event.key === "Enter") navigate("/contact"); }}
               onClick={() => navigate("/contact")}
             >
               <path
@@ -608,6 +641,12 @@ export default function Menu() {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               className={styles.media}
+              role="link"
+              tabIndex={0}
+              aria-label="Media partners"
+              onPointerEnter={() => prefetchRoute("/media")}
+              onFocus={() => prefetchRoute("/media")}
+              onKeyDown={event => { if (event.key === "Enter") navigate("/media"); }}
               onClick={() => navigate("/media")}
             >
               <path
@@ -623,6 +662,12 @@ export default function Menu() {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               className={styles.archives}
+              role="link"
+              tabIndex={0}
+              aria-label="Archives"
+              onPointerEnter={() => prefetchRoute("/archives")}
+              onFocus={() => prefetchRoute("/archives")}
+              onKeyDown={event => { if (event.key === "Enter") navigate("/archives"); }}
               onClick={() => navigate("/archives")}
             >
               <path
@@ -638,9 +683,11 @@ export default function Menu() {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               className={styles.archives}
-              onClick={() =>
-                navigate("/registration")
-              }
+              role="button"
+              tabIndex={0}
+              aria-label="Register"
+              onKeyDown={event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); openRegistration(); } }}
+              onClick={() => openRegistration()}
             >
               <path
                 d="M6.25455 1.45454H23.4545L29.3182 63.2182V64H18.3727L17.0436 49.1455H12.6655L11.3364 64H0.390909V63.2182L6.25455 1.45454ZM12.7436 38.9818H16.9655L15.2455 17.4818H14.4636L12.7436 38.9818ZM31.2941 1.45454H44.1941L49.2759 35.0727H50.0577L55.1396 1.45454H68.0396V64H57.8759L58.6577 35.0727H57.8759L53.5759 64H45.7577L41.4577 35.0727H40.6759L41.4577 64H31.2941V1.45454ZM71.1867 1.45454H82.3667C91.9049 1.45454 100.505 6.77091 100.505 17.4818C100.505 26.0818 95.6576 29.9909 91.123 31.9455V32.7273C95.9703 34.4473 100.896 38.5127 100.896 47.3473C100.896 58.4491 93.0776 64 83.5394 64H71.1867V1.45454ZM82.914 10.8364V28.0364H83.6958C86.4321 28.0364 88.3867 26.0818 88.3867 21.7818V17.0909C88.3867 12.7909 86.4321 10.8364 83.6958 10.8364H82.914ZM82.914 37.4182V54.6182H83.6958C86.4321 54.6182 88.7776 52.6636 88.7776 47.9727V44.0636C88.7776 39.3727 86.4321 37.4182 83.6958 37.4182H82.914ZM107.792 1.45454H124.992L130.855 63.2182V64H119.91L118.581 49.1455H114.203L112.873 64H101.928V63.2182L107.792 1.45454ZM114.281 38.9818H118.503L116.783 17.4818H116.001L114.281 38.9818ZM131.244 42.5H141.955C142.346 43.2818 142.424 44.6891 142.424 46.0182V51.8036C142.424 54.2273 143.519 55.7909 145.317 55.7909C147.193 55.7909 148.288 54.2273 148.288 51.4909C148.288 46.4873 145.004 41.8745 141.564 37.34L139.297 34.3691C133.981 27.4109 131.792 22.7982 131.792 15.9182C131.792 6.92727 137.186 0.672726 146.021 0.672726C155.012 0.672726 159.937 6.92727 159.937 16.8564C159.937 18.7327 160.015 20.14 160.406 21.3909V22.1727H149.852C149.539 21.3127 149.383 20.14 149.383 18.6545V13.4164C149.383 10.9145 148.21 9.66364 146.568 9.66364C144.848 9.66364 143.519 10.9145 143.519 14.0418C143.519 18.6545 145.943 21.9382 149.383 26.3164L151.728 29.2873C157.123 36.0891 160.015 41.4836 160.015 49.1455C160.015 58.6836 154.621 64.7818 146.099 64.7818C136.561 64.7818 131.713 58.6055 131.713 47.66C131.713 45.7836 131.635 44.4545 131.244 43.2818V42.5ZM161.227 42.5H171.938C172.329 43.2818 172.407 44.6891 172.407 46.0182V51.8036C172.407 54.2273 173.501 55.7909 175.3 55.7909C177.176 55.7909 178.27 54.2273 178.27 51.4909C178.27 46.4873 174.987 41.8745 171.547 37.34L169.28 34.3691C163.963 27.4109 161.774 22.7982 161.774 15.9182C161.774 6.92727 167.169 0.672726 176.003 0.672726C184.994 0.672726 189.92 6.92727 189.92 16.8564C189.92 18.7327 189.998 20.14 190.389 21.3909V22.1727H179.834C179.521 21.3127 179.365 20.14 179.365 18.6545V13.4164C179.365 10.9145 178.192 9.66364 176.55 9.66364C174.83 9.66364 173.501 10.9145 173.501 14.0418C173.501 18.6545 175.925 21.9382 179.365 26.3164L181.71 29.2873C187.105 36.0891 189.998 41.4836 189.998 49.1455C189.998 58.6836 184.603 64.7818 176.081 64.7818C166.543 64.7818 161.696 58.6055 161.696 47.66C161.696 45.7836 161.618 44.4545 161.227 43.2818V42.5ZM196.815 1.45454H214.015L219.879 63.2182V64H208.933L207.604 49.1455H203.226L201.897 64H190.951V63.2182L196.815 1.45454ZM203.304 38.9818H207.526L205.806 17.4818H205.024L203.304 38.9818ZM221.855 1.45454H232.8C244.136 1.45454 250.782 8.88182 250.782 27.2545V38.2C250.782 56.5727 244.136 64 232.8 64H221.855V1.45454ZM233.191 10.8364V54.2273H234.364C237.413 54.2273 239.055 52.0382 239.055 48.6764V16.3873C239.055 13.0255 237.413 10.8364 234.364 10.8364H233.191ZM252.964 35.0727V30.3818C252.964 8.88182 258.827 0.672726 268.991 0.672726C279.155 0.672726 285.018 8.88182 285.018 30.3818V35.0727C285.018 56.5727 279.155 64.7818 268.991 64.7818C258.827 64.7818 252.964 56.5727 252.964 35.0727ZM265.864 14.0418V51.0218C265.864 53.6018 267.115 55.0091 268.991 55.0091C270.867 55.0091 272.118 53.6018 272.118 51.0218V14.0418C272.118 11.4618 270.867 10.0545 268.991 10.0545C267.115 10.0545 265.864 11.4618 265.864 14.0418ZM287.698 1.45454H299.269C309.12 1.45454 316.626 8.33455 316.626 20.4527C316.626 28.2709 314.28 32.6491 309.98 36.8709L315.844 63.2182V64H304.507L300.051 40.2327H298.878L299.426 64H287.698V1.45454ZM299.426 10.8364V31.9455H299.817C302.553 31.9455 304.898 29.8345 304.898 25.6909V17.0909C304.898 12.9473 302.553 10.8364 299.817 10.8364H299.426Z"
@@ -655,6 +702,12 @@ export default function Menu() {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               className={styles.events}
+              role="link"
+              tabIndex={0}
+              aria-label="Events"
+              onPointerEnter={() => prefetchRoute("/events")}
+              onFocus={() => prefetchRoute("/events")}
+              onKeyDown={event => { if (event.key === "Enter") navigate("/events"); }}
               onClick={() => navigate("/events")}
             >
               {/* <path

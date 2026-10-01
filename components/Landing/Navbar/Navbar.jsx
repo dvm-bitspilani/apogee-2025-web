@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./navbar.module.scss";
 import regbtnLanding from "../../../src/assets/Landing/regbtnLanding.webp";
-import { Link } from "react-router";
+import { useRegistrationClosed } from "../../../src/ui/RegistrationClosed";
 import { useSelector } from "react-redux";
 import yticon from "../../../src/assets/Landing/yticon.webp";
 import igicon from "../../../src/assets/Landing/igicon.webp";
@@ -11,7 +11,8 @@ import countdownBg from "../../../src/assets/Landing/countdownBg.webp";
 import Countdown from "../Countdown/Countdown";
 import Logo from "../Logo/Logo";
 
-export default function Navbar() {
+export default function Navbar({ alwaysAvailable = false }) {
+  const openRegistration = useRegistrationClosed();
   const curStage = useSelector((state) => state.experienceAnimations.curStage);
   const isPointerEventsAllowed = useSelector(
     (state) => state.experienceAnimations.isPointerEventsAllowed
@@ -22,7 +23,7 @@ export default function Navbar() {
       <div
         className={styles.socialsContainer}
         style={
-          curStage === "landing" && isPointerEventsAllowed
+          alwaysAvailable || (curStage === "landing" && isPointerEventsAllowed)
             ? {
                 opacity: 1,
                 pointerEvents: "auto",
@@ -73,7 +74,7 @@ export default function Navbar() {
       <div
         className={styles.regbtnContainer}
         style={
-          curStage === "landing" && isPointerEventsAllowed
+          alwaysAvailable || (curStage === "landing" && isPointerEventsAllowed)
             ? {
                 transform: "translate(-50%,0)",
                 pointerEvents: "auto",
@@ -81,18 +82,18 @@ export default function Navbar() {
             : { transform: "translate(-50%,100%)", pointerEvents: "none" }
         }
       >
-        <Link to="/registration">
+        <button type="button" className="registration-trigger" onClick={openRegistration} aria-label="Register">
           <img
             className={styles.regbtn}
             alt="register button"
             src={regbtnLanding}
           ></img>
-        </Link>
+        </button>
       </div>
       <div
         className={styles.logoContainer}
         style={
-          curStage === "landing" && isPointerEventsAllowed
+          alwaysAvailable || (curStage === "landing" && isPointerEventsAllowed)
             ? {
                 opacity: 1,
                 pointerEvents: "auto",
@@ -105,7 +106,7 @@ export default function Navbar() {
       <div
         className={styles.countdownContainer}
         style={
-          curStage === "landing" && isPointerEventsAllowed
+          alwaysAvailable || (curStage === "landing" && isPointerEventsAllowed)
             ? {
                 opacity: 1,
                 pointerEvents: "auto",

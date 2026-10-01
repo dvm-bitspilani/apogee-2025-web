@@ -35,42 +35,31 @@ export const SpeakerExperience = () => {
     );
   }, []);
 
-  const shape = useMemo(() => {
-    const shape = new THREE.Shape();
-    shape.mp4eTo(0, -0.08);
-    shape.lineTo(0, 0.08);
-
-    return shape;
-  }, [curve]);
-
   const cameraGroup = useRef();
   const scroll = useScroll();
+  const curPoint = useMemo(() => new THREE.Vector3(), []);
+  const lookAtPoint = useMemo(() => new THREE.Vector3(), []);
+  const currentLookAt = useMemo(() => new THREE.Vector3(), []);
+  const targetLookAt = useMemo(() => new THREE.Vector3(), []);
+  const lookAtTarget = useMemo(() => new THREE.Vector3(), []);
 
   useFrame((_state, delta) => {
     const scrollOffset = Math.max(0, scroll.offset);
 
-    const curPoint = curve.getPoint(scrollOffset);
+    curve.getPoint(scrollOffset, curPoint);
 
     // Follow the curve points
     cameraGroup.current.position.lerp(curPoint, delta * 24);
 
     // Make the group look ahead on the curve
 
-    const lookAtPoint = curve.getPoint(
-      Math.min(scrollOffset + CURVE_AHEAD_CAMERA, 1)
-    );
+    curve.getPoint(Math.min(scrollOffset + CURVE_AHEAD_CAMERA, 1), lookAtPoint);
 
-    const currentLookAt = cameraGroup.current.getWorldDirection(
-      new THREE.Vector3()
-    );
-    const targetLookAt = new THREE.Vector3()
-      .subVectors(curPoint, lookAtPoint)
-      .normalize();
+    cameraGroup.current.getWorldDirection(currentLookAt);
+    targetLookAt.subVectors(curPoint, lookAtPoint).normalize();
 
     const lookAt = currentLookAt.lerp(targetLookAt, delta * 24);
-    cameraGroup.current.lookAt(
-      cameraGroup.current.position.clone().add(lookAt)
-    );
+    cameraGroup.current.lookAt(lookAtTarget.copy(cameraGroup.current.position).add(lookAt));
   });
 
 

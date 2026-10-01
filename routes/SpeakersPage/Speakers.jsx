@@ -1,6 +1,6 @@
 import { lazy, Suspense, useState } from "react";
 import { Link } from "react-router";
-import ErrorBoundary from "../../src/portfolio/ErrorBoundary";
+import ErrorBoundary from "../../src/ui/ErrorBoundary";
 import SpeakerStrip from "./SpeakersPage";
 const DesktopSpeakers = lazy(() => import("./DesktopSpeakers"));
 function supportsWebGL() {
@@ -8,6 +8,6 @@ function supportsWebGL() {
 }
 export default function Speakers() {
   const [use3D] = useState(() => window.innerWidth >= 850 && !window.matchMedia('(prefers-reduced-motion:reduce)').matches && supportsWebGL());
-  const fallback = <><Link className="demo-home" to="/">← City</Link><SpeakerStrip /></>;
+  const fallback = <><Link className="page-home" to="/">← City</Link><SpeakerStrip /></>;
   return use3D ? <ErrorBoundary fallback={fallback}><Suspense fallback={fallback}><DesktopSpeakers /></Suspense></ErrorBoundary> : fallback;
 }

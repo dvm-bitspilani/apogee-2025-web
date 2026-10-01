@@ -1,4 +1,4 @@
-name: Validate portfolio archive
+name: Validate APOGEE 2025
 on: [push, pull_request]
 permissions:
   contents: read

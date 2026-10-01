@@ -33,6 +33,7 @@ import { getProject } from "@theatre/core";
 import animationStatesDesktop from "../../utils/animation_states/desktop/Landing Project.theatre-project-state.json";
 import animationStatesMobile from "../../utils/animation_states/mobile/Landing Project.theatre-project-state.json";
 import { useThree } from "@react-three/fiber";
+import { loadAbout, loadEvents, loadSpeakers } from "../../src/routeLoaders";
 import { AboutUsBoard } from "./AboutUs/AboutUsBoard.jsx";
 import { SpeakersBoard } from "./Speakers/SpeakersBoard.jsx";
 import { EventsBoard } from "./Events/EventsBoard.jsx";
@@ -81,14 +82,17 @@ export default function Experience() {
   );
 
   const handleAboutClick = () => {
+    loadAbout();
     dispatch(setNavigationStage("landingToAbout"));
   };
 
   const handleSpeakersClick = () => {
+    loadSpeakers();
     dispatch(setNavigationStage("landingToSpeakers"));
   };
 
   const handleEventsClick = () => {
+    loadEvents();
     dispatch(setNavigationStage("landingToEvents"));
   };
 
@@ -107,8 +111,14 @@ export default function Experience() {
 
   useGSAP(
     () => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        gsap.set("#landingExperience", { opacity: 1 });
+        gsap.set(blackScreen.current.material, { opacity: 0 });
+        gsap.set(orb.current.position, { x: -0.013, y: 0.85 });
+        gsap.set(cameraTarget.current, { y: 0, z: 0 });
+        return;
+      }
       const timeline = gsap.timeline();
-      // console.log(orb.current);
 
       timeline
         .fromTo(
@@ -159,13 +169,16 @@ export default function Experience() {
 
     landingSheet.project.ready.then(() => {
       if (cancelled) return;
-      startIntro = setTimeout(() => {
-        landingSheet.sequence.play({ iterationCount: 1 });
-      }, 1000);
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        landingSheet.sequence.position = 5.5;
+        dispatch(experienceAnimationsActions.toggleIsPointerEventsAllowed());
+        return;
+      }
+      landingSheet.sequence.play({ iterationCount: 1 });
       stopIntro = setTimeout(() => {
         landingSheet.sequence.pause();
         dispatch(experienceAnimationsActions.toggleIsPointerEventsAllowed());
-      }, 6500);
+      }, 5500);
     });
 
     return () => {
